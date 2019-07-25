@@ -93,6 +93,7 @@
                 <button type="submit" class="btn btn-success btn-flat"><i class="fa fa-unlock"></i> Login</button>
             </div>
         </form>
+            
 
         <a href="{{ url('/password/reset') }}" class="text-success container">Esqueci minha senha</a><br>
         <!-- <a href="{{ url('/register') }}" class="text-center">Register a new membership</a> -->
