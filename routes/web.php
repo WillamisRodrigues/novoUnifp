@@ -12,22 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
-
-// Route::get('/', function() {
-//     return response()->json([
-//      'stuff' => phpinfo()
-//     ]);
-//  });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
-
-Route::resource('testes', 'TesteController');

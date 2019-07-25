@@ -3,3 +3,7 @@
         color: #dc3545 !important;
     }
 }
+.corpo-login-inicial{
+    border-radius: 5px;
+    border-top: 3px solid #00A65A;
+}

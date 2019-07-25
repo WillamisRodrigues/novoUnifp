@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Teste;
+use App\Models\testedois;
 
-class CreateTesteRequest extends FormRequest
+class UpdatetestedoisRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class CreateTesteRequest extends FormRequest
      */
     public function rules()
     {
-        return Teste::$rules;
+        return testedois::$rules;
     }
 }

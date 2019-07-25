@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Futuro no Presente - UniFP</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="{{ url('imagens/icons/icon-fp.png') }}" type="image/x-icon" />
 
     <!-- Bootstrap 3.3.7 -->
@@ -37,7 +38,7 @@
     <nav class="navbar navbar-static-top">
       
         <div class="navbar-header">
-          <a href="../../index2.html" class="navbar-brand"> <img src="{{ url('imagens/logo/logo-unifp.png') }}" alt="Logo UniFP" style="height: 2.5rem;"> </a>
+          <a href="#" class="navbar-brand"> <img src="{{ url('imagens/logo/logo-unifp.png') }}" alt="Logo UniFP" style="height: 2.5rem;"> </a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -93,7 +94,8 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Todos os direitos reservados © 2019 <a href="#">Futuro no Presete</a>.</strong>
+        © 2019 <strong>UNIFP - SISTEMA DE GESTÃO</strong> All rights reserved.
+            <!-- ©2019 UNIFP-SISTEMA DE GESTÃO All rights reserved. -->
         </footer>
 
     
