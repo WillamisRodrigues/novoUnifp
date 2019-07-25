@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
+    <title>Futuro no Presente - UniFP</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <link rel="icon" href="{{ url('imagens/icons/icon-fp.png') }}" type="image/x-icon" />
 
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,12 +13,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/skins/_all-skins.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/skins/_all-skins.min.css"> -->
+    <link rel="stylesheet" href="{{ url('css/adminlte.css') }}">
+    <link rel="stylesheet" href="{{ url('css/main.css') }}">
 
     <!-- iCheck -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/_all.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
 
     <!-- Ionicons -->
@@ -29,64 +31,58 @@
 
 <body class="skin-green sidebar-mini">
 @if (!Auth::guest())
-    <div class="wrapper">
+    
         <!-- Main Header -->
         <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      
+        <div class="navbar-header">
+          <a href="../../index2.html" class="navbar-brand"> <img src="{{ url('imagens/logo/logo-unifp.png') }}" alt="Logo UniFP" style="height: 2.5rem;"> </a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
 
-            <!-- Logo -->
-            <a href="#" class="logo">
-                <img src="https://fpeduc.com.br/unifp/phpimages/unifp.png" alt="Logo UniFP" style="height: 4rem; padding: 5px 10px">
-            </a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a> -->
+                <!-- <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                </ul> -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    @include('layouts.menu')
+                </ul>
+            </li>
+          </ul>
+        </div>
 
-            <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <!-- <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                </a> -->
-                <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                    <ul class="sidebar-menu" data-widget="tree">
-            @include('layouts.menu')
-        </ul>
-                        <!-- User Account Menu -->
-                        <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <!-- <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                     class="user-image" alt="User Image"/> -->
-                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">{!! Auth::user()->name !!}</span>
-                            </a>
-                            <ul class="dropdown-menu" style="width: 10rem">
-                                <!-- The user image in the menu -->
-                                <!-- <li class="user-header">
-                                    <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                         class="img-circle" alt="User Image"/>
-                                    <p>
-                                        {!! Auth::user()->name !!}
-                                        <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
-                                    </p>
-                                </li> -->
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <!-- <li class="list-group-item"><a href="#" class="btn btn-default btn-flat">Profile</a></li> -->
-                                    <a href="{!! url('/logout') !!}" class="btn"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Sign out
-                                        </a>
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- User Account Menu -->
+            <li class="dropdown user user-menu" >
+              <!-- Menu Toggle Button -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Administrador </a>
+              <ul class="dropdown-menu" style="width: 5rem">
+                <li class="user-footer">
+                  <div>
+                    <a href="#" class="btn btn-danger btn-block" class="botao-logout-mobile">Sair</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-custom-menu -->
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
 
         <!-- Left side column. contains the logo and sidebar -->
         @include('layouts.sidebar')
@@ -100,7 +96,7 @@
             <strong>Todos os direitos reservados © 2019 <a href="#">Futuro no Presete</a>.</strong>
         </footer>
 
-    </div>
+    
 @else
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
@@ -156,7 +152,6 @@
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/js/adminlte.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 
