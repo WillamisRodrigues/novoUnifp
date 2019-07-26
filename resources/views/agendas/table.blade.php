@@ -3,11 +3,11 @@
         <thead>
             <tr>
                 <th>Prioridade</th>
-        <th>Data</th>
-        <th>Hora</th>
-        <th>Assunto</th>
-        <th>Tarefa</th>
-        <th>Resolvido</th>
+                <th>Data</th>
+                <th>Hora</th>
+                <th>Assunto</th>
+                <th>Tarefa</th>
+                <th>Resolvido</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -15,11 +15,11 @@
         @foreach($agendas as $agenda)
             <tr>
                 <td>{!! $agenda->prioridade !!}</td>
-            <td>{!! $agenda->Data !!}</td>
-            <td>{!! $agenda->Hora !!}</td>
-            <td>{!! $agenda->Assunto !!}</td>
-            <td>{!! $agenda->Tarefa !!}</td>
-            <td>{!! $agenda->Resolvido !!}</td>
+                <td>{!! $agenda->Data !!}</td>
+                <td>{!! $agenda->Hora !!}</td>
+                <td>{!! $agenda->Assunto !!}</td>
+                <td>{!! $agenda->Tarefa !!}</td>
+                <td>{!! $agenda->Resolvido !!}</td>
                 <td>
                     {!! Form::open(['route' => ['agendas.destroy', $agenda->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

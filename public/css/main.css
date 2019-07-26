@@ -7,3 +7,20 @@
     border-radius: 5px;
     border-top: 3px solid #00A65A;
 }
+.box.box-primary{
+    border-top-color: #00A65A;
+}
+.sidebar-menu li a{
+    padding: 15px 10px !important;
+    background-color: #00A65A !important;
+}
+.skin-green .sidebar-menu li.active a:hover{
+    background-color: #55c691 !important;
+}
+.input-radio-prioridade{
+    padding: 0.5rem 1rem !important;
+    border-radius: 100px !important;
+    color: white !important;
+    font-weight: bolder !important;
+    margin-right: 2rem !important;
+}
