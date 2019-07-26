@@ -698,7 +698,7 @@
 			snapToStep: !1,
 			showSeconds: !1,
 			showInputs: !0,
-			showMeridian: !0,
+			// showMeridian: !0,
 			template: 'dropdown',
 			appendWidgetTo: 'body',
 			showWidgetOnAddonClick: !0,

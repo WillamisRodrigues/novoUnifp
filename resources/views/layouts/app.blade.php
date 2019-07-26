@@ -16,6 +16,7 @@
     <!-- Theme style -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/AdminLTE.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/skins/_all-skins.min.css"> -->
+    <link rel="stylesheet" href="{{ url('css/timepicker.css') }}">
     <link rel="stylesheet" href="{{ url('css/adminlte.css') }}">
     <link rel="stylesheet" href="{{ url('css/main.css') }}">
 
@@ -32,13 +33,13 @@
 
 <body class="skin-green sidebar-mini">
 @if (!Auth::guest())
-    
+
         <!-- Main Header -->
         <header class="main-header">
     <nav class="navbar navbar-static-top">
-      
+
         <div class="navbar-header">
-          <a href="#" class="navbar-brand"> <img src="{{ url('imagens/logo/logo-unifp.png') }}" alt="Logo UniFP" style="height: 2.5rem;"> </a>
+          <a href="/home" class="navbar-brand"> <img src="{{ url('imagens/logo/logo-unifp.png') }}" alt="Logo UniFP" style="height: 2.5rem;"> </a>
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
             <i class="fa fa-bars"></i>
           </button>
@@ -48,14 +49,7 @@
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="dropdown">
-              <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a> -->
-                <!-- <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                </ul> -->
-                <ul class="sidebar-menu" data-widget="tree">
+                <ul class="sidebar-menu" data-widget="tree" style="display: inline">
                     @include('layouts.menu')
                 </ul>
             </li>
@@ -95,11 +89,10 @@
 
         <!-- Main Footer -->
         <footer class="main-footer" style="max-height: 100px;text-align: center">
-        © 2019 <strong>UNIFP - SISTEMA DE GESTÃO</strong> All rights reserved.
-            <!-- ©2019 UNIFP-SISTEMA DE GESTÃO All rights reserved. -->
+            © 2019 <strong>UNIFP - SISTEMA DE GESTÃO</strong> All rights reserved.
         </footer>
 
-    
+
 @else
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">

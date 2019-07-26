@@ -15,7 +15,7 @@
         <div class="clearfix"></div>
         <div class="box box-primary">
             <div class="box-body">
-                    @include('agendas.table')
+                    @include('agendas.create')
             </div>
         </div>
         <div class="text-center">

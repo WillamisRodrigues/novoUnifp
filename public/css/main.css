@@ -13,8 +13,9 @@
 .sidebar-menu li a{
     padding: 15px 10px !important;
     background-color: #00A65A !important;
+    color: white;
 }
-.skin-green .sidebar-menu li.active a:hover{
+.sidebar-menu li.active a:hover, .sidebar-menu li a:hover {
     background-color: #55c691 !important;
 }
 .input-radio-prioridade{
@@ -25,5 +26,33 @@
     margin-right: 2rem !important;
 }
 .content-agenda-pessoal{
-    width: 50% !important;
+    width: 60% !important;
 }
+@media (max-width: 425px){
+    .content-agenda-pessoal{
+        width: 100% !important;
+    }
+    .mobile-input-largura{
+        width: 15rem !important;
+    }
+    textarea.mobile-input-largura{
+        height: 8rem !important;
+    }
+    .agenda-input-hora{
+        display: none !important;
+    }
+}
+@media (min-width: 426px){
+    @media (max-width: 1024px){
+        .content-agenda-pessoal{
+            width: 90% !important;
+        }
+        .mobile-input-largura{
+            width: 25rem !important;
+        }
+        textarea.mobile-input-largura{
+            height: 8rem !important;
+        }
+    }
+}
+

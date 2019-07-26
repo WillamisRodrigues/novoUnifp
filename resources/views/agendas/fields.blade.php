@@ -1,25 +1,27 @@
-<table class="table">
+<table class="table tabela-agenda-adicionar">
+
+    <!-- Campo Prioridade  -->
     <tr>
         <td></td>
-    <!-- Prioridade Field -->
         <div class="radio">
             <td style="width: 15rem"><p style="font-weight: bold"> Prioridade<span style="color: red">*</span></p></td>
-            <td>
-                <label>{!! Form::radio('prioridade', 'Baixa', ['class' => 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: green"> Baixa </span> </label>
-                <label>{!! Form::radio('prioridade', 'Média', ['class' => 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: orange"> Média </span> </label>
-                <label>{!! Form::radio('prioridade', 'Alta', ['class' => 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: red"> Alta </span> </label>
+            <td class="row">
+                <label class="col-xs-12 col-sm-3 col-md-2">{!! Form::radio('prioridade', 'Baixa', ['class' => 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: green"> Baixa </span> </label>
+                <label class="col-xs-12 col-sm-3 col-md-2">{!! Form::radio('prioridade', 'Média', ['class' => 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: orange"> Média </span> </label>
+                <label class="col-xs-12 col-sm-3 col-md-2">{!! Form::radio('prioridade', 'Alta', ['class' => 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: red"> Alta </span> </label>
             </td>
         </div>
     </tr>
+
+    <!-- Campo Data  -->
     <tr>
         <td></td>
-        <!-- Data Field -->
         <div class="form-group">
             <td style="width: 15rem">{!! Form::label('Data', 'Data') !!}<span style="color: red">*</span>:</td>
             <td>
                 <div class="input-group date" style="width: 5rem">
-                    {!! Form::date('Data', null, ['class' => 'form-control','id'=>'datepicker']) !!}
-                    <div class="input-group-addon">
+                    {!! Form::date('Data', null, ['class' => 'form-control mobile-input-largura','id'=>'datepicker']) !!}
+                    <div class="input-group-addon agenda-input-hora">
                         <i class="fa fa-calendar"></i>
                     </div>
                 </div>
@@ -33,15 +35,15 @@
         <script>
             //Timepicker
             $('.timepicker').timepicker({
-                showInputs: false
+                showInputs: false,
+                timeFormat: 'HH:mm:ss'
             })
         </script>
     @endsection
 
-    <!-- Hora Field -->
+    <!-- Campo Hora  -->
     <tr>
         <td></td>
-        <!-- time Picker -->
         <div class="bootstrap-timepicker">
             <div class="form-group">
                 <td style="width: 15rem">
@@ -49,8 +51,8 @@
                 </td>
                 <td>
                     <div class="input-group" style="width: 21.2rem">
-                        {!! Form::text('Hora', null, ['class' => 'form-control timepicker']) !!}
-                        <div class="input-group-addon">
+                        {!! Form::text('Hora', null, ['class' => 'form-control timepicker  mobile-input-largura']) !!}
+                        <div class="input-group-addon agenda-input-hora">
                             <i class="fa fa-clock-o"></i>
                         </div>
                     </div>
@@ -59,47 +61,47 @@
         </div>
     </tr>
 
-    <!-- Assunto Field -->
+    <!-- Campo Assunto  -->
     <tr>
         <td></td>
         <div class="form-group">
             <td style="width: 15rem">
-                {!! Form::label('Assunto', 'Assunto:') !!}<span style="color: red">*</span>:
+                {!! Form::label('Assunto', 'Assunto') !!}<span style="color: red">*</span>:
             </td>
-            <td>{!! Form::text('Assunto', null, ['class' => 'form-control', 'style' => 'width: 50rem']) !!}</td>
+            <td>{!! Form::text('Assunto', null, ['class' => 'form-control mobile-input-largura', 'style' => 'width: 50rem']) !!}</td>
         </div>
     </tr>
 
-    <!-- Tarefa Field -->
+    <!-- Campo Tarefa  -->
     <tr>
         <td></td>
         <div class="form-group">
             <td style="width: 15rem">
-                {!! Form::label('Tarefa', 'Tarefa:') !!}<span style="color: red">*</span>:
+                {!! Form::label('Tarefa', 'Tarefa') !!}<span style="color: red">*</span>:
             </td>
             <td>
-                {!! Form::textarea('Tarefa', null, ['class' => 'form-control', 'style' => 'width: 50rem', 'height: 10rem']) !!}
+                {!! Form::textarea('Tarefa', null, ['class' => 'form-control mobile-input-largura', 'style' => 'width: 50rem', 'height: 10rem']) !!}
             </td>
         </div>
     </tr>
 
-    <!-- Resolvido Field -->
+    <!-- Campo Resolvido  -->
     <tr>
         <td></td>
         <div class="form-group">
             <td style="width: 15rem">
-                {!! Form::label('Resolvido', 'Resolvido:') !!}<span style="color: red">*</span>:
+                {!! Form::label('Resolvido', 'Resolvido') !!}<span style="color: red">*</span>:
             </td>
-            <td>
-                <label style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Nao', ['class' => 'form-control']) !!} Não </label>
-                <label style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Outros', ['class' => 'form-control']) !!} Aguardando outros </label>
-                <label style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Financas', ['class' => 'form-control']) !!} Aguardando finanças </label>
-                <label>{!! Form::radio('Resolvido', 'Sim', ['class' => 'form-control']) !!} Sim </label>
+            <td class="row">
+                <label class="col-xs-12 col-sm-6 col-md-3" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Nao', ['class' => 'form-control']) !!} Não </label>
+                <label class="col-xs-12 col-sm-6 col-md-3" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Aguardo outros', ['class' => 'form-control']) !!} Aguardando outros </label>
+                <label class="col-xs-12 col-sm-6 col-md-3" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Aguardo finanças', ['class' => 'form-control']) !!} Aguardando finanças </label>
+                <label class="col-xs-12 col-sm-6 col-md-3">{!! Form::radio('Resolvido', 'Sim', ['class' => 'form-control']) !!} Sim </label>
             </td>
         </div>
     </tr>
 
-    <!-- Submit Field -->
+    <!-- Campo Submit  -->
     <tr>
         <td></td>
         <td></td>
