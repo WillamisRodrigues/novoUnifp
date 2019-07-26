@@ -6,12 +6,12 @@
             Agenda
         </h1>
     </section>
-    <div class="content">
+    <div class="content content-agenda-pessoal">
         @include('adminlte-templates::common.errors')
         <div class="box box-primary">
 
             <div class="box-body">
-                <div class="row">
+                <div class="row" >
                     {!! Form::open(['route' => 'agendas.store']) !!}
 
                         @include('agendas.fields')
