@@ -93,10 +93,10 @@
                 {!! Form::label('Resolvido', 'Resolvido') !!}<span style="color: red">*</span>:
             </td>
             <td class="row">
-                <label class="col-xs-12 col-sm-6 col-md-3" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Nao', ['class' => 'form-control']) !!} Não </label>
-                <label class="col-xs-12 col-sm-6 col-md-3" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Aguardo outros', ['class' => 'form-control']) !!} Aguardando outros </label>
-                <label class="col-xs-12 col-sm-6 col-md-3" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Aguardo finanças', ['class' => 'form-control']) !!} Aguardando finanças </label>
-                <label class="col-xs-12 col-sm-6 col-md-3">{!! Form::radio('Resolvido', 'Sim', ['class' => 'form-control']) !!} Sim </label>
+                <label class="col-xs-12 col-sm-6 col-md-2 col-lg-2" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Nao', ['class' => 'form-control']) !!} Não </label>
+                <label class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Aguardo outros', ['class' => 'form-control']) !!} Aguardando outros </label>
+                <label class="col-xs-12 col-sm-6 col-md-4 col-lg-3" style="padding-right: 2rem">{!! Form::radio('Resolvido', 'Aguardo finanças', ['class' => 'form-control']) !!} Aguardando finanças </label>
+                <label class="col-xs-12 col-sm-6 col-md-2 col-lg-1">{!! Form::radio('Resolvido', 'Sim', ['class' => 'form-control']) !!} Sim </label>
             </td>
         </div>
     </tr>
