@@ -2,11 +2,13 @@
 
 @section('content')
 <section class="content-header">
-    <h1 class="pull-left">Agenda Lista</h1>
+    <h1 class="pull-left">Lista de Unidades</h1>
+    <a class="btn btn-success pull-right" style="margin-left: 1rem"
+        href="{!! route('unidades.create') !!}">Adicionar</a>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="#" class="disabled">Agenda</a></li>
+            <li><a href="{!! route('unidades.index') !!}">Unidade</a></li>
             <li class="active">Lista</li>
         </ol>
     </h1>
@@ -19,7 +21,7 @@
     <div class="clearfix"></div>
     <div class="box box-primary">
         <div class="box-body">
-            @include('agendas.table')
+            @include('unidades.table')
         </div>
     </div>
     <div class="text-center">

@@ -2,9 +2,16 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Agenda
-        </h1>
+            <h1 class="pull-right">
+                    <ol class="breadcrumb breadcrumb-fp">
+                        <li><a href="/home"><i class="fa fa-home"></i></a></li>
+                        <li><a href="#" class="disabled">Agenda</a></li>
+                        <li class="active">Editar Compromisso</li>
+                    </ol>
+                </h1>
+                <h1>
+                    Editar Compromisso
+                </h1>
    </section>
    <div class="content">
        @include('adminlte-templates::common.errors')

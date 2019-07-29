@@ -27,7 +27,7 @@
 .input-radio-prioridade {
     padding: 0.5rem 1rem !important;
     border-radius: 100px !important;
-    color: white !important;
+    color: white;
     font-weight: bolder !important;
     margin-right: 2rem !important;
 }
@@ -62,7 +62,7 @@
 .nav .open>a,
 .nav .open>a:focus,
 .nav .open>a:hover {
-    border-color: #55c691;
+    border-color: #55c69100;
 }
 
 .breadcrumb-fp {
@@ -80,12 +80,35 @@
 
 .box .box-primary,
 .box {
-    width: 80% !important;
+    /* width: 80% !important; */
     margin: 0 auto !important;
 }
 
 .menu-top-navbar {
     display: inline-block !important;
+}
+
+.dataTables_filter input[type=search] {
+    border: 2px solid #33333366 !important;
+    border-radius: 10px !important;
+    padding: 5px;
+}
+
+.dataTables_filter input[type=search]:focus {
+    outline: none !important;
+}
+
+.dataTables_wrapper select {
+    background-color: #fff;
+    padding: 2.5px;
+}
+
+.dataTables_wrapper select:focus {
+    outline: none !important;
+}
+
+.criar-unidade {
+    width: 60%;
 }
 
 @media (max-width: 425px) {

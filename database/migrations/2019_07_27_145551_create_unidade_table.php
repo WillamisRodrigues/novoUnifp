@@ -17,7 +17,16 @@ class CreateUnidadeTable extends Migration
             $table->bigIncrements('id');
             $table->string('NomeUnidade');
             $table->string('CNPJ');
+            $table->string('Endereco');
+            $table->string('Bairro');
+            $table->string('Cidade');
+            $table->string('UF');
+            $table->string('Telefone1');
+            $table->string('Telefone2')->nullable();
+            $table->enum('Tipo', ['Propria', 'Franquia']);
+            $table->string('Logotipo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -58,7 +58,7 @@ class AgendaController extends AppBaseController
 
         $agenda = $this->agendaRepository->create($input);
 
-        Flash::success('Agenda saved successfully.');
+        Flash::success('Compromisso adicionado com sucesso.');
 
         return redirect(route('agendas.index'));
     }
@@ -75,7 +75,7 @@ class AgendaController extends AppBaseController
         $agenda = $this->agendaRepository->find($id);
 
         if (empty($agenda)) {
-            Flash::error('Agenda not found');
+            Flash::error('Compromisso não encontrado.');
 
             return redirect(route('agendas.index'));
         }
@@ -95,7 +95,7 @@ class AgendaController extends AppBaseController
         $agenda = $this->agendaRepository->find($id);
 
         if (empty($agenda)) {
-            Flash::error('Agenda not found');
+            Flash::error('Compromisso não encontrado.');
 
             return redirect(route('agendas.index'));
         }
@@ -116,14 +116,14 @@ class AgendaController extends AppBaseController
         $agenda = $this->agendaRepository->find($id);
 
         if (empty($agenda)) {
-            Flash::error('Agenda not found');
+            Flash::error('Compromisso não encontrado.');
 
             return redirect(route('agendas.index'));
         }
 
         $agenda = $this->agendaRepository->update($request->all(), $id);
 
-        Flash::success('Agenda updated successfully.');
+        Flash::success('Compromisso atualizado com sucesso.');
 
         return redirect(route('agendas.index'));
     }
@@ -142,14 +142,14 @@ class AgendaController extends AppBaseController
         $agenda = $this->agendaRepository->find($id);
 
         if (empty($agenda)) {
-            Flash::error('Agenda not found');
+            Flash::error('Compromisso não encontrado.');
 
             return redirect(route('agendas.index'));
         }
 
         $this->agendaRepository->delete($id);
 
-        Flash::success('Agenda deleted successfully.');
+        Flash::success('Compromisso deletado com sucesso.');
 
         return redirect(route('agendas.index'));
     }
