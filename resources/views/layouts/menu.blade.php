@@ -89,5 +89,8 @@
         <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
             <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>
         </li>
+        <li class="{{ Request::is('tempoAulas*') ? 'active' : '' }}">
+            <a href="{!! route('tempoAulas.index') !!}"><i class="fa fa-star"></i><span>Tempo Aulas</span></a>
+        </li>
     </ul>
 </li>

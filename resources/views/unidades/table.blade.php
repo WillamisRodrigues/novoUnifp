@@ -34,7 +34,7 @@
                         <a href="{!! route('unidades.edit', [$unidade->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-pencil"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Você tem certeza?')"]) !!}
+                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Você tem certeza que deseja deletar a unidade selecionada?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>

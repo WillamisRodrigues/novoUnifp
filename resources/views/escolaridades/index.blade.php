@@ -12,8 +12,6 @@
             <li class="active">Lista</li>
         </ol>
     </h1>
-
-
 </section>
 <div class="content">
     <div class="clearfix"></div>

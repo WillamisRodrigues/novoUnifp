@@ -25,3 +25,5 @@ Route::resource('agendas', 'AgendaController');
 Route::resource('unidades', 'UnidadeController');
 
 Route::resource('escolaridades', 'EscolaridadeController');
+
+Route::resource('tempoAulas', 'TempoAulaController');
