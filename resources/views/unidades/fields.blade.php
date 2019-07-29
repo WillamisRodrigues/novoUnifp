@@ -102,11 +102,14 @@
         --}}
         <td>
             {!! Form::select('UF', array(
-                'AC' => 'Acre', 'AL' => 'Alagoas', 'AP' => 'Amapá', 'AM' => 'Amazonas', 'BA' => 'Bahia', 'CE' => 'Ceará', 'DF' => 'Distrito Federal', 'ES' => 'Espírito Santo',
-                'GO' => 'Goiás', 'MA' => 'Maranhão', 'MT' => 'Mato Grosso', 'MS' => 'Mato Grosso do Sul', 'MG' => 'Minas Gerais', 'PA' => 'Pará', 'PB' => 'Paraíba', 'PR' => 'Paraná',
-                'PE' => 'Pernambuco', 'PI' => 'Piauí', 'RJ' => 'Rio de Janeiro', 'RN' => 'Rio Grande de Norte', 'RS' => 'Rio Grande do Sul', 'RO' => 'Rondônia', 'RR' => 'Roraima', 'SC' => 'Santa Catarina',
-                'SP' => 'São Paulo', 'SE' => 'Sergipe', 'TO' => 'Tocantins'
-        ), ['class' => 'custom-select']) !!}
+            'AC' => 'Acre', 'AL' => 'Alagoas', 'AP' => 'Amapá', 'AM' => 'Amazonas', 'BA' => 'Bahia', 'CE' => 'Ceará',
+            'DF' => 'Distrito Federal', 'ES' => 'Espírito Santo',
+            'GO' => 'Goiás', 'MA' => 'Maranhão', 'MT' => 'Mato Grosso', 'MS' => 'Mato Grosso do Sul', 'MG' => 'Minas
+            Gerais', 'PA' => 'Pará', 'PB' => 'Paraíba', 'PR' => 'Paraná',
+            'PE' => 'Pernambuco', 'PI' => 'Piauí', 'RJ' => 'Rio de Janeiro', 'RN' => 'Rio Grande de Norte', 'RS' => 'Rio
+            Grande do Sul', 'RO' => 'Rondônia', 'RR' => 'Roraima', 'SC' => 'Santa Catarina',
+            'SP' => 'São Paulo', 'SE' => 'Sergipe', 'TO' => 'Tocantins'
+            ), ['class' => 'custom-select']) !!}
         </td>
     </tr>
 
@@ -146,8 +149,12 @@
     <tr class="row">
         <td class="col-md-2"></td>
         <td class="col-md-6">
-            {!! Form::submit('Adicionar Unidade', ['class' => 'btn btn-success']) !!}
-            <a href="{!! route('unidades.index') !!}" class="btn btn-default">Cancelar</a>
+            {{-- {!! Form::submit('Salvar Unidade', ['class' => 'btn btn-success btn-flat']) !!}
+            <a href="{!! route('unidades.index') !!}" class="btn btn-default btn-flat">Cancelar</a> --}}
+            <button class="btn btn-success btn-flat" type="submit"><i class="fa fa-save"></i> Salvar
+                Unidade</button>
+            <a href="{!! route('unidades.index') !!}" class="btn btn-danger btn-flat"> <i class="fa fa-close"></i>
+                Cancelar</a>
         </td>
     </tr>
 </table>

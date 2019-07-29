@@ -86,5 +86,8 @@
         <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
             <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Unidades</span></a>
         </li>
+        <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
+            <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>
+        </li>
     </ul>
 </li>

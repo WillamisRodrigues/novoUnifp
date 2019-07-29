@@ -107,7 +107,7 @@
         <td></td>
         <div class="form-group">
             <td>
-                <button class="btn btn-primary btn-flat" type="submit"><i class="fa fa-save"></i> Inserir</button>
+                <button class="btn btn-success btn-flat" type="submit"><i class="fa fa-save"></i> Salvar Compromisso</button>
                 <a href="{!! route('agendas.index') !!}" class="btn btn-danger btn-flat"> <i class="fa fa-close"></i> Cancelar</a>
             </td>
         </div>
