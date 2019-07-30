@@ -1,28 +1,19 @@
 <li class="dropdown menu-top-navbar">
     <!-- Menu Toggle Button -->
-    <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-area-chart"></i>
-        Dashboard <i class="glyphicon glyphicon-chevron-down"></i> </a>
-    <ul class="dropdown-menu drop-menu-item-top">
-
-    </ul>
+    <a href="#"><i class="fa fa-area-chart"></i>
+        Dashboard</a>
 </li>
 
 <li class="dropdown menu-top-navbar">
     <!-- Menu Toggle Button -->
-    <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="icon ion-md-basket"></i>
-        E-commerce <i class="glyphicon glyphicon-chevron-down"></i> </a>
-    <ul class="dropdown-menu drop-menu-item-top">
-
-    </ul>
+    <a href="#"><i class="fa fa-shopping-basket"></i>
+        E-commerce</a>
 </li>
 
 <li class="dropdown menu-top-navbar">
     <!-- Menu Toggle Button -->
-    <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-television"></i>
-        Treinamentos <i class="glyphicon glyphicon-chevron-down"></i> </a>
-    <ul class="dropdown-menu drop-menu-item-top">
-
-    </ul>
+    <a href="#"><i class="fa fa-television"></i>
+        Treinamentos</a>
 </li>
 
 <li class="dropdown menu-top-navbar">
@@ -91,6 +82,9 @@
         </li>
         <li class="{{ Request::is('tempoAulas*') ? 'active' : '' }}">
             <a href="{!! route('tempoAulas.index') !!}"><i class="fa fa-star"></i><span>Tempo Aulas</span></a>
+        </li>
+        <li class="{{ Request::is('nivelAcessos*') ? 'active' : '' }}">
+            <a href="{!! route('nivelAcessos.index') !!}"><i class="fa fa-list"></i><span>Nivel Acessos</span></a>
         </li>
     </ul>
 </li>

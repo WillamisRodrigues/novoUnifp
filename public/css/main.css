@@ -111,6 +111,11 @@
     width: 60%;
 }
 
+.select-unifp select {
+    background-color: #fff;
+    padding: 5px;
+}
+
 @media (max-width: 425px) {
     .content-agenda-pessoal {
         width: 100% !important;

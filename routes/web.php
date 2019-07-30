@@ -27,3 +27,9 @@ Route::resource('unidades', 'UnidadeController');
 Route::resource('escolaridades', 'EscolaridadeController');
 
 Route::resource('tempoAulas', 'TempoAulaController');
+
+Route::resource('perfilAcessos', 'PerfilAcessoController');
+
+Route::resource('acessos', 'AcessoController');
+
+Route::resource('nivelAcessos', 'nivelAcessoController');
