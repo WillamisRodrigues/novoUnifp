@@ -26,7 +26,7 @@ class Unidade extends Model
     use SoftDeletes;
 
     public $table = 'unidade';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -79,9 +79,8 @@ class Unidade extends Model
         'Cidade' => 'required',
         'UF' => 'required',
         'Telefone1' => 'required',
-        'Tipo' => 'required',
-        'Logotipo' => 'required'
+        'Tipo' => 'required'
     ];
 
-    
+
 }

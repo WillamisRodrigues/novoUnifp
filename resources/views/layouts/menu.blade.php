@@ -37,7 +37,9 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa  fa-keyboard-o"></i>
         Secretaria <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
-
+        <li class="{{ Request::is('visitantes*') ? 'active' : '' }}">
+            <a href="{!! route('visitantes.index') !!}"><i class="fa fa-users"></i><span>Visitantes (Interessados)</span></a>
+        </li>
     </ul>
 </li>
 
