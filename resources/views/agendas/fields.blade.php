@@ -4,7 +4,7 @@
     <tr>
         <td></td>
         <div class="radio">
-            <td style="width: 15rem"><p style="font-weight: bold"> Prioridade<span style="color: red">*</span></p></td>
+            <td style=""><p style="font-weight: bold"> Prioridade<span style="color: red">*</span></p></td>
             <td class="row">
                 <label class="col-xs-12 col-sm-3 col-md-2">{!! Form::radio('prioridade', 'Baixa', ['class' => 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: green"> Baixa </span> </label>
                 <label class="col-xs-12 col-sm-3 col-md-2">{!! Form::radio('prioridade', 'Média', ['class' => 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: orange"> Média </span> </label>
@@ -17,7 +17,7 @@
     <tr>
         <td></td>
         <div class="form-group">
-            <td style="width: 15rem">{!! Form::label('Data', 'Data') !!}<span style="color: red">*</span>:</td>
+            <td style="">{!! Form::label('Data', 'Data') !!}<span style="color: red">*</span>:</td>
             <td>
                 <div class="input-group date" style="width: 5rem">
                     {!! Form::date('Data', null, ['class' => 'form-control mobile-input-largura','id'=>'datepicker']) !!}
@@ -46,7 +46,7 @@
         <td></td>
         <div class="bootstrap-timepicker">
             <div class="form-group">
-                <td style="width: 15rem">
+                <td style="">
                     {!! Form::label('Hora', 'Horario') !!}<span style="color: red">*</span>:
                 </td>
                 <td>
@@ -65,7 +65,7 @@
     <tr>
         <td></td>
         <div class="form-group">
-            <td style="width: 15rem">
+            <td style="">
                 {!! Form::label('Assunto', 'Assunto') !!}<span style="color: red">*</span>:
             </td>
             <td>{!! Form::text('Assunto', null, ['class' => 'form-control mobile-input-largura', 'style' => 'width: 50rem']) !!}</td>
@@ -76,7 +76,7 @@
     <tr>
         <td></td>
         <div class="form-group">
-            <td style="width: 15rem">
+            <td style="">
                 {!! Form::label('Tarefa', 'Tarefa') !!}<span style="color: red">*</span>:
             </td>
             <td>
@@ -89,7 +89,7 @@
     <tr>
         <td></td>
         <div class="form-group">
-            <td style="width: 15rem">
+            <td style="">
                 {!! Form::label('Resolvido', 'Resolvido') !!}<span style="color: red">*</span>:
             </td>
             <td class="row">

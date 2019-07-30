@@ -17,7 +17,7 @@
     @include('flash::message')
 
     <div class="clearfix"></div>
-    <div class="box box-primary">
+    <div class="box box-primary criar-unidade">
         <div class="box-body">
             @include('agendas.table')
         </div>

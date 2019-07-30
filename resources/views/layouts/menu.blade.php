@@ -1,18 +1,18 @@
 <li class="dropdown menu-top-navbar">
     <!-- Menu Toggle Button -->
-    <a href="#"><i class="fa fa-area-chart"></i>
+    <a href="/home"><i class="fa fa-area-chart"></i>
         Dashboard</a>
 </li>
 
 <li class="dropdown menu-top-navbar">
     <!-- Menu Toggle Button -->
-    <a href="#"><i class="fa fa-shopping-basket"></i>
+    <a href="https://fpeduc.com/loja/" target="_blank"><i class="fa fa-shopping-basket"></i>
         E-commerce</a>
 </li>
 
 <li class="dropdown menu-top-navbar">
     <!-- Menu Toggle Button -->
-    <a href="#"><i class="fa fa-television"></i>
+    <a href="https://fpeduc.com/unifp/treinamentos/" target="_blank"><i class="fa fa-television"></i>
         Treinamentos</a>
 </li>
 
@@ -64,7 +64,9 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-gear"></i> Manutenção
         <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
-
+        <li class="{{ Request::is('usuarios*') ? 'active' : '' }}">
+            <a href="{!! route('usuarios.index') !!}"><i class="fa-user-circle-o fa"></i><span>Usuarios</span></a>
+        </li>
     </ul>
 </li>
 
@@ -84,7 +86,7 @@
             <a href="{!! route('tempoAulas.index') !!}"><i class="fa fa-star"></i><span>Tempo Aulas</span></a>
         </li>
         <li class="{{ Request::is('nivelAcessos*') ? 'active' : '' }}">
-            <a href="{!! route('nivelAcessos.index') !!}"><i class="fa fa-list"></i><span>Nivel Acessos</span></a>
+            <a href="{!! route('nivelAcessos.index') !!}"><i class="fa fa-list"></i><span>Niveis de acesso</span></a>
         </li>
     </ul>
 </li>

@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'unifp',
             'email' => 'unifp@gmail.com',
             'password' => bcrypt('123456'),
+            'nivelAcesso' => 0,
+            'unidadeEscolar' => 0,
+            'nascimento' => '2023/10/10'
         ]);
     }
 }

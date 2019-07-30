@@ -58,7 +58,7 @@ class nivelAcessoController extends AppBaseController
 
         $nivelAcesso = $this->nivelAcessoRepository->create($input);
 
-        Flash::success('Nivel Acesso saved successfully.');
+        Flash::success('Nivel de Acesso salvo com sucesso.');
 
         return redirect(route('nivelAcessos.index'));
     }
@@ -75,7 +75,7 @@ class nivelAcessoController extends AppBaseController
         $nivelAcesso = $this->nivelAcessoRepository->find($id);
 
         if (empty($nivelAcesso)) {
-            Flash::error('Nivel Acesso not found');
+            Flash::error('Nivel de acesso não encontrado.');
 
             return redirect(route('nivelAcessos.index'));
         }
@@ -95,7 +95,7 @@ class nivelAcessoController extends AppBaseController
         $nivelAcesso = $this->nivelAcessoRepository->find($id);
 
         if (empty($nivelAcesso)) {
-            Flash::error('Nivel Acesso not found');
+            Flash::error('Nivel de acesso não encontrado.');
 
             return redirect(route('nivelAcessos.index'));
         }
@@ -116,14 +116,14 @@ class nivelAcessoController extends AppBaseController
         $nivelAcesso = $this->nivelAcessoRepository->find($id);
 
         if (empty($nivelAcesso)) {
-            Flash::error('Nivel Acesso not found');
+            Flash::error('Nivel de acesso não encontrado.');
 
             return redirect(route('nivelAcessos.index'));
         }
 
         $nivelAcesso = $this->nivelAcessoRepository->update($request->all(), $id);
 
-        Flash::success('Nivel Acesso updated successfully.');
+        Flash::success('Nivel de acesso atualizado com sucesso.');
 
         return redirect(route('nivelAcessos.index'));
     }
@@ -142,14 +142,14 @@ class nivelAcessoController extends AppBaseController
         $nivelAcesso = $this->nivelAcessoRepository->find($id);
 
         if (empty($nivelAcesso)) {
-            Flash::error('Nivel Acesso not found');
+            Flash::error('Nivel de acesso não encontrado.');
 
             return redirect(route('nivelAcessos.index'));
         }
 
         $this->nivelAcessoRepository->delete($id);
 
-        Flash::success('Nivel Acesso deleted successfully.');
+        Flash::success('Nivel de acesso deletado com sucesso.');
 
         return redirect(route('nivelAcessos.index'));
     }
