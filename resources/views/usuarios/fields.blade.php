@@ -61,7 +61,7 @@
         <p class="col-md-4 col-sm-12 col-xs-12"></p>
         <p class="col-md-8 col-sm-12 col-xs-12">
             <button class="btn btn-success btn-flat" style="margin-bottom: 1rem" type="submit"><i
-                    class="fa fa-save"></i> SalvarUsuário</button>
+                    class="fa fa-save"></i> Salvar Usuário</button>
             <a href="{!! route('usuarios.index') !!}" style="margin-bottom: 1rem" class="btn btn-danger btn-flat"> <i
                     class="fa fa-close"></i> Cancelar</a>
         </p>

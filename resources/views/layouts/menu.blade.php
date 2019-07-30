@@ -38,7 +38,8 @@
         Secretaria <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
         <li class="{{ Request::is('visitantes*') ? 'active' : '' }}">
-            <a href="{!! route('visitantes.index') !!}"><i class="fa fa-users"></i><span>Visitantes (Interessados)</span></a>
+            <a href="{!! route('visitantes.index') !!}"><i class="fa fa-users"></i><span>Visitantes
+                    (Interessados)</span></a>
         </li>
     </ul>
 </li>
@@ -66,8 +67,11 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-gear"></i> Manutenção
         <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="{!! route('funcionarios.index') !!}"><i class="fa fa-user-circle-o"></i><span>Funcionários</span></a>
+        </li>
         <li class="{{ Request::is('usuarios*') ? 'active' : '' }}">
-            <a href="{!! route('usuarios.index') !!}"><i class="fa-user-circle-o fa"></i><span>Usuarios</span></a>
+            <a href="{!! route('usuarios.index') !!}"><i class="fa-user-circle-o fa"></i><span>Usuários</span></a>
         </li>
     </ul>
 </li>

@@ -1,4 +1,3 @@
-{{-- <table class="table"> --}}
 <div class="container formulario-padrao">
     <!-- Nome Field -->
     <div class="row">
@@ -8,18 +7,26 @@
     <!-- Telefone Field -->
     <div class="row">
         <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('telefone', 'Telefone:') !!}</p>
-        <div class="inputs-group col-md-8 col-sm-12 col-xs-12"
-            style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
-            {!! Form::text('telefone', null, ['class' => 'form-control']) !!}
-            <div class="input-group-addon agenda-input-hora">
-                <i class="fa fa-phone"></i>
+        <p class="col-md-8 col-sm-12">
+            <div class="input-group" style="padding-right: 15px; padding-left: 15px; ">
+                {!! Form::text('telefone', null, ['class' => 'form-control']) !!}
+                <div class="input-group-addon">
+                    <i class="fa fa-phone"></i>
+                </div>
             </div>
-        </div>
+        </p>
     </div>
     <!-- Email Field -->
     <div class="row">
         <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('email', 'E-mail:') !!}</p>
-        <p class="col-md-8 col-sm-12 col-xs-12">{!! Form::email('email', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-md-8 col-sm-12">
+            <div class="input-group" style="padding-right: 15px; padding-left: 15px; ">
+                {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                <div class="input-group-addon">
+                    <i class="fa fa-at"></i>
+                </div>
+            </div>
+        </p>
     </div>
     <!-- Observacao Field -->
     <div class="row">
@@ -31,9 +38,6 @@
     <!-- Dataretorno Field -->
     <div class="row">
         <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('dataRetorno', 'Data de Retorno:') !!}</p>
-        {{-- <p class="col-md-8 col-sm-12 col-xs-12">{!! Form::date('dataRetorno', null, ['class' =>
-            'form-control','id'=>'dataRetorno']) !!}
-        </p> --}}
         <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('dataRetorno', null, ['class' => 'form-control','id'=>'datepicker']) !!}
@@ -115,11 +119,10 @@
         <p class="col-md-8 col-sm-12 col-xs-12">
             <button class="btn btn-success btn-flat" style="margin-bottom: 1rem" type="submit"><i
                     class="fa fa-save"></i> Salvar
-                Compromisso</button>
+                Visitante</button>
             <a href="{!! route('visitantes.index') !!}" style="margin-bottom: 1rem" class="btn btn-danger btn-flat"> <i
                     class="fa fa-close"></i>
                 Cancelar</a>
         </p>
     </div>
-    {{-- </table> --}}
 </div>

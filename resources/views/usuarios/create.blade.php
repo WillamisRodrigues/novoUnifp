@@ -2,9 +2,16 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Usuario
-        </h1>
+            <h1 class="pull-right">
+                    <ol class="breadcrumb breadcrumb-fp">
+                        <li><a href="/home"><i class="fa fa-home"></i></a></li>
+                        <li><a href="{!! route('usuarios.index') !!}">Usuários</a></li>
+                        <li class="active">Cadastrar Usuário</li>
+                    </ol>
+                </h1>
+                <h1>
+                    Cadastrar Usuário
+                </h1>
     </section>
     <div class="content">
         @include('adminlte-templates::common.errors')

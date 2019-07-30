@@ -5,22 +5,23 @@
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="{!! route('visitantes.index') !!}">Visitante</a></li>
+            <li><a href="{!! route('funcionarios.index') !!}">Funcionário</a></li>
             <li class="active">Editar</li>
         </ol>
     </h1>
     <h1>
-        Editar Cadastro do Visitante
+        Editar Funcionário
     </h1>
 </section>
 <div class="content">
     @include('adminlte-templates::common.errors')
     <div class="box box-primary criar-unidade">
-        <div class="box-body">
+        <div class="box-body ">
             <div class="row">
-                {!! Form::model($visitante, ['route' => ['visitantes.update', $visitante->id], 'method' => 'patch']) !!}
+                {!! Form::model($funcionario, ['route' => ['funcionarios.update', $funcionario->id], 'method' =>
+                'patch']) !!}
 
-                @include('visitantes.fields')
+                @include('funcionarios.fields')
 
                 {!! Form::close() !!}
             </div>

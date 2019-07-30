@@ -1,78 +1,52 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $visitante->id !!}</p>
-</div>
+<div class="container">
+    <div class="p-5 m-5">
+        <!-- Nome Field -->
+        <div class="row">
+                <p class="col-md-2 col-sm-12">{!! Form::label('nome', 'Nome:') !!}</p>
+                <p class="col-md-8 col-sm-12">{!! $visitante->nome !!}</p>
+        </div>
 
-<!-- Nome Field -->
-<div class="form-group">
-    {!! Form::label('nome', 'Nome:') !!}
-    <p>{!! $visitante->nome !!}</p>
-</div>
+        <!-- Telefone Field -->
+        <div class="row">
+                <p class="col-md-2 col-sm-12">{!! Form::label('telefone', 'Telefone:') !!}</p>
+                <p class="col-md-8 col-sm-12">{!! $visitante->telefone !!}</p>
+        </div>
 
-<!-- Telefone Field -->
-<div class="form-group">
-    {!! Form::label('telefone', 'Telefone:') !!}
-    <p>{!! $visitante->telefone !!}</p>
-</div>
+        <!-- Email Field -->
+        <div class="row">
+                <p class="col-md-2 col-sm-12">{!! Form::label('email', 'E-mail:') !!}</p>
+                <p class="col-md-8 col-sm-12">{!! $visitante->email !!}</p>
+        </div>
 
-<!-- Email Field -->
-<div class="form-group">
-    {!! Form::label('email', 'Email:') !!}
-    <p>{!! $visitante->email !!}</p>
-</div>
+        <!-- Observacao Field -->
+        <div class="row">
+                <p class="col-md-2 col-sm-12">{!! Form::label('observacao', 'Observação:') !!}</p>
+                <p class="col-md-8 col-sm-12">{!! $visitante->observacao !!}</p>
+        </div>
 
-<!-- Observacao Field -->
-<div class="form-group">
-    {!! Form::label('observacao', 'Observacao:') !!}
-    <p>{!! $visitante->observacao !!}</p>
-</div>
+        <!-- Dataretorno Field -->
+        <div class="row">
+                <p class="col-md-2 col-sm-12">{!! Form::label('dataRetorno', 'Data do Retorno:') !!}</p>
+                <p class="col-md-8 col-sm-12">{!! $visitante->dataRetorno !!} : {!! $visitante->horaRetorno !!}</p>
+        </div>
 
-<!-- Dataretorno Field -->
-<div class="form-group">
-    {!! Form::label('dataRetorno', 'Dataretorno:') !!}
-    <p>{!! $visitante->dataRetorno !!}</p>
-</div>
+        <!-- Comoconheceu Field -->
+        <div class="row">
+                <p class="col-md-2 col-sm-12">{!! Form::label('comoConheceu', 'Como Conheceu:') !!}</p>
+                <p class="col-md-8 col-sm-12">{!! $visitante->comoConheceu !!}</p>
+        </div>
 
-<!-- Horaretorno Field -->
-<div class="form-group">
-    {!! Form::label('horaRetorno', 'Horaretorno:') !!}
-    <p>{!! $visitante->horaRetorno !!}</p>
-</div>
+        <!-- Dataatendimento Field -->
+        <div class="row">
+                <p class="col-md-2 col-sm-12">{!! Form::label('dataAtendimento', 'Data do Atendimento:') !!}</p>
+                <p class="col-md-8 col-sm-12">{!! $visitante->dataAtendimento !!}</p>
+        </div>
 
-<!-- Comoconheceu Field -->
-<div class="form-group">
-    {!! Form::label('comoConheceu', 'Comoconheceu:') !!}
-    <p>{!! $visitante->comoConheceu !!}</p>
-</div>
+        <!-- Status Field -->
+        <div class="row">
+                <p class="col-md-2 col-sm-12">{!! Form::label('status', 'Status:') !!}</p>
+                <p class="col-md-8 col-sm-12">{!! $visitante->status !!}</p>
+        </div>
 
-<!-- Dataatendimento Field -->
-<div class="form-group">
-    {!! Form::label('dataAtendimento', 'Dataatendimento:') !!}
-    <p>{!! $visitante->dataAtendimento !!}</p>
+    </div>
 </div>
-
-<!-- Status Field -->
-<div class="form-group">
-    {!! Form::label('status', 'Status:') !!}
-    <p>{!! $visitante->status !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $visitante->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $visitante->updated_at !!}</p>
-</div>
-
-<!-- Deleted At Field -->
-<div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
-    <p>{!! $visitante->deleted_at !!}</p>
-</div>
-

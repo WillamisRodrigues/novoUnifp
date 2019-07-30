@@ -34,3 +34,5 @@ Route::resource('nivelAcessos', 'nivelAcessoController');
 Route::resource('usuarios', 'usuarioController');
 
 Route::resource('visitantes', 'visitanteController');
+
+Route::resource('funcionarios', 'FuncionarioController');
