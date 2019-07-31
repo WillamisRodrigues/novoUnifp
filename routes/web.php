@@ -40,3 +40,5 @@ Route::resource('funcionarios', 'FuncionarioController');
 Route::resource('fornecedors', 'FornecedorController');
 
 Route::resource('horarios', 'HorarioController');
+
+Route::resource('diasSemanas', 'DiasSemanaController');

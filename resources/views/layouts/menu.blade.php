@@ -78,6 +78,9 @@
         <li class="{{ Request::is('horarios*') ? 'active' : '' }}">
             <a href="{!! route('horarios.index') !!}"><i class="fa fa-clock-o"></i><span>Horários</span></a>
         </li>
+        <li class="{{ Request::is('diasSemanas*') ? 'active' : '' }}">
+                <a href="{!! route('diasSemanas.index') !!}"><i class="fa fa-list"></i><span>Dias de Aula</span></a>
+            </li>
         <li class="{{ Request::is('usuarios*') ? 'active' : '' }}">
             <a href="{!! route('usuarios.index') !!}"><i class="fa-user-circle-o fa"></i><span>Usuários</span></a>
         </li>
@@ -104,3 +107,5 @@
         </li>
     </ul>
 </li>
+
+
