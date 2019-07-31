@@ -149,7 +149,7 @@ class DiasSemanaController extends AppBaseController
 
         $this->diasSemanaRepository->delete($id);
 
-        Flash::success('Dia de Aula deletado com sucesso.');
+        Flash::success('Dia de Aula deletado com sucesso .');
 
         return redirect(route('diasSemanas.index'));
     }
