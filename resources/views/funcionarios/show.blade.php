@@ -14,11 +14,12 @@
     </h1>
 </section>
 <div class="content">
-    <div class="box box-primary">
+    <div class="box box-primary criar-unidade">
         <div class="box-body">
             <div class="row" style="padding-left: 20px">
                 @include('funcionarios.show_fields')
-                <a href="{!! route('funcionarios.index') !!}" class="btn btn-default">Back</a>
+                <p class="col-md-3"></p>
+                <a href="{!! route('funcionarios.index') !!}" class="btn btn-default">Voltar</a>
             </div>
         </div>
     </div>

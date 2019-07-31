@@ -18,6 +18,7 @@
         <div class="box-body">
             <div class="row" style="padding-left: 20px">
                 @include('unidades.show_fields')
+                <p class="col-md-3"></p>
                 <a href="{!! route('unidades.index') !!}" class="btn btn-default">Voltar</a>
             </div>
         </div>

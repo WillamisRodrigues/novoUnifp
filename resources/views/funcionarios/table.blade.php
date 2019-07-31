@@ -32,11 +32,11 @@
                     {!! Form::open(['route' => ['funcionarios.destroy', $funcionario->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
                         <a href="{!! route('funcionarios.show', [$funcionario->id]) !!}"
-                            class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                            class='btn btn-default btn-sm'><i class="glyphicon glyphicon-zoom-in"></i></a>
                         <a href="{!! route('funcionarios.edit', [$funcionario->id]) !!}"
-                            class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                            class='btn btn-default btn-sm'><i class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que deseja excluir o funcionário?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>

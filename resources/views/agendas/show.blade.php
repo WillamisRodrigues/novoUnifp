@@ -18,7 +18,8 @@
         <div class="box-body">
             <div class="row" style="padding-left: 30px">
                 @include('agendas.show_fields')
-                <a href="{!! route('agendas.index') !!}" class="btn btn-default">Voltar</a>
+                <p class="col-sm-12 col-md-3"></p>
+                <p class="col-sm-12 col-md-9"><a href="{!! route('agendas.index') !!}" class="btn btn-default">Voltar</a></p>
             </div>
         </div>
     </div>

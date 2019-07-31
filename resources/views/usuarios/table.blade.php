@@ -49,12 +49,12 @@
                 <td>
                     {!! Form::open(['route' => ['usuarios.destroy', $usuario->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{!! route('usuarios.show', [$usuario->id]) !!}" class='btn btn-default btn-xs'><i
-                                class="glyphicon glyphicon-eye-open"></i></a>
-                        <a href="{!! route('usuarios.edit', [$usuario->id]) !!}" class='btn btn-default btn-xs'><i
+                        <a href="{!! route('usuarios.show', [$usuario->id]) !!}" class='btn btn-default btn-sm'><i
+                                class="glyphicon glyphicon-zoom-in"></i></a>
+                        <a href="{!! route('usuarios.edit', [$usuario->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que deseja excluir o usuário?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>

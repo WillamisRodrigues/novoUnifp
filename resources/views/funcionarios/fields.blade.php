@@ -1,15 +1,21 @@
 <div class="container formulario-padrao">
     <!-- Nome Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('Nome', 'Nome:') !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Nome', 'Nome:') !!}<span
+                style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">{!! Form::text('Nome', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Nascimento Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('Nascimento', 'Nascimento:') !!}</p>
-        <p class="col-md-8 col-sm-12">{!! Form::date('Nascimento', null, ['class' => 'form-control','id'=>'Nascimento'])
-            !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Nascimento', 'Data de Nascimento:')
+            !!}<span style="color: red">*</span></p>
+        <div class="input-group date col-md-8 col-sm-12" style="width:40%; padding-left: 15px">
+            {!! Form::date('Nascimento', null, ['class' => 'form-control ','id'=>'Nascimento'])!!}
+            <div class="input-group-addon agenda-input-hora">
+                <i class="fa fa-calendar"></i>
+            </div>
+        </div>
     </div>
 
     @section('scripts')
@@ -24,61 +30,94 @@
     </script>
     @endsection
 
-    <!-- Estadocivil Field -->
-    <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('EstadoCivil', 'Estadocivil:') !!}</p>
-        <p class="col-md-8 col-sm-12">{!! Form::text('EstadoCivil', null, ['class' => 'form-control']) !!}</p>
-    </div>
-
     <!-- Celular Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('Celular', 'Celular:') !!}</p>
-        <p class="col-md-8 col-sm-12">{!! Form::text('Celular', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Celular', 'Celular:') !!}<span
+                style="color: red">*</span></p>
+        {{-- <p class="col-md-8 col-sm-12">
+            {!! Form::text('Celular', null, ['class' => 'form-control']) !!}
+        </p> --}}
+        <div class="input-group date col-md-8 col-sm-12" style="width:40%; padding-left: 15px">
+            {!! Form::text('Celular', null, ['class' => 'form-control'])!!}
+            <div class="input-group-addon agenda-input-hora">
+                <i class="fa fa-mobile" style="font-size:2rem"></i>
+            </div>
+        </div>
     </div>
 
     <!-- Telefonefixo Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('TelefoneFixo', 'Telefonefixo:') !!}</p>
-        <p class="col-md-8 col-sm-12">{!! Form::text('TelefoneFixo', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('TelefoneFixo', 'Telefone Fixo:')
+            !!}<span style="color: red">*</span></p>
+        {{-- <p class="col-md-8 col-sm-12">{!! Form::text('TelefoneFixo', null, ['class' => 'form-control']) !!}</p> --}}
+        <div class="input-group date col-md-8 col-sm-12" style="width:40%; padding-left: 15px">
+            {!! Form::text('TelefoneFixo', null, ['class' => 'form-control'])!!}
+            <div class="input-group-addon agenda-input-hora">
+                <i class="fa fa-phone"></i>
+            </div>
+        </div>
     </div>
 
     <!-- Email Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('Email', 'Email:') !!}</p>
-        <p class="col-md-8 col-sm-12">{!! Form::email('Email', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Email', 'E-mail:') !!}<span
+                style="color: red">*</span></p>
+        {{-- <p class="col-md-8 col-sm-12">{!! Form::email('Email', null, ['class' => 'form-control']) !!}</p> --}}
+        <div class="input-group date col-md-8 col-sm-12" style="width:40%; padding-left: 15px">
+            {!! Form::email('Email', null, ['class' => 'form-control'])!!}
+            <div class="input-group-addon agenda-input-hora">
+                <i class="fa fa-at"></i>
+            </div>
+        </div>
     </div>
 
     <!-- Cargo Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('Cargo', 'Cargo:') !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Cargo', 'Cargo:') !!}<span
+                style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">{!! Form::text('Cargo', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Setor Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('Setor', 'Setor:') !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Setor', 'Setor:') !!}<span
+                style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">{!! Form::text('Setor', null, ['class' => 'form-control']) !!}</p>
+    </div>
+
+    <!-- Estadocivil Field -->
+    <div class="row">
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('EstadoCivil', 'Estado Civil:') !!}</p>
+        <p class="col-md-8 col-sm-12 select-conheceu">
+            {!! Form::select('EstadoCivil', array('Solteiro' => 'Solteiro', 'Casado' => 'Casado', 'Viuvo' => 'Viúvo',
+            'Divorciado' => 'Divorciado')) !!}
+        </p>
     </div>
 
     <!-- Observacao Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('Observacao', 'Observacao:') !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Observacao', 'Observação:') !!}</p>
         <p class="col-md-8 col-sm-12">{!! Form::textarea('Observacao', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Inativo Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('Inativo', 'Inativo:') !!}</p>
-        <p class="col-md-8 col-sm-12">{!! Form::text('Inativo', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Inativo', 'Inativo:') !!}<span
+                style="color: red">*</span></p>
+        <p class="col-md-8 col-sm-12 select-conheceu">
+            {!! Form::select('Inativo', array('Nao' => 'Ativo', 'Sim' => 'Inativo')) !!}
+        </p>
     </div>
 
     <!-- Submit Field -->
     <div class="row">
         <p class="col-md-4"></p>
         <p class="col-md-8 col-sm-12">
-            <button class="btn btn-success btn-flat" type="submit"><i class="fa fa-save"></i> Salvar
+            <button class="btn btn-success btn-flat" style="margin-bottom: 1rem" type="submit"><i
+                    class="fa fa-save"></i> Salvar
                 Funcionário</button>
-            <a href="{!! route('funcionarios.index') !!}" class="btn btn-danger btn-flat"> <i class="fa fa-close"></i>
+            <a href="{!! route('funcionarios.index') !!}" class="btn btn-danger btn-flat" style="margin-bottom: 1rem">
+                <i class="fa fa-close"></i>
                 Cancelar</a></p>
     </div>
 </div>

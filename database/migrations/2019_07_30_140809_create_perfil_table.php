@@ -16,7 +16,7 @@ class CreatePerfilTable extends Migration
     {
         Schema::create('perfil', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('perfilAcesso'); // Administrador, Supervisor, Gestor, Secretaria, Professor, Comercial, Atendimento
+            $table->string('perfilAcesso')->unique(); // Administrador, Supervisor, Gestor, Secretaria, Professor, Comercial, Atendimento
             $table->integer('nivelAcesso'); // 0 - Adm, 1 - Supervisor, 2 - Gestor, 3 - Secretaria, 4 - Prof, 5 - Comercial, 6 - Atendimento
             $table->timestamps();
             $table->SoftDeletes();

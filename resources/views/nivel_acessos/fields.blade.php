@@ -3,7 +3,7 @@
         <!-- Perfilacesso Field -->
         <tr>
             <td></td>
-            <td>{!! Form::label('perfilAcesso', 'Nome do Perfil:') !!}</td>
+            <td>{!! Form::label('perfilAcesso', 'Nome do Perfil:') !!}<span style="color: red">*</span></td>
             <td>{!! Form::text('perfilAcesso', null, ['class' => 'form-control']) !!}</td>
             <td></td>
         </tr>
@@ -11,7 +11,7 @@
         <!-- Nivel Acesso Field -->
         <tr>
             <td></td>
-            <td>{!! Form::label('nivelAcesso', 'Nivel de Acesso:') !!}</td>
+            <td>{!! Form::label('nivelAcesso', 'Nivel de Acesso:') !!}<span style="color: red">*</span></td>
             <td class="select-unifp">{!! Form::select('nivelAcesso', array(
                 '0' => 'Administrador', '1' => 'Supervisor', '2' => 'Gestor', '3' => 'Secretaria', '4' => 'Professor', '5'
                 => 'Comercial','6' => 'Atendimento'), ['class' => 'form-control']) !!}</td>

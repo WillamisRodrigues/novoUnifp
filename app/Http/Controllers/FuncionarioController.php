@@ -58,7 +58,7 @@ class FuncionarioController extends AppBaseController
 
         $funcionario = $this->funcionarioRepository->create($input);
 
-        Flash::success('Funcionario saved successfully.');
+        Flash::success('Funcionário salvo com sucesso.');
 
         return redirect(route('funcionarios.index'));
     }
@@ -75,7 +75,7 @@ class FuncionarioController extends AppBaseController
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
-            Flash::error('Funcionario not found');
+            Flash::error('Funcionário não encontrado.');
 
             return redirect(route('funcionarios.index'));
         }
@@ -95,7 +95,7 @@ class FuncionarioController extends AppBaseController
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
-            Flash::error('Funcionario not found');
+            Flash::error('Funcionário não encontrado.');
 
             return redirect(route('funcionarios.index'));
         }
@@ -116,14 +116,14 @@ class FuncionarioController extends AppBaseController
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
-            Flash::error('Funcionario not found');
+            Flash::error('Funcionário não encontrado.');
 
             return redirect(route('funcionarios.index'));
         }
 
         $funcionario = $this->funcionarioRepository->update($request->all(), $id);
 
-        Flash::success('Funcionario updated successfully.');
+        Flash::success('Informações do funcionário atualizadas com sucesso.');
 
         return redirect(route('funcionarios.index'));
     }
@@ -142,14 +142,14 @@ class FuncionarioController extends AppBaseController
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
-            Flash::error('Funcionario not found');
+            Flash::error('Funcionário não encontrado.');
 
             return redirect(route('funcionarios.index'));
         }
 
         $this->funcionarioRepository->delete($id);
 
-        Flash::success('Funcionario deleted successfully.');
+        Flash::success('Funcionário deletado com sucesso.');
 
         return redirect(route('funcionarios.index'));
     }

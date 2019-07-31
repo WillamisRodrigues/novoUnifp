@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table" id="nivelAcessos-table">
+    <table class="table display datatable-list">
         <thead>
             <tr>
                 <th>Perfil de Acesso</th>
@@ -15,6 +15,8 @@
                     <div class='btn-group'>
                         <a href="{!! route('nivelAcessos.edit', [$nivelAcesso->id]) !!}"
                             class='btn btn-default btn-md'><i class="glyphicon glyphicon-edit"></i></a>
+                            {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
+                        'btn btn-danger btn-md', 'onclick' => "return confirm('Você tem certeza que deseja deletar o perfil de acesso?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>

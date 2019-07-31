@@ -17,13 +17,13 @@ class CreateFuncionarioTable extends Migration
             $table->bigIncrements('id');
             $table->string('Nome');
             $table->date('Nascimento');
-            $table->enum('EstadoCivil', ['Solteiro', 'Casado', 'Viuvo', 'Divorciado']);
+            $table->enum('EstadoCivil', ['Solteiro', 'Casado', 'Viuvo', 'Divorciado'])->nullable();
             $table->string('Celular');
             $table->string('TelefoneFixo');
             $table->string('Email');
             $table->string('Cargo');
             $table->string('Setor');
-            $table->longText('Observacao');
+            $table->longText('Observacao')->nullable();
             $table->enum('Inativo', ['Sim', 'Nao']);
             $table->timestamps();
             $table->softDeletes();

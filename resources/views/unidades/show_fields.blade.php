@@ -1,93 +1,55 @@
-{{-- <!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $unidade->id !!}</p>
-</div> --}}
-<table class="table table-sm">
-    <!-- Nomeunidade Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('NomeUnidade', 'Unidade:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->NomeUnidade !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
+<div class="container formulario-padrao">
+    <!-- Campo Nomeunidade -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('NomeUnidade', 'Unidade:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->NomeUnidade !!}</p>
+    </div>
 
-    <!-- Cnpj Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('CNPJ', 'CNPJ:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->CNPJ !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
+    <!-- Campo Cnpj -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('CNPJ', 'CNPJ:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->CNPJ !!}</p>
+    </div>
 
-    <!-- Endereco Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('Endereco', 'Endereço:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->Endereco !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
+    <!-- Campo Endereco -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Endereco', 'Endereço:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->Endereco !!}</p>
+    </div>
 
-    <!-- Bairro Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('Bairro', 'Bairro:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->Bairro !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
+    <!-- Campo Bairro -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Bairro', 'Bairro:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->Bairro !!}</p>
+    </div>
 
-    <!-- Cidade Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('Cidade', 'Cidade:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->Cidade !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
+    <!-- Campo Cidade -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Cidade', 'Cidade:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->Cidade !!}</p>
+    </div>
 
-    <!-- Uf Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('UF', 'UF:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->UF !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
+    <!-- Campo Uf -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('UF', 'UF:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->UF !!}</p>
+    </div>
 
-    <!-- Telefone1 Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('Telefone1', 'Telefone 1:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->Telefone1 !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
+    <!-- Campo Telefone1 -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Telefone1', 'Telefone 1:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->Telefone1 !!}</p>
+    </div>
 
-    <!-- Telefone2 Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('Telefone2', 'Telefone 2:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->Telefone2 !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
+    <!-- Campo Telefone2 -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Telefone2', 'Telefone 2:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->Telefone2 !!}</p>
+    </div>
 
-    <!-- Tipo Field -->
-    <tr class="row">
-        <td class="col-md-2">{!! Form::label('Tipo', 'Tipo:') !!}</td>
-        <td class="col-md-2"><p>{!! $unidade->Tipo !!}</p></td>
-        <td class="col-md-8"></td>
-    </tr>
-</table>
-
-{{-- <!-- Logotipo Field -->
-<div class="form-group">
-    {!! Form::label('Logotipo', 'Logotipo:') !!}
-    <p>{!! $unidade->Logotipo !!}</p>
+    <!-- Campo Tipo -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Tipo', 'Tipo:') !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $unidade->Tipo !!}</p>
+    </div>
 </div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $unidade->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $unidade->updated_at !!}</p>
-</div>
-
-<!-- Deleted At Field -->
-<div class="form-group">
-    {!! Form::label('deleted_at', 'Deleted At:') !!}
-    <p>{!! $unidade->deleted_at !!}</p>
-</div> --}}
