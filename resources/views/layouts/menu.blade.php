@@ -72,7 +72,11 @@
                     class="fa fa-user-circle-o"></i><span>Funcionários</span></a>
         </li>
         <li class="{{ Request::is('fornecedors*') ? 'active' : '' }}">
-            <a href="{!! route('fornecedors.index') !!}"><i class="fa fa-address-card-o"></i><span>Fornecedores</span></a>
+            <a href="{!! route('fornecedors.index') !!}"><i
+                    class="fa fa-address-card-o"></i><span>Fornecedores</span></a>
+        </li>
+        <li class="{{ Request::is('horarios*') ? 'active' : '' }}">
+            <a href="{!! route('horarios.index') !!}"><i class="fa fa-clock-o"></i><span>Horários</span></a>
         </li>
         <li class="{{ Request::is('usuarios*') ? 'active' : '' }}">
             <a href="{!! route('usuarios.index') !!}"><i class="fa-user-circle-o fa"></i><span>Usuários</span></a>

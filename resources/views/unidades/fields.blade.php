@@ -1,7 +1,8 @@
 <div class="container formulario-padrao">
     <!-- Nomeunidade Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('NomeUnidade', 'Unidade:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12">{!! Form::label('NomeUnidade', 'Unidade:') !!}<span style="color: red">*</span>
+        </p>
         <p class="col-md-8 col-sm-12">{!! Form::text('NomeUnidade', null, ['class' => 'form-control']) !!}</p>
     </div>
     <!-- Cnpj Field -->
@@ -41,7 +42,8 @@
     </div>
     <!-- Telefone1 Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12" style="margin-top: 15px">{!! Form::label('Telefone1', 'Telefone 1:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12" style="margin-top: 15px">{!! Form::label('Telefone1', 'Telefone 1:') !!}<span
+                style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">
             <div class="input-group" style="padding-right: 15px; padding-left: 15px; ">
                 {!! Form::text('Telefone1', null, ['class' => 'form-control']) !!}
@@ -83,10 +85,12 @@
     <!-- Submit Field -->
     <div class="row">
         <p class="col-md-4 col-sm-12"></p>
-        <p class="col-md-8 col-sm-12"><button class="btn btn-success btn-flat" type="submit"><i class="fa fa-save"></i>
+        <p class="col-md-8 col-sm-12">
+            <button class="btn btn-success btn-flat" type="submit"><i class="fa fa-save"></i>
                 Salvar
                 Unidade</button>
             <a href="{!! route('unidades.index') !!}" class="btn btn-danger btn-flat"> <i class="fa fa-close"></i>
-                Cancelar</a></p>
+                Cancelar</a>
+        </p>
     </div>
 </div>
