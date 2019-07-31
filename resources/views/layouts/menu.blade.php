@@ -41,6 +41,9 @@
             <a href="{!! route('visitantes.index') !!}"><i class="fa fa-users"></i><span>Visitantes
                     (Interessados)</span></a>
         </li>
+        <li class="{{ Request::is('alunos*') ? 'active' : '' }}">
+                <a href="{!! route('alunos.index') !!}"><i class="fa fa-graduation-cap"></i><span>Alunos / Matrículas</span></a>
+            </li>
     </ul>
 </li>
 
@@ -111,3 +114,5 @@
         </li>
     </ul>
 </li>
+
+

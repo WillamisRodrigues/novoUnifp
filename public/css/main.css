@@ -131,6 +131,15 @@
     margin: 10px 0;
 }
 
+.criar-aluno {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #00A65A;
+}
+
 @media (max-width: 425px) {
     .content-agenda-pessoal {
         width: 100% !important;
@@ -161,6 +170,10 @@
     .campo-texto-agenda {
         margin: 10px 15px;
     }
+    .criar-aluno {
+        width: 100%;
+        margin: 0 auto;
+    }
 }
 
 @media (min-width: 426px) {
@@ -176,6 +189,10 @@
         }
         .box {
             width: 100% !important;
+        }
+        .criar-aluno {
+            width: 90%;
+            margin: 0 auto;
         }
     }
 }
