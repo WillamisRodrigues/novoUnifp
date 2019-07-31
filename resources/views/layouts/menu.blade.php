@@ -68,7 +68,11 @@
         <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
-            <a href="{!! route('funcionarios.index') !!}"><i class="fa fa-user-circle-o"></i><span>Funcionários</span></a>
+            <a href="{!! route('funcionarios.index') !!}"><i
+                    class="fa fa-user-circle-o"></i><span>Funcionários</span></a>
+        </li>
+        <li class="{{ Request::is('fornecedors*') ? 'active' : '' }}">
+            <a href="{!! route('fornecedors.index') !!}"><i class="fa fa-address-card-o"></i><span>Fornecedores</span></a>
         </li>
         <li class="{{ Request::is('usuarios*') ? 'active' : '' }}">
             <a href="{!! route('usuarios.index') !!}"><i class="fa-user-circle-o fa"></i><span>Usuários</span></a>
@@ -83,7 +87,7 @@
     </a>
     <ul class="dropdown-menu drop-menu-item-top">
         <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
-            <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Unidades</span></a>
+            <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Escolas / Contratos</span></a>
         </li>
         <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
             <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>

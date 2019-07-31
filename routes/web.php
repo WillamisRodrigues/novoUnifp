@@ -36,3 +36,5 @@ Route::resource('usuarios', 'usuarioController');
 Route::resource('visitantes', 'visitanteController');
 
 Route::resource('funcionarios', 'FuncionarioController');
+
+Route::resource('fornecedors', 'FornecedorController');
