@@ -46,3 +46,5 @@ Route::resource('diasSemanas', 'DiasSemanaController');
 Route::resource('ajudas', 'AjudaController');
 
 Route::resource('alunos', 'AlunoController');
+
+Route::resource('cursos', 'CursoController');

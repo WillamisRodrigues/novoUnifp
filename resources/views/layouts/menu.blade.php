@@ -42,8 +42,12 @@
                     (Interessados)</span></a>
         </li>
         <li class="{{ Request::is('alunos*') ? 'active' : '' }}">
-                <a href="{!! route('alunos.index') !!}"><i class="fa fa-graduation-cap"></i><span>Alunos / Matrículas</span></a>
-            </li>
+            <a href="{!! route('alunos.index') !!}"><i class="fa fa-graduation-cap"></i><span>Alunos /
+                    Matrículas</span></a>
+        </li>
+        <li class="{{ Request::is('cursos*') ? 'active' : '' }}">
+            <a href="{!! route('cursos.index') !!}"><i class="fa fa-cube"></i><span>Cursos</span></a>
+        </li>
     </ul>
 </li>
 
@@ -114,5 +118,3 @@
         </li>
     </ul>
 </li>
-
-
