@@ -56,6 +56,10 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-money"></i>
         Financeiro <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
+        <li class="{{ Request::is('formasPagamentos*') ? 'active' : '' }}">
+            <a href="{!! route('formasPagamentos.index') !!}"><i class="fa fa-cube"></i><span>Formas
+                    Pagamentos</span></a>
+        </li>
 
     </ul>
 </li>

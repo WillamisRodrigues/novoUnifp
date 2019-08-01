@@ -48,3 +48,5 @@ Route::resource('ajudas', 'AjudaController');
 Route::resource('alunos', 'AlunoController');
 
 Route::resource('cursos', 'CursoController');
+
+Route::resource('formasPagamentos', 'FormasPagamentoController');
