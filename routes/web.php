@@ -52,3 +52,5 @@ Route::resource('cursos', 'CursoController');
 Route::resource('formasPagamentos', 'FormasPagamentoController');
 
 Route::resource('turmas', 'TurmaController');
+
+Route::resource('aulasCronogramas', 'AulasCronogramaController');

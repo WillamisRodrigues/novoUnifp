@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table" id="turmas-table">
+    <table class="table display datatable-list" id="turmas-table">
         <thead>
             <tr>
                 <th>Curso</th>

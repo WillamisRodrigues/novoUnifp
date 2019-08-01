@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table" id="formasPagamentos-table">
+    <table class="table display datatable-list" id="formasPagamentos-table">
         <thead>
             <tr>
                 <th>Quantidade de Parcelas</th>

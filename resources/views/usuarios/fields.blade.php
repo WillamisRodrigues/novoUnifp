@@ -1,12 +1,12 @@
 <div class="container formulario-padrao">
     <!-- Name Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('name', 'Name:') !!}</p>
+        <p class="col-md-4 col-sm-12">{!! Form::label('name', 'Name:') !!}<span style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">{!! Form::text('name', null, ['class' => 'form-control', ])!!}</p>
         <!-- Email Field -->
     </div>
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('email', 'Email:') !!}</p>
+        <p class="col-md-4 col-sm-12">{!! Form::label('email', 'Email:') !!}<span style="color: red">*</span></p>
         <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::email('email', null, ['class' => 'form-control','id'=>'datepicker']) !!}
@@ -17,7 +17,7 @@
         <!-- Nascimento Field -->
     </div>
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('nascimento', 'Nascimento:') !!}</p>
+        <p class="col-md-4 col-sm-12">{!! Form::label('nascimento', 'Nascimento:') !!}<span style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">{!! Form::date('nascimento', null, ['class' => 'form-control','id'=>'nascimento',
             ]) !!}</p>
 
@@ -36,18 +36,18 @@
 
     <!-- Nivelacesso Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('nivelAcesso', 'Nivel de Acesso:') !!}</p>
+        <p class="col-md-4 col-sm-12">{!! Form::label('nivelAcesso', 'Nivel de Acesso:') !!}<span style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">{!! Form::number('nivelAcesso', null, ['class' => 'form-control']) !!}</p>
         <!-- Unidadeescolar Field -->
     </div>
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('unidadeEscolar', 'Unidade Escolar:') !!}</p>
+        <p class="col-md-4 col-sm-12">{!! Form::label('unidadeEscolar', 'Unidade Escolar:') !!}<span style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">{!! Form::text('unidadeEscolar', null, ['class' => 'form-control']) !!}</p>
 
     </div>
     <!-- Password Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('password', 'Senha:') !!}</p>
+        <p class="col-md-4 col-sm-12">{!! Form::label('password', 'Senha:') !!}<span style="color: red">*</span></p>
         <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::password('password', ['class' => 'form-control']) !!}

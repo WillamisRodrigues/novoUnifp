@@ -1,6 +1,6 @@
 <!-- Horario Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('Horario', 'Horario:') !!}
+    {!! Form::label('Horario', 'Horario:') !!}<span style="color: red">*</span>
     {!! Form::text('Horario', null, ['class' => 'form-control']) !!}
 </div>
 

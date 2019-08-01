@@ -1,14 +1,14 @@
 <div class="container formulario-padrao">
     <!-- Campo Pagina -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Pagina', 'Página:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Pagina', 'Página:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-9">{!! Form::text('Pagina', null, ['class' => 'form-control']) !!}</p>
     </div>
 
 
     <!-- Campo Ticket -->
     <div class="row" style="margin-bottom: 1rem">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Ticket', 'Ticket:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Ticket', 'Ticket:') !!}<span style="color: red">*</span></p>
         <div class="col-sm-12 col-md-9">
             {!! Form::textarea('Ticket', null, ['class' => 'form-control']) !!}
         </div>

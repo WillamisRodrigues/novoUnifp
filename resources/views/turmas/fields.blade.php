@@ -1,19 +1,19 @@
 <div class="container formulario-padrao">
     <!-- Curso Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Curso', 'Curso:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Curso', 'Curso:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6">{!! Form::text('Curso', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Nometurma Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('NomeTurma', 'Nome da Turma:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('NomeTurma', 'Nome da Turma:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6">{!! Form::text('NomeTurma', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Diasdasemana Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('DiasDaSemana', 'Dias da Semana:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('DiasDaSemana', 'Dias da Semana:') !!}<span style="color: red">*</span></p>
         {{-- <div class="col-sm-12 col-md-6">
             {!! Form::date('DiasDaSemana', null, ['class' =>
             'form-control','id'=>'DiasDaSemana']) !!}
@@ -29,7 +29,7 @@
 
     <!-- Periodo Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Periodo', 'Período:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Periodo', 'Período:') !!}<span style="color: red">*</span></p>
         <div class="col-sm-12 col-md-6">
             <label class="col-xs-12 col-sm-6 col-md-4">{!! Form::radio('Periodo', 'Manha', ['class' =>
                 'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Manhã </span>
@@ -45,7 +45,7 @@
 
     <!-- Horario Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Horario', 'Horário:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Horario', 'Horário:') !!}<span style="color: red">*</span></p>
         <div class="input-group col-md-6 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::text('Horario', null, ['class' => 'form-control timepicker mobile-input-largura']) !!}
@@ -57,7 +57,7 @@
 
     <!-- Datainicio Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('DataInicio', 'Data de Início:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('DataInicio', 'Data de Início:') !!}<span style="color: red">*</span></p>
         <div class="input-group col-md-6 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('DataInicio', null, ['class' => 'form-control','id'=>'DataInicio']) !!}
@@ -69,7 +69,7 @@
 
     <!-- Datatermino Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('DataTermino', 'Data de Término:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('DataTermino', 'Data de Término:') !!}<span style="color: red">*</span></p>
         <div class="input-group col-md-6 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('DataTermino', null, ['class' => 'form-control','id'=>'DataTermino']) !!}
@@ -81,7 +81,7 @@
 
     <!-- Duracaoaulas Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('DuracaoAulas', 'Duração das Aulas:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('DuracaoAulas', 'Duração das Aulas:') !!}<span style="color: red">*</span></p>
         <div class="input-group col-md-6 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::text('DuracaoAulas', null, ['class' => 'form-control timepicker mobile-input-largura']) !!}
@@ -93,19 +93,19 @@
 
     <!-- Professor Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Professor', 'Professor:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Professor', 'Professor:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6">{!! Form::text('Professor', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Vagas Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Vagas', 'Vagas:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Vagas', 'Vagas:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6">{!! Form::number('Vagas', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Cronograma Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Cronograma', 'Cronograma:') !!}</p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Cronograma', 'Cronograma:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6">{!! Form::text('Cronograma', null, ['class' => 'form-control']) !!}</p>
     </div>
 
