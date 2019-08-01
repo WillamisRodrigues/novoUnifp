@@ -54,3 +54,6 @@ Route::resource('turmas', 'TurmaController');
 Route::resource('aulasCronogramas', 'AulasCronogramaController');
 
 Route::resource('cronogramas', 'CronogramaController');
+
+
+Route::resource('centroCustos', 'CentroCustoController');

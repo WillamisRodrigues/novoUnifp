@@ -16,8 +16,6 @@
     <div class="row">
         <div class="col-sm-12 col-md-3"></div>
         <div class="col-md-6">
-            {{-- {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-            <a href="{!! route('cronogramas.index') !!}" class="btn btn-default">Cancel</a> --}}
             <button class="btn btn-success btn-flat" style="margin-bottom: 1rem" type="submit"><i
                     class="fa fa-save"></i> Salvar
                 Visitante</button>

@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table" id="cronogramas-table">
+    <table class="table display datatable-list">
         <thead>
             <tr>
                 <th>Nome</th>
