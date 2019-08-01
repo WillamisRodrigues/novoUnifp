@@ -58,7 +58,7 @@ class FormasPagamentoController extends AppBaseController
 
         $formasPagamento = $this->formasPagamentoRepository->create($input);
 
-        Flash::success('Formas Pagamento saved successfully.');
+        Flash::success('Forma de Pagamento adicionada com sucesso.');
 
         return redirect(route('formasPagamentos.index'));
     }
@@ -75,7 +75,7 @@ class FormasPagamentoController extends AppBaseController
         $formasPagamento = $this->formasPagamentoRepository->find($id);
 
         if (empty($formasPagamento)) {
-            Flash::error('Formas Pagamento not found');
+            Flash::error('Forma de Pagamento não encontrada.');
 
             return redirect(route('formasPagamentos.index'));
         }
@@ -95,7 +95,7 @@ class FormasPagamentoController extends AppBaseController
         $formasPagamento = $this->formasPagamentoRepository->find($id);
 
         if (empty($formasPagamento)) {
-            Flash::error('Formas Pagamento not found');
+            Flash::error('Forma de Pagamento não encontrada.');
 
             return redirect(route('formasPagamentos.index'));
         }
@@ -116,14 +116,14 @@ class FormasPagamentoController extends AppBaseController
         $formasPagamento = $this->formasPagamentoRepository->find($id);
 
         if (empty($formasPagamento)) {
-            Flash::error('Formas Pagamento not found');
+            Flash::error('Forma de Pagamento não encontrada.');
 
             return redirect(route('formasPagamentos.index'));
         }
 
         $formasPagamento = $this->formasPagamentoRepository->update($request->all(), $id);
 
-        Flash::success('Formas Pagamento updated successfully.');
+        Flash::success('Forma de Pagamento atualizada com sucesso.');
 
         return redirect(route('formasPagamentos.index'));
     }
@@ -142,14 +142,14 @@ class FormasPagamentoController extends AppBaseController
         $formasPagamento = $this->formasPagamentoRepository->find($id);
 
         if (empty($formasPagamento)) {
-            Flash::error('Formas Pagamento not found');
+            Flash::error('Forma de Pagamento não encontrada.');
 
             return redirect(route('formasPagamentos.index'));
         }
 
         $this->formasPagamentoRepository->delete($id);
 
-        Flash::success('Formas Pagamento deleted successfully.');
+        Flash::success('Forma de Pagamento deletada com sucesso.');
 
         return redirect(route('formasPagamentos.index'));
     }

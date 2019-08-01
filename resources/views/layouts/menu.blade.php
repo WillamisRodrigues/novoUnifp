@@ -48,6 +48,9 @@
         <li class="{{ Request::is('cursos*') ? 'active' : '' }}">
             <a href="{!! route('cursos.index') !!}"><i class="fa fa-cube"></i><span>Cursos</span></a>
         </li>
+        <li class="{{ Request::is('turmas*') ? 'active' : '' }}">
+            <a href="{!! route('turmas.index') !!}"><i class="fa fa-list"></i><span>Turmas</span></a>
+        </li>
     </ul>
 </li>
 
