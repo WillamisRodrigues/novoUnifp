@@ -48,8 +48,8 @@
         <li class="{{ Request::is('cursos*') ? 'active' : '' }}">
             <a href="{!! route('cursos.index') !!}"><i class="fa fa-cube"></i><span>Cursos</span></a>
         </li>
-        <li class="{{ Request::is('aulasCronogramas*') ? 'active' : '' }}">
-            <a href="{!! route('aulasCronogramas.index') !!}"><i class="fa fa-bars"></i><span>Cronograma de Aulas</span></a>
+        <li class="{{ Request::is('cronogramas*') ? 'active' : '' }}">
+            <a href="{!! route('cronogramas.index') !!}"><i class="fa fa-bars"></i><span>Cronogramas</span></a>
         </li>
         <li class="{{ Request::is('turmas*') ? 'active' : '' }}">
             <a href="{!! route('turmas.index') !!}"><i class="fa fa-list"></i><span>Turmas Ativas</span></a>

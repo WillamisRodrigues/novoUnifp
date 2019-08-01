@@ -19,7 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::resource('agendas', 'AgendaController');
 
 Route::resource('unidades', 'UnidadeController');
@@ -29,7 +28,6 @@ Route::resource('escolaridades', 'EscolaridadeController');
 Route::resource('tempoAulas', 'TempoAulaController');
 
 Route::resource('nivelAcessos', 'nivelAcessoController');
-
 
 Route::resource('usuarios', 'usuarioController');
 
@@ -54,3 +52,5 @@ Route::resource('formasPagamentos', 'FormasPagamentoController');
 Route::resource('turmas', 'TurmaController');
 
 Route::resource('aulasCronogramas', 'AulasCronogramaController');
+
+Route::resource('cronogramas', 'CronogramaController');

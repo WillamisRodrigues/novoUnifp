@@ -58,7 +58,7 @@ class AulasCronogramaController extends AppBaseController
 
         $aulasCronograma = $this->aulasCronogramaRepository->create($input);
 
-        Flash::success('Aulas Cronograma saved successfully.');
+        Flash::success('Cronograma criado com sucesso.');
 
         return redirect(route('aulasCronogramas.index'));
     }
@@ -75,7 +75,7 @@ class AulasCronogramaController extends AppBaseController
         $aulasCronograma = $this->aulasCronogramaRepository->find($id);
 
         if (empty($aulasCronograma)) {
-            Flash::error('Aulas Cronograma not found');
+            Flash::error('Cronograma não encontrado.');
 
             return redirect(route('aulasCronogramas.index'));
         }
@@ -95,7 +95,7 @@ class AulasCronogramaController extends AppBaseController
         $aulasCronograma = $this->aulasCronogramaRepository->find($id);
 
         if (empty($aulasCronograma)) {
-            Flash::error('Aulas Cronograma not found');
+            Flash::error('Cronograma não encontrado.');
 
             return redirect(route('aulasCronogramas.index'));
         }
@@ -116,14 +116,14 @@ class AulasCronogramaController extends AppBaseController
         $aulasCronograma = $this->aulasCronogramaRepository->find($id);
 
         if (empty($aulasCronograma)) {
-            Flash::error('Aulas Cronograma not found');
+            Flash::error('Cronograma não encontrado.');
 
             return redirect(route('aulasCronogramas.index'));
         }
 
         $aulasCronograma = $this->aulasCronogramaRepository->update($request->all(), $id);
 
-        Flash::success('Aulas Cronograma updated successfully.');
+        Flash::success('Cronograma atualizado com sucesso.');
 
         return redirect(route('aulasCronogramas.index'));
     }
@@ -142,14 +142,14 @@ class AulasCronogramaController extends AppBaseController
         $aulasCronograma = $this->aulasCronogramaRepository->find($id);
 
         if (empty($aulasCronograma)) {
-            Flash::error('Aulas Cronograma not found');
+            Flash::error('Cronograma não encontrado.');
 
             return redirect(route('aulasCronogramas.index'));
         }
 
         $this->aulasCronogramaRepository->delete($id);
 
-        Flash::success('Aulas Cronograma deleted successfully.');
+        Flash::success('Cronograma deletado com sucesso.');
 
         return redirect(route('aulasCronogramas.index'));
     }

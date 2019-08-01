@@ -2,11 +2,11 @@
 
 @section('content')
 <section class="content-header">
-    <h1 class="pull-left">Cronograma de Aulas</h1>
+    <h1 class="pull-left">Aulas do Cronograma</h1>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="{!! route('aulasCronogramas.index') !!}">Cronograma de Aulas</a></li>
+            <li><a href="{!! route('aulasCronogramas.index') !!}">Aulas do Cronograma</a></li>
             <li class="active">Editar</li>
         </ol>
     </h1>

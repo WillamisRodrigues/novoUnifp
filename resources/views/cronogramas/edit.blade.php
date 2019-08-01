@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="content-header" style="margin-bottom: 10px">
-    <h1 class="pull-left">Aulas do Cronograma</h1>
+<section class="content-header">
+    <h1 class="pull-left">Cronograma</h1>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="{!! route('aulasCronogramas.index') !!}">Aulas do Cronograma</a></li>
-            <li class="active">Adicionar</li>
+            <li><a href="{!! route('cronogramas.index') !!}">Cronograma</a></li>
+            <li class="active">Editar</li>
         </ol>
     </h1>
 </section>
@@ -16,9 +16,10 @@
     <div class="box box-primary criar-unidade">
         <div class="box-body">
             <div class="row">
-                {!! Form::open(['route' => 'aulasCronogramas.store']) !!}
+                {!! Form::model($cronograma, ['route' => ['cronogramas.update', $cronograma->id], 'method' => 'patch'])
+                !!}
 
-                @include('aulas_cronogramas.fields')
+                @include('cronogramas.fields')
 
                 {!! Form::close() !!}
             </div>

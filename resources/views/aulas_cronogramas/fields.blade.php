@@ -1,59 +1,76 @@
-<!-- Nomeaula Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('NomeAula', 'Nomeaula:') !!}
-    {!! Form::text('NomeAula', null, ['class' => 'form-control']) !!}
-</div>
+<div class="container formulario-padrao">
+    <!-- Campo Nomeaula  -->
+    <div class="row">
+        <p class="col-sm-12 col-md-4">{!! Form::label('NomeAula', 'Nome da Aula:') !!}<span style="color: red">*</span></p>
+        <p class="col-sm-12 col-md-6">{!! Form::text('NomeAula', null, ['class' => 'form-control']) !!}</p>
+    </div>
 
-<!-- Dataaula Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('DataAula', 'Dataaula:') !!}
-    {!! Form::date('DataAula', null, ['class' => 'form-control','id'=>'DataAula']) !!}
-</div>
+    <!-- Campo Dataaula  -->
+    <div class="row">
+        <p class="col-sm-12 col-md-4">{!! Form::label('DataAula', 'Data da Aula:') !!}<span style="color: red">*</span></p>
+        <div class="col-sm-12 col-md-6 input-group"
+            style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
+            {!! Form::date('DataAula', null, ['class' => 'form-control', 'id' =>
+            'DataAula'])!!}
+            <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </div>
+        </div>
+    </div>
 
+    <!-- Campo Datatermino  -->
+    <div class="row">
+        <p class="col-sm-12 col-md-4">{!! Form::label('DataTermino', 'Data do Término:') !!}<span style="color: red">*</span></p>
+
+        <div class="col-sm-12 col-md-6 input-group"
+            style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
+            {!! Form::date('DataTermino', null, ['class' => 'form-control', 'id' =>
+            'DataTermino'])!!}
+            <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Campo Diassemana  -->
+    <div class="row">
+        <p class="col-sm-12 col-md-4">{!! Form::label('DiasSemana', 'Dias da Semana:') !!}<span style="color: red">*</span></p>
+        <p class="col-sm-12 col-md-6">{!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!}</p>
+    </div>
+
+    <!-- Planejamento Field -->
+    <div class="row">
+        <p class="col-sm-12 col-md-4">{!! Form::label('Planejamento', 'Planejamento:') !!}</p>
+        <p class="col-sm-12 col-md-6">{!! Form::textarea('Planejamento', null, ['class' => 'form-control']) !!}</p>
+    </div>
+
+    <!-- Relatorioprofessor Field -->
+    <div class="row">
+        <p class="col-sm-12 col-md-4">{!! Form::label('RelatorioProfessor', 'Relatório do Professor:') !!}</p>
+        <p class="col-sm-12 col-md-6">{!! Form::textarea('RelatorioProfessor', null, ['class' => 'form-control']) !!}</p>
+    </div>
+
+    <!-- Submit Field -->
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+            <button class="btn btn-success btn-flat" style="margin-bottom: 1rem" type="submit"><i
+                    class="fa fa-save"></i> Salvar
+                Cronograma</button>
+            <a href="{!! route('aulasCronogramas.index') !!}" style="margin-bottom: 1rem"
+                class="btn btn-danger btn-flat"> <i class="fa fa-close"></i>
+                Cancelar</a>
+        </div>
+    </div>
+</div>
 @section('scripts')
-    <script type="text/javascript">
-        $('#DataAula').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
+<script src="{{ url('js/datepicker.js') }}"></script>
+<script src="{{ url('js/timepicker.js') }}"></script>
+<script>
+    //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false,
+            timeFormat: 'HH:mm:ss'
         })
-    </script>
+</script>
 @endsection
-
-<!-- Datatermino Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('DataTermino', 'Datatermino:') !!}
-    {!! Form::date('DataTermino', null, ['class' => 'form-control','id'=>'DataTermino']) !!}
-</div>
-
-@section('scripts')
-    <script type="text/javascript">
-        $('#DataTermino').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endsection
-
-<!-- Diassemana Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('DiasSemana', 'Diassemana:') !!}
-    {!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Planejamento Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('Planejamento', 'Planejamento:') !!}
-    {!! Form::textarea('Planejamento', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Relatorioprofessor Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('RelatorioProfessor', 'Relatorioprofessor:') !!}
-    {!! Form::textarea('RelatorioProfessor', null, ['class' => 'form-control']) !!}
-</div>
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('aulasCronogramas.index') !!}" class="btn btn-default">Cancel</a>
-</div>
