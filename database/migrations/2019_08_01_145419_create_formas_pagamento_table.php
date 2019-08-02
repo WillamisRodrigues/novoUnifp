@@ -16,11 +16,11 @@ class CreateFormasPagamentoTable extends Migration
         Schema::create('formas_pagamento', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('QtdeParcelas');
-            $table->float('BrutoTotal');
-            $table->float('ParcelaBruta');
-            $table->float('DescontoPontualidade');
-            $table->float('ParcelaDescontoPontualidade');
-            $table->float('ValorTotalDesconto');
+            $table->float('BrutoTotal', 8, 2);
+            $table->float('ParcelaBruta', 8, 2);
+            $table->float('DescontoPontualidade', 8, 2);
+            $table->float('ParcelaDescontoPontualidade', 8, 2);
+            $table->float('ValorTotalDesconto', 8, 2);
             $table->timestamps();
             $table->softDeletes();
         });

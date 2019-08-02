@@ -20,9 +20,14 @@
                 <td>{!! $visitante->telefone !!}</td>
                 <td>{!! $visitante->email !!}</td>
                 <td>{!! $visitante->observacao !!}</td>
-                <td>{!! $visitante->dataRetorno !!} -- {!! $visitante->horaRetorno !!}</td>
+                <td>
+                    {!! date('H:m', strtotime($visitante->horaRetorno)); !!}
+                    {!! date('d/m/Y', strtotime($visitante->dataRetorno)); !!}
+                </td>
                 <td>{!! $visitante->comoConheceu !!}</td>
-                <td>{!! $visitante->dataAtendimento !!}</td>
+                <td>
+                    {!! date('d/m/Y', strtotime($visitante->dataAtendimento)); !!}
+                </td>
                 <td>{!! $visitante->status !!}</td>
                 <td>
                     {!! Form::open(['route' => ['visitantes.destroy', $visitante->id], 'method' => 'delete']) !!}

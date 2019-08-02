@@ -26,6 +26,7 @@ class CreateTurmaTable extends Migration
             $table->string('Professor');
             $table->integer('Vagas');
             $table->string('Cronograma');
+            $table->enum('Status',['Ativa', 'Inativa']);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -36,7 +36,9 @@
                 <td>{!! $aluno->Vencimento !!}</td>
                 <td>{!! $aluno->Mae !!}</td>
                 <td>{!! $aluno->Pai !!}</td>
-                <td>{!! $aluno->DataCadastro !!}</td>
+                <td>
+                    {!! date('d/m/Y', strtotime($aluno->DataCadastro)); !!}
+                </td>
                 <td>{!! $aluno->Endereco !!}</td>
                 <td>{!! $aluno->Bairro !!}</td>
                 <td>{!! $aluno->Cidade !!}</td>

@@ -51,9 +51,12 @@ Route::resource('formasPagamentos', 'FormasPagamentoController');
 
 Route::resource('turmas', 'TurmaController');
 
+Route::resource('turmasInativas', 'TurmaInativaController');
+
 Route::resource('aulasCronogramas', 'AulasCronogramaController');
 
 Route::resource('cronogramas', 'CronogramaController');
 
-
 Route::resource('centroCustos', 'CentroCustoController');
+
+Route::resource('caixas', 'CaixaController');

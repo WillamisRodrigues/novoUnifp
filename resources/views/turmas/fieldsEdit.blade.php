@@ -117,7 +117,19 @@
     </div>
 
     <!-- Status Field -->
-    <input type="hidden" name="Status" id="Status" value="Ativa">
+    {{-- <input type="hidden" name="Status" id="Status" value="Ativa"> --}}
+    <!-- Status Field -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Status', 'Status:') !!}<span style="color: red">*</span></p>
+        <div class="col-sm-12 col-md-6">
+            <label>{!! Form::radio('Status', 'Inativa', ['class' =>
+                'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Inativa </span>
+            </label>
+            <label>{!! Form::radio('Status', 'Ativa', ['class' =>
+                'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Ativa </span>
+            </label>
+        </div>
+    </div>
 
     <!-- Submit Field -->
     <div class="row">

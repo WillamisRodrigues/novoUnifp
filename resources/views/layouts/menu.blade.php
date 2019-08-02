@@ -54,6 +54,9 @@
         <li class="{{ Request::is('turmas*') ? 'active' : '' }}">
             <a href="{!! route('turmas.index') !!}"><i class="fa fa-list"></i><span>Turmas Ativas</span></a>
         </li>
+        <li class="{{ Request::is('turmas*') ? 'active' : '' }}">
+            <a href="{!! route('turmasInativas.index') !!}"><i class="fa fa-list"></i><span>Turmas Inativas</span></a>
+        </li>
 
     </ul>
 </li>
@@ -63,6 +66,9 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-money"></i>
         Financeiro <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
+        <li class="{{ Request::is('caixas*') ? 'active' : '' }}">
+            <a href="{!! route('caixas.index') !!}"><i class="fa fa-money"></i><span>Caixa do Dia</span></a>
+        </li>
         <li class="{{ Request::is('centroCustos*') ? 'active' : '' }}">
             <a href="{!! route('centroCustos.index') !!}"><i class="fa fa-cube"></i><span>Centro Custos</span></a>
         </li>

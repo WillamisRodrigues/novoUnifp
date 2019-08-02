@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class TurmaController extends AppBaseController
+class TurmaInativaController extends AppBaseController
 {
     /** @var  TurmaRepository */
     private $turmaRepository;
@@ -29,8 +29,8 @@ class TurmaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $turmas = $this->turmaRepository->all()->where('Status', 'Ativa');
-        return view('turmas.index')
+        $turmas = $this->turmaRepository->all()->where('Status', 'Inativa');
+        return view('turmasInativas.index')
             ->with('turmas', $turmas);
     }
 

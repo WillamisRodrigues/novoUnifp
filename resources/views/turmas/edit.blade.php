@@ -2,11 +2,11 @@
 
 @section('content')
 <section class="content-header">
-    <h1 class="pull-left">Turmas</h1>
+    <h1 class="pull-left">Turmas Ativas</h1>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="{!! route('turmas.index') !!}">Turmas</a></li>
+            <li><a href="{!! route('turmas.index') !!}">Turmas Ativas</a></li>
             <li class="active">Editar</li>
         </ol>
     </h1>
@@ -18,7 +18,7 @@
             <div class="row">
                 {!! Form::model($turma, ['route' => ['turmas.update', $turma->id], 'method' => 'patch']) !!}
 
-                @include('turmas.fields')
+                @include('turmas.fieldsEdit')
 
                 {!! Form::close() !!}
             </div>

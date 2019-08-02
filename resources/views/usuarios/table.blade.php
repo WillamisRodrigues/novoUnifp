@@ -15,7 +15,9 @@
             <tr>
                 <td>{!! $usuario->name !!}</td>
                 <td>{!! $usuario->email !!}</td>
-                <td>{!! $usuario->nascimento !!}</td>
+                <td>
+                    {!! date('d/m/Y', strtotime($usuario->nascimento)); !!}
+                </td>
                 <td>
                     @switch($usuario->nivelAcesso)
                         @case(0)
@@ -42,7 +44,6 @@
                         @default
                             {!! "Sem perfil definido" !!}
                     @endswitch
-                    {{-- {!! $usuario->nivelAcesso !!} --}}
                 </td>
                 {{-- Falta fazer switch case para unidades  --}}
                 <td>{!! $usuario->unidadeEscolar !!}</td>

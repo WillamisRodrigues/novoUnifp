@@ -13,8 +13,6 @@
                 <th>Professor</th>
                 <th>Vagas</th>
                 <th>Cronograma</th>
-                <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -53,17 +51,6 @@
                 <td>{!! $turma->Professor !!}</td>
                 <td>{!! $turma->Vagas !!}</td>
                 <td>{!! $turma->Cronograma !!}</td>
-                <td>
-                    {!! Form::open(['route' => ['turmas.destroy', $turma->id], 'method' => 'delete']) !!}
-                    <div class='btn-group'>
-                        <a href="{!! route('turmas.show', [$turma->id]) !!}" class='btn btn-default btn-sm'><i
-                                class="glyphicon glyphicon-zoom-in"></i></a>
-                        <a href="{!! route('turmas.edit', [$turma->id]) !!}" class='btn btn-default btn-sm'><i
-                                class="glyphicon glyphicon-edit"></i></a>
-                    </div>
-                    {!! Form::close() !!}
-                </td>
-            <td><a href="{!! route('alunos.index') !!}" class="btn btn-primary">Alunos/Matrículas</a></td>
             </tr>
             @endforeach
         </tbody>

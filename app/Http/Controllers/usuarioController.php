@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateusuarioRequest;
 use App\Repositories\usuarioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Flash;
 use Response;
 
@@ -55,6 +56,9 @@ class usuarioController extends AppBaseController
     public function store(CreateusuarioRequest $request)
     {
         $input = $request->all();
+
+        $input['password'] = Hash::make($input['password']);
+        // Hash::make($data['password']);
 
         $usuario = $this->usuarioRepository->create($input);
 

@@ -15,8 +15,12 @@
             @foreach($agendas as $agenda)
             <tr>
                 <td>{!! $agenda->prioridade !!}</td>
-                <td>{!! $agenda->Data !!}</td>
-                <td>{!! $agenda->Hora !!}</td>
+                <td>
+                    {!! date('d/m/Y', strtotime($agenda->Data)); !!}
+                </td>
+                <td>
+                    {!! date('H:m', strtotime($agenda->Hora)); !!}
+                </td>
                 <td>{!! $agenda->Assunto !!}</td>
                 <td>{!! $agenda->Resolvido !!}</td>
                 <td>

@@ -33,7 +33,10 @@
                 <td>{!! $fornecedor->Telefone2 !!}</td>
                 <td>{!! $fornecedor->PessoaContato !!}</td>
                 <td>{!! $fornecedor->Observacao !!}</td>
-                <td>{!! $fornecedor->DataCadastro !!}</td>
+                <td>
+                    {{-- {!! $fornecedor->DataCadastro !!} --}}
+                    {!! date('d/m/Y', strtotime($fornecedor->DataCadastro)); !!}
+                </td>
                 <td>
                     {!! Form::open(['route' => ['fornecedors.destroy', $fornecedor->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

@@ -16,7 +16,7 @@
             <tr>
                 <td>{!! $curso->nomeCurso !!}</td>
                 <td>{!! $curso->QtdeAulas !!}</td>
-                <td>{!! $curso->CargaHoraria !!}</td>
+                <td>{!! $curso->CargaHoraria !!} Horas</td>
                 <td>
                     {!! Form::open(['route' => ['cursos.destroy', $curso->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

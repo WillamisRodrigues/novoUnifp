@@ -27,7 +27,7 @@ class Turma extends Model
     use SoftDeletes;
 
     public $table = 'turma';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -46,7 +46,8 @@ class Turma extends Model
         'DuracaoAulas',
         'Professor',
         'Vagas',
-        'Cronograma'
+        'Cronograma',
+        'Status'
     ];
 
     /**
@@ -65,7 +66,8 @@ class Turma extends Model
         'DuracaoAulas' => 'string',
         'Professor' => 'string',
         'Vagas' => 'integer',
-        'Cronograma' => 'string'
+        'Cronograma' => 'string',
+        'Status' => 'string'
     ];
 
     /**
@@ -84,8 +86,9 @@ class Turma extends Model
         'DuracaoAulas' => 'required',
         'Professor' => 'required',
         'Vagas' => 'required',
-        'Cronograma' => 'required'
+        'Cronograma' => 'required',
+        'Status' => 'required'
     ];
 
-    
+
 }

@@ -13,7 +13,9 @@
             @foreach($aulasCronogramas as $aulasCronograma)
             <tr>
                 <td>{!! $aulasCronograma->NomeAula !!}</td>
-                <td>{!! $aulasCronograma->DataAula !!}</td>
+                <td>
+                    {!! date('d/m/Y', strtotime($aulasCronograma->DataAula)); !!}
+                </td>
                 <td>{!! $aulasCronograma->Planejamento !!}</td>
                 <td>{!! $aulasCronograma->RelatorioProfessor !!}</td>
                 <td>

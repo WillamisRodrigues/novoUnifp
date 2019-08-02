@@ -7,17 +7,20 @@
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
             <li><a href="{!! route('turmas.index') !!}">Turmas Ativas</a></li>
-            <li class="active">Detalhes</li>
+            <li class="active">Editar</li>
         </ol>
     </h1>
 </section>
 <div class="content">
+    @include('adminlte-templates::common.errors')
     <div class="box box-primary criar-unidade">
         <div class="box-body">
-            <div class="row" style="padding-left: 20px">
-                @include('turmas.show_fields')
-                <div class="col-md-3"></div>
-                <a href="{!! route('turmas.index') !!}" class="btn btn-default">Voltar</a>
+            <div class="row">
+                {!! Form::model($turma, ['route' => ['turmas.update', $turma->id], 'method' => 'patch']) !!}
+
+                @include('turmasInativas.fields')
+
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

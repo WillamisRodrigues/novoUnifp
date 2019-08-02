@@ -72,7 +72,7 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Usuário </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ Auth::user()->name }} </a>
                         <ul class="dropdown-menu" style="width: 5rem">
                             <li class="user-footer">
                                 <div>

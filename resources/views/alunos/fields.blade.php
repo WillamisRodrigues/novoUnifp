@@ -177,16 +177,6 @@
                 <div class="row">
                     <p class="col-sm-12 col-md-3">{!! Form::label('DataCadastro', 'Data de Cadastro:') !!}<span
                             style="color: red">*</span></p>
-                    {{-- <p class="col-sm-12 col-md-6">
-                            {!! Form::date('DataCadastro', null, ['class' => 'form-control','id'=>'DataCadastro']) !!}
-                        </p> --}}
-                    {{-- <div class="col-sm-12 col-md-6 input-group"
-                        style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
-                        {!! Form::date('DataCadastro', null, ['class' => 'form-control', 'id' => 'DataCadastro']) !!}
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                    </div> --}}
                     <div class="col-sm-12 col-md-6 input-group"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
                         {!! Form::date('DataCadastro', null, ['class' => 'form-control', 'id' =>
@@ -222,7 +212,6 @@
                     <p class="col-sm-12 col-md-3">{!! Form::label('NascimentoContratante', 'Data de Nascimento:')
                         !!}<span style="color: red">*</span>
                     </p>
-                    {{-- <p class="col-sm-12 col-md-6">{!! Form::date('NascimentoContratante', null, ['class' => 'form-control'])!!}</p> --}}
                     <div class="col-sm-12 col-md-6 input-group"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
                         {!! Form::date('NascimentoContratante', null, ['class' => 'form-control', 'id' =>
