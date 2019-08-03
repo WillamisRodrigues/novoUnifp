@@ -60,3 +60,8 @@ Route::resource('cronogramas', 'CronogramaController');
 Route::resource('centroCustos', 'CentroCustoController');
 
 Route::resource('caixas', 'CaixaController');
+
+Route::resource('lancamentos', 'LancamentoController');
+Route::get('lancamentos/avancado', function(){
+    return view('lancamentos.avancado');
+});

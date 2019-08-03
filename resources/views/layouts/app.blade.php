@@ -100,7 +100,7 @@
 
     <!-- Main Footer -->
     <footer class="main-footer" style="max-height: 100px;text-align: center">
-        © 2019 <strong>UNIFP - SISTEMA DE GESTÃO</strong> All rights reserved.
+        © 2019 <strong>UNIFP - SISTEMA DE GESTÃO</strong>
     </footer>
 
 

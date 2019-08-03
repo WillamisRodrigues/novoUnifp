@@ -140,6 +140,22 @@
     border-top-color: #00A65A;
 }
 
+#formulario-lancamentos div {
+    display: inline-block;
+}
+
+#formulario-lancamentos select {
+    background-color: #fff;
+    padding: 3px;
+}
+
+.receitas {
+    margin: 0;
+    display: inline-block;
+    padding: 2rem;
+    font-size: 1.75rem
+}
+
 @media (max-width: 425px) {
     .content-agenda-pessoal {
         width: 100% !important;
@@ -173,6 +189,10 @@
     .criar-aluno {
         width: 100%;
         margin: 0 auto;
+    }
+    #formulario-lancamentos div {
+        display: block;
+        margin: 1rem 0 !important;
     }
 }
 

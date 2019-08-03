@@ -24,7 +24,6 @@
                 <td>{!! $caixa->Via !!}</td>
                 <td>{!! $caixa->FormaPgto !!}</td>
                 <td>
-                    {{-- {!! $caixa->Status !!} --}}
                     @switch($caixa->Status)
                         @case("Pago")
                             {!! "Pago" !!}

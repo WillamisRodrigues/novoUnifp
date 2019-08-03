@@ -69,6 +69,9 @@
         <li class="{{ Request::is('caixas*') ? 'active' : '' }}">
             <a href="{!! route('caixas.index') !!}"><i class="fa fa-money"></i><span>Caixa do Dia</span></a>
         </li>
+        <li class="{{ Request::is('caixas*') ? 'active' : '' }}">
+            <a href="{!! route('lancamentos.index') !!}"><i class="fa fa-money"></i><span>Lançamentos</span></a>
+        </li>
         <li class="{{ Request::is('centroCustos*') ? 'active' : '' }}">
             <a href="{!! route('centroCustos.index') !!}"><i class="fa fa-cube"></i><span>Centro Custos</span></a>
         </li>
