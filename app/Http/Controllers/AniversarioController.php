@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 
-class FuncionarioController extends AppBaseController
+class AniversarioController extends AppBaseController
 {
     /** @var  FuncionarioRepository */
     private $funcionarioRepository;
@@ -27,19 +27,26 @@ class FuncionarioController extends AppBaseController
      *
      * @return Response
      */
-    public function index(Request $request)
-    {
-        $funcionarios = $this->funcionarioRepository->all();
+    // public function index(Request $request)
+    // {
+    //     $funcionarios = $this->funcionarioRepository->all()->where('Cargo','<>', 'Professor');
+    //     return view('aniversarios.funcionarios')
+    //         ->with('funcionarios', $funcionarios);
+    // }
 
-        return view('funcionarios.index')
+    public function professores(Request $request)
+    {
+        $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Professor');
+
+        return view('aniversarios.professores')
             ->with('funcionarios', $funcionarios);
     }
 
-    public function aniversario(Request $request)
+    public function funcionarios(Request $request)
     {
-        $funcionarios = $this->funcionarioRepository->all();
+        $funcionarios = $this->funcionarioRepository->all()->where('Cargo', '<>','Professor');
 
-        return view('funcionarios.aniversario')
+        return view('aniversarios.funcionarios')
             ->with('funcionarios', $funcionarios);
     }
 

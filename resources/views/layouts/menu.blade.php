@@ -87,7 +87,14 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-file-text-o"></i>
         Relatórios <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
-
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="/funcionarios-aniversario"><i
+                    class="fa fa-birthday-cake"></i><span>Aniversário de Funcionários</span></a>
+        </li>
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="/professores-aniversario"><i
+                    class="fa fa-birthday-cake"></i><span>Aniversário de Professores</span></a>
+        </li>
     </ul>
 </li>
 

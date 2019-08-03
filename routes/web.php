@@ -62,6 +62,11 @@ Route::resource('centroCustos', 'CentroCustoController');
 Route::resource('caixas', 'CaixaController');
 
 Route::resource('lancamentos', 'LancamentoController');
-Route::get('lancamentos/avancado', function(){
-    return view('lancamentos.avancado');
-});
+// Route::get('lancamentos/avancado', function(){
+//     return view('lancamentos.avancado');
+// });
+
+Route::resource('aniversarios', 'AniversarioController');
+
+Route::get('/funcionarios-aniversario', 'AniversarioController@funcionarios');
+Route::get('/professores-aniversario', 'AniversarioController@professores');
