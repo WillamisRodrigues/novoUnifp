@@ -45,6 +45,9 @@
             <a href="{!! route('alunos.index') !!}"><i class="fa fa-graduation-cap"></i><span>Alunos /
                     Matrículas</span></a>
         </li>
+        <li class="{{ Request::is('alunos*') ? 'active' : '' }}">
+            <a href="/controle-presenca"><i class="fa fa-check"></i><span>Controle de Presença</span></a>
+        </li>
         <li class="{{ Request::is('cursos*') ? 'active' : '' }}">
             <a href="{!! route('cursos.index') !!}"><i class="fa fa-cube"></i><span>Cursos</span></a>
         </li>
@@ -103,6 +106,10 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-gear"></i> Manutenção
         <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="professores-listar"><i
+                    class="fa fa-user-o"></i><span>Professores</span></a>
+        </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="{!! route('funcionarios.index') !!}"><i
                     class="fa fa-user-circle-o"></i><span>Funcionários</span></a>

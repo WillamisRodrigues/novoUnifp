@@ -10,7 +10,6 @@
             @foreach($funcionarios as $funcionario)
             <tr>
                 <td>{!! $funcionario->Nome !!}</td>
-                {{-- <td>{!! $funcionario->Nascimento !!}</td> --}}
                 <td>
                     {!! date('d/m/Y', strtotime($funcionario->Nascimento)); !!}
                 </td>
