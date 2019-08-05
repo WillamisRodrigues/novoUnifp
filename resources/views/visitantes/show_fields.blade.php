@@ -27,7 +27,11 @@
         <!-- Dataretorno Field -->
         <div class="row">
                 <p class="col-md-2 col-sm-12">{!! Form::label('dataRetorno', 'Data do Retorno:') !!}</p>
-                <p class="col-md-8 col-sm-12">{!! $visitante->dataRetorno !!} : {!! $visitante->horaRetorno !!}</p>
+                <p class="col-md-8 col-sm-12">
+                    {{-- {!! $visitante->dataRetorno !!} : {!! $visitante->horaRetorno !!} --}}
+                    {!! date('H:m', strtotime($visitante->horaRetorno)); !!}
+                    {!! date('d/m/Y', strtotime($visitante->dataRetorno)); !!}
+                </p>
         </div>
 
         <!-- Comoconheceu Field -->
@@ -39,7 +43,10 @@
         <!-- Dataatendimento Field -->
         <div class="row">
                 <p class="col-md-2 col-sm-12">{!! Form::label('dataAtendimento', 'Data do Atendimento:') !!}</p>
-                <p class="col-md-8 col-sm-12">{!! $visitante->dataAtendimento !!}</p>
+                <p class="col-md-8 col-sm-12">
+                    {{-- {!! $visitante->dataAtendimento !!} --}}
+                    {!! date('d/m/Y', strtotime($visitante->dataAtendimento)); !!}
+                </p>
         </div>
 
         <!-- Status Field -->

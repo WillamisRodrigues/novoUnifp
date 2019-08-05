@@ -75,6 +75,9 @@
         <li class="{{ Request::is('caixas*') ? 'active' : '' }}">
             <a href="{!! route('lancamentos.index') !!}"><i class="fa fa-money"></i><span>Lançamentos</span></a>
         </li>
+        <li class="{{ Request::is('caixas*') ? 'active' : '' }}">
+            <a href="/relatorio-receitas"><i class="fa fa-file-text-o"></i><span>Relatório de Receitas</span></a>
+        </li>
         <li class="{{ Request::is('centroCustos*') ? 'active' : '' }}">
             <a href="{!! route('centroCustos.index') !!}"><i class="fa fa-cube"></i><span>Centro Custos</span></a>
         </li>
@@ -109,6 +112,10 @@
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="professores-listar"><i
                     class="fa fa-user-o"></i><span>Professores</span></a>
+        </li>
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="/vendedores-listar"><i
+                    class="fa fa-user-o"></i><span>Vendedores</span></a>
         </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="{!! route('funcionarios.index') !!}"><i

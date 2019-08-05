@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateAlunoRequest;
 use App\Http\Requests\UpdateAlunoRequest;
 use App\Repositories\AlunoRepository;
+use App\Repositories\FuncionarioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -15,9 +16,10 @@ class AlunoController extends AppBaseController
     /** @var  AlunoRepository */
     private $alunoRepository;
 
-    public function __construct(AlunoRepository $alunoRepo)
+    public function __construct(AlunoRepository $alunoRepo, FuncionarioRepository $funcionarioRepo)
     {
         $this->alunoRepository = $alunoRepo;
+        $this->funcionarioRepository = $funcionarioRepo;
     }
 
     /**
@@ -31,8 +33,7 @@ class AlunoController extends AppBaseController
     {
         $alunos = $this->alunoRepository->all();
 
-        return view('alunos.index')
-            ->with('alunos', $alunos);
+        return view('alunos.index')->with('alunos', $alunos);
     }
 
     /**
@@ -42,7 +43,11 @@ class AlunoController extends AppBaseController
      */
     public function create()
     {
-        return view('alunos.create');
+        $funcionarios = $this->funcionarioRepository->all()->where('Cargo', 'Vendedor');
+
+        // return view('alunos.index')->with('alunos', $alunos);
+        return view('alunos.create', ['funcionarios' => $funcionarios]);
+        // return view('alunos.create');
     }
 
     /**

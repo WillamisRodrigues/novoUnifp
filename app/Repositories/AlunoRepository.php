@@ -33,6 +33,7 @@ class AlunoRepository extends BaseRepository
         'Mae',
         'Pai',
         'Conheceu',
+        'Vendedor',
         'DataCadastro',
         'Parentesco',
         'Pagador',

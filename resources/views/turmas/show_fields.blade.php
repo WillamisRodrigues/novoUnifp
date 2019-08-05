@@ -14,7 +14,10 @@
     <!-- Diasdasemana Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('DiasDaSemana', 'Dias da Semana:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $turma->DiasDaSemana !!}</p>
+        <p class="col-sm-12 col-md-8">
+            {{-- {!! $turma->DiasDaSemana !!} --}}
+            {!! date('d/m/Y', strtotime($turma->DiasDaSemana)); !!}
+        </p>
     </div>
 
     <!-- Periodo Field -->
@@ -26,19 +29,28 @@
     <!-- Horario Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('Horario', 'Horário:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $turma->Horario !!}</p>
+        <p class="col-sm-12 col-md-8">
+            {{-- {!! $turma->Horario !!} --}}
+            {!! date('H:m', strtotime($turma->Horario)); !!}
+        </p>
     </div>
 
     <!-- Datainicio Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('DataInicio', 'Data de Início:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $turma->DataInicio !!}</p>
+        <p class="col-sm-12 col-md-8">
+            {{-- {!! $turma->DataInicio !!} --}}
+            {!! date('d/m/Y', strtotime($turma->DataInicio)); !!}
+        </p>
     </div>
 
     <!-- Datatermino Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('DataTermino', 'Data de Término:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $turma->DataTermino !!}</p>
+        <p class="col-sm-12 col-md-8">
+            {{-- {!! $turma->DataTermino !!} --}}
+            {!! date('d/m/Y', strtotime($turma->DataTermino)); !!}
+        </p>
     </div>
 
     <!-- Duracaoaulas Field -->

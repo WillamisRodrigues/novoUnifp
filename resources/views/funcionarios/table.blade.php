@@ -32,10 +32,10 @@
                 <td>
                     {{-- {!! $funcionario->Inativo !!} --}}
                     @switch($funcionario->Inativo)
-                        @case("Sim")
+                        @case("Nao")
                             {!! "Ativo" !!}
                             @break
-                        @case("Nao")
+                        @case("Sim")
                             {!! "Inativo" !!}
                             @break
                         @default

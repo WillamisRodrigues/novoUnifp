@@ -74,6 +74,9 @@
     <!-- Campo Data de Cadastro -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DataCadastro', 'Data de Cadastro:') !!}</p>
-        <p class="col-sm-12 col-md-9">{!! $fornecedor->DataCadastro !!}</p>
+        <p class="col-sm-12 col-md-9">
+            {{-- {!! $fornecedor->DataCadastro !!} --}}
+            {!! date('d/m/Y', strtotime($fornecedor->DataCadastro)); !!}
+        </p>
     </div>
 </div>

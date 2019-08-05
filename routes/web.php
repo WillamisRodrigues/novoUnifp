@@ -71,4 +71,6 @@ Route::resource('aniversarios', 'AniversarioController');
 Route::get('/funcionarios-aniversario', 'AniversarioController@funcionarios');
 Route::get('/professores-aniversario', 'AniversarioController@professores');
 Route::get('/professores-listar', 'AniversarioController@professoresListar');
+Route::get('/vendedores-listar', 'AniversarioController@vendedoresListar');
 Route::get('/controle-presenca', 'PresencaController@index');
+Route::get('/relatorio-receitas', 'RelatoriosController@index');

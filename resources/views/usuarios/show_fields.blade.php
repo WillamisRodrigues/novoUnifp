@@ -15,7 +15,10 @@
     <!-- Nascimento Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('nascimento', 'Data de Nascimento:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $usuario->nascimento !!}</p>
+        <p class="col-sm-12 col-md-8">
+            {{-- {!! $usuario->nascimento !!} --}}
+            {!! date('d/m/Y', strtotime($usuario->nascimento)); !!}
+        </p>
     </div>
 
     <!-- Nivelacesso Field -->

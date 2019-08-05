@@ -31,6 +31,7 @@ class CreateAlunoTable extends Migration
             $table->string('Mae');
             $table->string('Pai');
             $table->string('Conheceu');
+            $table->string('Vendedor');
             $table->date('DataCadastro');
             $table->string('Parentesco');
             $table->string('Pagador');

@@ -50,6 +50,14 @@ class AniversarioController extends AppBaseController
             ->with('funcionarios', $funcionarios);
     }
 
+    public function vendedoresListar(Request $request)
+    {
+        $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Vendedor');
+
+        return view('relatorios.listarVendedores')
+            ->with('funcionarios', $funcionarios);
+    }
+
     public function funcionarios(Request $request)
     {
         $funcionarios = $this->funcionarioRepository->all()->where('Cargo', '<>','Professor');

@@ -8,13 +8,19 @@
     <!-- Dataaula Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DataAula', 'Data da Aula:') !!}</p>
-        <p class="col-sm-12 col-md-6">{!! $aulasCronograma->DataAula !!}</p>
+        <p class="col-sm-12 col-md-6">
+            {{-- {!! $aulasCronograma->DataAula !!} --}}
+            {!! date('d/m/Y', strtotime($aulasCronograma->DataAula)); !!}
+        </p>
     </div>
 
     <!-- Datatermino Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DataTermino', 'Data de Término:') !!}</p>
-        <p class="col-sm-12 col-md-6">{!! $aulasCronograma->DataTermino !!}</p>
+        <p class="col-sm-12 col-md-6">
+            {{-- {!! $aulasCronograma->DataTermino !!} --}}
+            {!! date('d/m/Y', strtotime($aulasCronograma->DataTermino)); !!}
+        </p>
     </div>
 
     <!-- Diassemana Field -->

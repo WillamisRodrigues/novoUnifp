@@ -16,7 +16,10 @@
             <!-- Campo Nascimentoaluno -->
             <div class="row">
                 <p class="col-sm-12 col-md-5">{!! Form::label('NascimentoAluno', 'Data de Nascimento do Aluno:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->NascimentoAluno !!}</p>
+                <p class="col-sm-12 col-md-7">
+                    {{-- {!! $aluno->NascimentoAluno !!} --}}
+                    {!! date('d/m/Y', strtotime($aluno->Nascimento)); !!}
+                </p>
             </div>
 
             <!-- Campo Estadocivilaluno -->
@@ -76,7 +79,10 @@
             <!-- Campo Vencimento -->
             <div class="row">
                 <p class="col-sm-12 col-md-5">{!! Form::label('Vencimento', 'Data do Vencimento:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->Vencimento !!}</p>
+                <p class="col-sm-12 col-md-7">
+                    {{-- {!! $aluno->Vencimento !!} --}}
+                    {!! date('d/m/Y', strtotime($aluno->Vencimento)); !!}
+                </p>
             </div>
 
             <!-- Campo Mae -->
@@ -96,13 +102,22 @@
                 <p class="col-sm-12 col-md-5">{!! Form::label('Conheceu', 'Conheceu:') !!}</p>
                 <p class="col-sm-12 col-md-7">{!! $aluno->Conheceu !!}</p>
             </div>
+
+            {{-- Campo Vendedor --}}
+            <div class="row">
+                <p class="col-sm-12 col-md-5">{!! Form::label('Vendedor', 'Vendedor:') !!}</p>
+                <p class="col-sm-12 col-md-7">{!! $aluno->Vendedor !!}</p>
+            </div>
         </div>
         <div class="col-sm-12 col-md-6">
 
             <!-- Campo Datacadastro -->
             <div class="row">
                 <p class="col-sm-12 col-md-5">{!! Form::label('DataCadastro', 'Data do Cadastro:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->DataCadastro !!}</p>
+                <p class="col-sm-12 col-md-7">
+                    {{-- {!! $aluno->DataCadastro !!} --}}
+                    {!! date('d/m/Y', strtotime($aluno->DataCadastro)); !!}
+                </p>
             </div>
 
             <!-- Campo Parentesco -->
@@ -122,7 +137,10 @@
                 <p class="col-sm-12 col-md-5">{!! Form::label('NascimentoContratante', 'Data de Nascimento do
                     Contratante:')
                     !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->NascimentoContratante !!}</p>
+                <p class="col-sm-12 col-md-7">
+                    {{-- {!! $aluno->NascimentoContratante !!} --}}
+                    {!! date('d/m/Y', strtotime($aluno->NascimentoContratante)); !!}
+                </p>
             </div>
 
             <!-- Campo Estadocivilcontratante -->

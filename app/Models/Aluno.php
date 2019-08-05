@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string Mae
  * @property string Pai
  * @property string Conheceu
+ * @property string Vendedor
  * @property string DataCadastro
  * @property string Parentesco
  * @property string Pagador
@@ -48,7 +49,7 @@ class Aluno extends Model
     use SoftDeletes;
 
     public $table = 'aluno';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -73,6 +74,7 @@ class Aluno extends Model
         'Mae',
         'Pai',
         'Conheceu',
+        'Vendedor',
         'DataCadastro',
         'Parentesco',
         'Pagador',
@@ -114,6 +116,7 @@ class Aluno extends Model
         'Mae' => 'string',
         'Pai' => 'string',
         'Conheceu' => 'string',
+        'Vendedor' => 'string',
         'DataCadastro' => 'date',
         'Parentesco' => 'string',
         'Pagador' => 'string',
@@ -154,6 +157,7 @@ class Aluno extends Model
         'Mae' => 'required',
         'Pai' => 'required',
         'Conheceu' => 'required',
+        'Vendedor' => 'required',
         'DataCadastro' => 'required',
         'Parentesco' => 'required',
         'Pagador' => 'required',
@@ -172,5 +176,5 @@ class Aluno extends Model
         'Celular2' => 'required'
     ];
 
-    
+
 }

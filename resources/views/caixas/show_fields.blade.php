@@ -74,6 +74,9 @@
 <!-- Data Field -->
 <div class="form-group">
     {!! Form::label('Data', 'Data:') !!}
-    <p>{!! $caixa->Data !!}</p>
+    <p>
+        {!! $caixa->Data !!}
+        {{-- {!! date('d/m/Y', strtotime($aulasCronograma->DataAula)); !!} --}}
+    </p>
 </div>
 

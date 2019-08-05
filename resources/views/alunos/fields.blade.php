@@ -173,6 +173,19 @@
                     <p class="col-sm-12 col-md-6">{!! Form::text('Conheceu', null, ['class' => 'form-control']) !!}</p>
                 </div>
 
+                <!-- Campo Vendedor -->
+                <div class="row">
+                    <p class="col-sm-12 col-md-3">{!! Form::label('Vendedor', 'Responsável pela venda:') !!}<span style="color: red">*</span></p>
+                    <p class="col-sm-12 col-md-6 select-padrao">
+                        {{-- {!! Form::text('Vendedor', null, ['class' => 'form-control']) !!} --}}
+                        <select name="Vendedor" id="Vendedor">
+                            @foreach($funcionarios as $vendedor )
+                            <option value="{{ $vendedor->Nome }}">{{ $vendedor->Nome }}</option>
+                            @endforeach
+                        </select>
+                    </p>
+                </div>
+
                 <!-- Campo Datacadastro -->
                 <div class="row">
                     <p class="col-sm-12 col-md-3">{!! Form::label('DataCadastro', 'Data de Cadastro:') !!}<span
