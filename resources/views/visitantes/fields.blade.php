@@ -1,12 +1,14 @@
 <div class="container formulario-padrao">
     <!-- Nome Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('nome', 'Nome:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('nome', 'Nome:') !!}<span style="color: red">*</span>
+        </p>
         <p class="col-md-8 col-sm-12 col-xs-12">{!! Form::text('nome', null, ['class' => 'form-control']) !!}</p>
     </div>
     <!-- Telefone Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('telefone', 'Telefone:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('telefone', 'Telefone:') !!}<span
+                style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">
             <div class="input-group" style="padding-right: 15px; padding-left: 15px; ">
                 {!! Form::text('telefone', null, ['class' => 'form-control']) !!}
@@ -18,7 +20,8 @@
     </div>
     <!-- Email Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('email', 'E-mail:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('email', 'E-mail:') !!}<span style="color: red">*</span>
+        </p>
         <p class="col-md-8 col-sm-12">
             <div class="input-group" style="padding-right: 15px; padding-left: 15px; ">
                 {!! Form::email('email', null, ['class' => 'form-control']) !!}
@@ -30,14 +33,16 @@
     </div>
     <!-- Observacao Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('observacao', 'Observação:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('observacao', 'Observação:') !!}<span
+                style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12 col-xs-12">{!! Form::textarea('observacao', null, ['class' => 'form-control']) !!}
         </p>
     </div>
 
     <!-- Dataretorno Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('dataRetorno', 'Data de Retorno:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('dataRetorno', 'Data de Retorno:') !!}<span
+                style="color: red">*</span></p>
         <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('dataRetorno', null, ['class' => 'form-control','id'=>'datepicker']) !!}
@@ -60,7 +65,8 @@
 
     <!-- Horaretorno Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('horaRetorno', 'Hora do Retorno:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('horaRetorno', 'Hora do Retorno:') !!}<span
+                style="color: red">*</span></p>
         {{-- <p class="col-md-8 col-sm-12 col-xs-12">{!! Form::text('horaRetorno', null, ['class' => 'form-control']) !!}</p> --}}
         <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
@@ -73,7 +79,8 @@
 
     <!-- Dataatendimento Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('dataAtendimento', 'Data do Atendimento:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('dataAtendimento', 'Data do Atendimento:') !!}<span
+                style="color: red">*</span></p>
         <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('dataAtendimento', null, ['class' => 'form-control','id'=>'datepicker']) !!}
@@ -85,16 +92,25 @@
 
     <!-- Comoconheceu Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('comoConheceu', 'Como Conheceu:') !!}<span style="color: red">*</span></p>
-        <p class="col-md-8 col-sm-12 col-xs-12 select-conheceu">{!! Form::select('comoConheceu', array('Facebook' =>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('comoConheceu', 'Como Conheceu:') !!}<span
+                style="color: red">*</span></p>
+        <p class="col-sm-12 col-md-6 select-padrao">
+            <select name="Turma" id="Turma" style="width: 50%">
+                @foreach($turmas as $turma )
+                <option value="{{ $turma->NomeTurma }}">{{ $turma->NomeTurma }}</option>
+                @endforeach
+            </select>
+        </p>
+        {{-- <p class="col-md-8 col-sm-12 col-xs-12 select-conheceu">{!! Form::select('comoConheceu', array('Facebook' =>
             'Facebook', 'Indicacao' => 'Indicação', 'Jornal' => 'Jornal', 'Outdoor' => 'Outdoor', 'Panfletagem' =>
             'Panfletagem', 'Popup' => 'Pop-Up', 'Radio' => 'Rádio', 'Revista' => 'Revista', 'Piq' => 'Senha PIQ',
-            'Internet' => 'Site Internet')) !!}</p>
+            'Internet' => 'Site Internet')) !!}</p> --}}
     </div>
 
     <!-- Status Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('status', 'Status:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('status', 'Status:') !!}<span
+                style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12 col-xs-12 row">
             <label class="col-xs-12 col-sm-6 col-md-6">{!! Form::radio('status', 'Agendado', ['class' =>
                 'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Agendado </span>

@@ -14,7 +14,7 @@
         <tbody>
             @foreach($agendas as $agenda)
             <tr>
-                <td>{!! $agenda->prioridade !!}</td>
+                <td>{!! $agenda->Prioridade !!}</td>
                 <td>
                     {!! date('d/m/Y', strtotime($agenda->Data)); !!}
                 </td>

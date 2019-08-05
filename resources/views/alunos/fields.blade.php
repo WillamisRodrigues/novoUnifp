@@ -36,15 +36,6 @@
                 <div class="row">
                     <p class="col-sm-12 col-md-3">{!! Form::label('NascimentoAluno', 'Data de Nascimento:') !!}<span
                             style="color: red">*</span></p>
-                    {{-- {!! Form::date('NascimentoAluno', null, ['class' =>'form-control','id'=>'NascimentoAluno']) !!} --}}
-                    {{-- <div class="col-sm-12 col-md-6 input-group"
-                        style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
-                        {!! Form::date('NascimentoAluno', null, ['class' => 'form-control', 'id' => 'NascimentoAluno'])
-                        !!}
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                    </div> --}}
                     <div class="col-sm-12 col-md-6 input-group"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
                         {!! Form::date('NascimentoAluno', null, ['class' => 'form-control', 'id' =>
@@ -61,7 +52,6 @@
                     <p class="col-sm-12 col-md-3">{!! Form::label('EstadoCivilAluno', 'Estado Civil:') !!}<span
                             style="color: red">*</span></p>
                     <p class="col-sm-12 col-md-6 select-conheceu">
-                        {{-- {!! Form::text('EstadoCivilAluno', null, ['class' => 'form-control'])!!} --}}
                         {!! Form::select('EstadoCivilAluno', array('Solteiro' => 'Solteiro', 'Casado' => 'Casado',
                         'Divorciado' => 'Divorciado', 'Viuvo' => 'Viúvo',)) !!}
                     </p>
@@ -94,10 +84,13 @@
                 <div class="row">
                     <p class="col-sm-12 col-md-3">{!! Form::label('Escolaridade', 'Escolaridade:') !!}<span
                             style="color: red">*</span></p>
-                    {{-- <p class="col-sm-12 col-md-6"></p> --}}
-                    <div class="col-sm-12 col-md-6 input-group"
+                    <div class="col-sm-12 col-md-6 input-group select-padrao"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
-                        {!! Form::text('Escolaridade', null, ['class' => 'form-control']) !!}
+                        <select name="Escolaridade" id="Escolaridade" class="form-control">
+                            @foreach($escolaridades as $escolaridade )
+                            <option value="{{ $escolaridade->Escolaridade }}">{{ $escolaridade->Escolaridade }}</option>
+                            @endforeach
+                        </select>
                         <div class="input-group-addon">
                             <i class="fa fa-graduation-cap" style="font-size: 1rem"></i>
                         </div>
@@ -108,7 +101,6 @@
                 <div class="row">
                     <p class="col-sm-12 col-md-3">{!! Form::label('Email', 'E-mail:') !!}<span
                             style="color: red">*</span></p>
-                    {{-- <p class="col-sm-12 col-md-6">{!! Form::email('Email', null, ['class' => 'form-control']) !!}</p> --}}
                     <div class="col-sm-12 col-md-6 input-group"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
                         {!! Form::email('Email', null, ['class' => 'form-control', 'id' => 'Email']) !!}
@@ -122,14 +114,28 @@
                 <div class="row">
                     <p class="col-sm-12 col-md-3">{!! Form::label('Curso', 'Curso:') !!}<span
                             style="color: red">*</span></p>
-                    <p class="col-sm-12 col-md-6">{!! Form::text('Curso', null, ['class' => 'form-control']) !!}</p>
+                    <p class="col-sm-12 col-md-6 select-padrao">
+                        {{-- {!! Form::text('Curso', null, ['class' => 'form-control']) !!} --}}
+                        <select name="Curso" id="Curso" style="width: 50%">
+                            @foreach($cursos as $curso )
+                            <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                 </div>
 
                 <!-- Campo Turma -->
                 <div class="row">
                     <p class="col-sm-12 col-md-3">{!! Form::label('Turma', 'Turma:') !!}<span
                             style="color: red">*</span></p>
-                    <p class="col-sm-12 col-md-6">{!! Form::text('Turma', null, ['class' => 'form-control']) !!}</p>
+                    <p class="col-sm-12 col-md-6 select-padrao">
+                        {{-- {!! Form::text('Turma', null, ['class' => 'form-control']) !!} --}}
+                        <select name="Turma" id="Turma" style="width: 50%">
+                            @foreach($turmas as $turma )
+                            <option value="{{ $turma->NomeTurma }}">{{ $turma->NomeTurma }}</option>
+                            @endforeach
+                        </select>
+                    </p>
                 </div>
 
                 <!-- Campo Parcelamento -->
@@ -175,10 +181,11 @@
 
                 <!-- Campo Vendedor -->
                 <div class="row">
-                    <p class="col-sm-12 col-md-3">{!! Form::label('Vendedor', 'Responsável pela venda:') !!}<span style="color: red">*</span></p>
+                    <p class="col-sm-12 col-md-3">{!! Form::label('Vendedor', 'Responsável pela venda:') !!}<span
+                            style="color: red">*</span></p>
                     <p class="col-sm-12 col-md-6 select-padrao">
                         {{-- {!! Form::text('Vendedor', null, ['class' => 'form-control']) !!} --}}
-                        <select name="Vendedor" id="Vendedor">
+                        <select name="Vendedor" id="Vendedor" style="width: 50%">
                             @foreach($funcionarios as $vendedor )
                             <option value="{{ $vendedor->Nome }}">{{ $vendedor->Nome }}</option>
                             @endforeach

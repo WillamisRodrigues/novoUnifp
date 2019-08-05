@@ -26,6 +26,19 @@ class UnidadeRepository extends BaseRepository
         'Telefone1',
         'Telefone2',
         'Tipo',
+        'Contrato1',
+        'Assinatura1',
+        'Contrato2',
+        'Assinatura2',
+        'Matricula1',
+        'Valores1',
+        'Matricula2',
+        'Valores2',
+        'Prestadora',
+        'MultaContrato',
+        'Multa',
+        'MoraContrato',
+        'Mora',
         'Logotipo'
     ];
 

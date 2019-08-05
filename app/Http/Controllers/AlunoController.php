@@ -10,16 +10,23 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Repositories\EscolaridadeRepository;
+use App\Repositories\CursoRepository;
+use App\Repositories\TurmaRepository;
 
 class AlunoController extends AppBaseController
 {
     /** @var  AlunoRepository */
     private $alunoRepository;
 
-    public function __construct(AlunoRepository $alunoRepo, FuncionarioRepository $funcionarioRepo)
+    public function __construct(AlunoRepository $alunoRepo, FuncionarioRepository $funcionarioRepo, EscolaridadeRepository $escolaridadeRepo, CursoRepository $cursoRepo, TurmaRepository $turmaRepo)
     {
         $this->alunoRepository = $alunoRepo;
         $this->funcionarioRepository = $funcionarioRepo;
+        $this->escolaridadeRepository = $escolaridadeRepo;
+        $this->cursoRepository = $cursoRepo;
+        $this->turmaRepository = $turmaRepo;
+
     }
 
     /**
@@ -44,10 +51,11 @@ class AlunoController extends AppBaseController
     public function create()
     {
         $funcionarios = $this->funcionarioRepository->all()->where('Cargo', 'Vendedor');
+        $escolaridades = $this->escolaridadeRepository->all();
+        $cursos = $this->cursoRepository->all();
+        $turmas = $this->turmaRepository->all();
 
-        // return view('alunos.index')->with('alunos', $alunos);
-        return view('alunos.create', ['funcionarios' => $funcionarios]);
-        // return view('alunos.create');
+        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas]);
     }
 
     /**
@@ -98,6 +106,11 @@ class AlunoController extends AppBaseController
     public function edit($id)
     {
         $aluno = $this->alunoRepository->find($id);
+        $funcionarios = $this->funcionarioRepository->all()->where('Cargo', 'Vendedor');
+        $escolaridades = $this->escolaridadeRepository->all();
+        $cursos = $this->cursoRepository->all();
+        $turmas = $this->turmaRepository->all();
+
 
         if (empty($aluno)) {
             Flash::error('Aluno não encontrado.');
@@ -105,7 +118,8 @@ class AlunoController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        return view('alunos.edit')->with('aluno', $aluno);
+        // return view('alunos.edit')->with('aluno', $aluno);
+        return view('alunos.edit', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas]);
     }
 
     /**

@@ -44,6 +44,19 @@ class Unidade extends Model
         'Telefone1',
         'Telefone2',
         'Tipo',
+        'Contrato1',
+        'Assinatura1',
+        'Contrato2',
+        'Assinatura2',
+        'Matricula1',
+        'Valores1',
+        'Matricula2',
+        'Valores2',
+        'Prestadora',
+        'MultaContrato',
+        'Multa',
+        'MoraContrato',
+        'Mora',
         'Logotipo'
     ];
 
@@ -63,7 +76,20 @@ class Unidade extends Model
         'Telefone1' => 'string',
         'Telefone2' => 'string',
         'Tipo' => 'string',
-        'Logotipo' => 'string'
+        'Logotipo' => 'string',
+        'Contrato1' => 'string',
+        'Assinatura1' => 'string',
+        'Contrato2' => 'string',
+        'Assinatura2' => 'string',
+        'Matricula1' => 'string',
+        'Valores1' => 'float',
+        'Matricula2' => 'string',
+        'Valores2' => 'float',
+        'Prestadora' => 'string',
+        'MultaContrato' => 'float',
+        'Multa' => 'float',
+        'MoraContrato' => 'float',
+        'Mora'=> 'float'
     ];
 
     /**
@@ -79,7 +105,20 @@ class Unidade extends Model
         'Cidade' => 'required',
         'UF' => 'required',
         'Telefone1' => 'required',
-        'Tipo' => 'required'
+        'Tipo' => 'required',
+        'Contrato1' => 'required',
+        'Assinatura1' => 'required',
+        'Contrato2' => 'required',
+        'Assinatura2' => 'required',
+        'Matricula1' => 'required',
+        'Valores1' => 'required',
+        'Matricula2' => 'required',
+        'Valores2' => 'required',
+        'Prestadora' => 'required',
+        'MultaContrato' => 'required',
+        'Multa' => 'required',
+        'MoraContrato' => 'required',
+        'Mora'=> 'required'
     ];
 
 

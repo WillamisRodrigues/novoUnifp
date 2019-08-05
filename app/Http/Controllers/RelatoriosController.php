@@ -30,7 +30,7 @@ class RelatoriosController extends Controller
      */
     public function index(Request $request)
     {
-        $caixas = $this->caixaRepository->all();
+        $caixas = $this->caixaRepository->all()->where('Tipo', 'Receita');
         $sum = 0;
 
         foreach ($caixas as $caixa) {

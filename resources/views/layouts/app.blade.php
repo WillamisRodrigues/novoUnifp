@@ -165,6 +165,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 
     {{-- <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script> --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('.editor1')).catch( error => {console.error( error );});
+        ClassicEditor.create(document.querySelector('.editor2')).catch( error => {console.error( error );});
+        ClassicEditor.create(document.querySelector('.editor3')).catch( error => {console.error( error );});
+        ClassicEditor.create(document.querySelector('.editor4')).catch( error => {console.error( error );});
+        ClassicEditor.create(document.querySelector('.editor5')).catch( error => {console.error( error );});
+        ClassicEditor.create(document.querySelector('.editor6')).catch( error => {console.error( error );});
+        ClassicEditor.create(document.querySelector('.editor7')).catch( error => {console.error( error );});
+    </script>
     <script src="{{ url("js/datatables.js") }}"></script>
     <script>
         $(document).ready(function() {
