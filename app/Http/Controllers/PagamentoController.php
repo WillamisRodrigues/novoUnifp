@@ -4,36 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAlunoRequest;
 use App\Http\Requests\UpdateAlunoRequest;
-use App\Http\Requests\CreateFrequenciaRequest;
 use App\Repositories\AlunoRepository;
-use App\Repositories\FuncionarioRepository;
-use App\Repositories\FrequenciaRepository;
+// use App\Repositories\FuncionarioRepository;
+// use App\Repositories\EscolaridadeRepository;
+// use App\Repositories\CursoRepository;
+// use App\Repositories\TurmaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
-use App\Repositories\EscolaridadeRepository;
-use App\Repositories\CursoRepository;
-use App\Repositories\TurmaRepository;
-use App\Repositories\ComoConheceuRepository;
-use App\Models\FormasPagamento;
-use App\Repositories\FormasPagamentoRepository;
 
-class AlunoController extends AppBaseController
+class PagamentoController extends AppBaseController
 {
     /** @var  AlunoRepository */
     private $alunoRepository;
 
-    public function __construct(AlunoRepository $alunoRepo, FuncionarioRepository $funcionarioRepo, EscolaridadeRepository $escolaridadeRepo, CursoRepository $cursoRepo, TurmaRepository $turmaRepo,FormasPagamentoRepository $formasPagamentoRepository, ComoConheceuRepository $comoConheceuRepo, FrequenciaRepository $frequenciaRepo)
+    public function __construct(AlunoRepository $alunoRepo)
     {
         $this->alunoRepository = $alunoRepo;
-        $this->funcionarioRepository = $funcionarioRepo;
-        $this->escolaridadeRepository = $escolaridadeRepo;
-        $this->cursoRepository = $cursoRepo;
-        $this->turmaRepository = $turmaRepo;
-        $this->pagRepository = $formasPagamentoRepository;
-        $this->comoConheceuRepository = $comoConheceuRepo;
-        $this->frequenciaRepository = $frequenciaRepo;
 
     }
 
@@ -48,7 +36,7 @@ class AlunoController extends AppBaseController
     {
         $alunos = $this->alunoRepository->all();
 
-        return view('alunos.index')->with('alunos', $alunos);
+        return view('pagamentos.index')->with('alunos', $alunos);
     }
 
     /**
@@ -62,10 +50,8 @@ class AlunoController extends AppBaseController
         $escolaridades = $this->escolaridadeRepository->all();
         $cursos = $this->cursoRepository->all();
         $turmas = $this->turmaRepository->all();
-        $pagamentos = $this->pagRepository->all();
-        $comoConheceu = $this->comoConheceuRepository->all();
 
-        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu]);
+        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas]);
     }
 
     /**
@@ -75,21 +61,15 @@ class AlunoController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateAlunoRequest $requestAluno, CreateFrequenciaRequest $requestFrequencia)
+    public function store(CreateAlunoRequest $request)
     {
-        $inputAluno = $requestAluno->all();
-        $inputFrequencia = $requestFrequencia->all();
+        $input = $request->all();
 
-
-
-        $aluno = $this->alunoRepository->create($inputAluno);
-        $frequencia = $this->frequenciaRepository->create($inputFrequencia);
+        $aluno = $this->alunoRepository->create($input);
 
         Flash::success('Aluno criado com sucesso.');
 
         return redirect(route('alunos.index'));
-
-
     }
 
     /**
@@ -122,21 +102,15 @@ class AlunoController extends AppBaseController
     public function edit($id)
     {
         $aluno = $this->alunoRepository->find($id);
-        $funcionarios = $this->funcionarioRepository->all()->where('Cargo', 'Vendedor');
-        $escolaridades = $this->escolaridadeRepository->all();
-        $cursos = $this->cursoRepository->all();
-        $turmas = $this->turmaRepository->all();
-        $pagamentos = $this->pagRepository->all();
-
 
         if (empty($aluno)) {
             Flash::error('Aluno não encontrado.');
 
-            return redirect(route('alunos.index'));
+            return redirect(route('pagamentos.index'));
         }
 
         // return view('alunos.edit')->with('aluno', $aluno);
-        return view('alunos.edit', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos]);
+        return view('pagamentos.edit', ['aluno' => $aluno]);
     }
 
     /**

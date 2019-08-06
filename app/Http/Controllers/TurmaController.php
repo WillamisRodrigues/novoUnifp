@@ -9,15 +9,17 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Repositories\CursoRepository;
 
 class TurmaController extends AppBaseController
 {
     /** @var  TurmaRepository */
     private $turmaRepository;
 
-    public function __construct(TurmaRepository $turmaRepo)
+    public function __construct(TurmaRepository $turmaRepo, CursoRepository $cursoRepo)
     {
         $this->turmaRepository = $turmaRepo;
+        $this->cursoRepository = $cursoRepo;
     }
 
     /**
@@ -41,7 +43,9 @@ class TurmaController extends AppBaseController
      */
     public function create()
     {
-        return view('turmas.create');
+        $cursos = $this->cursoRepository->all();
+
+        return view('turmas.create')->with('cursos', $cursos);
     }
 
     /**

@@ -2,7 +2,15 @@
     <!-- Curso Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Curso', 'Curso:') !!}<span style="color: red">*</span></p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('Curso', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-6 select-padrao">
+            {{-- {!! Form::text('Curso', null, ['class' => 'form-control']) !!}
+            cursos --}}
+            <select name="Curso" id="Curso" style="width: 50%">
+                @foreach($cursos as $curso )
+                <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}</option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Nometurma Field -->

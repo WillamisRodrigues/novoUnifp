@@ -166,6 +166,10 @@
     font-weight: 500
 }
 
+.botao-mais:hover {
+    background-color: #ddd !important;
+}
+
 @media (max-width: 425px) {
     .content-agenda-pessoal {
         width: 100% !important;

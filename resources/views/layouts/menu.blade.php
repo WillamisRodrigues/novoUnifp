@@ -46,7 +46,7 @@
                     Matrículas</span></a>
         </li>
         <li class="{{ Request::is('alunos*') ? 'active' : '' }}">
-            <a href="/controle-presenca"><i class="fa fa-check"></i><span>Controle de Presença</span></a>
+            <a href="{!! route('presenca.index') !!}"><i class="fa fa-check"></i><span>Controle de Presença</span></a>
         </li>
         <li class="{{ Request::is('cursos*') ? 'active' : '' }}">
             <a href="{!! route('cursos.index') !!}"><i class="fa fa-cube"></i><span>Cursos</span></a>
@@ -94,12 +94,12 @@
         Relatórios <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
-            <a href="/funcionarios-aniversario"><i
-                    class="fa fa-birthday-cake"></i><span>Aniversário de Funcionários</span></a>
+            <a href="/funcionarios-aniversario"><i class="fa fa-birthday-cake"></i><span>Aniversário de
+                    Funcionários</span></a>
         </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
-            <a href="/professores-aniversario"><i
-                    class="fa fa-birthday-cake"></i><span>Aniversário de Professores</span></a>
+            <a href="/professores-aniversario"><i class="fa fa-birthday-cake"></i><span>Aniversário de
+                    Professores</span></a>
         </li>
     </ul>
 </li>
@@ -110,12 +110,10 @@
         <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
-            <a href="professores-listar"><i
-                    class="fa fa-user-o"></i><span>Professores</span></a>
+            <a href="professores-listar"><i class="fa fa-user-o"></i><span>Professores</span></a>
         </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
-            <a href="/vendedores-listar"><i
-                    class="fa fa-user-o"></i><span>Vendedores</span></a>
+            <a href="/vendedores-listar"><i class="fa fa-user-o"></i><span>Vendedores</span></a>
         </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="{!! route('funcionarios.index') !!}"><i
@@ -148,6 +146,9 @@
         </li>
         <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
             <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>
+        </li>
+        <li class="{{ Request::is('comoConheceus*') ? 'active' : '' }}">
+            <a href="{!! route('comoConheceus.index') !!}"><i class="fa fa-list"></i><span>Como Conheceu</span></a>
         </li>
         <li class="{{ Request::is('tempoAulas*') ? 'active' : '' }}">
             <a href="{!! route('tempoAulas.index') !!}"><i class="fa fa-star"></i><span>Tempo de Aula</span></a>

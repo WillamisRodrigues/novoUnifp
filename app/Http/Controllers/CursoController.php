@@ -31,8 +31,7 @@ class CursoController extends AppBaseController
     {
         $cursos = $this->cursoRepository->all();
 
-        return view('cursos.index')
-            ->with('cursos', $cursos);
+        return view('cursos.index')->with('cursos', $cursos);
     }
 
     /**

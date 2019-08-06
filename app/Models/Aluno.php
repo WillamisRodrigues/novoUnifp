@@ -90,7 +90,8 @@ class Aluno extends Model
         'CEP',
         'Telefone',
         'Celular1',
-        'Celular2'
+        'Celular2',
+        'Usuario_id'
     ];
 
     /**
@@ -132,7 +133,8 @@ class Aluno extends Model
         'CEP' => 'string',
         'Telefone' => 'string',
         'Celular1' => 'string',
-        'Celular2' => 'string'
+        'Celular2' => 'string',
+        'Usuario_id' => 'string'
     ];
 
     /**

@@ -62,15 +62,20 @@ Route::resource('centroCustos', 'CentroCustoController');
 Route::resource('caixas', 'CaixaController');
 
 Route::resource('lancamentos', 'LancamentoController');
-// Route::get('lancamentos/avancado', function(){
-//     return view('lancamentos.avancado');
-// });
 
 Route::resource('aniversarios', 'AniversarioController');
+
+Route::resource('presenca', 'PresencaController');
+
+Route::resource('pagamentos', 'PagamentoController');
 
 Route::get('/funcionarios-aniversario', 'AniversarioController@funcionarios');
 Route::get('/professores-aniversario', 'AniversarioController@professores');
 Route::get('/professores-listar', 'AniversarioController@professoresListar');
 Route::get('/vendedores-listar', 'AniversarioController@vendedoresListar');
-Route::get('/controle-presenca', 'PresencaController@index');
 Route::get('/relatorio-receitas', 'RelatoriosController@index');
+
+
+Route::resource('frequencias', 'FrequenciaController');
+
+Route::resource('comoConheceus', 'ComoConheceuController');

@@ -3,23 +3,19 @@
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>RG</th>
+                <th>Sexo</th>
                 <th>CPF</th>
-                <th>E-mail</th>
-                <th>Curso</th>
-                <th>Turma</th>
-                <th>Parcelamento</th>
-                <th>Vencimento</th>
-                <th>Mãe</th>
-                <th>Pai</th>
-                <th>Data do Cadastro</th>
-                <th>Endereço</th>
-                <th>Bairro</th>
-                <th>Cidade</th>
-                <th>UF</th>
-                <th>CEP</th>
-                <th>Telefone</th>
-                <th>Celular 1</th>
+                <th>Status</th>
+                <th>Frequência %</th>
+                <th>Frequência AVA</th>
+                <th>Termo Cancelamento</th>
+                <th>Média</th>
+                <th>Pagamentos</th>
+                <th>Contrato</th>
+                <th>Carnê</th>
+                <th></th>
+                <th></th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -27,25 +23,16 @@
             @foreach($alunos as $aluno)
             <tr>
                 <td>{!! $aluno->Nome !!}</td>
-                <td>{!! $aluno->RgAluno !!}</td>
+                <td>{!! $aluno->Sexo !!}</td>
                 <td>{!! $aluno->CpfAluno !!}</td>
-                <td>{!! $aluno->Email !!}</td>
-                <td>{!! $aluno->Curso !!}</td>
-                <td>{!! $aluno->Turma !!}</td>
-                <td>{!! $aluno->Parcelamento !!}</td>
-                <td>{!! $aluno->Vencimento !!}</td>
-                <td>{!! $aluno->Mae !!}</td>
-                <td>{!! $aluno->Pai !!}</td>
-                <td>
-                    {!! date('d/m/Y', strtotime($aluno->DataCadastro)); !!}
-                </td>
-                <td>{!! $aluno->Endereco !!}</td>
-                <td>{!! $aluno->Bairro !!}</td>
-                <td>{!! $aluno->Cidade !!}</td>
-                <td>{!! $aluno->UF !!}</td>
-                <td>{!! $aluno->CEP !!}</td>
-                <td>{!! $aluno->Telefone !!}</td>
-                <td>{!! $aluno->Celular1 !!}</td>
+                <td>Status</td>
+                <td>Frequência</td>
+                <td><a href="{!! route('frequencias.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Frequência</i></a></td>
+                <td>Termo Cancelamento</td>
+                <td>Média</td>
+                <td>Pagamentos</td>
+                <td><a href="#" class="btn btn-flat btn-success"><i class="fa fa-print"></i>CT</a></td>
+                <td><a href="#" class="btn btn-flat" style="border: 1px solid #D73925; color: #D73925"><i class="fa fa-print"></i>CN</a></td>
                 <td>
                     {!! Form::open(['route' => ['alunos.destroy', $aluno->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -58,6 +45,9 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
+                <td><a href="{!! route('pagamentos.index') !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos (0)</i></a></td>
+                <td><a href="{!! route('alunos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas (0)</i></a></td>
+                <td><a href="{!! route('alunos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Comunicados (0)</i></a></td>
             </tr>
             @endforeach
         </tbody>
