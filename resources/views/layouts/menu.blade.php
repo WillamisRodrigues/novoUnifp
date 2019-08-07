@@ -83,7 +83,10 @@
         </li>
         <li class="{{ Request::is('formasPagamentos*') ? 'active' : '' }}">
             <a href="{!! route('formasPagamentos.index') !!}"><i class="fa fa-cube"></i><span>Formas
-                    Pagamentos</span></a>
+                    de Parcelamento</span></a>
+        </li>
+        <li class="{{ Request::is('formaPgtos*') ? 'active' : '' }}">
+            <a href="{!! route('formaPgtos.index') !!}"><i class="fa fa-cube"></i><span>Formas de Pagamento</span></a>
         </li>
     </ul>
 </li>

@@ -18,13 +18,16 @@ use App\Repositories\TurmaRepository;
 use App\Repositories\ComoConheceuRepository;
 use App\Models\FormasPagamento;
 use App\Repositories\FormasPagamentoRepository;
+use App\Http\Controllers\PagtoController;
+use Illuminate\Support\Facades\DB;
+
 
 class AlunoController extends AppBaseController
 {
     /** @var  AlunoRepository */
     private $alunoRepository;
 
-    public function __construct(AlunoRepository $alunoRepo, FuncionarioRepository $funcionarioRepo, EscolaridadeRepository $escolaridadeRepo, CursoRepository $cursoRepo, TurmaRepository $turmaRepo,FormasPagamentoRepository $formasPagamentoRepository, ComoConheceuRepository $comoConheceuRepo, FrequenciaRepository $frequenciaRepo)
+    public function __construct(AlunoRepository $alunoRepo, FuncionarioRepository $funcionarioRepo, EscolaridadeRepository $escolaridadeRepo, CursoRepository $cursoRepo, TurmaRepository $turmaRepo, FormasPagamentoRepository $formasPagamentoRepository, ComoConheceuRepository $comoConheceuRepo, FrequenciaRepository $frequenciaRepo, PagtoController $pagamento)
     {
         $this->alunoRepository = $alunoRepo;
         $this->funcionarioRepository = $funcionarioRepo;
@@ -33,8 +36,8 @@ class AlunoController extends AppBaseController
         $this->turmaRepository = $turmaRepo;
         $this->pagRepository = $formasPagamentoRepository;
         $this->comoConheceuRepository = $comoConheceuRepo;
+        $this->pagamento = $pagamento;
         $this->frequenciaRepository = $frequenciaRepo;
-
     }
 
     /**
@@ -79,7 +82,30 @@ class AlunoController extends AppBaseController
     {
         $inputAluno = $requestAluno->all();
         $inputFrequencia = $requestFrequencia->all();
-
+        //logica para gerar os boletos de pagamentos quando um aluno for adicionado
+        //falta a matricula do aluno
+        for ($_i = 1; $_i <= 18; $_i++) {
+            // $this->pagamento . store($requestAluno->id);
+            if ($_i == 1) {
+                DB::table('pagamentos')->insert(
+                    [
+                        'Parcela' => $_i,
+                        'Matricula' => 1,
+                        'Referencia' => 'Matricula',
+                        'Status' => 'Aberto'
+                    ]
+                );
+            } else {
+                DB::table('pagamentos')->insert(
+                    [
+                        'Parcela' => $_i,
+                        'Matricula' => 1,
+                        'Referencia' => 'Mensalidade',
+                        'Status' => 'Aberto'
+                    ]
+                );
+            }
+        }
 
 
         $aluno = $this->alunoRepository->create($inputAluno);
@@ -88,8 +114,6 @@ class AlunoController extends AppBaseController
         Flash::success('Aluno criado com sucesso.');
 
         return redirect(route('alunos.index'));
-
-
     }
 
     /**

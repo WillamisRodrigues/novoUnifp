@@ -2,6 +2,7 @@
     <table class="table display datatable-list" id="alunos-table">
         <thead>
             <tr>
+                <th>Matrícula</th>
                 <th>Nome</th>
                 <th>Sexo</th>
                 <th>CPF</th>
@@ -13,15 +14,16 @@
                 <th>Pagamentos</th>
                 <th>Contrato</th>
                 <th>Carnê</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Ações</th>
+                <th>Pagamentos</th>
+                <th>Notas</th>
+                <th>Comunicados</th>
             </tr>
         </thead>
         <tbody>
             @foreach($alunos as $aluno)
             <tr>
+                <td>{!! $aluno->id !!}</td>
                 <td>{!! $aluno->Nome !!}</td>
                 <td>{!! $aluno->Sexo !!}</td>
                 <td>{!! $aluno->CpfAluno !!}</td>
@@ -45,7 +47,7 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
-                <td><a href="{!! route('pagamentos.index') !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos (0)</i></a></td>
+                <td><a href="{!! route('pagamentos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos (0)</i></a></td>
                 <td><a href="{!! route('alunos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas (0)</i></a></td>
                 <td><a href="{!! route('alunos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Comunicados (0)</i></a></td>
             </tr>

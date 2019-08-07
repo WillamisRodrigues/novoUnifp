@@ -170,6 +170,20 @@
     background-color: #ddd !important;
 }
 
+.panel-primary {
+    /* background-color: #00A65A; */
+    border-color: #00A65A;
+}
+
+.panel-primary .panel-heading {
+    background-color: #00A65A;
+    border-color: #00A65A;
+}
+
+#frequencias-table_wrapper {
+    padding-right: 10px
+}
+
 @media (max-width: 425px) {
     .content-agenda-pessoal {
         width: 100% !important;

@@ -69,6 +69,7 @@ Route::resource('presenca', 'PresencaController');
 
 Route::resource('pagamentos', 'PagamentoController');
 
+
 Route::get('/funcionarios-aniversario', 'AniversarioController@funcionarios');
 Route::get('/professores-aniversario', 'AniversarioController@professores');
 Route::get('/professores-listar', 'AniversarioController@professoresListar');
@@ -79,3 +80,7 @@ Route::get('/relatorio-receitas', 'RelatoriosController@index');
 Route::resource('frequencias', 'FrequenciaController');
 
 Route::resource('comoConheceus', 'ComoConheceuController');
+
+Route::resource('formaPgtos', 'FormaPgtoController');
+
+Route::resource('pagtos', 'PagtoController');

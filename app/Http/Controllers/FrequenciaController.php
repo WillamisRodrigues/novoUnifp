@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateFrequenciaRequest;
 use App\Http\Requests\UpdateFrequenciaRequest;
 use App\Repositories\FrequenciaRepository;
+use App\Repositories\AlunoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -15,9 +16,10 @@ class FrequenciaController extends AppBaseController
     /** @var  FrequenciaRepository */
     private $frequenciaRepository;
 
-    public function __construct(FrequenciaRepository $frequenciaRepo)
+    public function __construct(FrequenciaRepository $frequenciaRepo, AlunoRepository $alunoRepo)
     {
         $this->frequenciaRepository = $frequenciaRepo;
+        $this->alunoRepository = $alunoRepo;
     }
 
     /**
@@ -72,14 +74,17 @@ class FrequenciaController extends AppBaseController
      */
     public function show($id)
     {
-        $frequencias = $this->frequenciaRepository->all()->where('idAluno', $id);
+        $alunos = $this->alunoRepository->all();
+        // $frequencias = $this->frequenciaRepository->all()->where('idAluno', $id);
+        $frequencias = $this->frequenciaRepository->all();
+
         if (empty($frequencias)) {
             Flash::error('Frequencia não encontrada.');
 
             return redirect(route('frequencias.index'));
         }
 
-        return view('frequencias.show')->with('frequencias', $frequencias);
+        return view('frequencias.show', ['frequencias' => $frequencias, 'alunos' => $alunos]);
     }
 
     /**

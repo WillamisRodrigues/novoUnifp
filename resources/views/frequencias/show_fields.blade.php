@@ -1,28 +1,22 @@
-@foreach ($frequencias as $frequencia)
-
-<div class="container formulario-padrao">
-    <!-- Field -->
-    <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('idAluno', 'Aluno:') !!}</p>
-        <p class="col-sm-12 col-md-9">{!! $frequencia->idAluno !!}</p>
-    </div>
-
-    <!-- Field -->
-    <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('idTurma', 'Turma:') !!}</p>
-        <p class="col-sm-12 col-md-9">{!! $frequencia->idTurma !!}</p>
-    </div>
-
-    <!-- Field -->
-    <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('idAula', 'Aula:') !!}</p>
-        <p class="col-sm-12 col-md-9">{!! $frequencia->idAula !!}</p>
-    </div>
-
-    <!-- Field -->
-    <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Frequencia', 'Frequência:') !!}</p>
-        <p class="col-sm-12 col-md-9">{!! $frequencia->Frequencia !!}</p>
-    </div>
+<div class="table-responsive">
+    <table class="table datatable-list" id="frequencias-table">
+        <thead>
+            <tr>
+                <th>Matrícula</th>
+                <th>ID da Turma</th>
+                <th>ID da Aula</th>
+                <th>Frequência</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($frequencias as $frequencia)
+            <tr>
+                <td>{!! $frequencia->idAluno !!}</td>
+                <td>{!! $frequencia->idTurma !!}</td>
+                <td>{!! $frequencia->idAula !!}</td>
+                <td>{!! $frequencia->Frequencia !!}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
-@endforeach

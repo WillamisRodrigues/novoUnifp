@@ -2,40 +2,98 @@
 
 @section('content')
 <section class="content-header">
-    <h1 class="pull-left">Tempo de Aula</h1>
+    <h1 class="pull-left">Pagamentos</h1>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="{!! route('pagamentos.index') !!}">Tempo de Aula</a></li>
-            <li class="active">Editar</li>
+            <li><a href="{!! route('pagamentos.index') !!}">Pagamentos</a></li>
+            <li class="active">Lançar pagamento</li>
         </ol>
     </h1>
 </section>
 <div class="content">
     @include('adminlte-templates::common.errors')
     <div class="box box-primary criar-unidade">
-        <div class="box-body">
-            <div class="row">
-                {!! Form::model($tempoAula, ['route' => ['pagamentos.update', $aluno->id], 'method' => 'patch']) !!}
-
-                <!-- Tempoaula Field -->
-                <div class="form-group col-sm-6 row">
-                    <div class="col-md-3">{!! Form::label('tempoAula', 'Tempo de Aula:', ['style' => 'font-size:
-                        1.31rem']) !!}<span style="color: red">*</span></div>
-                    <div class="col-md-9">{!! Form::text('tempoAula', null, ['class' => 'form-control']) !!}</div>
+        <div class="box-body formulario-padrao">
+            {{-- {!! Form::model($frequencia, ['route' => ['frequencias.update', $frequencia->id], 'method' => 'patch']) !!} --}}
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Nº Documento:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                        Variável
                 </div>
-
-                <!-- Submit Field -->
-                <div class="form-group col-sm-12">
-                    <button class="btn btn-success btn-flat" style="margin-bottom: 1rem" type="submit"><i
-                            class="fa fa-save"></i> Salvar Tempo de Aula</button>
-                    <a href="{!! route('pagamentos.index') !!}" style="margin-bottom: 1rem"
-                        class="btn btn-danger btn-flat"> <i class="fa fa-close"></i> Cancelar</a>
+            </p>
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Aluno:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    {!! $aluno->id !!}, {!! $aluno->Nome !!}
                 </div>
-
-
-                {!! Form::close() !!}
+            </p>
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Parcela:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">Variável</div>
+            </p>
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Referente:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">Variável</div>
+            </p>
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Vencimento:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    {{-- {!! date('d/m/Y', strtotime($pagamentos->Hora)); !!} --}}
+                    {{-- Acima já está formatado a data, falta a variável --}}
+                    10/10/2000
+                </div>
+            </p>
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Status:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12 row">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="radio" name="Status" id="Status" value="Aberto">
+                        <label style="border-radius: 100px; color: white; padding: 2px 4px; background-color: #00a65b"
+                            for="Status">Aberto</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="radio" name="Status" id="Quitado" value="Quitado">
+                        <label style="border-radius: 100px; color: white; padding: 2px 4px; background-color: #333333"
+                            for="Quitado">Quitado</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <input type="radio" name="Status" id="Vencido" value="Vencido">
+                        <label style="border-radius: 100px; color: white; padding: 2px 4px; background-color: #CC403C"
+                            for="Vencido">Vencido</label>
+                    </div>
+                </div>
+            </p>
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Forma:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12 select-padrao">
+                    <select name="FormaPagamento" id="FormaPagamento" style="width: 50%">
+                        @foreach($formaPgtos as $formaPgto )
+                        <option value="{{ $formaPgto->FormaPagamento }}">{{ $formaPgto->FormaPagamento }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </p>
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Multa:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    {!! Form::number('Multa', null) !!}
+                </div>
+            </p>
+            <p class="row">
+                <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Valor:</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                        {!! Form::number('Valor', null) !!}
+                </div>
+            </p>
+            <div class="form-group col-sm-12" style="margin-top: 15px">
+                <button class="btn btn-success btn-flat" style="margin-bottom:1rem" type="submit"><i
+                        class="fa fa-save"></i>
+                    Lançar</button>
+                <a href="{!! route('pagamentos.index') !!}" style="margin-bottom:1rem" class="btn btn-danger btn-flat">
+                    <i class="fa fa-close"></i> Cancelar</a>
             </div>
+            {{-- {!! Form::close() !!} --}}
         </div>
     </div>
 </div>

@@ -9,6 +9,8 @@ use App\Repositories\AlunoRepository;
 // use App\Repositories\EscolaridadeRepository;
 // use App\Repositories\CursoRepository;
 // use App\Repositories\TurmaRepository;
+use App\Repositories\PagtoRepository;
+use App\Repositories\FormaPgtoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -19,10 +21,11 @@ class PagamentoController extends AppBaseController
     /** @var  AlunoRepository */
     private $alunoRepository;
 
-    public function __construct(AlunoRepository $alunoRepo)
+    public function __construct(AlunoRepository $alunoRepo, FormaPgtoRepository $formaPgtoRepo,PagtoRepository $pagtoRepo)
     {
         $this->alunoRepository = $alunoRepo;
-
+        $this->formaPgtoRepository = $formaPgtoRepo;
+        $this->pagtoRepository = $pagtoRepo;
     }
 
     /**
@@ -32,11 +35,12 @@ class PagamentoController extends AppBaseController
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index($id)
     {
-        $alunos = $this->alunoRepository->all();
+        $alunos = $this->alunoRepository->all()->where('id', $id);
+        $pagtos = $this->pagtoRepository->all()->where('Matricula', $id);
 
-        return view('pagamentos.index')->with('alunos', $alunos);
+        return view('pagamentos.index', ['alunos' => $alunos, 'pagtos' => $pagtos ]);
     }
 
     /**
@@ -61,15 +65,28 @@ class PagamentoController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateAlunoRequest $request)
+    public function store($Matricula, $Parcela)
     {
-        $input = $request->all();
+        $aluno = $this->alunoRepository->find($Matricula);
+        $formaPgtos = $this->formaPgtoRepository->all();
+        $pagtos = $this->pagtoRepository->all()->where('Matricula', $Matricula)->where('Parcela', $Parcela);
 
-        $aluno = $this->alunoRepository->create($input);
+        if (empty($aluno)) {
+            Flash::error('Aluno não encontrado.');
 
-        Flash::success('Aluno criado com sucesso.');
+            return redirect(route('pagamentos.index'));
+        }
 
-        return redirect(route('alunos.index'));
+        // return view('alunos.edit')->with('aluno', $aluno);
+        return view('pagamentos.edit', ['aluno' => $aluno, 'formaPgtos' => $formaPgtos]);
+
+        // $input = $request->all();
+
+        // $aluno = $this->alunoRepository->create($input);
+
+        // Flash::success('Aluno criado com sucesso.');
+
+        // return redirect(route('alunos.index'));
     }
 
     /**
@@ -81,15 +98,19 @@ class PagamentoController extends AppBaseController
      */
     public function show($id)
     {
-        $aluno = $this->alunoRepository->find($id);
+        // $aluno = $this->alunoRepository->find($id);
 
-        if (empty($aluno)) {
-            Flash::error('Aluno não encontrado.');
+        // if (empty($aluno)) {
+        //     Flash::error('Aluno não encontrado.');
 
-            return redirect(route('alunos.index'));
-        }
+        //     return redirect(route('alunos.index'));
+        // }
 
-        return view('alunos.show')->with('aluno', $aluno);
+        // return view('alunos.show')->with('aluno', $aluno);
+        $alunos = $this->alunoRepository->all()->where('id', $id);
+        $pagtos = $this->pagtoRepository->all()->where('Matricula', $id);
+
+        return view('pagamentos.index', ['alunos' => $alunos, 'pagtos' => $pagtos ]);
     }
 
     /**
@@ -99,9 +120,11 @@ class PagamentoController extends AppBaseController
      *
      * @return Response
      */
-    public function edit($id)
+    public function edit($Matricula, $Parcela)
     {
-        $aluno = $this->alunoRepository->find($id);
+        $aluno = $this->alunoRepository->find($Matricula);
+        $formaPgtos = $this->formaPgtoRepository->all();
+        $pagtos = $this->pagtoRepository->all()->where('Matricula', $Matricula)->where('Parcela', $Parcela);
 
         if (empty($aluno)) {
             Flash::error('Aluno não encontrado.');
@@ -110,7 +133,7 @@ class PagamentoController extends AppBaseController
         }
 
         // return view('alunos.edit')->with('aluno', $aluno);
-        return view('pagamentos.edit', ['aluno' => $aluno]);
+        return view('pagamentos.edit', ['aluno' => $aluno, 'formaPgtos' => $formaPgtos]);
     }
 
     /**
