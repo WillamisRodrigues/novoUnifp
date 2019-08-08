@@ -48,8 +48,8 @@
                     {!! Form::close() !!}
                 </td>
                 <td><a href="{!! route('pagamentos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos (0)</i></a></td>
-                <td><a href="{!! route('alunos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas (0)</i></a></td>
-                <td><a href="{!! route('alunos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Comunicados (0)</i></a></td>
+                <td><a href="notas" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas (0)</i></a></td>
+                <td><a href="{!! route('comunicados.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Comunicados (0)</i></a></td>
             </tr>
             @endforeach
         </tbody>

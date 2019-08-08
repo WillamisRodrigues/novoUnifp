@@ -29,9 +29,9 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
-                <td><button class="btn btn-primary btn-sm"><i class="fa fa-bars"></i> Forma de Pagamento</button></td>
-                <td><button class="btn btn-primary btn-sm"><i class="fa fa-bars"></i> Avaliações</button></td>
-                <td><button class="btn btn-primary btn-sm"><i class="fa fa-bars"></i> Turmas Ativas</button></td>
+                <td><a href="#" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Forma de Pagamento</a></td>
+                <td><a href="#" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Avaliações</a></td>
+                <td><a href="{!! route('turmas.index') !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Turmas Ativas</a></td>
             </tr>
             @endforeach
         </tbody>

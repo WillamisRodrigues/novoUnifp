@@ -74,9 +74,9 @@ class FrequenciaController extends AppBaseController
      */
     public function show($id)
     {
-        $alunos = $this->alunoRepository->all();
-        // $frequencias = $this->frequenciaRepository->all()->where('idAluno', $id);
-        $frequencias = $this->frequenciaRepository->all();
+        $alunos = $this->alunoRepository->all()->where('id',$id);
+        $frequencias = $this->frequenciaRepository->all()->where('idAluno', $id);
+        // $frequencias = $this->frequenciaRepository->all();
 
         if (empty($frequencias)) {
             Flash::error('Frequencia não encontrada.');

@@ -10,7 +10,7 @@
     <div class="container" style="height: 100px">
         <div class="row">
             <div class="panel panel-primary">
-                <div class="panel-heading">Informações do aluno</div>
+                <div class="panel-heading"><i class="fa fa-graduation-cap"></i> Informações do aluno</div>
                 <div class="panel-body row">
                     @foreach ($alunos as $aluno)
                     <p class="col-md-6 col-sm-12"><strong>Matrícula</strong>: {!! $aluno->id !!}</p>

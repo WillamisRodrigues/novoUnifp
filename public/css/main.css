@@ -222,6 +222,9 @@
         display: block;
         margin: 1rem 0 !important;
     }
+    .alinhar-esquerda {
+        text-align: left;
+    }
 }
 
 @media (min-width: 426px) {
@@ -241,6 +244,9 @@
         .criar-aluno {
             width: 90%;
             margin: 0 auto;
+        }
+        .alinhar-esquerda {
+            text-align: left;
         }
     }
 }
