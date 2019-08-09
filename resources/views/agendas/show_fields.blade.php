@@ -2,7 +2,7 @@
     <!-- Prioridade Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('prioridade', 'Prioridade:') !!}</p>
-        <p class="col-sm-12 col-md-9">{!! $agenda->prioridade !!}</p>
+        <p class="col-sm-12 col-md-9">{!! $agenda->Prioridade !!}</p>
     </div>
 
     <!-- Data Field -->

@@ -69,15 +69,6 @@ Route::resource('presenca', 'PresencaController');
 
 Route::resource('pagamentos', 'PagamentoController');
 
-
-Route::get('/funcionarios-aniversario', 'AniversarioController@funcionarios');
-Route::get('/professores-aniversario', 'AniversarioController@professores');
-Route::get('/professores-listar', 'AniversarioController@professoresListar');
-Route::get('/vendedores-listar', 'AniversarioController@vendedoresListar');
-Route::get('/relatorio-receitas', 'RelatoriosController@index');
-Route::get('/notas', 'PagamentoController@notas');
-
-
 Route::resource('frequencias', 'FrequenciaController');
 
 Route::resource('comoConheceus', 'ComoConheceuController');
@@ -86,5 +77,20 @@ Route::resource('formaPgtos', 'FormaPgtoController');
 
 Route::resource('pagtos', 'PagtoController');
 
-
 Route::resource('comunicados', 'ComunicadosController');
+
+Route::get('avaliacoes', function(){
+    return view('curso.avaliacoes');
+});
+
+Route::get('/funcionarios-aniversario', 'AniversarioController@funcionarios');
+Route::get('/professores-aniversario', 'AniversarioController@professores');
+Route::get('/professores-listar', 'AniversarioController@professoresListar');
+Route::get('/vendedores-listar', 'AniversarioController@vendedoresListar');
+Route::get('/relatorio-receitas', 'RelatoriosController@index');
+Route::get('/relatorio-despesas', 'RelatoriosController@despesas');
+Route::get('/alunosAtrasados', 'RelatoriosController@alunosAtrasados');
+Route::get('/geralAlunos', 'RelatoriosController@geralAlunos');
+Route::get('/geralRecebimentos', 'RelatoriosController@geralRecebimentos');
+Route::get('/previsaoRecebimentos', 'RelatoriosController@previsaoRecebimentos');
+Route::get('/notas', 'PagamentoController@notas');

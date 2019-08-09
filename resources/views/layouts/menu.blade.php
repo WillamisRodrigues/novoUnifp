@@ -78,6 +78,9 @@
         <li class="{{ Request::is('caixas*') ? 'active' : '' }}">
             <a href="/relatorio-receitas"><i class="fa fa-file-text-o"></i><span>Relatório de Receitas</span></a>
         </li>
+        <li class="{{ Request::is('caixas*') ? 'active' : '' }}">
+            <a href="/relatorio-despesas"><i class="fa fa-file-text-o"></i><span>Relatório de Despesas</span></a>
+        </li>
         <li class="{{ Request::is('centroCustos*') ? 'active' : '' }}">
             <a href="{!! route('centroCustos.index') !!}"><i class="fa fa-cube"></i><span>Centro Custos</span></a>
         </li>
@@ -96,6 +99,18 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-file-text-o"></i>
         Relatórios <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="/alunosAtrasados"><i class="fa fa-list"></i><span>Relatório de Alunos Atrasados</span></a>
+        </li>
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="/geralAlunos"><i class="fa fa-list"></i><span>Relatório Geral de Alunos</span></a>
+        </li>
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="/geralRecebimentos"><i class="fa fa-list"></i><span>Previsão de Recebimentos</span></a>
+        </li>
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="/previsaoRecebimentos"><i class="fa fa-list"></i><span>Resumo Geral de Recebimentos</span></a>
+        </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="/funcionarios-aniversario"><i class="fa fa-birthday-cake"></i><span>Aniversário de
                     Funcionários</span></a>

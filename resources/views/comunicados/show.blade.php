@@ -2,13 +2,7 @@
 
 @section('content')
 <section class="content-header">
-    {{-- <h1>
-        Comunicados
-    </h1> --}}
-
     <h1 class="pull-left">Comunicados</h1>
-    <a class="btn btn-success pull-right" style="margin-left: 1rem" href="{!! route('comunicados.create') !!}"><i
-            class="fa fa-plus"></i> Adicionar</a>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
@@ -18,6 +12,10 @@
     </h1>
 </section>
 <div class="clearfix"></div>
+@foreach ($alunos as $aluno)
+<a class="btn btn-success" style="margin-left: 1rem" href="{!! route('comunicados.create', $aluno->id) !!}"><i
+        class="fa fa-plus"></i> Adicionar</a>
+@endforeach
 <div class="content">
     <div class="container" style="height: 100px">
         <div class="row">

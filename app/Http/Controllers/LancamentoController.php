@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateCaixaRequest;
 use App\Http\Requests\UpdateCaixaRequest;
 use App\Repositories\CaixaRepository;
@@ -42,7 +42,10 @@ class LancamentoController extends AppBaseController
      */
     public function create()
     {
-        return view('lancamentos.create');
+        $formaPgto = DB::table('forma_pgto')->get();
+        $centroCusto = DB::table('centro_custo')->get();
+
+        return view('lancamentos.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto]);
     }
 
     /**
@@ -100,7 +103,11 @@ class LancamentoController extends AppBaseController
             return redirect(route('lancamentos.index'));
         }
 
-        return view('lancamentos.edit')->with('caixa', $caixa);
+        // return view('lancamentos.edit')->with('caixa', $caixa);
+        $formaPgto = DB::table('forma_pgto')->get();
+        $centroCusto = DB::table('centro_custo')->get();
+
+        return view('lancamentos.edit', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'caixa' => $caixa]);
     }
 
     /**

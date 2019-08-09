@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCaixaRequest;
 use App\Repositories\CaixaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 
@@ -42,7 +43,10 @@ class CaixaController extends AppBaseController
      */
     public function create()
     {
-        return view('caixas.create');
+        $formaPgto = DB::table('forma_pgto')->get();
+        $centroCusto = DB::table('centro_custo')->get();
+
+        return view('caixas.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto]);
     }
 
     /**
@@ -100,7 +104,10 @@ class CaixaController extends AppBaseController
             return redirect(route('caixas.index'));
         }
 
-        return view('caixas.edit')->with('caixa', $caixa);
+        $formaPgto = DB::table('forma_pgto')->get();
+        $centroCusto = DB::table('centro_custo')->get();
+
+        return view('caixas.edit', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'caixa' => $caixa]);
     }
 
     /**

@@ -6,7 +6,7 @@
         <h1 class="pull-right">
             <ol class="breadcrumb breadcrumb-fp">
                 <li><a href="/home"><i class="fa fa-home"></i></a></li>
-                <li class="active">Lista</li>
+                <li class="active">Aniversário de Professores </li>
             </ol>
         </h1>
     </section>

@@ -7,6 +7,7 @@ use App\Http\Requests\CreateCaixaRequest;
 use App\Http\Requests\UpdateCaixaRequest;
 use App\Repositories\CaixaRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 
@@ -41,6 +42,33 @@ class RelatoriosController extends Controller
 
         return view('relatorios.receitas', ['caixas' => $caixas, 'sum' => $sum]);
         // return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas]);
+    }
+    public function despesas(Request $request)
+    {
+        $caixas = $this->caixaRepository->all()->where('Tipo', 'Receita');
+        $sum = 0;
+
+        foreach ($caixas as $caixa) {
+            $sum += $caixa->Valor;
+            // echo $caixa->Valor;
+        }
+        $sum = 'Total: R$'.$sum.',00';
+
+        return view('relatorios.despesas', ['caixas' => $caixas, 'sum' => $sum]);
+        // return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas]);
+    }
+
+    public function alunosAtrasados(){
+        return view('relatorios.alunosAtrasados');
+    }
+    public function geralAlunos(){
+        return view('relatorios.geralAlunos');
+    }
+    public function geralRecebimentos(){
+        return view('relatorios.geralRecebimentos');
+    }
+    public function previsaoRecebimentos(){
+        return view('relatorios.previsaoRecebimentos');
     }
 
     /**

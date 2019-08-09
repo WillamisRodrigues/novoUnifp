@@ -6,6 +6,7 @@ use App\Http\Requests\CreatevisitanteRequest;
 use App\Http\Requests\UpdatevisitanteRequest;
 use App\Repositories\visitanteRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -42,7 +43,8 @@ class visitanteController extends AppBaseController
      */
     public function create()
     {
-        return view('visitantes.create');
+        $conheceu = DB::table('como_conheceu')->get();
+        return view('visitantes.create', ['comoConheceu' => $conheceu]);
     }
 
     /**
@@ -93,6 +95,7 @@ class visitanteController extends AppBaseController
     public function edit($id)
     {
         $visitante = $this->visitanteRepository->find($id);
+        $conheceu = DB::table('como_conheceu')->get();
 
         if (empty($visitante)) {
             Flash::error('Cadastro de visitante não encontrado.');
@@ -100,7 +103,8 @@ class visitanteController extends AppBaseController
             return redirect(route('visitantes.index'));
         }
 
-        return view('visitantes.edit')->with('visitante', $visitante);
+        return view('visitantes.edit', ['comoConheceu' => $conheceu, 'visitante' => $visitante]);
+        // return view('visitantes.edit')->with('visitante', $visitante);
     }
 
     /**

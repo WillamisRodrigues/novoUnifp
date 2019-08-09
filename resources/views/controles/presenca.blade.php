@@ -17,6 +17,8 @@
 
     <div class="clearfix"></div>
     <div class="row">
+        {{-- falta a rota --}}
+        {!! Form::open(['route' => 'alunos.store']) !!}
         <p class="select-padrao col-md-2"> Selecione o curso:
             <select name="cursos" id="cursos">
                 @foreach($cursos as $curso )
@@ -31,6 +33,8 @@
                 @endforeach
             </select>
         </p>
+        {!! Form::close() !!}
+        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Filtrar</button>
     </div>
     <div class="box box-primary">
         <div class="box-body">

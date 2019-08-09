@@ -184,6 +184,16 @@
     padding-right: 10px
 }
 
+nav ul.dropdown-menu {
+    border-bottom: 1px solid #111111aa;
+    border-right: 1px solid #111111aa;
+    border-left: 1px solid #111111aa;
+}
+
+.botao-cancelamento:hover {
+    background-color: #eee;
+}
+
 @media (max-width: 425px) {
     .content-agenda-pessoal {
         width: 100% !important;

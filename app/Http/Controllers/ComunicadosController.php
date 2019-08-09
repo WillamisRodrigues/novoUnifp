@@ -41,9 +41,9 @@ class ComunicadosController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('comunicados.create');
+        return view('comunicados.create', ['matricula' => $id]);
     }
 
     /**

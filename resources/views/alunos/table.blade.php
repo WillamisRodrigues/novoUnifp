@@ -34,7 +34,7 @@
                 <td>Média</td>
                 <td>Pagamentos</td>
                 <td><a href="#" class="btn btn-flat btn-success"><i class="fa fa-print"></i>CT</a></td>
-                <td><a href="#" class="btn btn-flat" style="border: 1px solid #D73925; color: #D73925"><i class="fa fa-print"></i>CN</a></td>
+                <td><a href="#" class="btn btn-flat botao-cancelamento" style="border: 1px solid #D73925; color: #D73925"><i class="fa fa-print"></i>CN</a></td>
                 <td>
                     {!! Form::open(['route' => ['alunos.destroy', $aluno->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

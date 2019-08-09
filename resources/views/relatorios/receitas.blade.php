@@ -17,6 +17,7 @@
 
     <div class="clearfix"></div>
     <div class="row" style="margin-left: 5rem">
+        {!! Form::open() !!}
         <p class="select-padrao col-md-2"> Selecione o ano:
             <select name="cursos" id="cursos">
                 <option value="2017">2017</option>
@@ -40,6 +41,8 @@
                 <option value="Dezembro">Dezembro</option>
             </select>
         </p>
+        {!! Form::close() !!}
+        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Filtrar</button>
     </div>
     <div class="box box-primary">
         <div class="box-body">

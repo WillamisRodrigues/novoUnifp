@@ -107,7 +107,6 @@ class AlunoController extends AppBaseController
             }
         }
 
-
         $aluno = $this->alunoRepository->create($inputAluno);
         $frequencia = $this->frequenciaRepository->create($inputFrequencia);
 
@@ -151,7 +150,7 @@ class AlunoController extends AppBaseController
         $cursos = $this->cursoRepository->all();
         $turmas = $this->turmaRepository->all();
         $pagamentos = $this->pagRepository->all();
-
+        $comoConheceu = $this->comoConheceuRepository->all();
 
         if (empty($aluno)) {
             Flash::error('Aluno não encontrado.');
@@ -159,8 +158,7 @@ class AlunoController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        // return view('alunos.edit')->with('aluno', $aluno);
-        return view('alunos.edit', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos]);
+        return view('alunos.edit', ['aluno'=> $aluno, 'funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu]);
     }
 
     /**

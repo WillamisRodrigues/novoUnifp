@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateTurmaRequest;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateTurmaRequest;
 use App\Repositories\TurmaRepository;
 use App\Http\Controllers\AppBaseController;
@@ -44,8 +45,10 @@ class TurmaController extends AppBaseController
     public function create()
     {
         $cursos = $this->cursoRepository->all();
+        $professores = DB::table('funcionario')->get()->where('funcao', 'Professor');
+        $cronogramas = DB::table('cronograma')->get();
 
-        return view('turmas.create')->with('cursos', $cursos);
+        return view('turmas.create', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas]);
     }
 
     /**
@@ -103,7 +106,13 @@ class TurmaController extends AppBaseController
             return redirect(route('turmas.index'));
         }
 
-        return view('turmas.edit')->with('turma', $turma);
+        $professores = DB::table('funcionario')->get()->where('funcao', 'Professor');
+        $cronogramas = DB::table('cronograma')->get();
+        $cursos = DB::table('curso')->get();
+
+        // return view('turmas.edit')->with('turma', $turma);
+
+        return view('turmas.edit', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas, 'turma'=> $turma]);
     }
 
     /**

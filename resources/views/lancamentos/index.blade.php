@@ -3,8 +3,6 @@
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Lançamentos</h1>
-    <a class="btn btn-success pull-right" style="margin-left: 1rem" href="{!! route('lancamentos.create') !!}"><i
-            class="fa fa-plus"></i> Adicionar</a>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
@@ -13,6 +11,9 @@
         </ol>
     </h1>
 </section>
+<div class="clearfix"></div>
+<a class="btn btn-success" style="margin-left: 1rem" href="{!! route('lancamentos.create') !!}"><i
+        class="fa fa-plus"></i> Adicionar</a>
 <div class="content">
     <div class="clearfix"></div>
 
@@ -21,7 +22,7 @@
     <div class="clearfix"></div>
 
     <div class="dados" id="formulario-lancamentos">
-        <a href="/lancamentos/avancado" class="btn btn-warning btn-flat" style="margin-bottom: 1rem; font-size: 1.5rem"><i class="fa fa-search-plus"></i></a>
+
         {!! Form::open(['route' => 'lancamentos.index']) !!}
         <div class="ml-5">
             <div>
@@ -68,8 +69,12 @@
         {!! Form::close() !!}
     </div>
 
-    <button class="btn btn-primary btn-flat" style="margin-bottom:1rem; margin-top: 1rem;"
-        type="submit">Procurar</button>
+    <div class="row" style="margin-left: 0.5rem">
+        <button class="btn btn-primary btn-flat" style="margin-bottom:1rem; margin-top: 1rem;" type="submit"><i
+                class="fa fa-search"></i> Procurar</button>
+        <a href="/lancamentos-avancado" class="btn btn-warning btn-flat"
+            style="margin-bottom: 1rem; margin-top:1rem;"><i style=" font-size: 1.5rem" class="fa fa-search-plus"></i> Busca Avançada</a>
+    </div>
 
     <div class="row">
         <div class="receitas" style="border-right: 1px solid #44444444">

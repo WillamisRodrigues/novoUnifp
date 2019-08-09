@@ -1,17 +1,25 @@
-<!-- Idaluno Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('idAluno', 'Idaluno:') !!}
-    {!! Form::number('idAluno', null, ['class' => 'form-control']) !!}
-</div>
+<div class="container formulario-padrao">
+    <!-- Idaluno Field -->
+    {{-- <div class="row">
+        <p class="col-xs-12 col-sm-3">{!! Form::label('idAluno', 'Idaluno:') !!}</p>
+    </div> --}}
+    <p class="col-xs-12 col-sm-6">{!! Form::hidden('idAluno', $matricula) !!}</p>
 
-<!-- Comunicado Field -->
-<div class="form-group col-sm-12 col-lg-12">
-    {!! Form::label('Comunicado', 'Comunicado:') !!}
-    {!! Form::textarea('Comunicado', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Comunicado Field -->
+    <div class="row">
+        <p class="col-xs-12 col-sm-3">{!! Form::label('Comunicado', 'Comunicado:') !!}</p>
+        <p class="col-xs-12 col-sm-6">{!! Form::textarea('Comunicado', null, ['class' => 'form-control']) !!}</p>
+    </div>
 
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('comunicados.index') !!}" class="btn btn-default">Cancel</a>
+    <!-- Submit Field -->
+    <div class="row">
+        <p class="col-xs-12 col-sm-3"></p>{{-- {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('comunicados.index') !!}" class="btn btn-default">Cancel</a> --}}
+        <p class="col-xs-12 col-sm-6">
+            <button class="btn btn-success btn-flat" type="submit"><i class="fa fa-save"></i> Salvar Comunicado</button>
+            <a href="{!! route('comunicados.show', [$matricula]) !!}" class="btn btn-danger btn-flat"> <i
+                    class="fa fa-close"></i>
+                Cancelar</a>
+        </p>
+    </div>
 </div>

@@ -3,8 +3,6 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Curso', 'Curso:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6 select-padrao">
-            {{-- {!! Form::text('Curso', null, ['class' => 'form-control']) !!}
-            cursos --}}
             <select name="Curso" id="Curso" style="width: 50%">
                 @foreach($cursos as $curso )
                 <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}</option>
@@ -108,7 +106,14 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Professor', 'Professor:') !!}<span style="color: red">*</span>
         </p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('Professor', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-6 select-padrao">
+            {{-- {!! Form::text('Professor', null, ['class' => 'form-control']) !!} --}}
+            <select name="Professor" id="Professor" style="width: 50%">
+                @foreach($professores as $professor )
+                <option value="{{ $professor->nome }}">{{ $professor->nome }}</option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Vagas Field -->
@@ -121,7 +126,14 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Cronograma', 'Cronograma:') !!}<span style="color: red">*</span>
         </p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('Cronograma', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-6 select-padrao">
+            {{-- {!! Form::text('Cronograma', null, ['class' => 'form-control']) !!} --}}
+            <select name="Cronograma" id="Cronograma" style="width: 50%">
+                @foreach($cronogramas as $cronograma )
+                <option value="{{ $cronograma->Nome }}">{{ $cronograma->Nome }}</option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Status Field -->

@@ -18,7 +18,7 @@
         <div class="col-md-6">
             <button class="btn btn-success btn-flat" style="margin-bottom: 1rem" type="submit"><i
                     class="fa fa-save"></i> Salvar
-                Visitante</button>
+                Cronograma</button>
             <a href="{!! route('cronogramas.index') !!}" style="margin-bottom: 1rem" class="btn btn-danger btn-flat"> <i
                     class="fa fa-close"></i>
                 Cancelar</a>

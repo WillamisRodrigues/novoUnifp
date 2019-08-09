@@ -1,8 +1,36 @@
 @section('scripts')
 <script src="{{ url('js/datepicker.js') }}"></script>
 <script src="{{ url('js/timepicker.js') }}"></script>
+<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
 <script>
-
+    $("input[id*='CpfAluno']").inputmask({
+        mask: ['999.999.999-99'],
+        keepStatic: true
+    });
+    $("input[id*='CpfContratante']").inputmask({
+        mask: ['999.999.999-99'],
+        keepStatic: true
+    });
+    $("input[id*='Telefone']").inputmask({
+        mask: ['(99) 9999-9999'],
+        keepStatic: true
+    });
+    $("input[id*='Celular1']").inputmask({
+        mask: ['(99) 99999-9999'],
+        keepStatic: true
+    });
+    $("input[id*='Celular2']").inputmask({
+        mask: ['(99) 99999-9999'],
+        keepStatic: true
+    });
+    $("input[id*='Celular2']").inputmask({
+        mask: ['(99) 99999-9999'],
+        keepStatic: true
+    });
+    $("input[id*='CEP']").inputmask({
+        mask: ['99999-999'],
+        keepStatic: true
+    });
 </script>
 @endsection
 
@@ -400,7 +428,8 @@
                         {{-- {!! Form::text('Parcelamento', null, ['class' => 'form-control']) !!} --}}
                         <select name="Parcelamento" id="Parcelamento" style="width: 50%">
                             @foreach($pagamentos as $pagamento )
-                        <option value="{{ $pagamento->QtdeParcelas }}">{{ $pagamento->QtdeParcelas }}x de R${{ $pagamento->ParcelaBruta }},00</option>
+                            <option value="{{ $pagamento->QtdeParcelas }}">{{ $pagamento->QtdeParcelas }}x de
+                                R${{ $pagamento->ParcelaBruta }},00</option>
                             @endforeach
                         </select>
                     </p>

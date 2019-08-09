@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCursoRequest;
 use App\Repositories\CursoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 
@@ -151,5 +152,12 @@ class CursoController extends AppBaseController
         Flash::success('Curso deletado com sucesso.');
 
         return redirect(route('cursos.index'));
+    }
+
+    public function avaliacoes()
+    {
+        // $cursos = DB::table('curso')->get()->where('id', $id);
+        // return view('cursos.avaliacoes', ['cursos' => $cursos]);
+        return view('cursos.avaliacoes');
     }
 }

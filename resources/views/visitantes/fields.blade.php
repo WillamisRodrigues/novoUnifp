@@ -61,6 +61,13 @@
                 timeFormat: 'HH:mm:ss'
             })
     </script>
+    <script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script>
+        $("input[id*='telefone']").inputmask({
+            mask: ['(99) 99999-9999'],
+            keepStatic: true
+        });
+    </script>
     @endsection
 
     <!-- Horaretorno Field -->
@@ -95,9 +102,9 @@
         <p class="col-md-4 col-sm-12 col-xs-12">{!! Form::label('comoConheceu', 'Como Conheceu:') !!}<span
                 style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6 select-padrao">
-            <select name="Turma" id="Turma" style="width: 50%">
-                @foreach($turmas as $turma )
-                <option value="{{ $turma->NomeTurma }}">{{ $turma->NomeTurma }}</option>
+            <select name="comoConheceu" id="comoConheceu" style="width: 50%">
+                @foreach($comoConheceu as $conheceu )
+                <option value="{{ $conheceu->ComoConheceu }}">{{ $conheceu->ComoConheceu }}</option>
                 @endforeach
             </select>
         </p>

@@ -3,8 +3,6 @@
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Lista de Usuários</h1>
-    <a class="btn btn-success pull-right" style="margin-left: 1rem" href="{!! route('usuarios.create') !!}"><i
-            class="fa fa-plus"></i> Adicionar</a>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
@@ -14,6 +12,9 @@
     </h1>
     <div class="clearfix"></div>
 </section>
+<div class="clearfix"></div>
+<a class="btn btn-success" style="margin-left: 1rem" href="{!! route('usuarios.create') !!}"><i
+        class="fa fa-plus"></i> Adicionar</a>
 <div class="content">
     <div class="clearfix"></div>
 
