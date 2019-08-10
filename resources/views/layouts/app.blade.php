@@ -72,7 +72,7 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{ Auth::user()->name }} </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" style="font-size: 2rem"></i> {{ Auth::user()->name }} </a>
                         <ul class="dropdown-menu" style="width: 5rem">
                             <li class="user-footer">
                                 <div>
@@ -83,6 +83,15 @@
                                 </div>
                             </li>
                         </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" ><i class="fa fa-bank"></i> Unidade </a>
                     </li>
                 </ul>
             </div>

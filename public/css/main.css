@@ -194,6 +194,24 @@ nav ul.dropdown-menu {
     background-color: #eee;
 }
 
+.bg-vermelho-redondo {
+    background-color: #CC403C;
+    border-radius: 100px;
+    padding: 2px 4px;
+    text-align: center;
+    color: white;
+    font-weight: 600
+}
+
+.bg-azul-redondo {
+    background-color: #00AFF0;
+    border-radius: 100px;
+    padding: 2px 4px;
+    text-align: center;
+    color: white;
+    font-weight: 600
+}
+
 @media (max-width: 425px) {
     .content-agenda-pessoal {
         width: 100% !important;

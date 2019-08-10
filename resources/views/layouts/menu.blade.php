@@ -106,10 +106,10 @@
             <a href="/geralAlunos"><i class="fa fa-list"></i><span>Relatório Geral de Alunos</span></a>
         </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
-            <a href="/geralRecebimentos"><i class="fa fa-list"></i><span>Previsão de Recebimentos</span></a>
+            <a href="/previsaoRecebimentos"><i class="fa fa-list"></i><span>Previsão de Recebimentos</span></a>
         </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
-            <a href="/previsaoRecebimentos"><i class="fa fa-list"></i><span>Resumo Geral de Recebimentos</span></a>
+            <a href="/geralRecebimentos"><i class="fa fa-list"></i><span>Resumo Geral de Recebimentos</span></a>
         </li>
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="/funcionarios-aniversario"><i class="fa fa-birthday-cake"></i><span>Aniversário de
