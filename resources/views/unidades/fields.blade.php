@@ -1,8 +1,20 @@
 @section('scripts')
 <script src="{{ url('js/datepicker.js') }}"></script>
 <script src="{{ url('js/timepicker.js') }}"></script>
+<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
 <script>
-
+    $("input[id*='CNPJ']").inputmask({
+        mask: ['99.999.999/9999-99'],
+        keepStatic: true
+    });
+    $("input[id*='Telefone1']").inputmask({
+        mask: ['(99) 9999-9999'],
+        keepStatic: true
+    });
+    $("input[id*='Telefone2']").inputmask({
+        mask: ['(99) 9999-9999'],
+        keepStatic: true
+    });
 </script>
 @endsection
 
@@ -19,8 +31,8 @@
         <div class="tab-pane active" id="tab_1">
             <!-- Nomeunidade Field -->
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('NomeUnidade', 'Unidade:') !!}<span
-                        style="color: red">*</span>
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('NomeUnidade', 'Unidade:')
+                    !!}<span style="color: red">*</span>
                 </p>
                 <p class="col-md-9 col-sm-12">{!! Form::text('NomeUnidade', null, ['class' => 'form-control']) !!}
                 </p>
@@ -34,8 +46,8 @@
             </div>
             <!-- Endereco Field -->
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Endereco', 'Endereço:') !!}<span
-                        style="color: red">*</span></p>
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Endereco', 'Endereço:')
+                    !!}<span style="color: red">*</span></p>
                 <p class="col-md-9 col-sm-12">{!! Form::text('Endereco', null, ['class' => 'form-control']) !!}</p>
             </div>
             <!-- Bairro Field -->
@@ -73,7 +85,8 @@
             </div>
             <!-- Telefone1 Field -->
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12" style="margin-top: 15px">{!! Form::label('Telefone1', 'Telefone
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12" style="margin-top: 15px">{!!
+                    Form::label('Telefone1', 'Telefone
                     1:')
                     !!}<span style="color: red">*</span></p>
                 <p class="col-md-9 col-sm-12">
@@ -87,7 +100,8 @@
             </div>
             <!-- Telefone2 Field -->
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12" style="margin-top: 15px">{!! Form::label('Telefone2', 'Telefone
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12" style="margin-top: 15px">{!!
+                    Form::label('Telefone2', 'Telefone
                     2:')
                     !!}</p>
                 <p class="col-md-9 col-sm-12">
@@ -117,87 +131,98 @@
             </div>
             <!-- Logotipo Field -->
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Logotipo', 'Logotipo:') !!}<span
-                        style="color: red">*</span></p>
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Logotipo', 'Logotipo:')
+                    !!}<span style="color: red">*</span></p>
                 <p class="col-md-9 col-sm-12">{!! Form::file('Logotipo', null, ['class' => 'form-control']) !!}</p>
             </div>
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="tab_2">
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Contrato1', 'Texto de Contrato:') !!}<span
-                        style="color: red">*</span></p>
-                <p class="col-md-8 col-sm-12">{!! Form::textarea('Contrato1', null, ['class' => 'form-control editor1']) !!}</p>
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Contrato1', 'Texto de
+                    Contrato:') !!}<span style="color: red">*</span></p>
+                <p class="col-md-8 col-sm-12">{!! Form::textarea('Contrato1', null, ['class' => 'form-control editor1'])
+                    !!}</p>
             </div>
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Assinatura1', 'Área de Assinatura:') !!}<span
-                        style="color: red">*</span></p>
-                <p class="col-md-8 col-sm-12">{!! Form::textarea('Assinatura1', null, ['class' => 'form-control editor2']) !!}
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Assinatura1', 'Área de
+                    Assinatura:') !!}<span style="color: red">*</span></p>
+                <p class="col-md-8 col-sm-12">{!! Form::textarea('Assinatura1', null, ['class' => 'form-control
+                    editor2']) !!}
                 </p>
             </div>
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Valores1', 'Valores e Condições de
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Valores1', 'Valores e
+                    Condições de
                     Pagamento:') !!}<span style="color: red">*</span></p>
-                <p class="col-md-8 col-sm-12">{!! Form::textarea('Valores1', null, ['class' => 'form-control editor3']) !!}</p>
+                <p class="col-md-8 col-sm-12">{!! Form::textarea('Valores1', null, ['class' => 'form-control editor3'])
+                    !!}</p>
             </div>
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Matricula1', 'Valor da Matrícula:') !!}<span
-                        style="color: red">*</span></p>
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Matricula1', 'Valor da
+                    Matrícula:') !!}<span style="color: red">*</span></p>
                 <p class="col-md-8 col-sm-12">{!! Form::number('Matricula1', null, ['class' => 'form-control']) !!}</p>
             </div>
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="tab_3">
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Contrato2', 'Texto de Contrato:') !!}<span
-                        style="color: red">*</span></p>
-                <p class="col-md-8 col-sm-12">{!! Form::textarea('Contrato2', null, ['class' => 'form-control editor4']) !!}</p>
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Contrato2', 'Texto de
+                    Contrato:') !!}<span style="color: red">*</span></p>
+                <p class="col-md-8 col-sm-12">{!! Form::textarea('Contrato2', null, ['class' => 'form-control editor4'])
+                    !!}</p>
             </div>
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Assinatura2', 'Área de Assinatura:') !!}<span
-                        style="color: red">*</span></p>
-                <p class="col-md-8 col-sm-12">{!! Form::textarea('Assinatura2', null, ['class' => 'form-control editor5']) !!}
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Assinatura2', 'Área de
+                    Assinatura:') !!}<span style="color: red">*</span></p>
+                <p class="col-md-8 col-sm-12">{!! Form::textarea('Assinatura2', null, ['class' => 'form-control
+                    editor5']) !!}
                 </p>
             </div>
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Valores2', 'Valores e Condições de
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Valores2', 'Valores e
+                    Condições de
                     Pagamento:') !!}<span style="color: red">*</span></p>
-                <p class="col-md-8 col-sm-12">{!! Form::textarea('Valores2', null, ['class' => 'form-control editor6']) !!}</p>
+                <p class="col-md-8 col-sm-12">{!! Form::textarea('Valores2', null, ['class' => 'form-control editor6'])
+                    !!}</p>
             </div>
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Matricula2', 'Valor da Matrícula:') !!}<span
-                        style="color: red">*</span></p>
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Matricula2', 'Valor da
+                    Matrícula:') !!}<span style="color: red">*</span></p>
                 <p class="col-md-8 col-sm-12">{!! Form::number('Matricula2', null, ['class' => 'form-control']) !!}</p>
             </div>
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="tab_4">
             <div class="row">
-                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('Prestadora', 'Prestadora:') !!}<span
-                        style="color: red">*</span></p>
-                <p class="col-md-8 col-sm-12">{!! Form::textarea('Prestadora', null, ['class' => 'form-control editor7']) !!}
+                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('Prestadora', 'Prestadora:')
+                    !!}<span style="color: red">*</span></p>
+                <p class="col-md-8 col-sm-12">{!! Form::textarea('Prestadora', null, ['class' => 'form-control
+                    editor7']) !!}
                 </p>
             </div>
             <div class="row">
-                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('MultaContrato', 'Valor da Multa (contrato):')
+                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('MultaContrato', 'Valor da
+                    Multa (contrato):')
                     !!}<span style="color: red">*</span></p>
                 <p class="col-md-8 col-sm-12">{!! Form::number('MultaContrato', null, ['class' => 'form-control']) !!}
                 </p>
             </div>
             <div class="row">
-                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('MoraContrato', 'Valor da Mora (contrato):')
+                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('MoraContrato', 'Valor da Mora
+                    (contrato):')
                     !!}<span style="color: red">*</span></p>
                 <p class="col-md-8 col-sm-12">{!! Form::number('MoraContrato', null, ['class' => 'form-control']) !!}
                 </p>
             </div>
             <div class="row">
-                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('Multa', 'Valor da Multa:') !!}<span
-                        style="color: red">*</span></p>
+                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('Multa', 'Valor da Multa:')
+                    !!}<span style="color: red">*</span></p>
                 <p class="col-md-8 col-sm-12">{!! Form::number('Multa', null, ['class' => 'form-control']) !!}</p>
             </div>
             <div class="row">
-                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('Mora', 'Valor da Mora:') !!}<span
-                        style="color: red">*</span></p>
+                <p class="col-md-2 col-sm-12 alinhar-esquerda text-right">{!! Form::label('Mora', 'Valor da Mora:')
+                    !!}<span style="color: red">*</span></p>
                 <p class="col-md-8 col-sm-12">{!! Form::number('Mora', null, ['class' => 'form-control']) !!}</p>
             </div>
 

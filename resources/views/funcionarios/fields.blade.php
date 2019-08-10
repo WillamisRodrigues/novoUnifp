@@ -1,3 +1,26 @@
+@section('scripts')
+<script src="{{ url('js/datepicker.js') }}"></script>
+<script src="{{ url('js/timepicker.js') }}"></script>
+<script>
+    //Timepicker
+    $('.timepicker').timepicker({
+        showInputs: false,
+        timeFormat: 'HH:mm:ss'
+    })
+</script>
+<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+<script>
+    $("input[id*='TelefoneFixo']").inputmask({
+        mask: ['(99) 99999-9999'],
+        keepStatic: true
+    });
+    $("input[id*='Celular']").inputmask({
+        mask: ['(99) 999999-9999'],
+        keepStatic: true
+    });
+</script>
+@endsection
+
 <div class="container formulario-padrao">
     <!-- Nome Field -->
     <div class="row">
@@ -17,18 +40,6 @@
             </div>
         </div>
     </div>
-
-    @section('scripts')
-    <script src="{{ url('js/datepicker.js') }}"></script>
-    <script src="{{ url('js/timepicker.js') }}"></script>
-    <script>
-        //Timepicker
-    $('.timepicker').timepicker({
-        showInputs: false,
-        timeFormat: 'HH:mm:ss'
-    })
-    </script>
-    @endsection
 
     <!-- Celular Field -->
     <div class="row">
@@ -102,7 +113,7 @@
 
     <!-- Inativo Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Inativo', 'Inativo:') !!}<span
+        <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Inativo', 'Status:') !!}<span
                 style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12 select-conheceu">
             {!! Form::select('Inativo', array('Nao' => 'Ativo', 'Sim' => 'Inativo')) !!}
