@@ -11,9 +11,11 @@
     <tr>
         <td></td>
         <td>{!! Form::label('nivelAcesso', 'Nivel de Acesso:') !!}<span style="color: red">*</span></td>
-        <td class="select-unifp">{!! Form::select('nivelAcesso', array(
+        <td class="select-unifp">
+            {!! Form::select('nivelAcesso', array(
             '0' => 'Administrador', '1' => 'Supervisor', '2' => 'Gestor', '3' => 'Secretaria', '4' => 'Professor', '5'
-            => 'Comercial','6' => 'Atendimento','7' => 'Cobrança'), ['class' => 'form-control']) !!}</td>
+            => 'Comercial','6' => 'Atendimento','7' => 'Cobrança'), ['class' => 'form-control']) !!}
+            </td>
         <td></td>
     </tr>
 

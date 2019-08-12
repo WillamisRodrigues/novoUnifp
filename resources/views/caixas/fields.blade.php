@@ -87,10 +87,8 @@
     <!-- Valor Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Valor', 'Valor:') !!}</p>
-        <div class="col-sm-12 col-md-6 input-group"
-            style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
-            {!! Form::number('Valor', null, ['class' => 'form-control', 'id' =>
-            'Valor'])!!}
+        <div class="col-sm-12 col-md-6 input-group" style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
+            {!! Form::text('Valor', null, ['class' => 'form-control', 'id' => 'Valor'])!!}
             <div class="input-group-addon">
                 <i class="glyphicon glyphicon-usd"></i>
             </div>

@@ -1,3 +1,27 @@
+@section('scripts')
+<script src="{{ url('js/datepicker.js') }}"></script>
+<script src="{{ url('js/timepicker.js') }}"></script>
+<script src="https://rawgit.com/RobinHerbots/Inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+<script>
+    //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false,
+            timeFormat: 'HH:mm:ss'
+        })
+        $("input[id*='CNPJ']").inputmask({
+            mask: ['99.999.999/9999-99'],
+            keepStatic: true
+        });
+        $("input[id*='Telefone1']").inputmask({
+            mask: ['(99) 9999-9999'],
+            keepStatic: true
+        });
+        $("input[id*='Telefone2']").inputmask({
+            mask: ['(99) 9999-9999'],
+            keepStatic: true
+        });
+</script>
+@endsection
 <div class="container formulario-padrao">
     <!-- Campo Fornecedor -->
     <div class="row">
@@ -133,16 +157,4 @@
                     class="fa fa-close"></i> Cancelar</a>
         </div>
     </div>
-
-    @section('scripts')
-    <script src="{{ url('js/datepicker.js') }}"></script>
-    <script src="{{ url('js/timepicker.js') }}"></script>
-    <script>
-        //Timepicker
-        $('.timepicker').timepicker({
-            showInputs: false,
-            timeFormat: 'HH:mm:ss'
-        })
-    </script>
-    @endsection
 </div>

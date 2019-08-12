@@ -8,6 +8,7 @@ use App\Repositories\CaixaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 use Flash;
 use Response;
 
@@ -59,6 +60,8 @@ class CaixaController extends AppBaseController
     public function store(CreateCaixaRequest $request)
     {
         $input = $request->all();
+
+        Arr::set($input, 'Valor', str_replace(',','.', Arr::get($input, 'Valor')));
 
         $caixa = $this->caixaRepository->create($input);
 

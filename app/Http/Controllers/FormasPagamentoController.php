@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateFormasPagamentoRequest;
 use App\Repositories\FormasPagamentoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Flash;
 use Response;
 
@@ -55,6 +56,12 @@ class FormasPagamentoController extends AppBaseController
     public function store(CreateFormasPagamentoRequest $request)
     {
         $input = $request->all();
+
+        Arr::set($input, 'BrutoTotal', str_replace(',','.', Arr::get($input, 'BrutoTotal')));
+        Arr::set($input, 'ParcelaBruta', str_replace(',','.', Arr::get($input, 'ParcelaBruta')));
+        Arr::set($input, 'DescontoPontualidade', str_replace(',','.', Arr::get($input, 'DescontoPontualidade')));
+        Arr::set($input, 'ParcelaDescontoPontualidade', str_replace(',','.', Arr::get($input, 'ParcelaDescontoPontualidade')));
+        Arr::set($input, 'ValorTotalDesconto', str_replace(',','.', Arr::get($input, 'ValorTotalDesconto')));
 
         $formasPagamento = $this->formasPagamentoRepository->create($input);
 
