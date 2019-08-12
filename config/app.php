@@ -181,8 +181,11 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\AdminLTETemplates\AdminLTETemplatesServiceProvider::class,
-        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class
+        Khill\Lavacharts\Laravel\LavachartsServiceProvider::class,
 
+
+        //DOMPDF
+        Barryvdh\DomPDF\ServiceProvider::class
 
     ],
 
@@ -243,7 +246,8 @@ return [
         //Charts
         'Lava' => Khill\Lavacharts\Laravel\LavachartsFacade::class,
 
-
+        //DOMPDF
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
