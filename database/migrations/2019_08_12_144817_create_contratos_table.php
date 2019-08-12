@@ -21,10 +21,6 @@ class CreateContratosTable extends Migration
             $table->longText('Assinatura1');
             $table->longText('Valores1');
             $table->float('Matricula1', 8, 2);
-            $table->longText('Contrato2');
-            $table->longText('Assinatura2');
-            $table->longText('Valores2');
-            $table->float('Matricula2', 8, 2);
             $table->longText('Prestadora');
             $table->float('MultaContrato', 8, 2);
             $table->float('MoraContrato', 8, 2);

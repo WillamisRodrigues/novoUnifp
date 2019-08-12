@@ -34,8 +34,7 @@
 <!-- /.tab-pane -->
 {{-- <div class="tab-pane" id="tab_2">
             <div class="row">
-                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Contrato1', 'Texto de
-                    Contrato:') !!}<span style="color: red">*</span></p>
+                <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Contrato1', 'Texto de Contrato:') !!}<span style="color: red">*</span></p>
                 <p class="col-md-8 col-sm-12">{!! Form::textarea('Contrato1', null, ['class' => 'form-control editor1'])
                     !!}</p>
             </div>

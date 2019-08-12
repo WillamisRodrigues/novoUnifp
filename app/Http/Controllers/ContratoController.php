@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Arr;
 use App\Http\Requests\CreateContratoRequest;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateContratoRequest;
@@ -59,13 +60,20 @@ class ContratoController extends AppBaseController
     {
         $input = $request->all();
 
+
+        Arr::set($input, 'Matricula1', str_replace(',','.', Arr::get($input, 'Matricula1')));
+        Arr::set($input, 'MultaContrato', str_replace(',','.', Arr::get($input, 'MultaContrato')));
+        Arr::set($input, 'MoraContrato', str_replace(',','.', Arr::get($input, 'MoraContrato')));
+        Arr::set($input, 'Multa', str_replace(',','.', Arr::get($input, 'Multa')));
+        Arr::set($input, 'Mora', str_replace(',','.', Arr::get($input, 'Mora')));
+
         $contrato = $this->contratoRepository->create($input);
 
         Flash::success('Contrato saved successfully.');
 
         $cursos = $this->cursoRepository->all();
 
-        return redirect(route('contratos.show', [$cursos] ));
+        return redirect(route('contratos.index'));
     }
 
     /**
