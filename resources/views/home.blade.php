@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="" style="padding: 10px 20px">
     <h3>Dashboard</h3>
     <div class="row">
         <div class="col-xs-12 col-sm-6" style=" border-radius: 10px;">
@@ -38,7 +38,7 @@
             <div style="font-weight: bolder">oi</div>
         </div>
         <div class="col-xs-6 col-sm-2 receitas">
-            <p><i class="fa fa-user"></i> Qtde. Interessados(visitas)</p>
+            <p><i class="fa fa-user"></i> Qtde. Interessados (visitas)</p>
             <div style="font-weight: bolder">oi</div>
         </div>
     </div>

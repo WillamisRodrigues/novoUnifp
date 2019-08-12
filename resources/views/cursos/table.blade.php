@@ -9,13 +9,14 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach($cursos as $curso)
             <tr>
                 <td>{!! $curso->nomeCurso !!}</td>
-                <td>{!! $curso->QtdeAulas !!}</td>
+                <td>{!! $curso->QtdeAulas !!} Aulas</td>
                 <td>{!! $curso->CargaHoraria !!} Horas</td>
                 <td>
                     {!! Form::open(['route' => ['cursos.destroy', $curso->id], 'method' => 'delete']) !!}
@@ -32,6 +33,7 @@
                 <td><a href="{!! route('formaPgtos.index') !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Forma de Pagamento</a></td>
                 <td><a href="avaliacoes" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Avaliações</a></td>
                 <td><a href="{!! route('turmas.index') !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Turmas Ativas</a></td>
+                <td><a href="{!! route('contratos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Contrato</a></td>
             </tr>
             @endforeach
         </tbody>

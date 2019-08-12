@@ -16,14 +16,16 @@
 <div class="content">
     @include('adminlte-templates::common.errors')
     <div class="clearfix"></div>
-    <div class="box-body criar-aluno">
-        <div class="clearfix"></div>
-        <div class="row">
-            {!! Form::open(['route' => 'unidades.store']) !!}
+    <div class="box box-primary criar-aluno">
+        <div class="box-body">
+            <div class="clearfix"></div>
+            <div class="row">
+                {!! Form::open(['route' => 'unidades.store']) !!}
 
-            @include('unidades.fields')
+                @include('unidades.fields')
 
-            {!! Form::close() !!}
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
 </div>

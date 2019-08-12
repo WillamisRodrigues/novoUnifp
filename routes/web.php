@@ -60,3 +60,6 @@ Route::get('/geralAlunos', 'RelatoriosController@geralAlunos');
 Route::get('/geralRecebimentos', 'RelatoriosController@geralRecebimentos');
 Route::get('/previsaoRecebimentos', 'RelatoriosController@previsaoRecebimentos');
 Route::get('/notas', 'PagamentoController@notas');
+
+
+Route::resource('contratos', 'ContratoController');
