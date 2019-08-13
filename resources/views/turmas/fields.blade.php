@@ -110,7 +110,7 @@
             {{-- {!! Form::text('Professor', null, ['class' => 'form-control']) !!} --}}
             <select name="Professor" id="Professor" style="width: 50%">
                 @foreach($professores as $professor )
-                <option value="{{ $professor->nome }}">{{ $professor->nome }}</option>
+                <option value="{{ $professor->Nome }}">{{ $professor->Nome }}</option>
                 @endforeach
             </select>
         </p>

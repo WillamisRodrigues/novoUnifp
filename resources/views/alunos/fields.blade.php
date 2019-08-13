@@ -131,6 +131,7 @@
                             <i class="fa fa-graduation-cap" style="font-size: 1rem"></i>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Campo Email -->
@@ -189,6 +190,10 @@
                             <option value="{{ $vendedor->Nome }}">{{ $vendedor->Nome }}</option>
                             @endforeach
                         </select>
+                        <a href="{!! route('funcionarios.create') !!}" target="_blank"
+                            class="btn btn-flat btn-light botao-mais"
+                            style="color: black; border: 1px solid #33333333; border-radius: 2px"><i
+                                class="fa fa-plus"></i></a>
                     </p>
                 </div>
 
@@ -440,7 +445,7 @@
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Vencimento', 'Dia do Vencimento:') !!}<span
                             style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6">
-                        <label class="col-xs-12 col-sm-6 col-md-6">{!! Form::radio('Vencimento', 'Dia 8', ['class' =>
+                        <label class="col-xs-12 col-sm-6 col-md-6">{!! Form::radio('Vencimento', '8', ['class' =>
                             'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Dia 8
                             </span>
                         </label>

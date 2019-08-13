@@ -46,6 +46,9 @@ Route::resource('comoConheceus', 'ComoConheceuController');
 Route::resource('formaPgtos', 'FormaPgtoController');
 Route::resource('pagtos', 'PagtoController');
 Route::resource('comunicados', 'ComunicadosController');
+Route::resource('contratos', 'ContratoController');
+Route::resource('pdf', 'PdfController');
+
 Route::get('avaliacoes', function () {
     return view('curso.avaliacoes');
 });
@@ -60,6 +63,10 @@ Route::get('/geralAlunos', 'RelatoriosController@geralAlunos');
 Route::get('/geralRecebimentos', 'RelatoriosController@geralRecebimentos');
 Route::get('/previsaoRecebimentos', 'RelatoriosController@previsaoRecebimentos');
 Route::get('/notas', 'PagamentoController@notas');
+Route::get('/gerarCarne/{idAluno}', ['uses' => 'PdfController@gerarCarne']);
+Route::get('/gerarContrato/{idAluno}', ['uses' => 'PdfController@gerarContrato']);
+Route::get('/carne', function(){
+    return view('pdf.carne');
+});
 
 
-Route::resource('contratos', 'ContratoController');

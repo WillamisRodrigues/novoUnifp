@@ -9,7 +9,7 @@
                 <th>Status</th>
                 <th>Frequência %</th>
                 <th>Frequência AVA</th>
-                <th>Termo Cancelamento</th>
+                <th>Carnê</th>
                 <th>Média</th>
                 <th>Pagamentos</th>
                 <th>Contrato</th>
@@ -29,12 +29,24 @@
                 <td>{!! $aluno->CpfAluno !!}</td>
                 <td>Status</td>
                 <td>Frequência</td>
-                <td><a href="{!! route('frequencias.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Frequência</i></a></td>
+                <td><a href="{!! route('frequencias.show', [$aluno->id]) !!}"
+                        class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Frequência</i></a></td>
                 <td>Termo Cancelamento</td>
                 <td>Média</td>
                 <td>Pagamentos</td>
-                <td><a href="#" class="btn btn-flat btn-success"><i class="fa fa-print"></i>CT</a></td>
-                <td><a href="#" class="btn btn-flat botao-cancelamento" style="border: 1px solid #D73925; color: #D73925"><i class="fa fa-print"></i>CN</a></td>
+                <td>
+                    {{-- <a href="{!! route('pdf.gerarContrato', [$aluno->id]) !!}" class="btn btn-flat btn-success"> --}}
+                    <a href="gerarContrato/{!!$aluno->id!!}" target="_blank" class="btn btn-flat btn-success">
+                        <i class="fa fa-print"></i>CT
+                    </a>
+                </td>
+                <td>
+                    {{-- <a href="{!! route('pdf.gerarCarne', [$aluno->id]) !!}" class="btn btn-flat botao-cancelamento" --}}
+                    <a href="gerarCarne/{!!$aluno->id!!}" target="_blank" class="btn btn-flat botao-cancelamento"
+                        style="border: 1px solid #D73925; color: #D73925">
+                        <i class="fa fa-print"></i>CN
+                    </a>
+                </td>
                 <td>
                     {!! Form::open(['route' => ['alunos.destroy', $aluno->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -43,13 +55,19 @@
                         <a href="{!! route('alunos.edit', [$aluno->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que você deseja deletar o aluno selecionado?')"]) !!}
+                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que você deseja deletar o
+                        aluno selecionado?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>
-                <td><a href="{!! route('pagamentos.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos (0)</i></a></td>
-                <td><a href="notas" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas (0)</i></a></td>
-                <td><a href="{!! route('comunicados.show', [$aluno->id]) !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Comunicados (0)</i></a></td>
+                <td><a href="{!! route('pagamentos.show', [$aluno->id]) !!}"
+                        class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos (0)</i></a>
+                </td>
+                <td><a href="notas" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas
+                            (0)</i></a></td>
+                <td><a href="{!! route('comunicados.show', [$aluno->id]) !!}"
+                        class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Comunicados (0)</i></a>
+                </td>
             </tr>
             @endforeach
         </tbody>
