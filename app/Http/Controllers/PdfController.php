@@ -25,6 +25,8 @@ class PdfController extends Controller
     public function gerarContrato($id)
     {
         $aluno = DB::table('aluno')->get()->where('id', $id);
-        return view('pdf.contrato', ['alunos' => $aluno]);
+
+        $pdf = PDF::loadView('pdf.contrato', ['alunos' => $aluno]);
+        return $pdf->stream('invoice.pdf');;
     }
 }

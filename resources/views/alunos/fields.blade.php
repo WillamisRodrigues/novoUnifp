@@ -433,7 +433,7 @@
                         {{-- {!! Form::text('Parcelamento', null, ['class' => 'form-control']) !!} --}}
                         <select name="Parcelamento" id="Parcelamento" style="width: 50%">
                             @foreach($pagamentos as $pagamento )
-                            <option value="{{ $pagamento->QtdeParcelas }}">{{ $pagamento->QtdeParcelas }}x de
+                            <option value="{{ $pagamento->id }}">{{ $pagamento->QtdeParcelas }}x de
                                 R${{ $pagamento->ParcelaBruta }},00</option>
                             @endforeach
                         </select>
