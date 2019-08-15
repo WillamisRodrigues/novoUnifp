@@ -403,8 +403,7 @@
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
                         <select name="Curso" id="Curso" style="width: 50%">
                             @foreach($cursos as $curso)
-                            <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}
-                            </option>
+                            <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
                             @endforeach
                         </select>
                     </p>
@@ -417,7 +416,7 @@
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
                         <select name="Turma" id="Turma" style="width: 50%">
                             @foreach($turmas as $turma )
-                            <option value="{{ $turma->NomeTurma }}">{{ $turma->NomeTurma }}
+                            <option value="{{ $turma->id }}">{{ $turma->NomeTurma }}
                                 <input type="hidden" id="idTurma" name="idTurma" value="{!! $turma->id !!}">
                             </option>
                             @endforeach

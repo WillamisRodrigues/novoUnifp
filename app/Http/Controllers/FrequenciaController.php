@@ -33,6 +33,8 @@ class FrequenciaController extends AppBaseController
     {
         $frequencias = $this->frequenciaRepository->all();
 
+
+
         return view('frequencias.index')
             ->with('frequencias', $frequencias);
     }

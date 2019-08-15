@@ -20,6 +20,7 @@ use App\Models\FormasPagamento;
 use App\Repositories\FormasPagamentoRepository;
 use App\Http\Controllers\PagtoController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
 
 
 class AlunoController extends AppBaseController
@@ -82,32 +83,41 @@ class AlunoController extends AppBaseController
     {
         $inputAluno = $requestAluno->all();
         $inputFrequencia = $requestFrequencia->all();
-        //logica para gerar os boletos de pagamentos quando um aluno for adicionado
-        //falta a matricula do aluno
-        for ($_i = 1; $_i <= 18; $_i++) {
-            // $this->pagamento . store($requestAluno->id);
+        $aluno = $this->alunoRepository->create($inputAluno);
+        $matricula = Arr::get($aluno, 'id');
+        $idParcelamento = Arr::get($inputAluno, 'Parcelamento');
+        $parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento);
+
+        foreach($parcelamentos as $parcelamento){
+            $valor = $parcelamento->ParcelaBruta;
+            $qtdeParcelas = $parcelamento->QtdeParcelas;
+        }
+        //logica para gerar os registros de pagamentos no sistema quando um aluno for adicionado
+        for ($_i = 1; $_i <= $qtdeParcelas; $_i++) {
             if ($_i == 1) {
                 DB::table('pagamentos')->insert(
                     [
                         'Parcela' => $_i,
-                        'Matricula' => 1,
+                        'Matricula' => $matricula,
                         'Referencia' => 'Matricula',
-                        'Status' => 'Aberto'
+                        'Status' => 'Aberto',
+                        'Valor' => $valor
                     ]
                 );
             } else {
                 DB::table('pagamentos')->insert(
                     [
                         'Parcela' => $_i,
-                        'Matricula' => 1,
+                        'Matricula' => $matricula,
                         'Referencia' => 'Mensalidade',
-                        'Status' => 'Aberto'
+                        'Status' => 'Aberto',
+                        'Valor' => $valor
                     ]
                 );
             }
         }
 
-        $aluno = $this->alunoRepository->create($inputAluno);
+
         $frequencia = $this->frequenciaRepository->create($inputFrequencia);
 
         Flash::success('Aluno criado com sucesso.');

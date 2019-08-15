@@ -61,20 +61,21 @@
         <table style="width: 100%">
             <tr>
                 <td>
-                    {!! 'nome da escola' !!}
+                    {{-- {{ dd($unidades) }} --}}
+                    {!! $unidades[0] !!}
                 </td>
                 <td>
-                    CNPJ: {!! '00.000.000/0000-00' !!}
+                    CNPJ: {!! $unidades[1] !!}
                 </td>
             </tr>
             <tr>
                 <td colspan='2'>
-                    Endereço: {!! 'endereço da escola' !!}
+                    Endereço: {!! $unidades[2] !!}, {!! $unidades[3] !!}, {!! $unidades[4] !!} - {!! $unidades[5] !!}
                 </td>
             </tr>
             <tr>
                 <td>
-                    Telefone: {!! '(00) 0000-0000' !!}
+                    Telefone: {!! $unidades[6] !!}
                 </td>
                 <td>
                     Site: {!! 'www.siteDaEscola.com.br' !!}
@@ -87,10 +88,10 @@
         <h6>04 - Do valor do Contrato e das Condições de Pagamento</h6>
         <table style="width: 100%">
             <tr>
-                <td><span>Valor Total do Curso:</span><br> R$ {!! '00,00' !!}</td>
-                <td><span>Quantidade de Parcelas:</span><br>{!! '0' !!} Vezes</td>
-                <td><span>Valor de Cada Parcela:</span><br> R$ {!! '00,00' !!}</td>
-                <td><span>Desconto de Pontualidade:</span><br> R$ {!! '00,00' !!}</td>
+                <td><span>Valor Total do Curso:</span><br> R$ {!! $parcelamentos[2] !!}</td>
+                <td><span>Quantidade de Parcelas:</span><br>{!! $parcelamentos[0] !!} Vezes</td>
+                <td><span>Valor de Cada Parcela:</span><br> R$ {!! $parcelamentos[1] !!}</td>
+                <td><span>Desconto de Pontualidade:</span><br> R$ {!! $parcelamentos[3] !!}</td>
             </tr>
             <tr>
                 <td colspan="2"><span>Mora Diára por Atraso de Pagamento:</span><br>R$ {!! '00,00' !!}</td>
@@ -110,20 +111,20 @@
             <tr>
                 <td colspan="4">
                     <span>Curso Contratado: </span><br>
-                    {!! 'nome do curso' !!}
+                    {!! $cursos[0] !!}
                 </td>
             </tr>
             <tr>
-                <td><span>Quantidade Total de Aulas:</span><br>{!! '0' !!} aulas</td>
-                <td><span>Duração de Cada Aula:</span><br>{!! '0' !!} horas</td>
-                <td><span>Carga Horária Total do Curso:</span><br>{!! '00' !!} horas</td>
-                <td><span>Matriculado na Turma:</span><br>{!! 'nome da turma' !!}</td>
+                <td><span>Quantidade Total de Aulas:</span><br>{!! $cursos[1] !!} aulas</td>
+                <td><span>Duração de Cada Aula:</span><br>{!! $cursos[2]/$cursos[1] !!} horas</td>
+                <td><span>Carga Horária Total do Curso:</span><br>{!! $cursos[2] !!} horas</td>
+                <td><span>Matriculado na Turma:</span><br>{!! $turmas[0] !!}</td>
             </tr>
             <tr>
-                <td><span>Início das Aulas:</span><br>{!! '00/00/0000' !!}</td>
-                <td><span>Período/Horário:</span><br>{!! 'tarde 00 / 00:00 hrs 00:00 hrs' !!}</td>
-                <td><span>Dias de Aula:</span><br>{!! '0' !!} dias</td>
-                <td><span>Matriculado sob o número:</span><br>{!! '00000000' !!}</td>
+                <td><span>Início das Aulas:</span><br>{!! $turmas[1] !!}</td>
+                <td><span>Período/Horário:</span><br>{!! $turmas[2] !!}</td>
+                <td><span>Dias de Aula:</span><br>{!! $turmas[3] !!} dias</td>
+                <td><span>Matriculado sob o número:</span><br>{!! $aluno->id !!}</td>
             </tr>
         </table>
     </div>
@@ -161,13 +162,13 @@
     <br>
     <div>
         <div style="width: 50%; float:left">
-            ________________________________<br>
+            ______________________________________<br>
             Contratante:<br>
             {!! $aluno->Pagador !!}<br>
             CPF: {!! $aluno->CpfContratante !!}
         </div>
         <div style="width: 50%; float:right">
-            ________________________________<br>
+            ______________________________________<br>
             Contratada:<br>
             {!! 'nome da escola' !!}<br>
             CNPJ: {!! 'cnpj da escola' !!}
@@ -177,11 +178,11 @@
     <br>
     <div>
         <div style="width: 50%; float:left">
-            ________________________________<br>
+            ______________________________________<br>
             Testemunha 1<br>
         </div>
         <div style="width: 50%; float:right">
-            ________________________________<br>
+            ______________________________________<br>
             Testemunha 2<br>
         </div>
     </div>

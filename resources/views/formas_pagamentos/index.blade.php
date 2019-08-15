@@ -2,11 +2,11 @@
 
 @section('content')
 <section class="content-header">
-    <h1 class="pull-left">Formas de Pagamento</h1>
+    <h1 class="pull-left">Formas de Parcelamento</h1>
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="{!! route('formasPagamentos.index') !!}">Forma de Pagamento</a></li>
+            <li><a href="{!! route('formasPagamentos.index') !!}">Forma de Parcelamento</a></li>
             <li class="active">Lista</li>
         </ol>
     </h1>
