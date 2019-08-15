@@ -17,6 +17,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('agendas', 'AgendaController');
+Route::resource('agendasArquivada', 'AgendasArquivadaController');
 Route::resource('unidades', 'UnidadeController');
 Route::resource('escolaridades', 'EscolaridadeController');
 Route::resource('tempoAulas', 'TempoAulaController');

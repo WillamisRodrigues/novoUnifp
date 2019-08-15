@@ -29,7 +29,7 @@ class AgendaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agendas = $this->agendaRepository->all();
+        $agendas = $this->agendaRepository->all()->where('Arquivado', 'Não');
 
         return view('agendas.index')
             ->with('agendas', $agendas);

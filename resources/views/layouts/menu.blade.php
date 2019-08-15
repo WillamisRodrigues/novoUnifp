@@ -22,11 +22,11 @@
             class="glyphicon glyphicon-calendar"></i> Agenda <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
         <li class="{{ Request::is('agendas*') ? 'active' : '' }}">
-            <a href="{!! route('agendas.create') !!}" style="display: inline-block"><i
+            <a href="{!! route('agendas.index') !!}" style="display: inline-block"><i
                     class="glyphicon glyphicon-calendar"></i>Agenda Pessoal</a>
         </li>
         <li class="{{ Request::is('agendas*') ? 'active' : '' }}">
-            <a href="{!! route('agendas.index') !!}" style="display: inline-block"><i
+            <a href="{!! route('agendasArquivada.index') !!}" style="display: inline-block"><i
                     class="glyphicon glyphicon-calendar"></i>Agenda Arquivada</a>
         </li>
     </ul>

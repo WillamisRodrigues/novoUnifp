@@ -20,7 +20,7 @@
             <div class="row">
                 {!! Form::model($agenda, ['route' => ['agendas.update', $agenda->id], 'method' => 'patch']) !!}
 
-                @include('agendas.fields')
+                @include('agendas.fieldsEdit')
 
                 {!! Form::close() !!}
             </div>

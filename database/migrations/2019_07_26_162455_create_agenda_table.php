@@ -21,6 +21,7 @@ class CreateAgendaTable extends Migration
             $table->string('Assunto');
             $table->text('Tarefa');
             $table->enum('Resolvido', ['Não', 'Aguardo outros', 'Aguardo finanças', 'Sim']);
+            $table->enum('Arquivado', ['Sim', 'Não']);
             $table->timestamps();
             $table->softDeletes();
         });

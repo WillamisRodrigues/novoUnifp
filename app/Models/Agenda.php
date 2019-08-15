@@ -22,7 +22,7 @@ class Agenda extends Model
     use SoftDeletes;
 
     public $table = 'agenda';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -36,7 +36,8 @@ class Agenda extends Model
         'Hora',
         'Assunto',
         'Tarefa',
-        'Resolvido'
+        'Resolvido',
+        'Arquivado'
     ];
 
     /**
@@ -50,7 +51,8 @@ class Agenda extends Model
         'Data' => 'date',
         'Assunto' => 'string',
         'Tarefa' => 'string',
-        'Resolvido' => 'string'
+        'Resolvido' => 'string',
+        'Arquivado' => 'string'
     ];
 
     /**
@@ -64,8 +66,9 @@ class Agenda extends Model
         'Hora' => 'required',
         'Assunto' => 'required',
         'Tarefa' => 'required',
-        'Resolvido' => 'required'
+        'Resolvido' => 'required',
+        'Arquivado' => 'required'
     ];
 
-    
+
 }

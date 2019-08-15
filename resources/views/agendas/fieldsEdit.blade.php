@@ -91,10 +91,19 @@
                 Form::radio('Resolvido', 'Aguardo finanças', ['class' => 'form-control']) !!} Aguardando finanças
             </label>
         </p>
-
     </div>
 
-    <input type="hidden" name="Arquivado" value="Não">
+    <!-- Campo Arquivar  -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Arquivado', 'Arquivar') !!}<span style="color: red">*</span>:
+        </p>
+        <p class="col-sm-12 col-md-9 row">
+            <label class="col-xs-12 col-sm-6 col-md-4" style="padding-right: 2rem">{!!
+                Form::radio('Arquivado', 'Não', ['class' => 'form-control']) !!} Não </label>
+            <label class="col-xs-12 col-sm-6 col-md-6" style="padding-right: 2rem">{!!
+                Form::radio('Arquivado', 'Sim', ['class' => 'form-control']) !!} Sim </label>
+        </p>
+    </div>
 
     <!-- Campo Submit  -->
     <div class="row">
