@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateAulasCronogramaRequest;
 use App\Http\Requests\UpdateAulasCronogramaRequest;
 use App\Repositories\AulasCronogramaRepository;
+use Illuminate\Support\Arr;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -42,7 +44,8 @@ class AulasCronogramaController extends AppBaseController
      */
     public function create()
     {
-        return view('aulas_cronogramas.create');
+        $cronogramas = DB::table('cronograma')->get() ;
+        return view('aulas_cronogramas.create', ['cronogramas' => $cronogramas]);
     }
 
     /**
@@ -57,10 +60,15 @@ class AulasCronogramaController extends AppBaseController
         $input = $request->all();
 
         $aulasCronograma = $this->aulasCronogramaRepository->create($input);
-
+        // foreach($input as $obj){
+            // dd($request->idCronograma);
+        //     $idCronograma = $obj->idCronograma;
+        // }
+        $aulasCronogramas = $this->aulasCronogramaRepository->all()->where('idCronograma', $request->idCronograma);
+        dd($aulasCronogramas);
         Flash::success('Cronograma criado com sucesso.');
 
-        return redirect(route('aulasCronogramas.index'));
+        return redirect(route('aulasCronogramas.show/$request->idCronograma', ['aulasCronogramas' => $aulasCronogramas]));
     }
 
     /**
@@ -72,7 +80,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function show($id)
     {
-        $aulasCronograma = $this->aulasCronogramaRepository->find($id);
+        $aulasCronograma = $this->aulasCronogramaRepository->all()->where('idCronograma', $id);
 
         if (empty($aulasCronograma)) {
             Flash::error('Cronograma não encontrado.');
@@ -80,7 +88,7 @@ class AulasCronogramaController extends AppBaseController
             return redirect(route('aulasCronogramas.index'));
         }
 
-        return view('aulas_cronogramas.show')->with('aulasCronograma', $aulasCronograma);
+        return view('aulas_cronogramas.index')->with('aulasCronogramas', $aulasCronograma);
     }
 
     /**
@@ -93,6 +101,7 @@ class AulasCronogramaController extends AppBaseController
     public function edit($id)
     {
         $aulasCronograma = $this->aulasCronogramaRepository->find($id);
+        $cronogramas = DB::table('cronograma')->get() ;
 
         if (empty($aulasCronograma)) {
             Flash::error('Cronograma não encontrado.');
@@ -100,7 +109,7 @@ class AulasCronogramaController extends AppBaseController
             return redirect(route('aulasCronogramas.index'));
         }
 
-        return view('aulas_cronogramas.edit')->with('aulasCronograma', $aulasCronograma);
+        return view('aulas_cronogramas.edit', ['aulasCronograma' => $aulasCronograma, 'cronogramas' => $cronogramas]);
     }
 
     /**

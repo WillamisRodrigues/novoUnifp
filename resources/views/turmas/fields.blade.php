@@ -4,8 +4,8 @@
         <p class="col-sm-12 col-md-3">{!! Form::label('Curso', 'Curso:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6 select-padrao">
             <select name="Curso" id="Curso" style="width: 50%">
-                @foreach($cursos as $curso )
-                <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}</option>
+                @foreach($cursos as $curso)
+                <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
                 @endforeach
             </select>
         </p>
@@ -22,10 +22,6 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DiasDaSemana', 'Dias da Semana:') !!}<span
                 style="color: red">*</span></p>
-        {{-- <div class="col-sm-12 col-md-6">
-            {!! Form::date('DiasDaSemana', null, ['class' =>
-            'form-control','id'=>'DiasDaSemana']) !!}
-        </div> --}}
         <div class="input-group col-md-6 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('DiasDaSemana', null, ['class' => 'form-control','id'=>'DiasDaSemana']) !!}
@@ -107,7 +103,6 @@
         <p class="col-sm-12 col-md-3">{!! Form::label('Professor', 'Professor:') !!}<span style="color: red">*</span>
         </p>
         <p class="col-sm-12 col-md-6 select-padrao">
-            {{-- {!! Form::text('Professor', null, ['class' => 'form-control']) !!} --}}
             <select name="Professor" id="Professor" style="width: 50%">
                 @foreach($professores as $professor )
                 <option value="{{ $professor->Nome }}">{{ $professor->Nome }}</option>
@@ -161,9 +156,10 @@
 <script src="{{ url('js/timepicker.js') }}"></script>
 <script>
     //Timepicker
-        $('.timepicker').timepicker({
-            showInputs: false,
-            timeFormat: 'HH:mm:ss'
-        })
+    $('.timepicker').timepicker({
+        showInputs: false,
+        timeFormat: 'HH:mm:ss'
+    })
+
 </script>
 @endsection

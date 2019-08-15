@@ -32,7 +32,7 @@
                 </td>
                 <td><a href="{!! route('formaPgtos.index') !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Forma de Pagamento</a></td>
                 <td><a href="avaliacoes" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Avaliações</a></td>
-                <td><a href="{!! route('turmas.index') !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Turmas Ativas</a></td>
+                <td><a href="{!! route('turmasCursos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Turmas Ativas</a></td>
                 <td><a href="{!! route('contratos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Contrato</a></td>
             </tr>
             @endforeach
