@@ -68,8 +68,9 @@ class AlunoController extends AppBaseController
         $turmas = $this->turmaRepository->all();
         $pagamentos = $this->pagRepository->all();
         $comoConheceu = $this->comoConheceuRepository->all();
+        $vencimento = DB::table('dias_vencimento')->get();
 
-        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu]);
+        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimento]);
     }
 
     /**
@@ -79,10 +80,9 @@ class AlunoController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateAlunoRequest $requestAluno, CreateFrequenciaRequest $requestFrequencia)
+    public function store(CreateAlunoRequest $requestAluno)
     {
         $inputAluno = $requestAluno->all();
-        $inputFrequencia = $requestFrequencia->all();
         $aluno = $this->alunoRepository->create($inputAluno);
         $matricula = Arr::get($aluno, 'id');
         $idParcelamento = Arr::get($inputAluno, 'Parcelamento');
@@ -96,16 +96,19 @@ class AlunoController extends AppBaseController
         date_default_timezone_set('America/Sao_Paulo');
         $timestamp = date("Y-m-d H:i:s");
 
-        // $parcela = 1;
-        // $dia = $inputAluno->Vencimento;
-        // $mes = date("m");
-        // $ano = date("Y");
-
+        $dia = Arr::get($inputAluno, 'Vencimento');
+        $mes = date("m");
+        $ano = date("Y");
+        $hoje = date("Y-m-d");
         //logica para gerar os registros de pagamentos no sistema quando um aluno for adicionado
         for ($_i = 1; $_i <= $qtdeParcelas; $_i++) {
-            $dia = $inputAluno->Vencimento;
-            $mes = date("m");
-            $ano = date("Y");
+
+            //logica para "montar" a datade vencimento
+            if($mes < 10 && $mes != date("Y-m")){
+                $dataVencimento = "$ano-0$mes-$dia";
+            } else {
+                $dataVencimento = "$ano-$mes-$dia";
+            }
 
             if ($_i == 1) {
                 DB::table('pagamentos')->insert(
@@ -115,8 +118,9 @@ class AlunoController extends AppBaseController
                         'Referencia' => 'Matricula',
                         'Status' => 'Aberto',
                         'Valor' => $valor,
+                        'Vencimento' => $hoje,
                         'created_at' => $timestamp,
-                        'updated_at' => $timestamp,
+                        'updated_at' => $timestamp
                     ]
                 );
             } else {
@@ -127,15 +131,33 @@ class AlunoController extends AppBaseController
                         'Referencia' => 'Mensalidade',
                         'Status' => 'Aberto',
                         'Valor' => $valor,
+                        'Vencimento' => $dataVencimento,
                         'created_at' => $timestamp,
-                        'updated_at' => $timestamp,
+                        'updated_at' => $timestamp
                     ]
                 );
             }
+
+            //lógica para virar o ano quando o mes exceder 12
+            if($mes >= 12){
+                $mes = 1;
+                $ano++;
+            } else {
+                $mes++;
+            }
         }
 
-
-        $frequencia = $this->frequenciaRepository->create($inputFrequencia);
+        //cria a frequencia - falta setar o idAula
+        DB::table('frequencia')->insert(
+            [
+                'idAluno' => $aluno->id,
+                'idTurma' => $aluno->Turma,
+                'Frequencia' => 0,
+                'idAula' => 0,
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp
+            ]
+        );
 
         Flash::success('Aluno criado com sucesso.');
 
@@ -178,6 +200,7 @@ class AlunoController extends AppBaseController
         $turmas = $this->turmaRepository->all();
         $pagamentos = $this->pagRepository->all();
         $comoConheceu = $this->comoConheceuRepository->all();
+        $vencimento = DB::table('dias_vencimento')->get();
 
         if (empty($aluno)) {
             Flash::error('Aluno não encontrado.');
@@ -185,7 +208,7 @@ class AlunoController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        return view('alunos.edit', ['aluno' => $aluno, 'funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu]);
+        return view('alunos.edit', ['aluno' => $aluno, 'funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimento]);
     }
 
     /**

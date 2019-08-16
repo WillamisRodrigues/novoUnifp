@@ -178,7 +178,8 @@
         <li class="{{ Request::is('nivelAcessos*') ? 'active' : '' }}">
             <a href="{!! route('nivelAcessos.index') !!}"><i class="fa fa-list"></i><span>Perfil de Acesso</span></a>
         </li>
+        <li class="{{ Request::is('diasVencimentos*') ? 'active' : '' }}">
+            <a href="{!! route('diasVencimentos.index') !!}"><i class="glyphicon glyphicon-calendar"></i><span>Dias de Vencimento</span></a>
+        </li>
     </ul>
 </li>
-
-

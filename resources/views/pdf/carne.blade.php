@@ -21,6 +21,10 @@
         table {
             border: 2px solid black;
         }
+
+        .page-break{
+            page-break-after: always;
+        }
     </style>
 </head>
 
@@ -36,41 +40,41 @@
             </tr>
             <tr>
                 <td colspan='2' style='text-align:center; font-weight:bold'>Recibo do Sacado</td>
-                <td rowspan='7'></td>
+                <td rowspan='7' style="width: 2.5%"></td>
                 <td colspan='3'><span style='font-weight:bold'>Estabelecimento:</span> {!! $unidade->NomeUnidade !!} </td>
-                <td><span style='font-weight:bold'>Vencimento</span>: 0{!!$boleto->Vencimento!!}/00/0000</td>
+                <td><span style='font-weight:bold'>Vencimento</span>: {!! date('d/m/Y', strtotime($boleto->Vencimento)); !!}</td>
             </tr>
             <tr>
-                <td class="font-weight-bold">Matrícula</td>
-                <td> {!! $aluno->id !!} - {!!$aluno->Nome !!}</td>
+                <td class="font-weight-bold" style="width: 13%">Matrícula</td>
+                <td> {!! $aluno->id !!} - {!! $aluno->Nome !!}</td>
                 <td colspan='3'><span style='font-weight:bold'>Aluno</span>: {!! $aluno->id !!} - {!! $aluno->Nome !!}</td>
-                <td><span style='font-weight:bold'>Valor do Doc.</span>: R$ {!! $boleto->Valor !!} </td>
+                <td><span style='font-weight:bold'>Valor do Doc.</span>: R$ {!! $boleto->Valor !!},00 </td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Carnê/Folha</td>
                 <td>Nª. {!! $boleto->numeroDocumento !!}</td>
-                <td>Multa por atraso<br> <span class='text-right'>10%</span> </td>
-                <td>Data da Emissão<br> <span class='text-right'>00/00/0000</span> </td>
-                <td>Controle <br></td>
-                <td>Parcela Nº.<br> <span class='text-right'> {!!$i!!} /18</span> </td>
+                <td><span>Multa por atraso</span><br> <span class='text-right'>10%</span> </td>
+                <td><span>Data da Emissão</span><br> <span class='text-right'>{!! date('d/m/Y'); !!}</span> </td>
+                <td style="width: 7%"><span>Controle </span><br></td>
+                <td><b>Parcela Nº.</b><br> <span class='text-right'> {!!$i!!} /18</span> </td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Vencimento</td>
-                <td>0{!! $boleto->Vencimento !!}/00/0000</td>
+                <td>{!! date('d/m/Y', strtotime($boleto->Vencimento)); !!}</td>
                 <td colspan='3'>Intruções: cobrar R$0,30 juros ao dia</td>
-                <td>Carnê/Folha <br> <span class='text-right'>Nº. {!! $boleto->numeroDocumento !!}</span></td>
+                <td><b>Carnê/Folha</b> <br> <span class='text-right'>Nº. {!! $boleto->numeroDocumento !!}</span></td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Valor</td>
-                <td>R$ 00,00</td>
+                <td>R$ {!! $boleto->Valor !!},00</td>
                 <td colspan='3'><span style="font-weight: bolder">Sacador</span>: {!! $aluno->Pagador !!}</td>
-                <td>Valor cobrado: </td>
+                <td><b>Valor cobrado:</b> </td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Valor Cobrado</td>
                 <td></td>
                 <td colspan='3' rowspan="2"><span style="font-weight: bolder">Via do estabelecimento</span></td>
-                <td rowspan="2">Data de pgto.:<br>
+                <td rowspan="2"><b>Data de pgto.:</b><br>
                     &nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;</td>
             </tr>
             <tr>
@@ -84,11 +88,7 @@
             <div style="border-top: dotted 2px #555555;"></div>
             <br>
         @else
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <div class="page-break"></div>
         @endif
         @php
             $i++;

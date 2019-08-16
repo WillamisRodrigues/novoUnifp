@@ -25,7 +25,7 @@ class Pagto extends Model
     use SoftDeletes;
 
     public $table = 'pagamentos';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -38,6 +38,7 @@ class Pagto extends Model
         'Referencia',
         'Status',
         'Forma',
+        'Vencimento',
         'DataPgto',
         'Multa',
         'Valor',
@@ -55,6 +56,7 @@ class Pagto extends Model
         'Parcela' => 'integer',
         'Referencia' => 'string',
         'Status' => 'string',
+        'Vencimento' => 'date',
         'Forma' => 'string',
         'DataPgto' => 'date',
         'Multa' => 'float',
@@ -81,5 +83,5 @@ class Pagto extends Model
         'Data' => 'required'
     ];
 
-    
+
 }

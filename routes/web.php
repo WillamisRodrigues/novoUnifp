@@ -72,3 +72,6 @@ Route::get('/carne', function(){
 });
 
 
+
+
+Route::resource('diasVencimentos', 'DiasVencimentoController');

@@ -18,6 +18,7 @@ class CreatePagamentosTable extends Migration
             $table->bigInteger('Matricula');
             $table->integer('Parcela');
             $table->enum('Referencia', ['Matricula', 'Mensalidade']);
+            $table->date('Vencimento');
             $table->enum('Status', ['Aberto', 'Quitado', 'Vencido']);
             $table->string('Forma')->nullable();
             $table->date('DataPgto')->nullable();

@@ -58,7 +58,9 @@
                             <td>{!! $pagto->numeroDocumento !!}</td>
                             <td>{!! $pagto->Parcela !!}</td>
                             <td>{!! $pagto->Referencia !!}</td>
-                            <td>Vencimento</td>
+                            <td>
+                                {!! date('d/m/Y', strtotime($pagto->Vencimento)); !!}
+                            </td>
                             <td>{!! $pagto->Status !!}</td>
                             <td>{!! $pagto->Forma !!}</td>
                             <td>{!! $pagto->DataPgto !!}</td>
@@ -69,10 +71,6 @@
                             <td>{!! $pagto->Data !!}</td>
                             <td>
                                 {!! Form::open(['route' => 'pagamentos.store']) !!}
-                                {{-- <button href="{!! route('pagamentos.edit', ['Parcela'=>$pagto->Parcela, 'Matricula' => $aluno->id]) !!}"
-                                    class="btn btn-flat btn-primary">
-                                    <i class="fa fa-bars"></i> Lançar
-                                </button> --}}
                                 {!! Form::hidden('Parcela', $pagto->Parcela) !!}
                                 {!! Form::hidden('Matricula', $aluno->id) !!}
                                 <button type="submit" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Lançar</button>

@@ -389,11 +389,6 @@
         </div>
         <!-- /.tab-pane -->
 
-        {!! Form::hidden('idFrequencia', '0') !!}
-        {!! Form::hidden('idAluno', '0') !!}
-        {!! Form::hidden('idAula', '0') !!}
-        {!! Form::hidden('Frequencia', '0') !!}
-
         <div class="tab-pane" id="tab_3">
             <div class="container">
                 <!-- Campo Curso -->
@@ -416,13 +411,13 @@
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
                         <select name="Turma" id="Turma" style="width: 50%">
                             @foreach($turmas as $turma )
-                            <option value="{{ $turma->id }}">{{ $turma->NomeTurma }}
-                                <input type="hidden" id="idTurma" name="idTurma" value="{!! $turma->id !!}">
-                            </option>
+                                <option value="{{ $turma->id }}">
+                                    {{ $turma->NomeTurma }}
+                                </option>
                             @endforeach
-                        </select>
-                    </p>
-                </div>
+                            </select>
+                        </p>
+                    </div>
 
                 <!-- Campo Parcelamento -->
                 <div class="row">
@@ -443,11 +438,16 @@
                 <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Vencimento', 'Dia do Vencimento:') !!}<span
                             style="color: red">*</span></p>
-                    <p class="col-xs-12 col-sm-6 col-md-6">
-                        <label class="col-xs-12 col-sm-6 col-md-6">{!! Form::radio('Vencimento', '8', ['class' =>
+                    <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
+                        <select name="Vencimento" id="Vencimento" style="width: 50%">
+                            @foreach($vencimentos as $vencimento )
+                            <option value="{!! $vencimento->diaVencimento !!}">{!! $vencimento->diaVencimento !!}</option>
+                            @endforeach
+                        </select>
+                        {{-- <label class="col-xs-12 col-sm-6 col-md-6">{!! Form::radio('Vencimento', '8', ['class' =>
                             'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Dia 8
                             </span>
-                        </label>
+                        </label> --}}
                     </p>
                 </div>
             </div>

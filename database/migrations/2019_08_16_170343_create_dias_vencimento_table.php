@@ -15,7 +15,9 @@ class CreateDiasVencimentoTable extends Migration
     {
         Schema::create('dias_vencimento', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('diaVencimento');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
