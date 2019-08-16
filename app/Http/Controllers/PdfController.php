@@ -50,6 +50,13 @@ class PdfController extends Controller
 
 
         $pdf = PDF::loadView('pdf.contrato', ['aluno' => $aluno, 'cursos' => $cursos, 'unidades' => $unidades, 'parcelamentos' => $formas_parcelamentos, 'turmas' => $turmas]);
-        return $pdf->stream('invoice.pdf');;
+        return $pdf->stream('invoice.pdf');
+    }
+
+    public function gerarRelatorio(){
+        $viewRelatorio = view('pdf.relatorio');
+        $dados = DB::table('caixa')->get();
+        $pdf = PDF::loadView('pdf.relatorio', ['caixas' => $dados])->setPaper('a3', 'landscape');
+        return $pdf->stream('invoice.pdf');
     }
 }

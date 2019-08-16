@@ -124,7 +124,7 @@
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <button class="btn btn-success btn-flat" style="margin-bottom:1rem" type="submit"><i class="fa fa-save"></i>
-                Salvar Aluno</button>
+                Salvar</button>
             <a href="{!! route('lancamentos.index') !!}" style="margin-bottom:1rem" class="btn btn-danger btn-flat"> <i
                     class="fa fa-close"></i> Cancelar</a>
         </div>

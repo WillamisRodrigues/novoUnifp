@@ -101,7 +101,7 @@
 
     <div style="margin-top: 4rem">
         <button class="btn btn-flat btn-success"><i class="fa fa-table"></i> Exportar planilha</button>
-        <button class="btn btn-flat btn-primary ml-5"><i class="fa fa-file-text"></i> Exportar PDF</button>
+        <a href="/gerarRelatorio" target="_blank" class="btn btn-flat btn-primary ml-5"><i class="fa fa-file-text"></i> Exportar PDF</a>
     </div>
 
     <div class="box box-primary">
