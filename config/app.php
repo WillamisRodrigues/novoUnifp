@@ -185,7 +185,11 @@ return [
 
 
         //DOMPDF
-        Barryvdh\DomPDF\ServiceProvider::class
+        Barryvdh\DomPDF\ServiceProvider::class,
+
+        //Exportar para csv
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
 
     ],
 
@@ -248,6 +252,10 @@ return [
 
         //DOMPDF
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        //exportar csv
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
     ],
 
 ];
