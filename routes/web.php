@@ -68,6 +68,7 @@ Route::get('/notas', 'PagamentoController@notas');
 Route::get('/gerarCarne/{idAluno}', ['uses' => 'PdfController@gerarCarne']);
 Route::get('/gerarContrato/{idAluno}', ['uses' => 'PdfController@gerarContrato']);
 Route::get('/gerarRelatorio', ['uses' => 'PdfController@gerarRelatorio']);
+Route::get('/gerarCsv', ['uses' => 'ExportarCsvController@gerarCsv']);
 Route::get('/carne', function(){
     return view('pdf.carne');
 });
