@@ -88,12 +88,25 @@ class AlunoController extends AppBaseController
         $idParcelamento = Arr::get($inputAluno, 'Parcelamento');
         $parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento);
 
-        foreach($parcelamentos as $parcelamento){
+        foreach ($parcelamentos as $parcelamento) {
             $valor = $parcelamento->ParcelaBruta;
             $qtdeParcelas = $parcelamento->QtdeParcelas;
         }
+
+        date_default_timezone_set('America/Sao_Paulo');
+        $timestamp = date("Y-m-d H:i:s");
+
+        // $parcela = 1;
+        // $dia = $inputAluno->Vencimento;
+        // $mes = date("m");
+        // $ano = date("Y");
+
         //logica para gerar os registros de pagamentos no sistema quando um aluno for adicionado
         for ($_i = 1; $_i <= $qtdeParcelas; $_i++) {
+            $dia = $inputAluno->Vencimento;
+            $mes = date("m");
+            $ano = date("Y");
+
             if ($_i == 1) {
                 DB::table('pagamentos')->insert(
                     [
@@ -101,7 +114,9 @@ class AlunoController extends AppBaseController
                         'Matricula' => $matricula,
                         'Referencia' => 'Matricula',
                         'Status' => 'Aberto',
-                        'Valor' => $valor
+                        'Valor' => $valor,
+                        'created_at' => $timestamp,
+                        'updated_at' => $timestamp,
                     ]
                 );
             } else {
@@ -111,7 +126,9 @@ class AlunoController extends AppBaseController
                         'Matricula' => $matricula,
                         'Referencia' => 'Mensalidade',
                         'Status' => 'Aberto',
-                        'Valor' => $valor
+                        'Valor' => $valor,
+                        'created_at' => $timestamp,
+                        'updated_at' => $timestamp,
                     ]
                 );
             }
@@ -168,7 +185,7 @@ class AlunoController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        return view('alunos.edit', ['aluno'=> $aluno, 'funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu]);
+        return view('alunos.edit', ['aluno' => $aluno, 'funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu]);
     }
 
     /**

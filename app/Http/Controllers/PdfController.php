@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Collection;
+
 
 
 class PdfController extends Controller
@@ -17,47 +19,37 @@ class PdfController extends Controller
     }
     public function gerarCarne($id)
     {
-        $aluno = DB::table('aluno')->get()->where('id', $id);
+        $aluno = DB::table('aluno')->get()->where('id', $id)->first();
+        $boletos = DB::table('pagamentos')->get()->where('Matricula',$id);
 
-        $pdf = PDF::loadView('pdf.carne', ['alunos' => $aluno]);
+        //pega id das relações
+        //falta id da unidade
+        $idUnidade = 1;
+        $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
+
+        $pdf = PDF::loadView('pdf.carne', ['aluno' => $aluno, 'unidade' => $unidades, 'boletos' => $boletos]);
         return $pdf->stream('invoice.pdf');;
     }
 
     public function gerarContrato($id)
     {
-        $aluno = DB::table('aluno')->get()->where('id', $id);
+        $aluno = DB::table('aluno')->get()->where('id', $id)->first();
 
         //pega id das relações referentes a tabela aluno
+        //falta id da unidade
         $idUnidade = 1;
-        // $idCurso = Arr::get($aluno, 'Curso');
-        $idCurso = 1;
-        // $idParcelamento = Arr::get($aluno, 'Parcelamento');
-        $idParcelamento = 1;
-        // $idTurma = Arr::get($aluno, 'Parcelamento');
-        $idTurma = 1;
+        $idCurso = $aluno->Curso;
+        $idParcelamento = $aluno->Parcelamento;
+        $idTurma = $aluno->Turma;
 
         //pegar dados das tabelas com base nos relacionamentos
-        $unidades = DB::table('unidade')->get()->where('id', $idUnidade);
-        foreach ($unidades as $unidade) {
-            $dadosUnidade = [$unidade->NomeUnidade, $unidade->CNPJ, $unidade->Endereco, $unidade->Bairro, $unidade->Cidade, $unidade->UF, $unidade->Telefone1];
-        }
-        $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento);
-        foreach($formas_parcelamentos as $parcelamento){
-            $dadosParcelamento = [$parcelamento->QtdeParcelas, $parcelamento->ParcelaBruta, $parcelamento->BrutoTotal, $parcelamento->DescontoPontualidade];
-        }
-        $cursos = DB::table('curso')->get()->where('id', $idCurso);
-        foreach($cursos as $curso){
-            $dadosCursos = [$curso->nomeCurso, $curso->QtdeAulas, $curso->CargaHoraria];
-        }
-        $turmas = DB::table('turma')->get()->where('id', $idTurma);
-        foreach($turmas as $turma){
-            $dadosTurmas = [$turma->NomeTurma, $turma->DataInicio, $turma->Periodo, $turma->DiasDaSemana];
-        }
+        $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
+        $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento)->first();
+        $cursos = DB::table('curso')->get()->where('id', $idCurso)->first();
+        $turmas = DB::table('turma')->get()->where('id', $idTurma)->first();
 
-        // dd($aluno);
 
-        // $pdf = PDF::loadView('pdf.contrato', ['alunos' => $aluno]);
-        $pdf = PDF::loadView('pdf.contrato', ['alunos' => $aluno, 'cursos' => $dadosCursos, 'unidades' => $dadosUnidade, 'parcelamentos' => $dadosParcelamento, 'turmas' => $dadosTurmas]);
+        $pdf = PDF::loadView('pdf.contrato', ['aluno' => $aluno, 'cursos' => $cursos, 'unidades' => $unidades, 'parcelamentos' => $formas_parcelamentos, 'turmas' => $turmas]);
         return $pdf->stream('invoice.pdf');;
     }
 }

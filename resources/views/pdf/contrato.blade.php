@@ -1,5 +1,4 @@
-@foreach ($alunos as $aluno)
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -61,21 +60,20 @@
         <table style="width: 100%">
             <tr>
                 <td>
-                    {{-- {{ dd($unidades) }} --}}
-                    {!! $unidades[0] !!}
+                    {!! $unidades->NomeUnidade !!}
                 </td>
                 <td>
-                    CNPJ: {!! $unidades[1] !!}
+                    CNPJ: {!! $unidades->CNPJ !!}
                 </td>
             </tr>
             <tr>
                 <td colspan='2'>
-                    Endereço: {!! $unidades[2] !!}, {!! $unidades[3] !!}, {!! $unidades[4] !!} - {!! $unidades[5] !!}
+                    Endereço: {!! $unidades->Endereco !!}, {!! $unidades->Bairro !!}, {!! $unidades->Cidade !!} - {!! $unidades->UF !!}
                 </td>
             </tr>
             <tr>
                 <td>
-                    Telefone: {!! $unidades[6] !!}
+                    Telefone: {!! $unidades->Telefone1 !!}
                 </td>
                 <td>
                     Site: {!! 'www.siteDaEscola.com.br' !!}
@@ -88,10 +86,10 @@
         <h6>04 - Do valor do Contrato e das Condições de Pagamento</h6>
         <table style="width: 100%">
             <tr>
-                <td><span>Valor Total do Curso:</span><br> R$ {!! $parcelamentos[2] !!}</td>
-                <td><span>Quantidade de Parcelas:</span><br>{!! $parcelamentos[0] !!} Vezes</td>
-                <td><span>Valor de Cada Parcela:</span><br> R$ {!! $parcelamentos[1] !!}</td>
-                <td><span>Desconto de Pontualidade:</span><br> R$ {!! $parcelamentos[3] !!}</td>
+                <td><span>Valor Total do Curso:</span><br> R$ {!! $parcelamentos->BrutoTotal !!}</td>
+                <td><span>Quantidade de Parcelas:</span><br>{!! $parcelamentos->QtdeParcelas !!} parcelas</td>
+                <td><span>Valor de Cada Parcela:</span><br> R$ {!! $parcelamentos->ParcelaBruta !!}</td>
+                <td><span>Desconto de Pontualidade:</span><br> R$ {!! $parcelamentos->DescontoPontualidade !!}</td>
             </tr>
             <tr>
                 <td colspan="2"><span>Mora Diára por Atraso de Pagamento:</span><br>R$ {!! '00,00' !!}</td>
@@ -111,19 +109,19 @@
             <tr>
                 <td colspan="4">
                     <span>Curso Contratado: </span><br>
-                    {!! $cursos[0] !!}
+                    {!! $cursos->nomeCurso !!}
                 </td>
             </tr>
             <tr>
-                <td><span>Quantidade Total de Aulas:</span><br>{!! $cursos[1] !!} aulas</td>
-                <td><span>Duração de Cada Aula:</span><br>{!! $cursos[2]/$cursos[1] !!} horas</td>
-                <td><span>Carga Horária Total do Curso:</span><br>{!! $cursos[2] !!} horas</td>
-                <td><span>Matriculado na Turma:</span><br>{!! $turmas[0] !!}</td>
+                <td><span>Quantidade Total de Aulas:</span><br>{!! $cursos->QtdeAulas !!} aulas</td>
+                <td><span>Duração de Cada Aula:</span><br>{!! $cursos->CargaHoraria/$cursos->QtdeAulas !!} horas</td>
+                <td><span>Carga Horária Total do Curso:</span><br>{!! $cursos->CargaHoraria !!} horas</td>
+                <td><span>Matriculado na Turma:</span><br>{!! $turmas->NomeTurma !!}</td>
             </tr>
             <tr>
-                <td><span>Início das Aulas:</span><br>{!! $turmas[1] !!}</td>
-                <td><span>Período/Horário:</span><br>{!! $turmas[2] !!}</td>
-                <td><span>Dias de Aula:</span><br>{!! $turmas[3] !!} dias</td>
+                <td><span>Início das Aulas:</span><br>{!! date('d/m/Y', strtotime($turmas->DataInicio)) !!}</td>
+                <td><span>Período/Horário:</span><br>{!! $turmas->Periodo !!}</td>
+                <td><span>Dias de Aula:</span><br>{!! $turmas->DiasDaSemana !!} dias</td>
                 <td><span>Matriculado sob o número:</span><br>{!! $aluno->id !!}</td>
             </tr>
         </table>
@@ -187,8 +185,7 @@
         </div>
     </div>
 
-
 </body>
 </html>
 
-@endforeach
+
