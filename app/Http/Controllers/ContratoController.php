@@ -46,7 +46,8 @@ class ContratoController extends AppBaseController
      */
     public function create()
     {
-        return view('contratos.create');
+        $cursos = DB::table('curso')->get();
+        return view('contratos.create', ['cursos' => $cursos]);
     }
 
     /**
@@ -85,16 +86,10 @@ class ContratoController extends AppBaseController
      */
     public function show($id)
     {
-        // $contrato = $this->contratoRepository->find($id);
+        $contratos = DB::table('contratos')->get()->where('idCurso', $id);
+        $curso = DB::table('curso')->get()->where('id', $id)->first();
 
-        // if (empty($contrato)) {
-        //     Flash::error('Contrato not found');
-
-        //     return redirect(route('contratos.index'));
-        // }
-
-        // return view('contratos.show')->with('contrato', $contrato);
-        return view('contratos.show', ['1']);
+        return view('contratos.show', ['contratos' => $contratos, 'curso' => $curso]);
     }
 
     /**
@@ -113,8 +108,9 @@ class ContratoController extends AppBaseController
 
             return redirect(route('contratos.index'));
         }
+        $cursos = DB::table('curso')->get();
 
-        return view('contratos.edit')->with('contrato', $contrato);
+        return view('contratos.edit', ['cursos' => $cursos, 'contrato' => $contrato]);
     }
 
     /**

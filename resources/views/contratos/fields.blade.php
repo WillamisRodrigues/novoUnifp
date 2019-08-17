@@ -7,7 +7,13 @@
     <!-- Idcurso Field -->
     <div class="row">
         <p class="col-xs-12 col-sm-3">{!! Form::label('idCurso', 'ID do Curso:') !!}</p>
-        <p class="col-xs-12 col-sm-9">{!! Form::number('idCurso', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-xs-12 col-sm-9 select-padrao">
+            <select name="idCurso" id="idCurso">
+                @foreach ($cursos as $curso)
+                    <option value="{!! $curso->id !!}">{!! $curso->nomeCurso !!}</option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Contrato1 Field -->
@@ -101,7 +107,7 @@
             <button class="btn btn-success btn-flat" style="margin-bottom: 1rem" type="submit"><i
                     class="fa fa-save"></i>
                 Salvar
-                Curso</button>
+                Contrato</button>
             <a href="{!! route('contratos.index') !!}" style="margin-bottom: 1rem" class="btn btn-danger btn-flat"> <i
                     class="fa fa-close"></i>
                 Cancelar</a>

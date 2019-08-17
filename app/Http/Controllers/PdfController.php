@@ -38,6 +38,7 @@ class PdfController extends Controller
         //pega id das relações referentes a tabela aluno
         //falta id da unidade
         $idUnidade = 1;
+        //$idUnidade = $aluno->idUnidade;
         $idCurso = $aluno->Curso;
         $idParcelamento = $aluno->Parcelamento;
         $idTurma = $aluno->Turma;
@@ -47,9 +48,10 @@ class PdfController extends Controller
         $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento)->first();
         $cursos = DB::table('curso')->get()->where('id', $idCurso)->first();
         $turmas = DB::table('turma')->get()->where('id', $idTurma)->first();
+        $contrato = DB::table('contrato')->get()->where('idCurso', $idCurso)->first();
 
 
-        $pdf = PDF::loadView('pdf.contrato', ['aluno' => $aluno, 'cursos' => $cursos, 'unidades' => $unidades, 'parcelamentos' => $formas_parcelamentos, 'turmas' => $turmas]);
+        $pdf = PDF::loadView('pdf.contrato', ['aluno' => $aluno, 'cursos' => $cursos, 'unidades' => $unidades, 'parcelamentos' => $formas_parcelamentos, 'turmas' => $turmas, 'contrato' => $contrato]);
         return $pdf->stream('invoice.pdf');
     }
 

@@ -61,7 +61,7 @@
             <tr>
                 <td class="font-weight-bold">Vencimento</td>
                 <td>{!! date('d/m/Y', strtotime($boleto->Vencimento)); !!}</td>
-                <td colspan='3'>Intruções: cobrar R$0,30 juros ao dia</td>
+                <td colspan='3'>Instruções: cobrar R$0,30 juros ao dia</td>
                 <td><b>Carnê/Folha</b> <br> <span class='text-right'>Nº. {!! $boleto->numeroDocumento !!}</span></td>
             </tr>
             <tr>
