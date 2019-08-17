@@ -3,13 +3,13 @@
         <thead>
             <tr>
                 <th>Matrícula</th>
-                <th>Nome</th>
+                <th class="text-center">Nome</th>
                 <th>Sexo</th>
                 <th>CPF</th>
                 <th>Status</th>
                 <th>Frequência %</th>
                 <th>Frequência AVA</th>
-                <th>Carnê</th>
+                <th class="text-center">Termo<br>Cancelamento</th>
                 <th>Média</th>
                 <th>Pagamentos</th>
                 <th>Contrato</th>
@@ -23,25 +23,36 @@
         <tbody>
             @foreach($alunos as $aluno)
             <tr>
-                <td>{!! $aluno->id !!}</td>
+                <td class="text-center">{!! $aluno->id !!}</td>
                 <td>{!! $aluno->Nome !!}</td>
-                <td>{!! $aluno->Sexo !!}</td>
+                <td class="text-center">
+                    @if($aluno->Sexo == 'Masculino')
+                        {!! 'M' !!}
+                    @else
+                        {!! 'F' !!}
+                    @endif
+                </td>
                 <td>{!! $aluno->CpfAluno !!}</td>
                 <td>Status</td>
-                <td>Frequência</td>
+                <td class="text-center">100%</td>
                 <td><a href="{!! route('frequencias.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Frequência</i></a></td>
-                <td>Termo Cancelamento</td>
-                <td>Média</td>
+                <td>
+                    <button href="#"
+                            {{-- target="_blank"  --}}
+                            class="btn btn-flat botao-cancelamento"
+                            style="border: 1px solid #D73925; color: #D73925; background-color:white">
+                        <i class="fa fa-print"></i> Cancelamento
+                    </button>
+                </td>
+                <td class="text-center">10.0</td>
                 <td>Pagamentos</td>
                 <td>
-                    {{-- <a href="{!! route('pdf.gerarContrato', [$aluno->id]) !!}" class="btn btn-flat btn-success"> --}}
                     <a href="gerarContrato/{!!$aluno->id!!}" target="_blank" class="btn btn-flat btn-success">
                         <i class="fa fa-print"></i>CT
                     </a>
                 </td>
                 <td>
-                    {{-- <a href="{!! route('pdf.gerarCarne', [$aluno->id]) !!}" class="btn btn-flat botao-cancelamento" --}}
                     <a href="gerarCarne/{!!$aluno->id!!}" target="_blank" class="btn btn-flat botao-cancelamento"
                         style="border: 1px solid #D73925; color: #D73925">
                         <i class="fa fa-print"></i>CN
@@ -50,12 +61,12 @@
                 <td>
                     {!! Form::open(['route' => ['alunos.destroy', $aluno->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{!! route('alunos.show', [$aluno->id]) !!}" class='btn btn-default btn-sm'><i
+                        <a href="{!! route('alunos.show', [$aluno->id]) !!}" class='btn btn-default btn-xs'><i
                                 class="glyphicon glyphicon-zoom-in"></i></a>
-                        <a href="{!! route('alunos.edit', [$aluno->id]) !!}" class='btn btn-default btn-sm'><i
+                        <a href="{!! route('alunos.edit', [$aluno->id]) !!}" class='btn btn-default btn-xs'><i
                                 class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que você deseja deletar o
+                        'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que você deseja deletar o
                         aluno selecionado?')"]) !!}
                     </div>
                     {!! Form::close() !!}

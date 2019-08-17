@@ -18,7 +18,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123456'),
             'nivelAcesso' => 0,
             'unidadeEscolar' => 0,
-            'nascimento' => '2023/10/10'
+            'nascimento' => '2023/10/10',
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        DB::table('dias_vencimento')->insert([
+            'diaVencimento' => 8,
+            'created_at' => $date,
+            'updated_at' => $date
         ]);
         DB::table('escolaridade')->insert([
             'Escolaridade' => '1º Ano Ensino Médio',

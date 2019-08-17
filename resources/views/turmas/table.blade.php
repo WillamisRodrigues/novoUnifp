@@ -63,7 +63,7 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
-            <td><a href="{!! route('alunos.index') !!}" class="btn btn-primary">Alunos/Matrículas</a></td>
+            <td><a href="/AlunosTurma/{!!$turma->id!!}" class="btn btn-primary">Alunos/Matrículas</a></td>
             </tr>
             @endforeach
         </tbody>
