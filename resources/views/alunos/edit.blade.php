@@ -26,7 +26,7 @@
     </div> --}}
     {{-- <div class="box box-primary criar-unidade"> --}}
 
-        <div class="clearfix"></div>
+    <div class="clearfix"></div>
     <div class="box-body criar-aluno">
         <div class="clearfix"></div>
         <div class="row">

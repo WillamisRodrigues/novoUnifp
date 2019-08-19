@@ -69,14 +69,7 @@
                             <td><a href="#" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Recibo</a></td>
                             <td>{!! $pagto->Usuario !!}</td>
                             <td>{!! $pagto->Data !!}</td>
-                            <td>
-                                {!! Form::open(['route' => 'pagamentos.store']) !!}
-                                {!! Form::hidden('Parcela', $pagto->Parcela) !!}
-                                {!! Form::hidden('Matricula', $aluno->id) !!}
-                                <button type="submit" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Lançar</button>
-                                {!! Form::close() !!}
-
-                            </td>
+                            <td><a href="/pagamentos/lancar/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Lançar</a></td>
                         </tr>
                         @endforeach
                     </tbody>

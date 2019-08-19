@@ -59,11 +59,17 @@ Route::get('/gerarRelatorio', ['uses' => 'PdfController@gerarRelatorio']);
 
 Route::get('/gerarCsv', ['uses' => 'ExportarCsvController@gerarCsv']);
 
-Route::get('contratos/addContrato/{idCurso}', ['uses' => 'ContratoController@create']);
+Route::get('/contratos/addContrato/{idCurso}', ['uses' => 'ContratoController@create']);
 
-Route::get('turmasCursos/{idCurso}', ['uses' => 'TurmaCursoController@show']);
+Route::get('/turmasCursos/{idCurso}', ['uses' => 'TurmaCursoController@show']);
 
-Route::get('comunicados/addComunidado/{matricula}', ['uses' => 'ComunicadosController@create']);
+Route::get('/comunicados/addComunidado/{matricula}', ['uses' => 'ComunicadosController@create']);
+
+Route::get('/gerarRecibo/{id}', ['uses' => 'PdfController@gerarRecibo']);
+
+Route::get('/pagamentos/lancar/{idPagamento}/{idAluno}', ['uses' => 'PagamentoController@lancamento']);
+
+Route::post('/formularioPagamento', ['uses' => 'PagamentoController@store']);
 
 Route::resource('agendas', 'AgendaController');
 
@@ -117,7 +123,7 @@ Route::resource('aniversarios', 'AniversarioController');
 
 Route::resource('presenca', 'PresencaController');
 
-Route::resource('pagamentos', 'PagamentoController');
+Route::resource('pagamento', 'PagamentoController');
 
 Route::resource('frequencias', 'FrequenciaController');
 
@@ -134,3 +140,5 @@ Route::resource('contratos', 'ContratoController');
 Route::resource('pdf', 'PdfController');
 
 Route::resource('diasVencimentos', 'DiasVencimentoController');
+
+Route::resource('pagamentos', 'PagamentosController');

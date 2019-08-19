@@ -63,4 +63,8 @@ class PdfController extends Controller
         $pdf = PDF::loadView('pdf.relatorio', ['caixas' => $dados])->setPaper('a3', 'landscape');
         return $pdf->stream('invoice.pdf');
     }
+
+    public function gerarRecibo($id){
+        return $id;
+    }
 }

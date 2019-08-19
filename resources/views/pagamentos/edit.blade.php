@@ -15,11 +15,11 @@
     @include('adminlte-templates::common.errors')
     <div class="box box-primary criar-unidade">
         <div class="box-body formulario-padrao">
-            {{-- {!! Form::model($frequencia, ['route' => ['frequencias.update', $frequencia->id], 'method' => 'patch']) !!} --}}
+            {!! Form::open(['route' => 'pagamentos.store']) !!}
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Nº Documento:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                        Variável
+                    {!! $recibo->numeroDocumento !!}
                 </div>
             </p>
             <p class="row">
@@ -40,7 +40,6 @@
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Vencimento:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     {{-- {!! date('d/m/Y', strtotime($pagamentos->Hora)); !!} --}}
-                    {{-- Acima já está formatado a data, falta a variável --}}
                     10/10/2000
                 </div>
             </p>
@@ -83,17 +82,17 @@
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Valor:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                        {!! Form::number('Valor', null) !!}
+                    {!! Form::number('Valor', null) !!}
                 </div>
             </p>
             <div class="form-group col-sm-12" style="margin-top: 15px">
                 <button class="btn btn-success btn-flat" style="margin-bottom:1rem" type="submit"><i
                         class="fa fa-save"></i>
                     Lançar</button>
-                <a href="{!! route('pagamentos.index') !!}" style="margin-bottom:1rem" class="btn btn-danger btn-flat">
+                <a href="{!! route('pagamentos.show', [$aluno->id]) !!}" style="margin-bottom:1rem" class="btn btn-danger btn-flat">
                     <i class="fa fa-close"></i> Cancelar</a>
             </div>
-            {{-- {!! Form::close() !!} --}}
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

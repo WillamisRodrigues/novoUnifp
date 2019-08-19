@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateAlunoRequest;
 use App\Http\Requests\UpdateAlunoRequest;
 use App\Repositories\AlunoRepository;
-// use App\Repositories\FuncionarioRepository;
-// use App\Repositories\EscolaridadeRepository;
-// use App\Repositories\CursoRepository;
-// use App\Repositories\TurmaRepository;
 use App\Repositories\PagtoRepository;
 use App\Repositories\FormaPgtoRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -21,7 +18,7 @@ class PagamentoController extends AppBaseController
     /** @var  AlunoRepository */
     private $alunoRepository;
 
-    public function __construct(AlunoRepository $alunoRepo, FormaPgtoRepository $formaPgtoRepo,PagtoRepository $pagtoRepo)
+    public function __construct(AlunoRepository $alunoRepo, FormaPgtoRepository $formaPgtoRepo, PagtoRepository $pagtoRepo)
     {
         $this->alunoRepository = $alunoRepo;
         $this->formaPgtoRepository = $formaPgtoRepo;
@@ -40,22 +37,17 @@ class PagamentoController extends AppBaseController
         $alunos = $this->alunoRepository->all()->where('id', $id);
         $pagtos = $this->pagtoRepository->all()->where('Matricula', $id);
 
-        return view('pagamentos.index', ['alunos' => $alunos, 'pagtos' => $pagtos ]);
+        return view('pagamentos.index', ['alunos' => $alunos, 'pagtos' => $pagtos]);
     }
 
-    /**
-     * Show the form for creating a new Aluno.
-     *
-     * @return Response
-     */
-    public function create()
+    public function lancamento($pag, $matricula)
     {
-        $funcionarios = $this->funcionarioRepository->all()->where('Cargo', 'Vendedor');
-        $escolaridades = $this->escolaridadeRepository->all();
-        $cursos = $this->cursoRepository->all();
-        $turmas = $this->turmaRepository->all();
 
-        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas]);
+        $aluno = DB::table('aluno')->get()->where('id', $matricula)->first();
+        $recibo = DB::table('pagamentos')->get()->where('id', $pag)->first();
+        $formaPgtos = DB::table('forma_pgto')->get();
+
+        return view('pagamentos.edit', ['aluno' => $aluno, 'recibo' => $recibo, 'formaPgtos' => $formaPgtos]);
     }
 
     /**
@@ -65,11 +57,13 @@ class PagamentoController extends AppBaseController
      *
      * @return Response
      */
-    public function store($Matricula, $Parcela)
+    public function store(Request $request)
     {
-        $aluno = $this->alunoRepository->find($Matricula);
+        $input = $request->all();
+
+        $aluno = $this->alunoRepository->find($input->Matricula);
         $formaPgtos = $this->formaPgtoRepository->all();
-        $pagtos = $this->pagtoRepository->all()->where('Matricula', $Matricula)->where('Parcela', $Parcela);
+        $pagtos = $this->pagtoRepository->all()->where('Matricula', $input->Matricula)->where('Parcela', $input->Parcela);
 
         if (empty($aluno)) {
             Flash::error('Aluno não encontrado.');
@@ -77,16 +71,7 @@ class PagamentoController extends AppBaseController
             return redirect(route('pagamentos.index'));
         }
 
-        // return view('alunos.edit')->with('aluno', $aluno);
         return view('pagamentos.edit', ['aluno' => $aluno, 'formaPgtos' => $formaPgtos]);
-
-        // $input = $request->all();
-
-        // $aluno = $this->alunoRepository->create($input);
-
-        // Flash::success('Aluno criado com sucesso.');
-
-        // return redirect(route('alunos.index'));
     }
 
     /**
@@ -110,7 +95,7 @@ class PagamentoController extends AppBaseController
         $alunos = $this->alunoRepository->all()->where('id', $id);
         $pagtos = $this->pagtoRepository->all()->where('Matricula', $id);
 
-        return view('pagamentos.index', ['alunos' => $alunos, 'pagtos' => $pagtos ]);
+        return view('pagamentos.index', ['alunos' => $alunos, 'pagtos' => $pagtos]);
     }
 
     /**
