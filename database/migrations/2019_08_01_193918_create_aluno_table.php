@@ -14,7 +14,7 @@ class CreateAlunoTable extends Migration
     public function up()
     {
         Schema::create('aluno', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('Nome');
             $table->enum('Sexo', ['Masculino', 'Feminino']);
             $table->date('NascimentoAluno');
@@ -24,9 +24,9 @@ class CreateAlunoTable extends Migration
             $table->string('CpfAluno');
             $table->string('Escolaridade');
             $table->string('Email');
-            $table->string('idCurso');
-            $table->string('idTurma');
-            $table->string('idParcelamento');
+            $table->integer('idCurso');
+            $table->integer('idTurma');
+            $table->integer('idParcelamento');
             $table->string('Vencimento');
             $table->string('Mae');
             $table->string('Pai');
@@ -52,9 +52,9 @@ class CreateAlunoTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('idCurso')->references('id')->on('curso');
-            $table->foreign('idTurma')->references('id')->on('turma');
-            $table->foreign('idParcelamento')->references('id')->on('parcelamento');
+            // $table->foreign('idCurso')->references('id')->on('curso');
+            // $table->foreign('idTurma')->references('id')->on('turma');
+            // $table->foreign('idParcelamento')->references('id')->on('formas_pagamento');
         });
     }
 

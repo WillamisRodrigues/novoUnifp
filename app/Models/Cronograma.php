@@ -18,7 +18,7 @@ class Cronograma extends Model
     use SoftDeletes;
 
     public $table = 'cronograma';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -28,7 +28,7 @@ class Cronograma extends Model
 
     public $fillable = [
         'Nome',
-        'AulasCronograma'
+        'idAulasCronograma'
     ];
 
     /**
@@ -39,7 +39,7 @@ class Cronograma extends Model
     protected $casts = [
         'id' => 'integer',
         'Nome' => 'string',
-        'AulasCronograma' => 'string'
+        'idAulasCronograma' => 'string'
     ];
 
     /**
@@ -49,8 +49,8 @@ class Cronograma extends Model
      */
     public static $rules = [
         'Nome' => 'required',
-        'AulasCronograma' => 'required'
+        'idAulasCronograma' => 'required'
     ];
 
-    
+
 }

@@ -18,36 +18,16 @@
 
     <!-- Contrato1 Field -->
     <div class="row">
-        <p class="col-xs-12 col-sm-3">{!! Form::label('Contrato1', 'Texto do Contrato:') !!}</p>
-        <p class="col-xs-12 col-sm-9">{!! Form::textarea('Contrato1', null, ['class' => 'form-control editor1']) !!}</p>
-    </div>
-
-    <!-- Assinatura1 Field -->
-    <div class="row">
-        <p class="col-xs-12 col-sm-3">{!! Form::label('Assinatura1', 'Assinatura:') !!}</p>
-        <p class="col-xs-12 col-sm-9">{!! Form::textarea('Assinatura1', null, ['class' => 'form-control editor2']) !!}
-        </p>
-    </div>
-
-    <!-- Valores1 Field -->
-    <div class="row">
-        <p class="col-xs-12 col-sm-3">{!! Form::label('Valores1', 'Valores:') !!}</p>
-        <p class="col-xs-12 col-sm-9">{!! Form::textarea('Valores1', null, ['class' => 'form-control editor3']) !!}</p>
-    </div>
-
-    <!-- Prestadora Field -->
-    <div class="row">
-        <p class="col-xs-12 col-sm-3">{!! Form::label('Prestadora', 'Prestadora:') !!}</p>
-        <p class="col-xs-12 col-sm-9">{!! Form::textarea('Prestadora', null, ['class' => 'form-control editor4']) !!}
-        </p>
+        <p class="col-xs-12 col-sm-3">{!! Form::label('Contrato', 'Texto do Contrato:') !!}</p>
+        <p class="col-xs-12 col-sm-9">{!! Form::textarea('Contrato', null, ['class' => 'form-control editor1']) !!}</p>
     </div>
 
     <!-- Matricula1 Field -->
     <div class="row">
-        <p class="col-xs-12 col-sm-3" style="padding: 10px 15px">{!! Form::label('Matricula1', 'Valor Matrícula:') !!}
+        <p class="col-xs-12 col-sm-3" style="padding: 10px 15px">{!! Form::label('Matricula', 'Valor Matrícula:') !!}
         </p>
         <div class="col-xs-12 input-group col-sm-9" style="padding:5px 15px;">
-            {!! Form::text('Matricula1', null, ['class' => 'form-control']) !!}
+            {!! Form::text('Matricula', null, ['class' => 'form-control']) !!}
             <div class="input-group-addon agenda-input-hora">
                 <i class="fa fa-money"></i>
             </div>

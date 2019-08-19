@@ -428,7 +428,7 @@
                         <select name="idParcelamento" id="idParcelamento" style="width: 50%">
                             @foreach($pagamentos as $pagamento )
                             <option value="{{ $pagamento->id }}">{{ $pagamento->QtdeParcelas }}x de
-                                R${{ $pagamento->ParcelaBruta }},00</option>
+                            R${{ $pagamento->ParcelaBruta }},00 - Total = R${{ $pagamento->BrutoTotal }},00</option>
                             @endforeach
                         </select>
                     </p>

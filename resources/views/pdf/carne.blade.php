@@ -56,7 +56,7 @@
                 <td><span>Multa por atraso</span><br> <span class='text-right'>10%</span> </td>
                 <td><span>Data da Emissão</span><br> <span class='text-right'>{!! date('d/m/Y'); !!}</span> </td>
                 <td style="width: 7%"><span>Controle </span><br></td>
-                <td><b>Parcela Nº.</b><br> <span class='text-right'> {!!$i!!} /18</span> </td>
+                <td><b>Parcela Nº.</b><br> <span class='text-right'> {!!$i!!} / {!! $parcelamento->QtdeParcelas !!}</span> </td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Vencimento</td>

@@ -17,11 +17,8 @@ class CreateContratosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('idCurso');
             $table->string('NomeContrato');
-            $table->longText('Contrato1');
-            $table->longText('Assinatura1');
-            $table->longText('Valores1');
-            $table->float('Matricula1', 8, 2);
-            $table->longText('Prestadora');
+            $table->longText('Contrato');
+            $table->float('Matricula', 8, 2);
             $table->float('MultaContrato', 8, 2);
             $table->float('MoraContrato', 8, 2);
             $table->float('Multa', 8, 2);
@@ -29,7 +26,7 @@ class CreateContratosTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('idCurso')->references('id')->on('curso');
+            // $table->foreign('idCurso')->references('id')->on('curso');
         });
     }
 

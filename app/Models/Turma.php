@@ -36,7 +36,7 @@ class Turma extends Model
 
 
     public $fillable = [
-        'Curso',
+        'idCurso',
         'NomeTurma',
         'DiasDaSemana',
         'Periodo',
@@ -57,7 +57,7 @@ class Turma extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'Curso' => 'string',
+        'idCurso' => 'string',
         'NomeTurma' => 'string',
         'DiasDaSemana' => 'date',
         'Periodo' => 'string',
@@ -76,7 +76,7 @@ class Turma extends Model
      * @var array
      */
     public static $rules = [
-        'Curso' => 'required',
+        'idCurso' => 'required',
         'NomeTurma' => 'required',
         'DiasDaSemana' => 'required',
         'Periodo' => 'required',

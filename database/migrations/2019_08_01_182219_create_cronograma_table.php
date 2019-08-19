@@ -20,7 +20,7 @@ class CreateCronogramaTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('idAulasCronograma')->references('id')->on('aulas_cronograma');
+            // $table->foreign('idAulasCronograma')->references('id')->on('aulas_cronograma');
         });
     }
 

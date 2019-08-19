@@ -15,7 +15,7 @@ class CreatePagamentosTable extends Migration
     {
         Schema::create('pagamentos', function (Blueprint $table) {
             $table->bigIncrements('numeroDocumento');
-            $table->bigInteger('Matricula');
+            $table->integer('Matricula');
             $table->integer('Parcela');
             $table->enum('Referencia', ['Matricula', 'Mensalidade']);
             $table->date('Vencimento');
@@ -29,7 +29,7 @@ class CreatePagamentosTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('Matricula')->references('id')->on('aluno');
+            // $table->foreign('Matricula')->references('id')->on('aluno');
         });
     }
 

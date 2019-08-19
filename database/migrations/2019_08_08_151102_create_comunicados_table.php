@@ -15,12 +15,12 @@ class CreateComunicadosTable extends Migration
     {
         Schema::create('comunicados', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('idAluno');
+            $table->integer('idAluno');
             $table->longText('Comunicado');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('idAluno')->references('id')->on('aluno');
+            // $table->foreign('idAluno')->references('id')->on('aluno');
         });
     }
 

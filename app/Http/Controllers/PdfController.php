@@ -21,13 +21,14 @@ class PdfController extends Controller
     {
         $aluno = DB::table('aluno')->get()->where('id', $id)->first();
         $boletos = DB::table('pagamentos')->get()->where('Matricula',$id);
-
+        $idParcelamento = $aluno->idParcelamento;
+        $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento)->first();
         //pega id das relações
         //falta id da unidade
         $idUnidade = 1;
         $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
 
-        $pdf = PDF::loadView('pdf.carne', ['aluno' => $aluno, 'unidade' => $unidades, 'boletos' => $boletos]);
+        $pdf = PDF::loadView('pdf.carne', ['aluno' => $aluno, 'unidade' => $unidades, 'boletos' => $boletos, 'parcelamento' => $formas_parcelamentos]);
         return $pdf->stream('invoice.pdf');;
     }
 
@@ -39,19 +40,20 @@ class PdfController extends Controller
         //falta id da unidade
         $idUnidade = 1;
         //$idUnidade = $aluno->idUnidade;
-        $idCurso = $aluno->Curso;
-        $idParcelamento = $aluno->Parcelamento;
-        $idTurma = $aluno->Turma;
+        $idCurso = $aluno->idCurso;
+        $idParcelamento = $aluno->idParcelamento;
+        $idTurma = $aluno->idTurma;
 
         //pegar dados das tabelas com base nos relacionamentos
         $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
         $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento)->first();
         $cursos = DB::table('curso')->get()->where('id', $idCurso)->first();
         $turmas = DB::table('turma')->get()->where('id', $idTurma)->first();
-        $contrato = DB::table('contrato')->get()->where('idCurso', $idCurso)->first();
+        $contrato = DB::table('contratos')->get()->where('idCurso', $idCurso)->first();
+        $date = date('d/m/Y') ;
 
 
-        $pdf = PDF::loadView('pdf.contrato', ['aluno' => $aluno, 'cursos' => $cursos, 'unidades' => $unidades, 'parcelamentos' => $formas_parcelamentos, 'turmas' => $turmas, 'contrato' => $contrato]);
+        $pdf = PDF::loadView('pdf.contrato', ['aluno' => $aluno, 'cursos' => $cursos, 'unidade' => $unidades, 'parcelamentos' => $formas_parcelamentos, 'turmas' => $turmas, 'contrato' => $contrato, 'dataAgora' => $date]);
         return $pdf->stream('invoice.pdf');
     }
 

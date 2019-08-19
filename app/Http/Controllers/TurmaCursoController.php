@@ -17,7 +17,7 @@ class TurmaCursoController extends Controller
      */
     public function show($id)
     {
-        $turma = DB::select('select * from turma where Status = ? and Curso = ?', ['Ativa', $id]);
+        $turma = DB::select('select * from turma where Status = ? and idCurso = ?', ['Ativa', $id]);
         $curso = DB::table('curso')->get();
         // dd($turma);
 

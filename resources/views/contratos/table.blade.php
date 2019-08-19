@@ -4,15 +4,8 @@
             <tr>
                 <th>NomeContrato</th>
                 <th>Idcurso</th>
-                <th>Contrato1</th>
-                <th>Assinatura1</th>
-                <th>Valores1</th>
-                <th>Matricula1</th>
-                <th>Contrato2</th>
-                <th>Assinatura2</th>
-                <th>Valores2</th>
-                <th>Matricula2</th>
-                <th>Prestadora</th>
+                <th>Contrato</th>
+                <th>Matricula</th>
                 <th>Multacontrato</th>
                 <th>Moracontrato</th>
                 <th>Multa</th>
@@ -32,13 +25,6 @@
                 <td>7</td>
                 <td>8</td>
                 <td>9</td>
-                <td>10</td>
-                <td>11</td>
-                <td>12</td>
-                <td>13</td>
-                <td>14</td>
-                <td>15</td>
-                <td>16</td>
                 {{-- <td>{!! $contrato->NomeContrato !!}</td>
                 <td>{!! $contrato->idCurso !!}</td>
                 <td>{!! $contrato->Contrato1 !!}</td>

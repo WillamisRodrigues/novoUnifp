@@ -160,7 +160,7 @@
     </a>
     <ul class="dropdown-menu drop-menu-item-top">
         <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
-            <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Escolas / Contratos</span></a>
+            <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Escolas</span></a>
         </li>
         <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
             <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>

@@ -57,7 +57,7 @@ class AlunoTurmaController extends Controller
         //     return redirect(route('alunos.index'));
         // }
 
-        $alunos = DB::table('aluno')->get()->where('Turma', $id);
+        $alunos = DB::table('aluno')->get()->where('idTurma', $id);
 
         // dd($alunos);
 

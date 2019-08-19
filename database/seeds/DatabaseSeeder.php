@@ -71,7 +71,7 @@ class DatabaseSeeder extends Seeder
             'updated_at' => $date
         ]);
         DB::table('turma')->insert([
-            'Curso' => '1',
+            'idCurso' => '1',
             'NomeTurma' => '1',
             'DiasDaSemana' => $date,
             'Periodo' => 'Tarde',
@@ -87,12 +87,12 @@ class DatabaseSeeder extends Seeder
             'updated_at' => $date
         ]);
         DB::table('formas_pagamento')->insert([
-            'QtdeParcelas' => 1,
-            'BrutoTotal' => 1,
-            'ParcelaBruta' => 1,
+            'QtdeParcelas' => 10,
+            'BrutoTotal' => 100,
+            'ParcelaBruta' => 10,
             'DescontoPontualidade' => 1,
-            'ParcelaDescontoPontualidade' => 1,
-            'ValorTotalDesconto' => 1,
+            'ParcelaDescontoPontualidade' => 9,
+            'ValorTotalDesconto' => 90,
             'created_at' => $date,
             'updated_at' => $date
         ]);
