@@ -56,12 +56,12 @@ class ComunicadosController extends AppBaseController
     public function store(CreateComunicadosRequest $request)
     {
         $input = $request->all();
-
         $comunicados = $this->comunicadosRepository->create($input);
+        // dd($comunicados->idAluno);
 
         Flash::success('Comunicados saved successfully.');
 
-        return redirect(route('comunicados.index'));
+        return redirect(route('comunicados.show', $comunicados->idAluno));
     }
 
     /**

@@ -63,6 +63,8 @@ Route::get('contratos/addContrato/{idCurso}', ['uses' => 'ContratoController@cre
 
 Route::get('turmasCursos/{idCurso}', ['uses' => 'TurmaCursoController@show']);
 
+Route::get('comunicados/addComunidado/{matricula}', ['uses' => 'ComunicadosController@create']);
+
 Route::resource('agendas', 'AgendaController');
 
 Route::resource('agendasArquivada', 'AgendasArquivadaController');

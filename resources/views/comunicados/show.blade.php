@@ -13,8 +13,8 @@
 </section>
 <div class="clearfix"></div>
 @foreach ($alunos as $aluno)
-<a class="btn btn-success" style="margin-left: 1rem" href="{!! route('comunicados.create', $aluno->id) !!}"><i
-        class="fa fa-plus"></i> Adicionar</a>
+<a class="btn btn-success" style="margin-left: 1rem" href="addComunidado/{!! $aluno->id !!}"><i class="fa fa-plus"></i>
+    Adicionar</a>
 @endforeach
 <div class="content">
     <div class="container" style="height: 100px">
@@ -33,41 +33,19 @@
     <div class="box box-primary criar-unidade">
         <div class="box-body">
             <div class="row" style="padding-left: 20px">
-                {{-- @include('comunicados.show_fields') --}}
                 <div class="table-responsive">
-                    <table class="table" id="comunicados-table">
+                    <table class="table" id="comunicados-table" style="width: 60%; margin: 0 auto;">
                         <thead>
                             <tr>
                                 <th>Matrícula</th>
                                 <th>Comunicado</th>
-                                <th>Ações</th>
                             </tr>
                         </thead>
-                        <td></td>
-                        <td>Não há comunicados a serem exibidos</td>
-                        <td></td>
                         <tbody>
                             @foreach($comunicados as $comunicados)
                             <tr>
                                 <td>{!! $comunicados->idAluno !!}</td>
                                 <td>{!! $comunicados->Comunicado !!}</td>
-                                <td>
-                                    {!! Form::open(['route' => ['comunicados.destroy', $comunicados->id], 'method'
-                                    =>
-                                    'delete']) !!}
-                                    <div class='btn-group'>
-                                        <a href="{!! route('comunicados.show', [$comunicados->id]) !!}"
-                                            class='btn btn-default btn-xs'><i
-                                                class="glyphicon glyphicon-eye-open"></i></a>
-                                        <a href="{!! route('comunicados.edit', [$comunicados->id]) !!}"
-                                            class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                                        {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' =>
-                                        'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return
-                                        confirm('Are
-                                        you sure?')"]) !!}
-                                    </div>
-                                    {!! Form::close() !!}
-                                </td>
                             </tr>
                             @endforeach
                         </tbody>

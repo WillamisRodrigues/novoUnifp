@@ -3,7 +3,7 @@
     {{-- <div class="row">
         <p class="col-xs-12 col-sm-3">{!! Form::label('idAluno', 'Idaluno:') !!}</p>
     </div> --}}
-    <p class="col-xs-12 col-sm-6">{!! Form::hidden('idAluno', $matricula) !!}</p>
+    {!! Form::hidden('idAluno', $matricula) !!}
 
     <!-- Comunicado Field -->
     <div class="row">
