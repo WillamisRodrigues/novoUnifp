@@ -33,8 +33,8 @@ class TurmaController extends AppBaseController
     public function index(Request $request)
     {
         $turmas = $this->turmaRepository->all()->where('Status', 'Ativa');
-        return view('turmas.index')
-            ->with('turmas', $turmas);
+        $cursos = DB::table('curso')->get();
+        return view('turmas.index', ['turmas' => $turmas, 'cursos' => $cursos]);
     }
 
     /**

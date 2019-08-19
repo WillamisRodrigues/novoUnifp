@@ -71,8 +71,8 @@ class DatabaseSeeder extends Seeder
             'updated_at' => $date
         ]);
         DB::table('turma')->insert([
-            'Curso' => 'Curso Seed',
-            'NomeTurma' => 'Turma Seed',
+            'Curso' => '1',
+            'NomeTurma' => '1',
             'DiasDaSemana' => $date,
             'Periodo' => 'Tarde',
             'Horario' => '15:14:15',

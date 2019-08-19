@@ -1,8 +1,8 @@
 <div class="container formulario-padrao">
     <!-- Curso Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-4">{!! Form::label('idCurso', 'Curso:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $turma->idCurso !!}</p>
+        <p class="col-sm-12 col-md-4">{!! Form::label('Curso', 'Curso:') !!}</p>
+        <p class="col-sm-12 col-md-8">{!! $turma->Curso !!}</p>
     </div>
 
     <!-- Nometurma Field -->

@@ -28,6 +28,8 @@ class CreatePagamentosTable extends Migration
             $table->timestamp('Data')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('Matricula')->references('id')->on('aluno');
         });
     }
 

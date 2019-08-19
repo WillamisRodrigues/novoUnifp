@@ -19,6 +19,8 @@ class CreateComunicadosTable extends Migration
             $table->longText('Comunicado');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('idAluno')->references('id')->on('aluno');
         });
     }
 

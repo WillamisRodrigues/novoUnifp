@@ -15,7 +15,7 @@ class CreateTurmaTable extends Migration
     {
         Schema::create('turma', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Curso');
+            $table->string('idCurso');
             $table->string('NomeTurma');
             $table->date('DiasDaSemana');
             $table->enum('Periodo', ['Manha', 'Tarde', 'Noite']);
@@ -29,6 +29,8 @@ class CreateTurmaTable extends Migration
             $table->enum('Status',['Ativa', 'Inativa']);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('idCurso')->references('id')->on('curso');
         });
     }
 

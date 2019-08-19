@@ -28,6 +28,8 @@ class CreateContratosTable extends Migration
             $table->float('Mora', 8, 2);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('idCurso')->references('id')->on('curso');
         });
     }
 

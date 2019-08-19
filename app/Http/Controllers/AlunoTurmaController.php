@@ -51,16 +51,16 @@ class AlunoTurmaController extends Controller
     public function show($id)
     {
 
-        if (empty($aluno)) {
-            Flash::error('Aluno não encontrado.');
+        // if (empty($aluno)) {
+        //     Flash::error('Aluno não encontrado.');
 
-            return redirect(route('alunos.index'));
-        }
+        //     return redirect(route('alunos.index'));
+        // }
 
         $alunos = DB::table('aluno')->get()->where('Turma', $id);
 
-        dd($alunos);
+        // dd($alunos);
 
-        return view('alunos.alunosTurma');
+        return view('alunos.index', ['alunos' => $alunos]);
     }
 }

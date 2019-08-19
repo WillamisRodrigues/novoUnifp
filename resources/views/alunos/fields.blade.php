@@ -393,10 +393,10 @@
             <div class="container">
                 <!-- Campo Curso -->
                 <div class="row">
-                    <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Curso', 'Curso:') !!}<span
+                    <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('idCurso', 'Curso:') !!}<span
                             style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-                        <select name="Curso" id="Curso" style="width: 50%">
+                        <select name="idCurso" id="idCurso" style="width: 50%">
                             @foreach($cursos as $curso)
                             <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
                             @endforeach
@@ -406,10 +406,10 @@
 
                 <!-- Campo Turma -->
                 <div class="row">
-                    <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Turma', 'Turma:') !!}<span
+                    <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('idTurma', 'Turma:') !!}<span
                             style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-                        <select name="Turma" id="Turma" style="width: 50%">
+                        <select name="idTurma" id="idTurma" style="width: 50%">
                             @foreach($turmas as $turma )
                                 <option value="{{ $turma->id }}">
                                     {{ $turma->NomeTurma }}
@@ -421,11 +421,11 @@
 
                 <!-- Campo Parcelamento -->
                 <div class="row">
-                    <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Parcelamento', 'Forma de Parcelamento:')
+                    <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('idParcelamento', 'Forma de Parcelamento:')
                         !!}<span style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
                         {{-- {!! Form::text('Parcelamento', null, ['class' => 'form-control']) !!} --}}
-                        <select name="Parcelamento" id="Parcelamento" style="width: 50%">
+                        <select name="idParcelamento" id="idParcelamento" style="width: 50%">
                             @foreach($pagamentos as $pagamento )
                             <option value="{{ $pagamento->id }}">{{ $pagamento->QtdeParcelas }}x de
                                 R${{ $pagamento->ParcelaBruta }},00</option>

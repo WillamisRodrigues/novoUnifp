@@ -24,9 +24,9 @@ class CreateAlunoTable extends Migration
             $table->string('CpfAluno');
             $table->string('Escolaridade');
             $table->string('Email');
-            $table->string('Curso');
-            $table->string('Turma');
-            $table->string('Parcelamento');
+            $table->string('idCurso');
+            $table->string('idTurma');
+            $table->string('idParcelamento');
             $table->string('Vencimento');
             $table->string('Mae');
             $table->string('Pai');
@@ -51,6 +51,10 @@ class CreateAlunoTable extends Migration
             $table->string('Usuario_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('idCurso')->references('id')->on('curso');
+            $table->foreign('idTurma')->references('id')->on('turma');
+            $table->foreign('idParcelamento')->references('id')->on('parcelamento');
         });
     }
 

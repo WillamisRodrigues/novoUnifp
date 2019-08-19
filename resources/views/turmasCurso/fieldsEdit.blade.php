@@ -1,10 +1,10 @@
 <div class="container formulario-padrao">
     <!-- Curso Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('idCurso', 'Curso:') !!}<span style="color: red">*</span></p>
+        <p class="col-sm-12 col-md-3">{!! Form::label('Curso', 'Curso:') !!}<span style="color: red">*</span></p>
         {{-- <p class="col-sm-12 col-md-6">{!! Form::text('Curso', null, ['class' => 'form-control']) !!}</p> --}}
         <p class="col-sm-12 col-md-6 select-padrao">
-                <select name="idCurso" id="idCurso" style="width: 50%">
+                <select name="Curso" id="Curso" style="width: 50%">
                     @foreach($cursos as $curso )
                     <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}</option>
                     @endforeach

@@ -1,15 +1,14 @@
 <div class="container formulario-padrao">
     <!-- Curso Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('idCurso', 'Curso:') !!}<span style="color: red">*</span></p>
-        {{-- <p class="col-sm-12 col-md-6">{!! Form::text('Curso', null, ['class' => 'form-control']) !!}</p> --}}
+        <p class="col-sm-12 col-md-3">{!! Form::label('Curso', 'Curso:') !!}<span style="color: red">*</span></p>
         <p class="col-sm-12 col-md-6 select-padrao">
-                <select name="idCurso" id="idCurso" style="width: 50%">
-                    @foreach($cursos as $curso )
-                    <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}</option>
-                    @endforeach
-                </select>
-            </p>
+            <select name="Curso" id="Curso" style="width: 50%">
+                @foreach($cursos as $curso)
+                <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Nometurma Field -->
@@ -23,10 +22,6 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DiasDaSemana', 'Dias da Semana:') !!}<span
                 style="color: red">*</span></p>
-        {{-- <div class="col-sm-12 col-md-6">
-            {!! Form::date('DiasDaSemana', null, ['class' =>
-            'form-control','id'=>'DiasDaSemana']) !!}
-        </div> --}}
         <div class="input-group col-md-6 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('DiasDaSemana', null, ['class' => 'form-control','id'=>'DiasDaSemana']) !!}
@@ -107,15 +102,13 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Professor', 'Professor:') !!}<span style="color: red">*</span>
         </p>
-        {{-- <p class="col-sm-12 col-md-6">{!! Form::text('Professor', null, ['class' => 'form-control']) !!}</p> --}}
         <p class="col-sm-12 col-md-6 select-padrao">
-                {{-- {!! Form::text('Professor', null, ['class' => 'form-control']) !!} --}}
-                <select name="Professor" id="Professor" style="width: 50%">
-                    @foreach($professores as $professor )
-                    <option value="{{ $professor->nome }}">{{ $professor->nome }}</option>
-                    @endforeach
-                </select>
-            </p>
+            <select name="Professor" id="Professor" style="width: 50%">
+                @foreach($professores as $professor )
+                <option value="{{ $professor->Nome }}">{{ $professor->Nome }}</option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Vagas Field -->
@@ -128,31 +121,18 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Cronograma', 'Cronograma:') !!}<span style="color: red">*</span>
         </p>
-        {{-- <p class="col-sm-12 col-md-6">{!! Form::text('Cronograma', null, ['class' => 'form-control']) !!}</p> --}}
         <p class="col-sm-12 col-md-6 select-padrao">
-                {{-- {!! Form::text('Cronograma', null, ['class' => 'form-control']) !!} --}}
-                <select name="Cronograma" id="Cronograma" style="width: 50%">
-                    @foreach($cronogramas as $cronograma )
-                    <option value="{{ $cronograma->Nome }}">{{ $cronograma->Nome }}</option>
-                    @endforeach
-                </select>
-            </p>
+            {{-- {!! Form::text('Cronograma', null, ['class' => 'form-control']) !!} --}}
+            <select name="Cronograma" id="Cronograma" style="width: 50%">
+                @foreach($cronogramas as $cronograma )
+                <option value="{{ $cronograma->Nome }}">{{ $cronograma->Nome }}</option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Status Field -->
-    {{-- <input type="hidden" name="Status" id="Status" value="Ativa"> --}}
-    <!-- Status Field -->
-    <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('Status', 'Status:') !!}<span style="color: red">*</span></p>
-        <div class="col-sm-12 col-md-6">
-            <label>{!! Form::radio('Status', 'Inativa', ['class' =>
-                'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Inativa </span>
-            </label>
-            <label>{!! Form::radio('Status', 'Ativa', ['class' =>
-                'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Ativa </span>
-            </label>
-        </div>
-    </div>
+    <input type="hidden" name="Status" id="Status" value="Ativa">
 
     <!-- Submit Field -->
     <div class="row">
@@ -176,9 +156,10 @@
 <script src="{{ url('js/timepicker.js') }}"></script>
 <script>
     //Timepicker
-        $('.timepicker').timepicker({
-            showInputs: false,
-            timeFormat: 'HH:mm:ss'
-        })
+    $('.timepicker').timepicker({
+        showInputs: false,
+        timeFormat: 'HH:mm:ss'
+    })
+
 </script>
 @endsection

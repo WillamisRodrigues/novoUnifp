@@ -12,14 +12,14 @@
         </ol>
     </h1>
     <div class="clearfix"></div>
-    <a class="btn btn-success" style="margin-left: 1rem" href="{!! route('contratos.create') !!}"><i
+    <a class="btn btn-success" style="margin-left: 1rem" href="addContrato/{!!$curso->id!!}"><i
             class="fa fa-plus"></i> Adicionar</a>
     <div class="content">
         <div class="box box-primary criar-unidade">
             <div class="box-body">
                 <div class="row" style="padding-left: 20px">
                     <div class="table-responsive">
-                        <table class="table" id="contratos-table">
+                        <table class="table datatable-list" id="contratos-table">
                             <thead>
                                 <tr>
                                     <th>Nome do Contrato</th>
@@ -31,7 +31,7 @@
                                 @foreach($contratos as $contrato)
                                 <tr>
                                     <td>{!! $contrato->NomeContrato !!}</td>
-                                    <td>{!! $curso->NomeCurso !!}</td>
+                                    <td>{!! $curso->nomeCurso !!}</td>
 
                                     <td>
                                         {!! Form::open(['route' => ['contratos.destroy', $contrato->id], 'method' =>

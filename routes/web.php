@@ -59,6 +59,10 @@ Route::get('/gerarRelatorio', ['uses' => 'PdfController@gerarRelatorio']);
 
 Route::get('/gerarCsv', ['uses' => 'ExportarCsvController@gerarCsv']);
 
+Route::get('contratos/addContrato/{idCurso}', ['uses' => 'ContratoController@create']);
+
+Route::get('turmasCursos/{idCurso}', ['uses' => 'TurmaCursoController@show']);
+
 Route::resource('agendas', 'AgendaController');
 
 Route::resource('agendasArquivada', 'AgendasArquivadaController');
@@ -95,7 +99,7 @@ Route::resource('turmas', 'TurmaController');
 
 Route::resource('turmasInativas', 'TurmaInativaController');
 
-Route::resource('turmasCursos', 'TurmaCursoController');
+// Route::resource('turmasCursos', 'TurmaCursoController');
 
 Route::resource('aulasCronogramas', 'AulasCronogramaController');
 

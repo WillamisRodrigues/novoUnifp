@@ -16,10 +16,11 @@ class CreateCronogramaTable extends Migration
         Schema::create('cronograma', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('Nome');
-            $table->string('AulasCronograma');
+            $table->string('idAulasCronograma');
             $table->timestamps();
             $table->softDeletes();
 
+            $table->foreign('idAulasCronograma')->references('id')->on('aulas_cronograma');
         });
     }
 

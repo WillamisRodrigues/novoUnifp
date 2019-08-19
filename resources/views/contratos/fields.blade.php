@@ -9,9 +9,9 @@
         <p class="col-xs-12 col-sm-3">{!! Form::label('idCurso', 'ID do Curso:') !!}</p>
         <p class="col-xs-12 col-sm-9 select-padrao">
             <select name="idCurso" id="idCurso">
-                @foreach ($cursos as $curso)
-                    <option value="{!! $curso->id !!}">{!! $curso->nomeCurso !!}</option>
-                @endforeach
+                {{-- @foreach ($cursos as $curso) --}}
+                    <option value="{!! $cursos->id !!}">{!! $cursos->nomeCurso !!}</option>
+                {{-- @endforeach --}}
             </select>
         </p>
     </div>

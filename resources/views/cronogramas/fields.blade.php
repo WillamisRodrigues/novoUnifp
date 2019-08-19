@@ -7,9 +7,9 @@
 
     <!-- Aulascronograma Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('AulasCronograma', 'Cronograma de Aulas:') !!}<span
+        <p class="col-sm-12 col-md-3">{!! Form::label('idAulasCronograma', 'Cronograma de Aulas:') !!}<span
                 style="color: red">*</span></p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('AulasCronograma', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-6">{!! Form::text('idAulasCronograma', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Submit Field -->

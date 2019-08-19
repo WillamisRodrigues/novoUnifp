@@ -20,13 +20,7 @@
         <tbody>
             @foreach($turmas as $turma)
             <tr>
-                <td>
-                    @foreach ($cursos as $curso)
-                        @if($turma->id == $curso->id)
-                            {!! $curso->nomeCurso !!}
-                        @endif
-                    @endforeach
-                </td>
+                <td>{!! $curso->nomeCurso !!}</td>
                 <td>{!! $turma->NomeTurma !!}</td>
                 <td>
                     {!! date('d/m/Y', strtotime($turma->DiasDaSemana)); !!}

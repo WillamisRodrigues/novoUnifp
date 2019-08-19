@@ -60,20 +60,20 @@
 
             <!-- Campo Curso -->
             <div class="row">
-                <p class="col-sm-12 col-md-5">{!! Form::label('Curso', 'Curso:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->Curso !!}</p>
+                <p class="col-sm-12 col-md-5">{!! Form::label('idCurso', 'Curso:') !!}</p>
+                <p class="col-sm-12 col-md-7">{!! $aluno->idCurso !!}</p>
             </div>
 
             <!-- Campo Turma -->
             <div class="row">
-                <p class="col-sm-12 col-md-5">{!! Form::label('Turma', 'Turma:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->Turma !!}</p>
+                <p class="col-sm-12 col-md-5">{!! Form::label('idTurma', 'Turma:') !!}</p>
+                <p class="col-sm-12 col-md-7">{!! $aluno->idTurma !!}</p>
             </div>
 
             <!-- Campo Parcelamento -->
             <div class="row">
-                <p class="col-sm-12 col-md-5">{!! Form::label('Parcelamento', 'Forma de Parcelamento:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->Parcelamento !!}</p>
+                <p class="col-sm-12 col-md-5">{!! Form::label('idParcelamento', 'Forma de Parcelamento:') !!}</p>
+                <p class="col-sm-12 col-md-7">{!! $aluno->idParcelamento !!}</p>
             </div>
 
             <!-- Campo Vencimento -->

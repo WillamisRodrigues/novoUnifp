@@ -44,9 +44,10 @@ class ContratoController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create($id)
     {
-        $cursos = DB::table('curso')->get();
+        $cursos = DB::table('curso')->get()->where('id', $id)->first();
+        // dd($cursos);
         return view('contratos.create', ['cursos' => $cursos]);
     }
 
@@ -72,9 +73,10 @@ class ContratoController extends AppBaseController
 
         Flash::success('Contrato saved successfully.');
 
-        $cursos = $this->cursoRepository->all();
+        $curso = DB::table('curso')->get()->where('id', $input['idCurso'])->first();
+        // dd($curso);
 
-        return redirect(route('contratos.index'));
+        return redirect(route('contratos.show', ['idCurso' => $input['idCurso'], 'curso' => $curso]));
     }
 
     /**
