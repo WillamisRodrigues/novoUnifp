@@ -63,7 +63,7 @@ Route::get('/turmasCursos/{idCurso}', ['uses' => 'TurmaCursoController@show']);
 
 Route::get('/comunicados/addComunidado/{matricula}', ['uses' => 'ComunicadosController@create']);
 
-Route::get('/gerarRecibo/{id}', ['uses' => 'PdfController@gerarRecibo']);
+Route::get('/gerarRecibo/{numeroDocumento}/{idAluno}', ['uses' => 'PdfController@gerarRecibo']);
 
 Route::get('/pagamentos/lancar/{idPagamento}/{idAluno}', ['uses' => 'PagamentoController@lancamento']);
 

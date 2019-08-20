@@ -71,7 +71,11 @@
                             </td>
                             <td>{!! $pagto->Multa !!}</td>
                             <td>{!! $pagto->Valor !!}</td>
-                            <td><a href="#" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Recibo</a></td>
+                            <td>
+                                @if($pagto->DataPgto != null)
+                                    <a href="/gerarRecibo/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}" target="_blank" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Recibo</a>
+                                @endif
+                            </td>
                             <td>{!! $pagto->Usuario !!}</td>
                             <td>
                                 @if($pagto->Data != null)

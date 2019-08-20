@@ -75,13 +75,16 @@ class PagamentosController extends AppBaseController
     {
         $input = $request->all();
 
-        Arr::set($input, 'Multa', str_replace(',','.', Arr::get($input, 'Multa')));
-        Arr::set($input, 'Valor', str_replace(',','.', Arr::get($input, 'Valor')));
+        Arr::set($input, 'Multa', str_replace(',', '.', Arr::get($input, 'Multa')));
+        Arr::set($input, 'Valor', str_replace(',', '.', Arr::get($input, 'Valor')));
 
         date_default_timezone_set('America/Sao_Paulo');
-        $date = date('Y-m-d h:i:s');
-
-        DB::update('update pagamentos set Status = ?, Forma = ?, Multa = ?, Usuario = ?, Data = ?, Valor = ?, DataPgto = ? where numeroDocumento = ?', [$input['Status'], $input['FormaPagamento'], $input['Multa'], $input['Usuario'], $date, $input['Valor'], $date ,$input['numeroDocumento'] ]);
+        $date = date('Y-m-d H:i:s');
+        if ($input['Multa'] != null) {
+            DB::update('update pagamentos set Status = ?, Forma = ?, Multa = ?, Usuario = ?, Data = ?, Valor = ?, DataPgto = ? where numeroDocumento = ?', [$input['Status'], $input['FormaPagamento'], $input['Multa'], $input['Usuario'], $date, $input['Valor'], $date, $input['numeroDocumento']]);
+        } else {
+            DB::update('update pagamentos set Status = ?, Forma = ?, Usuario = ?, Data = ?, Valor = ?, DataPgto = ? where numeroDocumento = ?', [$input['Status'], $input['FormaPagamento'], $input['Usuario'], $date, $input['Valor'], $date, $input['numeroDocumento']]);
+        }
 
         $aluno = DB::table('aluno')->get()->where('id', $input['Matricula']);
         $recibo = DB::table('pagamentos')->get()->where('Matricula', $input['Matricula']);
