@@ -91,7 +91,8 @@ class Aluno extends Model
         'Telefone',
         'Celular1',
         'Celular2',
-        'Usuario_id'
+        'Usuario_id',
+        'Status'
     ];
 
     /**
@@ -134,7 +135,8 @@ class Aluno extends Model
         'Telefone' => 'string',
         'Celular1' => 'string',
         'Celular2' => 'string',
-        'Usuario_id' => 'string'
+        'Usuario_id' => 'string',
+        'Status' => 'string'
     ];
 
     /**
@@ -175,7 +177,8 @@ class Aluno extends Model
         'CEP' => 'required',
         'Telefone' => 'required',
         'Celular1' => 'required',
-        'Celular2' => 'required'
+        'Celular2' => 'required',
+        'Status' => 'required'
     ];
 
 

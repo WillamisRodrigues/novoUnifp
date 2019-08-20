@@ -20,29 +20,38 @@
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Nº Documento:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     {!! $recibo->numeroDocumento !!}
+                    {!! Form::hidden('numeroDocumento', $recibo->numeroDocumento) !!}
                 </div>
             </p>
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Aluno:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     {!! $aluno->id !!}, {!! $aluno->Nome !!}
+                    {!! Form::hidden('Matricula', $aluno->id) !!}
                 </div>
             </p>
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Parcela:</div>
-                <div class="col-md-6 col-sm-6 col-xs-12">Variável</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    {!! $recibo->Parcela !!}
+                    {!! Form::hidden('Parcela', $recibo->Parcela) !!}
+                </div>
             </p>
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Referente:</div>
-                <div class="col-md-6 col-sm-6 col-xs-12">Variável</div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    {!! $recibo->Referencia !!}
+                    {!! Form::hidden('Referencia', $recibo->Referencia) !!}
+                </div>
             </p>
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Vencimento:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    {{-- {!! date('d/m/Y', strtotime($pagamentos->Hora)); !!} --}}
-                    10/10/2000
+                    {!! date('d/m/Y', strtotime($recibo->Vencimento)); !!}
+                    {!! Form::hidden('Vencimento', $recibo->Vencimento) !!}
                 </div>
             </p>
+            {!! Form::hidden('Usuario', Auth::user()->name) !!}
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Status:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12 row">
@@ -76,13 +85,13 @@
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Multa:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    {!! Form::number('Multa', null) !!}
+                    {!! Form::text('Multa', null) !!}
                 </div>
             </p>
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Valor:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    {!! Form::number('Valor', null) !!}
+                    {!! Form::text('Valor', null) !!}
                 </div>
             </p>
             <div class="form-group col-sm-12" style="margin-top: 15px">

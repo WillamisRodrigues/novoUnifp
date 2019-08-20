@@ -47,8 +47,6 @@ Route::get('/geralRecebimentos', 'RelatoriosController@geralRecebimentos');
 
 Route::get('/previsaoRecebimentos', 'RelatoriosController@previsaoRecebimentos');
 
-Route::get('/notas', 'PagamentoController@notas');
-
 Route::get('/gerarCarne/{idAluno}', ['uses' => 'PdfController@gerarCarne']);
 
 Route::get('/gerarContrato/{idAluno}', ['uses' => 'PdfController@gerarContrato']);
@@ -68,6 +66,8 @@ Route::get('/comunicados/addComunidado/{matricula}', ['uses' => 'ComunicadosCont
 Route::get('/gerarRecibo/{id}', ['uses' => 'PdfController@gerarRecibo']);
 
 Route::get('/pagamentos/lancar/{idPagamento}/{idAluno}', ['uses' => 'PagamentoController@lancamento']);
+
+Route::get('/notas/{idAluno}', ['uses' => 'PagamentoController@notas']);
 
 Route::post('/formularioPagamento', ['uses' => 'PagamentoController@store']);
 

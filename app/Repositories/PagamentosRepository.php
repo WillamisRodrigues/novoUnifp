@@ -17,6 +17,7 @@ class PagamentosRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
+        'numeroDocumento',
         'Matricula',
         'Parcela',
         'Referencia',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAlunoRequest;
 use App\Http\Requests\UpdateAlunoRequest;
+use App\Http\Requests\CreatePagamentosRequest;
 use App\Repositories\AlunoRepository;
 use App\Repositories\PagtoRepository;
 use App\Repositories\FormaPgtoRepository;
@@ -44,8 +45,10 @@ class PagamentoController extends AppBaseController
     {
 
         $aluno = DB::table('aluno')->get()->where('id', $matricula)->first();
-        $recibo = DB::table('pagamentos')->get()->where('id', $pag)->first();
+        $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $pag)->first();
         $formaPgtos = DB::table('forma_pgto')->get();
+
+        // dd($recibo);
 
         return view('pagamentos.edit', ['aluno' => $aluno, 'recibo' => $recibo, 'formaPgtos' => $formaPgtos]);
     }
@@ -130,15 +133,15 @@ class PagamentoController extends AppBaseController
      * @return Response
      */
     // public function update($id, UpdateAlunoRequest $request)
-    public function notas()
+    public function notas($id)
     {
-        // $aluno = $this->alunoRepository->find($id);
+        $aluno = $this->alunoRepository->find($id);
 
-        // if (empty($aluno)) {
-        //     Flash::error('Aluno não encontrado.');
+        if (empty($aluno)) {
+            Flash::error('Aluno não encontrado.');
 
-        //     return redirect(route('alunos.index'));
-        // }
+            return redirect(route('alunos.index'));
+        }
 
         // $aluno = $this->alunoRepository->update($request->all(), $id);
 

@@ -27,7 +27,7 @@ class Pagamentos extends Model
     use SoftDeletes;
 
     public $table = 'pagamentos';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -80,8 +80,9 @@ class Pagamentos extends Model
         'Parcela' => 'required',
         'Referencia' => 'required',
         'Vencimento' => 'required',
-        'Status' => 'required'
+        'Status' => 'required',
+        'Usuario' => 'required'
     ];
 
-    
+
 }

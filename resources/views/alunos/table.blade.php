@@ -33,8 +33,10 @@
                     @endif
                 </td>
                 <td>{!! $aluno->CpfAluno !!}</td>
-                <td>Status</td>
-                <td class="text-center">100%</td>
+                <td>{!! $aluno->Status !!}</td>
+                <td class="text-center">
+                    100%
+                </td>
                 <td><a href="{!! route('frequencias.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Frequência</i></a></td>
                 <td>
@@ -45,8 +47,12 @@
                         <i class="fa fa-print"></i> Cancelamento
                     </button>
                 </td>
-                <td class="text-center">10.0</td>
-                <td>Pagamentos</td>
+                <td class="text-center">
+                    10.0
+                </td>
+                <td>
+                    Pagamentos
+                </td>
                 <td>
                     <a href="gerarContrato/{!!$aluno->id!!}" target="_blank" class="btn btn-flat btn-success">
                         <i class="fa fa-print"></i>CT
@@ -74,7 +80,7 @@
                 <td><a href="{!! route('pagamentos.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos (0)</i></a>
                 </td>
-                <td><a href="notas" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas
+                <td><a href="notas/{!! $aluno->id !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas
                             (0)</i></a></td>
                 <td><a href="{!! route('comunicados.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Comunicados (0)</i></a>

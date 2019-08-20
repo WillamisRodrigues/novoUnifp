@@ -63,7 +63,7 @@ class ContratoController extends AppBaseController
         $input = $request->all();
 
 
-        Arr::set($input, 'Matricula1', str_replace(',','.', Arr::get($input, 'Matricula1')));
+        Arr::set($input, 'Matricula', str_replace(',','.', Arr::get($input, 'Matricula')));
         Arr::set($input, 'MultaContrato', str_replace(',','.', Arr::get($input, 'MultaContrato')));
         Arr::set($input, 'MoraContrato', str_replace(',','.', Arr::get($input, 'MoraContrato')));
         Arr::set($input, 'Multa', str_replace(',','.', Arr::get($input, 'Multa')));
@@ -74,7 +74,6 @@ class ContratoController extends AppBaseController
         Flash::success('Contrato saved successfully.');
 
         $curso = DB::table('curso')->get()->where('id', $input['idCurso'])->first();
-        // dd($curso);
 
         return redirect(route('contratos.show', ['idCurso' => $input['idCurso'], 'curso' => $curso]));
     }

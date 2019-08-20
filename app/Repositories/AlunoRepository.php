@@ -49,7 +49,8 @@ class AlunoRepository extends BaseRepository
         'CEP',
         'Telefone',
         'Celular1',
-        'Celular2'
+        'Celular2',
+        'Status'
     ];
 
     /**

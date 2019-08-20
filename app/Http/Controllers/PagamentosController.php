@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateAlunoRequest;
 use App\Http\Requests\UpdateAlunoRequest;
+use App\Http\Requests\CreatePagamentosRequest;
+use Illuminate\Support\Arr;
 use App\Repositories\AlunoRepository;
 use App\Repositories\PagtoRepository;
 use App\Repositories\PagamentosRepository;
@@ -71,17 +73,21 @@ class PagamentosController extends AppBaseController
      */
     public function store(CreatePagamentosRequest $request)
     {
-        // $input = $request->all();
-        // $pagamentos = $this->pagamentosRepository->create($input);
-        // Flash::success('Pagamentos saved successfully.');
-        // return redirect(route('pagamentos.index'));
         $input = $request->all();
 
-        $aluno = $this->alunoRepository->find($input->Matricula);
-        $formaPgtos = $this->formaPgtoRepository->all();
-        $pagtos = $this->pagtoRepository->all()->where('Matricula', $input->Matricula)->where('Parcela', $input->Parcela);
+        Arr::set($input, 'Multa', str_replace(',','.', Arr::get($input, 'Multa')));
+        Arr::set($input, 'Valor', str_replace(',','.', Arr::get($input, 'Valor')));
 
-        return view('pagamentos.edit', ['aluno' => $aluno, 'formaPgtos' => $formaPgtos]);
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = date('Y-m-d h:i:s');
+
+        DB::update('update pagamentos set Status = ?, Forma = ?, Multa = ?, Usuario = ?, Data = ?, Valor = ?, DataPgto = ? where numeroDocumento = ?', [$input['Status'], $input['FormaPagamento'], $input['Multa'], $input['Usuario'], $date, $input['Valor'], $date ,$input['numeroDocumento'] ]);
+
+        $aluno = DB::table('aluno')->get()->where('id', $input['Matricula']);
+        $recibo = DB::table('pagamentos')->get()->where('Matricula', $input['Matricula']);
+        $formaPgtos = DB::table('forma_pgto')->get();
+
+        return view('pagamentos.index', ['alunos' => $aluno, 'pagtos' => $recibo, 'formaPgtos' => $formaPgtos]);
     }
 
     /**
@@ -93,15 +99,17 @@ class PagamentosController extends AppBaseController
      */
     public function show($id)
     {
-        $pagamentos = $this->pagamentosRepository->find($id);
+        // $pagamentos = $this->pagamentosRepository->find($id);
+        $pagamentos = DB::table('pagamentos')->get()->where('Matricula', $id);
+        $aluno = DB::table('aluno')->get()->where('id', $id);
 
         if (empty($pagamentos)) {
             Flash::error('Pagamentos not found');
 
-            return redirect(route('pagamentos.index'));
+            return redirect(route('alunos.index'));
         }
 
-        return view('pagamentos.show')->with('pagamentos', $pagamentos);
+        return view('pagamentos.index', ['pagtos' => $pagamentos, 'alunos' => $aluno]);
     }
 
     /**

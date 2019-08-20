@@ -167,7 +167,6 @@
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Conheceu', 'Como Conheceu:') !!}<span
                             style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-                        {{-- {!! Form::text('Conheceu', null, ['class' => 'form-control']) !!} --}}
                         <select name="Conheceu" id="Conheceu" style="width: 50%">
                             @foreach($conheceu as $modo )
                             <option value="{{ $modo->ComoConheceu }}">{{ $modo->ComoConheceu }}</option>
@@ -348,7 +347,6 @@
                 <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Telefone', 'Telefone:') !!}<span
                             style="color: red">*</span></p>
-                    {{-- <p class="col-xs-12 col-sm-6 col-md-6">{!! Form::text('Telefone', null, ['class' => 'form-control']) !!}</p> --}}
                     <div class="col-xs-12 col-sm-6 col-md-6 input-group"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
                         {!! Form::text('Telefone', null, ['class' => 'form-control', 'id' => 'Telefone']) !!}
@@ -362,7 +360,6 @@
                 <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Celular1', 'Celular 1:') !!}<span
                             style="color: red">*</span></p>
-                    {{-- <p class="col-xs-12 col-sm-6 col-md-6">{!! Form::text('Celular1', null, ['class' => 'form-control']) !!}</p> --}}
                     <div class="input-group date col-xs-12 col-sm-6 col-md-6"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
                         {!! Form::text('Celular1', null, ['class' => 'form-control'])!!}
@@ -376,7 +373,6 @@
                 <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Celular2', 'Celular 2:') !!}<span
                             style="color: red">*</span></p>
-                    {{-- <p class="col-xs-12 col-sm-6 col-md-6">{!! Form::text('Celular2', null, ['class' => 'form-control']) !!}</p> --}}
                     <div class="input-group date col-xs-12 col-sm-6 col-md-6"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
                         {!! Form::text('Celular2', null, ['class' => 'form-control'])!!}
@@ -424,7 +420,6 @@
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('idParcelamento', 'Forma de Parcelamento:')
                         !!}<span style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-                        {{-- {!! Form::text('Parcelamento', null, ['class' => 'form-control']) !!} --}}
                         <select name="idParcelamento" id="idParcelamento" style="width: 50%">
                             @foreach($pagamentos as $pagamento )
                             <option value="{{ $pagamento->id }}">{{ $pagamento->QtdeParcelas }}x de
@@ -444,12 +439,9 @@
                             <option value="{!! $vencimento->diaVencimento !!}">{!! $vencimento->diaVencimento !!}</option>
                             @endforeach
                         </select>
-                        {{-- <label class="col-xs-12 col-sm-6 col-md-6">{!! Form::radio('Vencimento', '8', ['class' =>
-                            'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Dia 8
-                            </span>
-                        </label> --}}
                     </p>
                 </div>
+                <input type="hidden" name="Status" id="Status" value="Ativo">
             </div>
         </div>
         <!-- /.tab-pane -->

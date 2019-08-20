@@ -6,6 +6,7 @@
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
+            <li><a href="{!! route('alunos.index') !!}">Aluno</a></li>
             <li><a href="{!! route('pagamentos.index') !!}">Pagamentos</a></li>
             <li class="active">Lista</li>
         </ol>
@@ -63,12 +64,20 @@
                             </td>
                             <td>{!! $pagto->Status !!}</td>
                             <td>{!! $pagto->Forma !!}</td>
-                            <td>{!! $pagto->DataPgto !!}</td>
+                            <td>
+                                @if($pagto->DataPgto != null)
+                                    {!! date('d/m/Y', strtotime($pagto->DataPgto)); !!}
+                                @endif
+                            </td>
                             <td>{!! $pagto->Multa !!}</td>
                             <td>{!! $pagto->Valor !!}</td>
                             <td><a href="#" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Recibo</a></td>
                             <td>{!! $pagto->Usuario !!}</td>
-                            <td>{!! $pagto->Data !!}</td>
+                            <td>
+                                @if($pagto->Data != null)
+                                    {!! date('h:i:s d/m/Y', strtotime($pagto->Data)) !!}
+                                @endif
+                            </td>
                             <td><a href="/pagamentos/lancar/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Lançar</a></td>
                         </tr>
                         @endforeach
