@@ -45,7 +45,8 @@ class AulasCronogramaController extends AppBaseController
     public function create()
     {
         $cronogramas = DB::table('cronograma')->get() ;
-        return view('aulas_cronogramas.create', ['cronogramas' => $cronogramas]);
+        $dias = DB::table('dias_semana')->get();
+        return view('aulas_cronogramas.create', ['cronogramas' => $cronogramas, 'dias' => $dias ]);
     }
 
     /**

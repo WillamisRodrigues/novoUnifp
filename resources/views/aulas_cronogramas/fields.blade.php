@@ -11,7 +11,6 @@
         <p class="col-xs-12 col-sm-4 col-md-4">{!! Form::label('idCronograma', 'Cronograma')
             !!}<span style="color: red">*</span></p>
         <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-            {{-- {!! Form::text('Parcelamento', null, ['class' => 'form-control']) !!} --}}
             <select name="idCronograma" id="idCronograma" style="width: 50%">
                 @foreach($cronogramas as $cronograma )
                 <option value="{{ $cronograma->id }}">{{ $cronograma->Nome }}</option>
@@ -25,7 +24,7 @@
         <p class="col-sm-12 col-md-4">{!! Form::label('DataAula', 'Data da Aula:') !!}<span style="color: red">*</span>
         </p>
         <div class="col-sm-12 col-md-6 input-group"
-            style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
+        style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
             {!! Form::date('DataAula', null, ['class' => 'form-control', 'id' =>
             'DataAula'])!!}
             <div class="input-group-addon">
@@ -52,11 +51,18 @@
     <!-- Campo Diassemana  -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('DiasSemana', 'Dias da Semana:') !!}<span
-                style="color: red">*</span></p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!}</p>
-    </div>
+            style="color: red">*</span></p>
+            {{-- <p class="col-sm-12 col-md-6">{!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!}</p> --}}
+            <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
+                <select name="DiasSemana" id="DiasSemana" style="width: 50%">
+                    @foreach($dias as $dia )
+                    <option value="{{ $dia->id }}">{{ $dia->DiasSemana }}</option>
+                    @endforeach
+                </select>
+            </p>
+        </div>
 
-    <!-- Planejamento Field -->
+        <!-- Planejamento Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('Planejamento', 'Planejamento:') !!}</p>
         <p class="col-sm-12 col-md-6">{!! Form::textarea('Planejamento', null, ['class' => 'form-control']) !!}</p>
