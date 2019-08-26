@@ -8,6 +8,7 @@
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
+            <li><a href="{!! route('cursos.index') !!}">Cursos</a></li>
             <li><a href="{!! route('formasPagamentos.index') !!}">Forma de Parcelamento</a></li>
             <li class="active">Editar</li>
         </ol>

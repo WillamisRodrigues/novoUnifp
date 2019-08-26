@@ -16,6 +16,7 @@ class CreateAulasCronogramaTable extends Migration
         Schema::create('aulas_cronograma', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('NomeAula')->nullable();
+            $table->integer('idCronograma');
             $table->date('DataAula');
             $table->date('DataTermino');
             $table->string('DiasSemana');

@@ -26,7 +26,7 @@ class CreateAlunoTable extends Migration
             $table->string('Email');
             $table->integer('idCurso');
             $table->integer('idTurma');
-            $table->integer('idParcelamento');
+            // $table->integer('idParcelamento');
             $table->string('Vencimento');
             $table->string('Mae');
             $table->string('Pai');

@@ -15,6 +15,7 @@ class CreateFormasPagamentoTable extends Migration
     {
         Schema::create('formas_pagamento', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('idCurso');
             $table->integer('QtdeParcelas');
             $table->float('BrutoTotal', 8, 2);
             $table->float('ParcelaBruta', 8, 2);

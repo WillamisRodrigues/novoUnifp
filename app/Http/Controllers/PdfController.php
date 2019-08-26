@@ -21,8 +21,8 @@ class PdfController extends Controller
     {
         $aluno = DB::table('aluno')->get()->where('id', $id)->first();
         $boletos = DB::table('pagamentos')->get()->where('Matricula',$id);
-        $idParcelamento = $aluno->idParcelamento;
-        $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento)->first();
+        $idParcelamento = $aluno->idCurso;
+        $formas_parcelamentos = DB::table('formas_pagamento')->where([['idCurso', '=', $aluno->idCurso],['deleted_at', '=', null],])->get()->first();
         //pega id das relações
         //falta id da unidade
         $idUnidade = 1;
@@ -46,10 +46,12 @@ class PdfController extends Controller
 
         //pegar dados das tabelas com base nos relacionamentos
         $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
-        $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento)->first();
+        // $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento)->first();
+        $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('idCurso', $idCurso)->first();
         $cursos = DB::table('curso')->get()->where('id', $idCurso)->first();
         $turmas = DB::table('turma')->get()->where('id', $idTurma)->first();
         $contrato = DB::table('contratos')->get()->where('idCurso', $idCurso)->first();
+        date_default_timezone_set('America/Sao_Paulo');
         $date = date('d/m/Y') ;
 
 
@@ -71,7 +73,6 @@ class PdfController extends Controller
         $unidade = DB::table('unidade')->get()->where('id', $idUnidade)->first();
 
         $valorExtenso = $this->convert_number_to_words($recibo->Valor);
-        // dd($valorExtenso);
 
         date_default_timezone_set('America/Sao_Paulo');
         $date = date('d/m/Y h:i:s');

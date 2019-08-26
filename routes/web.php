@@ -65,6 +65,10 @@ Route::get('/comunicados/addComunidado/{matricula}', ['uses' => 'ComunicadosCont
 
 Route::get('/gerarRecibo/{numeroDocumento}/{idAluno}', ['uses' => 'PdfController@gerarRecibo']);
 
+Route::get('formasPagamentos/adicionarPagamento/{idCurso}', ['uses' => 'FormasPagamentoController@create']);
+
+Route::get('formasPagamentos/deletar/{idPagamento}', ['uses' => 'FormasPagamentoController@destroy']);
+
 Route::get('/pagamentos/lancar/{idPagamento}/{idAluno}', ['uses' => 'PagamentoController@lancamento']);
 
 Route::get('/notas/{idAluno}', ['uses' => 'PagamentoController@notas']);

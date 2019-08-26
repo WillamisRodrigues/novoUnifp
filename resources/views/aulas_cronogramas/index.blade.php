@@ -6,6 +6,7 @@
         <h1 class="pull-right">
             <ol class="breadcrumb breadcrumb-fp">
                 <li><a href="/home"><i class="fa fa-home"></i></a></li>
+                <li><a href="{!! route('cronogramas.index') !!}">Cronogramas</a></li>
                 <li><a href="{!! route('aulasCronogramas.index') !!}">Aulas do Cronograma</a></li>
                 <li class="active">Lista</li>
             </ol>

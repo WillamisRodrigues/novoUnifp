@@ -9,7 +9,21 @@
         <tbody>
             @foreach($diasSemanas as $diasSemana)
             <tr>
-                <td>{!! $diasSemana->DiasSemana !!}</td>
+                <td>
+                    @php
+                        $i = 0;
+                        $len = count($diasSemana->DiasSemana);
+
+                        foreach ($diasSemana->DiasSemana as $dia) {
+                            if ( $i == $len - 1) {
+                                echo $dia;
+                            } else {
+                                echo $dia." - ";
+                            }
+                            $i++;
+                        }
+                    @endphp
+                </td>
                 <td>
                     {!! Form::open(['route' => ['diasSemanas.destroy', $diasSemana->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

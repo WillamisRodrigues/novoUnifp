@@ -66,10 +66,12 @@ class AulasCronogramaController extends AppBaseController
         //     $idCronograma = $obj->idCronograma;
         // }
         $aulasCronogramas = $this->aulasCronogramaRepository->all()->where('idCronograma', $request->idCronograma);
-        dd($aulasCronogramas);
+        // dd($aulasCronograma->idCronograma);
         Flash::success('Cronograma criado com sucesso.');
 
-        return redirect(route('aulasCronogramas.show/$request->idCronograma', ['aulasCronogramas' => $aulasCronogramas]));
+        $cronograma = $request->idCronograma;
+
+        return redirect(route('aulasCronogramas.show', ['id' => $cronograma]));
     }
 
     /**

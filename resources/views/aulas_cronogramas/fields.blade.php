@@ -1,3 +1,4 @@
+{{-- {{ dd($dias[0]->DiasSemana) }} --}}
 <div class="container formulario-padrao">
     <!-- Campo Nomeaula  -->
     <div class="row">
@@ -55,9 +56,17 @@
             {{-- <p class="col-sm-12 col-md-6">{!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!}</p> --}}
             <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
                 <select name="DiasSemana" id="DiasSemana" style="width: 50%">
-                    @foreach($dias as $dia )
-                    <option value="{{ $dia->id }}">{{ $dia->DiasSemana }}</option>
-                    @endforeach
+                    {{-- @foreach($dias as $dia)
+                    <option value="{{ $dia->id }}">
+                        {{ $dia->DiasSemana }}
+                    </option>
+                    @endforeach --}}
+
+                    @php
+                        foreach ($dias as $obj) {
+                            echo "<option value='$obj->DiasSemana'> $obj->DiasSemana </option>";
+                        }
+                    @endphp
                 </select>
             </p>
         </div>

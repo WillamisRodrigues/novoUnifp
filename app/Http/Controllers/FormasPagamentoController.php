@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFormasPagamentoRequest;
+use Illuminate\Support\Facades\DB;
+
 use App\Http\Requests\UpdateFormasPagamentoRequest;
 use App\Repositories\FormasPagamentoRepository;
 use App\Http\Controllers\AppBaseController;
@@ -41,9 +43,10 @@ class FormasPagamentoController extends AppBaseController
      *
      * @return Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('formas_pagamentos.create');
+        $curso = DB::table('curso')->get()->where('id', $id)->first();
+        return view('formas_pagamentos.create', ['curso' => $curso]);
     }
 
     /**
@@ -67,7 +70,9 @@ class FormasPagamentoController extends AppBaseController
 
         Flash::success('Forma de Pagamento adicionada com sucesso.');
 
-        return redirect(route('formasPagamentos.index'));
+        $idCurso = $request->idCurso ;
+
+        return redirect(route('formasPagamentos.show', ["idCurso" => $idCurso]));
     }
 
     /**
@@ -79,7 +84,10 @@ class FormasPagamentoController extends AppBaseController
      */
     public function show($id)
     {
-        $formasPagamento = $this->formasPagamentoRepository->find($id);
+        // $formasPagamento = $this->formasPagamentoRepository->find($id);
+        // $formasPagamento = DB::table('formas_pagamento')->get()->where(['idCurso' => $id], ['deleted_at' => null]);
+        $formasPagamento = DB::table('formas_pagamento')->where([['idCurso', '=', $id],['deleted_at', '=', null],])->get();;
+        $curso = DB::table('curso')->get()->where('id', $id)->first();
 
         if (empty($formasPagamento)) {
             Flash::error('Forma de Pagamento não encontrada.');
@@ -87,7 +95,7 @@ class FormasPagamentoController extends AppBaseController
             return redirect(route('formasPagamentos.index'));
         }
 
-        return view('formas_pagamentos.show')->with('formasPagamento', $formasPagamento);
+        return view('formas_pagamentos.show', ['formasPagamentos' => $formasPagamento, 'curso' => $curso]);
     }
 
     /**
@@ -158,6 +166,6 @@ class FormasPagamentoController extends AppBaseController
 
         Flash::success('Forma de Pagamento deletada com sucesso.');
 
-        return redirect(route('formasPagamentos.index'));
+        return redirect(route('formasPagamentos.show', ["idCurso" => $formasPagamento->idCurso]));
     }
 }

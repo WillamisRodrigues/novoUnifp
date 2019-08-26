@@ -26,7 +26,7 @@
                         <a href="{!! route('cursos.edit', [$curso->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que deseja deletar o curso selecionado?')"]) !!}
+                        'btn cbtn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que deseja deletar o curso selecionado?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>

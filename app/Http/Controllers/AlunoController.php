@@ -85,8 +85,8 @@ class AlunoController extends AppBaseController
         $inputAluno = $requestAluno->all();
         $aluno = $this->alunoRepository->create($inputAluno);
         $matricula = Arr::get($aluno, 'id');
-        $idParcelamento = Arr::get($inputAluno, 'idParcelamento');
-        $parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento);
+        $idParcelamento = Arr::get($inputAluno, 'idCurso');
+        $parcelamentos = DB::table('formas_pagamento')->get()->where('idCurso', $idParcelamento);
 
         foreach ($parcelamentos as $parcelamento) {
             $valor = $parcelamento->ParcelaBruta;

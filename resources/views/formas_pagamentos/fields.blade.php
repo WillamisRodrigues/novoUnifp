@@ -6,6 +6,17 @@
         <p class="col-sm-12 col-md-6">{!! Form::text('QtdeParcelas', null, ['class' => 'form-control']) !!}</p>
     </div>
 
+    <div class="row">
+        <p class="col-sm-12 col-md-4">{!! Form::label('idCurso', 'Curso:') !!}<span style="color: red">*</span></p>
+        <p class="col-sm-12 col-md-6 select-padrao">
+            {{-- {!! Form::text('idCurso', null, ['class' => 'form-control']) !!} --}}
+            {{-- {{ dd($curso) }} --}}
+            <select name="idCurso" id="idCurso" style="width: 50%">
+                <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
+            </select>
+        </p>
+    </div>
+
     <!-- Brutototal Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('BrutoTotal', 'Valor Bruto Total:') !!}<span

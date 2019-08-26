@@ -3,7 +3,15 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DiasSemana', 'Dia de Aula:') !!}<span style="color: red">*</span>
         </p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!}</p>
+        <div class="col-sm-12 col-md-6">
+            {{-- {!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!} --}}
+            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Seg"> Segunda</p>
+            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Ter"> Terça</p>
+            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Qua"> Quarta</p>
+            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Qui"> Quinta</p>
+            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Sex"> Sexta</p>
+            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Sab"> Sábado</p>
+        </div>
     </div>
 
     <!-- Submit Field -->

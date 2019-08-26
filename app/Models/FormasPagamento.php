@@ -22,7 +22,7 @@ class FormasPagamento extends Model
     use SoftDeletes;
 
     public $table = 'formas_pagamento';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -32,6 +32,7 @@ class FormasPagamento extends Model
 
     public $fillable = [
         'QtdeParcelas',
+        'idCurso',
         'BrutoTotal',
         'ParcelaBruta',
         'DescontoPontualidade',
@@ -46,6 +47,7 @@ class FormasPagamento extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'idCurso' => 'integer',
         'QtdeParcelas' => 'integer',
         'BrutoTotal' => 'float',
         'ParcelaBruta' => 'float',
@@ -61,6 +63,7 @@ class FormasPagamento extends Model
      */
     public static $rules = [
         'QtdeParcelas' => 'required',
+        'idCurso' => 'required',
         'BrutoTotal' => 'required',
         'ParcelaBruta' => 'required',
         'DescontoPontualidade' => 'required',
@@ -68,5 +71,5 @@ class FormasPagamento extends Model
         'ValorTotalDesconto' => 'required'
     ];
 
-    
+
 }

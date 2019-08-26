@@ -416,7 +416,7 @@
                     </div>
 
                 <!-- Campo Parcelamento -->
-                <div class="row">
+                {{-- <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('idParcelamento', 'Forma de Parcelamento:')
                         !!}<span style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
@@ -427,7 +427,7 @@
                             @endforeach
                         </select>
                     </p>
-                </div>
+                </div> --}}
 
                 <!-- Campo Vencimento -->
                 <div class="row">
