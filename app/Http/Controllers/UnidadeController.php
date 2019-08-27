@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateUnidadeRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateUnidadeRequest;
 use App\Repositories\UnidadeRepository;
 use App\Http\Controllers\AppBaseController;
@@ -56,7 +58,14 @@ class UnidadeController extends AppBaseController
     {
         $input = $request->all();
 
+        $caminho = $request->file('Logotipo')->store('imagens/logotipos');
+
+        // dd($caminho);
+
         $unidade = $this->unidadeRepository->create($input);
+        DB::update('update unidade set Logotipo = ? where id = ?', [$caminho, $unidade->id]);
+        $path = Storage::putFile('logotipos-unidades', $request->file('Logotipo'));
+
 
         Flash::success('Unidade criada com sucesso.');
 

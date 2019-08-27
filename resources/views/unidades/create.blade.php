@@ -20,7 +20,7 @@
         <div class="box-body">
             <div class="clearfix"></div>
             <div class="row">
-                {!! Form::open(['route' => 'unidades.store']) !!}
+                {!! Form::open(['route' => 'unidades.store','files'=>'true']) !!}
 
                 @include('unidades.fields')
 

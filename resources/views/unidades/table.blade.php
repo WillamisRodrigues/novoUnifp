@@ -1,5 +1,5 @@
 <div class="table-responsive">
-        <table class="table display datatable-list">
+    <table class="table display datatable-list">
         <thead>
             <tr>
                 <th>Unidade</th>
@@ -11,6 +11,7 @@
                 <th>Telefone 1</th>
                 <th>Telefone 2</th>
                 <th>Tipo</th>
+                <th>Logotipo</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td>{!! $unidade->Telefone1 !!}</td>
                 <td>{!! $unidade->Telefone2 !!}</td>
                 <td>{!! $unidade->Tipo !!}</td>
+                <td><img src="storage/{{$unidade->Logotipo}}" alt=""></td>
                 <td>
                     {!! Form::open(['route' => ['unidades.destroy', $unidade->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -34,7 +36,8 @@
                         <a href="{!! route('unidades.edit', [$unidade->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-pencil"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Você tem certeza que deseja deletar a unidade selecionada?')"]) !!}
+                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Você tem certeza que deseja deletar a
+                        unidade selecionada?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>

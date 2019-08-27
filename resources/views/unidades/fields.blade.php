@@ -231,7 +231,7 @@
     <div class="row">
         <p class="col-md-3 alinhar-esquerda text-right col-sm-12">{!! Form::label('Logotipo', 'Logotipo:')
             !!}<span style="color: red">*</span></p>
-        <p class="col-md-9 col-sm-12">{!! Form::file('Logotipo', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-md-9 col-sm-12">{!! Form::file('Logotipo') !!}</p>
     </div>
     <!-- Submit Field -->
     <div class="row">
