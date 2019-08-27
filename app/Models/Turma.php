@@ -59,7 +59,7 @@ class Turma extends Model
         'id' => 'integer',
         'idCurso' => 'string',
         'NomeTurma' => 'string',
-        'DiasDaSemana' => 'date',
+        'DiasDaSemana' => 'array',
         'Periodo' => 'string',
         'DataInicio' => 'date',
         'DataTermino' => 'date',

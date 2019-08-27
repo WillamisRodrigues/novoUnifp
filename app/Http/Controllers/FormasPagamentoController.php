@@ -86,7 +86,7 @@ class FormasPagamentoController extends AppBaseController
     {
         // $formasPagamento = $this->formasPagamentoRepository->find($id);
         // $formasPagamento = DB::table('formas_pagamento')->get()->where(['idCurso' => $id], ['deleted_at' => null]);
-        $formasPagamento = DB::table('formas_pagamento')->where([['idCurso', '=', $id],['deleted_at', '=', null],])->get();;
+        $formasPagamento = DB::table('formas_pagamento')->where([['idCurso', '=', $id],['deleted_at', '=', null],])->get();
         $curso = DB::table('curso')->get()->where('id', $id)->first();
 
         if (empty($formasPagamento)) {

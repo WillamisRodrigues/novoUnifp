@@ -17,7 +17,8 @@ class HorarioRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'Horario'
+        'HorarioInicio',
+        'HorarioTermina'
     ];
 
     /**

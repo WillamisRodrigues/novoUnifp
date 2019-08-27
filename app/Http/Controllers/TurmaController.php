@@ -47,8 +47,9 @@ class TurmaController extends AppBaseController
         $cursos = $this->cursoRepository->all();
         $professores = DB::table('funcionario')->get()->where('Cargo', 'Professor');
         $cronogramas = DB::table('cronograma')->get();
+        $horarios = DB::table('horario')->get();
 
-        return view('turmas.create', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas]);
+        return view('turmas.create', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas, 'horarios' => $horarios]);
     }
 
     /**
@@ -86,7 +87,11 @@ class TurmaController extends AppBaseController
             return redirect(route('turmas.index'));
         }
 
-        return view('turmas.show')->with('turma', $turma);
+        $horarios = DB::table('horario')->get()->where('id', $turma->Horario)->first();
+        $curso = DB::table('curso')->get()->where('id', $turma->idCurso )->first();
+        // dd($curso);
+
+        return view('turmas.show', ['turma' => $turma, 'horario' => $horarios, 'curso' => $curso]);
     }
 
     /**
@@ -106,13 +111,14 @@ class TurmaController extends AppBaseController
             return redirect(route('turmas.index'));
         }
 
-        $professores = DB::table('funcionario')->get()->where('funcao', 'Professor');
-        $cronogramas = DB::table('cronograma')->get();
         $cursos = DB::table('curso')->get();
+        $professores = DB::table('funcionario')->get()->where('Cargo', 'Professor');
+        $cronogramas = DB::table('cronograma')->get();
+        $horarios = DB::table('horario')->get();
 
         // return view('turmas.edit')->with('turma', $turma);
 
-        return view('turmas.edit', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas, 'turma'=> $turma]);
+        return view('turmas.edit', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas, 'turma'=> $turma, 'horarios' => $horarios]);
     }
 
     /**

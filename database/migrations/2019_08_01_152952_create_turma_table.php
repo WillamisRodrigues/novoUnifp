@@ -17,9 +17,9 @@ class CreateTurmaTable extends Migration
             $table->increments('id');
             $table->integer('idCurso');
             $table->string('NomeTurma');
-            $table->date('DiasDaSemana');
+            $table->string('DiasDaSemana');
             $table->enum('Periodo', ['Manha', 'Tarde', 'Noite']);
-            $table->time('Horario');
+            $table->integer('Horario');
             $table->date('DataInicio');
             $table->date('DataTermino');
             $table->string('DuracaoAulas');

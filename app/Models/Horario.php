@@ -17,7 +17,7 @@ class Horario extends Model
     use SoftDeletes;
 
     public $table = 'horario';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -26,7 +26,8 @@ class Horario extends Model
 
 
     public $fillable = [
-        'Horario'
+        'HorarioInicio',
+        'HorarioTermina'
     ];
 
     /**
@@ -36,7 +37,8 @@ class Horario extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'Horario' => 'string'
+        'HorarioInicio' => 'string',
+        'HorarioTermina' => 'string'
     ];
 
     /**
@@ -45,8 +47,9 @@ class Horario extends Model
      * @var array
      */
     public static $rules = [
-        'Horario' => 'required'
+        'HorarioInicio' => 'required',
+        'HorarioTermina' => 'required'
     ];
 
-    
+
 }

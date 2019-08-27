@@ -9,7 +9,7 @@
         <tbody>
             @foreach($horarios as $horario)
             <tr>
-                <td>{!! $horario->Horario !!}</td>
+                <td>{!! $horario->HorarioInicio !!} às {!! $horario->HorarioTermina !!}</td>
                 <td>
                     {!! Form::open(['route' => ['horarios.destroy', $horario->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

@@ -6,7 +6,7 @@
                 <th>Nome da Turma</th>
                 <th>Dias da Semana</th>
                 <th>Período</th>
-                <th>Horário</th>
+                {{-- <th>Horário</th> --}}
                 <th>Data de Início</th>
                 <th>Data de Término</th>
                 <th>Duração das Aulas</th>
@@ -38,9 +38,9 @@
                             {!! "Sem período definido" !!}
                     @endswitch
                 </td>
-                <td>
+                {{-- <td>
                     {!! date('H:m', strtotime($turma->Horario)); !!}
-                </td>
+                </td> --}}
                 <td>
                     {!! date('d/m/Y', strtotime($turma->DataInicio)); !!}
                 </td>

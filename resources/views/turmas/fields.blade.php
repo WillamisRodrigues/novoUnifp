@@ -2,7 +2,7 @@
     <!-- Curso Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('idCurso', 'Curso:') !!}<span style="color: red">*</span></p>
-        <p class="col-sm-12 col-md-6 select-padrao">
+        <p class="col-sm-12 col-md-8 select-padrao">
             <select name="idCurso" id="idCurso" style="width: 50%">
                 @foreach($cursos as $curso)
                 <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
@@ -15,26 +15,33 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('NomeTurma', 'Nome da Turma:') !!}<span
                 style="color: red">*</span></p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('NomeTurma', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-8">{!! Form::text('NomeTurma', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Diasdasemana Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('DiasDaSemana', 'Dias da Semana:') !!}<span
-                style="color: red">*</span></p>
-        <div class="input-group col-md-6 col-sm-12 col-xs-12"
-            style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
+        <p class="col-sm-12 col-md-3">{!! Form::label('DiasDaSemana', 'Dias da Semana:') !!}<span style="color: red">*</span></p>
+        {{-- <div class="input-group col-md-8 col-sm-12 col-xs-12" style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('DiasDaSemana', null, ['class' => 'form-control','id'=>'DiasDaSemana']) !!}
             <div class="input-group-addon agenda-input-hora">
                 <i class="fa fa-calendar"></i>
             </div>
+        </div> --}}
+        <div class="col-xs-12 col-sm-9" class="display: inline-block">
+            {{-- {!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!} --}}
+            <input type="checkbox" name="DiasDaSemana[]" id="Seg" value="Seg"><label style="margin-right: 3px; margin-left: 2px" for="Seg"> Segunda </label>
+            <input type="checkbox" name="DiasDaSemana[]" id="Ter" value="Ter"><label style="margin-right: 3px; margin-left: 2px" for="Ter"> Terça </label>
+            <input type="checkbox" name="DiasDaSemana[]" id="Qua" value="Qua"><label style="margin-right: 3px; margin-left: 2px" for="Qua"> Quarta </label>
+            <input type="checkbox" name="DiasDaSemana[]" id="Qui" value="Qui"><label style="margin-right: 3px; margin-left: 2px" for="Qui"> Quinta </label>
+            <input type="checkbox" name="DiasDaSemana[]" id="Sex" value="Sex"><label style="margin-right: 3px; margin-left: 2px" for="Sex"> Sexta </label>
+            <input type="checkbox" name="DiasDaSemana[]" id="Sab" value="Sab"><label for="Sab"> Sábado </label>
         </div>
     </div>
 
     <!-- Periodo Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Periodo', 'Período:') !!}<span style="color: red">*</span></p>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12 col-md-8">
             <label class="col-xs-12 col-sm-6 col-md-4">{!! Form::radio('Periodo', 'Manha', ['class' =>
                 'form-control']) !!} <span class="input-radio-prioridade" style="color: black"> Manhã </span>
             </label>
@@ -50,9 +57,15 @@
     <!-- Horario Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Horario', 'Horário:') !!}<span style="color: red">*</span></p>
-        <div class="input-group col-md-6 col-sm-12 col-xs-12"
+        <div class="input-group col-md-8 col-sm-12 col-xs-12 select-padrao"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
-            {!! Form::text('Horario', null, ['class' => 'form-control timepicker mobile-input-largura']) !!}
+            {{-- {!! Form::text('Horario', null, ['class' => 'form-control timepicker mobile-input-largura']) !!} --}}
+            {{-- {{dd($horarios)}} --}}
+            <select name="Horario" id="Horario" style="width: 100%">
+                @foreach($horarios as $horario )
+            <option value="{{ $horario->id }}">Das {{ $horario->HorarioInicio }} às {{ $horario->HorarioTermina }}</option>
+                @endforeach
+            </select>
             <div class="input-group-addon agenda-input-hora">
                 <i class="fa fa-clock-o"></i>
             </div>
@@ -63,7 +76,7 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DataInicio', 'Data de Início:') !!}<span
                 style="color: red">*</span></p>
-        <div class="input-group col-md-6 col-sm-12 col-xs-12"
+        <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('DataInicio', null, ['class' => 'form-control','id'=>'DataInicio']) !!}
             <div class="input-group-addon agenda-input-hora">
@@ -76,7 +89,7 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DataTermino', 'Data de Término:') !!}<span
                 style="color: red">*</span></p>
-        <div class="input-group col-md-6 col-sm-12 col-xs-12"
+        <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::date('DataTermino', null, ['class' => 'form-control','id'=>'DataTermino']) !!}
             <div class="input-group-addon agenda-input-hora">
@@ -89,7 +102,7 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('DuracaoAulas', 'Duração das Aulas:') !!}<span
                 style="color: red">*</span></p>
-        <div class="input-group col-md-6 col-sm-12 col-xs-12"
+        <div class="input-group col-md-8 col-sm-12 col-xs-12"
             style="padding-right: 15px; padding-left: 15px; padding-bottom: 10px">
             {!! Form::text('DuracaoAulas', null, ['class' => 'form-control timepicker mobile-input-largura']) !!}
             <div class="input-group-addon agenda-input-hora">
@@ -102,7 +115,7 @@
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Professor', 'Professor:') !!}<span style="color: red">*</span>
         </p>
-        <p class="col-sm-12 col-md-6 select-padrao">
+        <p class="col-sm-12 col-md-8 select-padrao">
             <select name="Professor" id="Professor" style="width: 50%">
                 @foreach($professores as $professor )
                 <option value="{{ $professor->Nome }}">{{ $professor->Nome }}</option>
@@ -114,14 +127,14 @@
     <!-- Vagas Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Vagas', 'Vagas:') !!}<span style="color: red">*</span></p>
-        <p class="col-sm-12 col-md-6">{!! Form::number('Vagas', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-8">{!! Form::number('Vagas', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Cronograma Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Cronograma', 'Cronograma:') !!}<span style="color: red">*</span>
         </p>
-        <p class="col-sm-12 col-md-6 select-padrao">
+        <p class="col-sm-12 col-md-8 select-padrao">
             {{-- {!! Form::text('Cronograma', null, ['class' => 'form-control']) !!} --}}
             <select name="Cronograma" id="Cronograma" style="width: 50%">
                 @foreach($cronogramas as $cronograma )

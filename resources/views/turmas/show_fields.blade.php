@@ -2,7 +2,7 @@
     <!-- Curso Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('idCurso', 'Curso:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $turma->idCurso !!}</p>
+        <p class="col-sm-12 col-md-8">{!! $curso->nomeCurso !!}</p>
     </div>
 
     <!-- Nometurma Field -->
@@ -15,8 +15,9 @@
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('DiasDaSemana', 'Dias da Semana:') !!}</p>
         <p class="col-sm-12 col-md-8">
-            {{-- {!! $turma->DiasDaSemana !!} --}}
-            {!! date('d/m/Y', strtotime($turma->DiasDaSemana)); !!}
+            @foreach ( $turma->DiasDaSemana as $dia)
+            {{$dia}}
+            @endforeach
         </p>
     </div>
 
@@ -28,10 +29,17 @@
 
     <!-- Horario Field -->
     <div class="row">
-        <p class="col-sm-12 col-md-4">{!! Form::label('Horario', 'Horário:') !!}</p>
+        <p class="col-sm-12 col-md-4">{!! Form::label('Horario', 'Hora de Início:') !!}</p>
         <p class="col-sm-12 col-md-8">
-            {{-- {!! $turma->Horario !!} --}}
-            {!! date('H:m', strtotime($turma->Horario)); !!}
+            {!! date('H:m', strtotime($horario->HorarioInicio)); !!}
+        </p>
+    </div>
+
+    <!-- Horario Field -->
+    <div class="row">
+        <p class="col-sm-12 col-md-4">{!! Form::label('Horario', 'Hora de Término:') !!}</p>
+        <p class="col-sm-12 col-md-8">
+            {!! date('H:m', strtotime($horario->HorarioTermina)); !!}
         </p>
     </div>
 
@@ -39,7 +47,6 @@
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('DataInicio', 'Data de Início:') !!}</p>
         <p class="col-sm-12 col-md-8">
-            {{-- {!! $turma->DataInicio !!} --}}
             {!! date('d/m/Y', strtotime($turma->DataInicio)); !!}
         </p>
     </div>
@@ -48,7 +55,6 @@
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('DataTermino', 'Data de Término:') !!}</p>
         <p class="col-sm-12 col-md-8">
-            {{-- {!! $turma->DataTermino !!} --}}
             {!! date('d/m/Y', strtotime($turma->DataTermino)); !!}
         </p>
     </div>

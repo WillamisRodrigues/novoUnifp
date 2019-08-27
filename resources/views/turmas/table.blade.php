@@ -6,7 +6,6 @@
                 <th>Nome da Turma</th>
                 <th>Dias da Semana</th>
                 <th>Período</th>
-                <th>Horário</th>
                 <th>Data de Início</th>
                 <th>Data de Término</th>
                 <th>Duração das Aulas</th>
@@ -19,6 +18,7 @@
         </thead>
         <tbody>
             @foreach($turmas as $turma)
+
             <tr>
                 <td>
                     @foreach ($cursos as $curso)
@@ -29,7 +29,7 @@
                 </td>
                 <td>{!! $turma->NomeTurma !!}</td>
                 <td>
-                    {!! date('d/m/Y', strtotime($turma->DiasDaSemana)); !!}
+                    {{$turma->DiasDaSemana}}
                 </td>
                 <td>
                     @switch($turma->Periodo)
@@ -45,9 +45,6 @@
                         @default
                             {!! "Sem período definido" !!}
                     @endswitch
-                </td>
-                <td>
-                    {!! date('H:m', strtotime($turma->Horario)); !!}
                 </td>
                 <td>
                     {!! date('d/m/Y', strtotime($turma->DataInicio)); !!}

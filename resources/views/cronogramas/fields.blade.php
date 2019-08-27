@@ -5,13 +5,6 @@
         <p class="col-sm-12 col-md-6">{!! Form::text('Nome', null, ['class' => 'form-control']) !!}</p>
     </div>
 
-    <!-- Aulascronograma Field -->
-    <div class="row">
-        <p class="col-sm-12 col-md-3">{!! Form::label('idAulasCronograma', 'Cronograma de Aulas:') !!}<span
-                style="color: red">*</span></p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('idAulasCronograma', null, ['class' => 'form-control']) !!}</p>
-    </div>
-
     <!-- Submit Field -->
     <div class="row">
         <div class="col-sm-12 col-md-3"></div>
