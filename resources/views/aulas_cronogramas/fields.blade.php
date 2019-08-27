@@ -61,10 +61,14 @@
                         {{ $dia->DiasSemana }}
                     </option>
                     @endforeach --}}
-
                     @php
                         foreach ($dias as $obj) {
-                            echo "<option value='$obj->DiasSemana'> $obj->DiasSemana </option>";
+                            $str1 = str_replace(","," - ", $obj->DiasSemana);
+                            $str2 = str_replace("\""," ", $str1);
+                            $str3 = str_replace("]", "", $str2);
+                            $str4 = str_replace("[", "", $str3);
+                            echo $str4;
+                            echo "<option value='$obj->DiasSemana'> $str4 </option>";
                         }
                     @endphp
                 </select>

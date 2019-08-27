@@ -29,7 +29,17 @@
                 </td>
                 <td>{!! $turma->NomeTurma !!}</td>
                 <td>
-                    {{$turma->DiasDaSemana}}
+                    @php
+                        // $str1 = str_replace(","," - ", $turma->DiasDaSemana);
+                        // $str2 = str_replace("\""," ", $str1);
+                        // $str3 = str_replace("]", "", $str2);
+                        // $str4 = str_replace("[", "", $str3);
+                        // echo $str4;
+                        // print_r($turma->DiasDaSemana);
+                        foreach ($turma->DiasDaSemana as $dia) {
+                            echo "$dia ";
+                        }
+                    @endphp
                 </td>
                 <td>
                     @switch($turma->Periodo)
@@ -66,7 +76,7 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
-            <td><a href="/AlunosTurma/{!!$turma->id!!}" class="btn btn-primary btn-flat">Alunos/Matrículas</a></td>
+                <td><a href="/AlunosTurma/{!!$turma->id!!}" class="btn btn-primary btn-flat">Alunos/Matrículas</a></td>
             </tr>
             @endforeach
         </tbody>

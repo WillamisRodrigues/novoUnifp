@@ -88,7 +88,7 @@ class TurmaController extends AppBaseController
         }
 
         $horarios = DB::table('horario')->get()->where('id', $turma->Horario)->first();
-        $curso = DB::table('curso')->get()->where('id', $turma->idCurso )->first();
+        $curso = DB::table('curso')->get()->where('id', $turma->idCurso)->first();
         // dd($curso);
 
         return view('turmas.show', ['turma' => $turma, 'horario' => $horarios, 'curso' => $curso]);
@@ -116,9 +116,11 @@ class TurmaController extends AppBaseController
         $cronogramas = DB::table('cronograma')->get();
         $horarios = DB::table('horario')->get();
 
+
+
         // return view('turmas.edit')->with('turma', $turma);
 
-        return view('turmas.edit', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas, 'turma'=> $turma, 'horarios' => $horarios]);
+        return view('turmas.edit', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas, 'turma' => $turma, 'horarios' => $horarios]);
     }
 
     /**

@@ -19,11 +19,8 @@
                 <td>{!! $aulasCronograma->Planejamento !!}</td>
                 <td>{!! $aulasCronograma->RelatorioProfessor !!}</td>
                 <td>
-                    {!! Form::open(['route' => ['aulasCronogramas.destroy', $aulasCronograma->id], 'method' =>
-                    'delete']) !!}
+                    {!! Form::open(['route' => ['aulasCronogramas.destroy', $aulasCronograma->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{!! route('aulasCronogramas.show', [$aulasCronograma->id]) !!}"
-                            class='btn btn-default btn-sm'><i class="glyphicon glyphicon-zoom-in"></i></a>
                         <a href="{!! route('aulasCronogramas.edit', [$aulasCronograma->id]) !!}"
                             class='btn btn-default btn-sm'><i class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>

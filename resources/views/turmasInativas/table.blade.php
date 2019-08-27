@@ -21,7 +21,9 @@
                 <td>{!! $turma->Curso !!}</td>
                 <td>{!! $turma->NomeTurma !!}</td>
                 <td>
-                    {!! date('d/m/Y', strtotime($turma->DiasDaSemana)); !!}
+                @foreach ($turma->DiasDaSemana as $dia)
+                    {{$dia." "}}
+                @endforeach
                 </td>
                 <td>
                     @switch($turma->Periodo)

@@ -6,7 +6,6 @@
                 <th>Nome da Turma</th>
                 <th>Dias da Semana</th>
                 <th>Período</th>
-                <th>Horário</th>
                 <th>Data de Início</th>
                 <th>Data de Término</th>
                 <th>Duração das Aulas</th>
@@ -19,11 +18,24 @@
         </thead>
         <tbody>
             @foreach($turmas as $turma)
+
             <tr>
-                <td>{!! $curso->nomeCurso !!}</td>
+                <td>
+                    @foreach ($cursos as $curso)
+                        @if($turma->id == $curso->id)
+                            {!! $curso->nomeCurso !!}
+                        @endif
+                    @endforeach
+                </td>
                 <td>{!! $turma->NomeTurma !!}</td>
                 <td>
-                    {!! date('d/m/Y', strtotime($turma->DiasDaSemana)); !!}
+                    @php
+                        $str1 = str_replace(","," - ", $turma->DiasDaSemana);
+                        $str2 = str_replace("\""," ", $str1);
+                        $str3 = str_replace("]", "", $str2);
+                        $str4 = str_replace("[", "", $str3);
+                        echo $str4;
+                    @endphp
                 </td>
                 <td>
                     @switch($turma->Periodo)
@@ -39,9 +51,6 @@
                         @default
                             {!! "Sem período definido" !!}
                     @endswitch
-                </td>
-                <td>
-                    {!! date('H:m', strtotime($turma->Horario)); !!}
                 </td>
                 <td>
                     {!! date('d/m/Y', strtotime($turma->DataInicio)); !!}
@@ -63,7 +72,7 @@
                     </div>
                     {!! Form::close() !!}
                 </td>
-            <td><a href="/AlunosTurma/{!!$turma->id!!}" class="btn btn-primary btn-flat">Alunos/Matrículas</a></td>
+                <td><a href="/AlunosTurma/{!!$turma->id!!}" class="btn btn-primary btn-flat">Alunos/Matrículas</a></td>
             </tr>
             @endforeach
         </tbody>

@@ -5,7 +5,7 @@
         <p class="col-sm-12 col-md-8 select-padrao">
             <select name="idCurso" id="idCurso" style="width: 50%">
                 @foreach($cursos as $curso )
-                <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}</option>
+                <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
                 @endforeach
             </select>
         </p>
