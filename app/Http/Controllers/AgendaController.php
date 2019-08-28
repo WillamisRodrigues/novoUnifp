@@ -7,6 +7,9 @@ use App\Http\Requests\UpdateAgendaRequest;
 use App\Repositories\AgendaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+
 use Flash;
 use Response;
 
@@ -29,7 +32,17 @@ class AgendaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $agendas = $this->agendaRepository->all()->where('Arquivado', 'Não');
+        // $agendas = $this->agendaRepository->all()->where(
+        //     ['Arquivado', '==' ,'Não']
+        // );
+
+        // $agendas = DB::table('agenda')->get()->where([
+        //     ['Arquivado', '=', 'Nao'],
+        //     ['deleted_at', '=', null]
+        // ]);
+
+        $agendas = DB::select('select * from agenda where Arquivado = ? & deleted_at is null', ['Não']);
+        // dd($agendas);
 
         return view('agendas.index')
             ->with('agendas', $agendas);

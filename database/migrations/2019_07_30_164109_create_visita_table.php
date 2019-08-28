@@ -24,6 +24,7 @@ class CreateVisitaTable extends Migration
             $table->enum('comoConheceu', ['Facebook','Indicacao','Jornal','Outdoor','Panfletagem','Popup','Radio','Revista','Piq','Internet']);
             $table->date('dataAtendimento');
             $table->enum('status', ['Agendado','SemInteresse','Retornado','RetornarContato','Desligado']);
+            $table->integer('idUnidade');
             $table->timestamps();
             $table->softDeletes();
         });

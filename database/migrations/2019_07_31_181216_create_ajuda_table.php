@@ -17,6 +17,7 @@ class CreateAjudaTable extends Migration
             $table->bigIncrements('id');
             $table->string('Pagina');
             $table->longText('Ticket');
+            $table->integer('idUnidade');
             $table->timestamps();
             $table->softDeletes();
         });

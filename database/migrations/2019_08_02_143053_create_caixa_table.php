@@ -28,6 +28,7 @@ class CreateCaixaTable extends Migration
             $table->string('ContaCaixa');
             $table->string('Usuario');
             $table->timestamp('Data');
+            $table->integer('idUnidade');
             $table->timestamps();
             $table->softDeletes();
         });

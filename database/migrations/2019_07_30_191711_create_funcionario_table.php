@@ -25,6 +25,7 @@ class CreateFuncionarioTable extends Migration
             $table->string('Setor');
             $table->longText('Observacao')->nullable();
             $table->enum('Inativo', ['Sim', 'Nao']);
+            $table->integer('idUnidade');
             $table->timestamps();
             $table->softDeletes();
         });

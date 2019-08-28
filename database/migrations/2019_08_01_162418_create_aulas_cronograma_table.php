@@ -22,6 +22,7 @@ class CreateAulasCronogramaTable extends Migration
             $table->string('DiasSemana');
             $table->longText('Planejamento')->nullable();
             $table->longText('RelatorioProfessor')->nullable();
+            $table->integer('idUnidade');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -2,6 +2,7 @@
     <table class="table display datatable-list">
         <thead>
             <tr>
+                <th></th>
                 <th>Unidade</th>
                 <th>CNPJ</th>
                 <th>Endereço</th>
@@ -18,6 +19,12 @@
         <tbody>
             @foreach($unidades as $unidade)
             <tr>
+                <td class="text-center">
+                    {{ Form::open(array('url' => 'escolherUnidade'))}}
+                    {!! Form::hidden('idUnidade', $unidade->id) !!}
+                    <button type="submit" class="btn btn-danger btn-flat">Logar</button>
+                    {!! Form::close() !!}
+                </td>
                 <td>{!! $unidade->NomeUnidade !!}</td>
                 <td>{!! $unidade->CNPJ !!}</td>
                 <td>{!! $unidade->Endereco !!}</td>

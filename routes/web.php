@@ -79,6 +79,8 @@ Route::post('/formularioPagamento', ['uses' => 'PagamentoController@store']);
 
 Route::post('storeProva', ['uses' => 'CursoController@storeProva']);
 
+Route::post('escolherUnidade', ['uses' => 'EscolherUnidadeController@escolher']);
+
 Route::resource('agendas', 'AgendaController');
 
 Route::resource('agendasArquivada', 'AgendasArquivadaController');
