@@ -22,7 +22,7 @@ class CreateAgendaTable extends Migration
             $table->text('Tarefa');
             $table->enum('Resolvido', ['Não', 'Aguardo outros', 'Aguardo finanças', 'Sim']);
             $table->enum('Arquivado', ['Sim', 'Não']);
-            $table->integer('idUnidade');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

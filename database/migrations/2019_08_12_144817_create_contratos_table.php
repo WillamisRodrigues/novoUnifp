@@ -23,7 +23,7 @@ class CreateContratosTable extends Migration
             $table->float('MoraContrato', 8, 2);
             $table->float('Multa', 8, 2);
             $table->float('Mora', 8, 2);
-            $table->integer('idUnidade');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

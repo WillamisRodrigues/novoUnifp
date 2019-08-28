@@ -26,7 +26,7 @@ class CreatePagamentosTable extends Migration
             $table->float('Valor', 8, 2)->nullable();
             $table->string('Usuario')->nullable();
             $table->timestamp('Data')->nullable();
-            $table->integer('idUnidade');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

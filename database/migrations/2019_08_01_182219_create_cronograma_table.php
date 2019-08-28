@@ -17,7 +17,7 @@ class CreateCronogramaTable extends Migration
             $table->bigIncrements('id');
             $table->string('Nome');
             $table->string('idAulasCronograma');
-            $table->integer('idUnidade');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

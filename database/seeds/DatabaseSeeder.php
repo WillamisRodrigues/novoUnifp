@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             'nivelAcesso' => 0,
             'unidadeEscolar' => 0,
             'nascimento' => '2023/10/10',
+            'idUnidade' => 1,
             'created_at' => $date,
             'updated_at' => $date
         ]);
@@ -47,6 +48,7 @@ class DatabaseSeeder extends Seeder
             'Cargo' => 'Vendedor',
             'Setor' => 'Seed',
             'Inativo' => 'Nao',
+            'idUnidade' => 1,
             'created_at' => $date,
             'updated_at' => $date
         ]);
@@ -60,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'Cargo' => 'Professor',
             'Setor' => 'Seed',
             'Inativo' => 'Nao',
+            'idUnidade' => 1,
             'created_at' => $date,
             'updated_at' => $date
         ]);
@@ -67,6 +70,7 @@ class DatabaseSeeder extends Seeder
             'nomeCurso' => 'Curso Seed',
             'QtdeAulas' => 10,
             'CargaHoraria' => 10,
+            'idUnidade' => 1,
             'created_at' => $date,
             'updated_at' => $date
         ]);
@@ -75,7 +79,7 @@ class DatabaseSeeder extends Seeder
             'NomeTurma' => '1',
             'DiasDaSemana' => $date,
             'Periodo' => 'Tarde',
-            'Horario' => '15:14:15',
+            'Horario' => 1,
             'DataInicio' => $date,
             'DataTermino' => $date,
             'DuracaoAulas' => '123',
@@ -83,16 +87,31 @@ class DatabaseSeeder extends Seeder
             'Vagas' => 123,
             'Cronograma' => '123',
             'Status' => 'Ativa',
+            'idUnidade' => 1,
             'created_at' => $date,
             'updated_at' => $date
         ]);
         DB::table('formas_pagamento')->insert([
             'QtdeParcelas' => 10,
+            'idCurso' => 1,
             'BrutoTotal' => 100,
             'ParcelaBruta' => 10,
             'DescontoPontualidade' => 1,
             'ParcelaDescontoPontualidade' => 9,
             'ValorTotalDesconto' => 90,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        DB::table('unidade')->insert([
+            'NomeUnidade' => 'gracom seed de testes',
+            'CNPJ' => "11.111.111/1111-11",
+            'Endereco' => 'endereço seed',
+            'Cidade' => 'endereço seed',
+            'Bairro' => 'endereço seed',
+            'UF' => 'CE',
+            'Telefone1' => '(00) 0000-0000',
+            'Telefone2' => '(00) 0000-0000',
+            'Tipo' => 'Franquia',
             'created_at' => $date,
             'updated_at' => $date
         ]);

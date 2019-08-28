@@ -28,7 +28,7 @@ class CreateFornecedorTable extends Migration
             $table->string('PessoaContato')->nullable();
             $table->longText('Observacao')->nullable();
             $table->date('DataCadastro');
-            $table->integer('idUnidade');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

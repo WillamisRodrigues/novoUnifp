@@ -20,7 +20,7 @@ class CreateCursoTable extends Migration
             $table->bigInteger('CargaHoraria');
             $table->string('nomeProva')->nullable();
             $table->string('caminhoProva')->nullable();
-            $table->integer('idUnidade');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
