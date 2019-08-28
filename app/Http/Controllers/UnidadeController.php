@@ -63,8 +63,8 @@ class UnidadeController extends AppBaseController
         // dd($caminho);
 
         $unidade = $this->unidadeRepository->create($input);
-        DB::update('update unidade set Logotipo = ? where id = ?', [$caminho, $unidade->id]);
-        $path = Storage::putFile('logotipos-unidades', $request->file('Logotipo'));
+        $path = Storage::disk('public')->putFile('logotipos-unidades', $request->file('Logotipo'));
+        DB::update('update unidade set Logotipo = ? where id = ?', [$path, $unidade->id]);
 
 
         Flash::success('Unidade criada com sucesso.');

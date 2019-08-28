@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+
 use App\Http\Requests\CreateCursoRequest;
 use App\Http\Requests\UpdateCursoRequest;
 use App\Repositories\CursoRepository;
@@ -35,6 +37,17 @@ class CursoController extends AppBaseController
         return view('cursos.index')->with('cursos', $cursos);
     }
 
+    public function provas($id)
+    {
+        $curso = DB::table('curso')->get()->where('id', $id)->first();
+        return view('cursos.avaliacoes', ['curso' => $curso]);
+    }
+
+    public function addProva($id)
+    {
+        return view('cursos.addProva', ['id' => $id]);
+    }
+
     /**
      * Show the form for creating a new Curso.
      *
@@ -61,6 +74,36 @@ class CursoController extends AppBaseController
         Flash::success('Curso criado com sucesso.');
 
         return redirect(route('cursos.index'));
+    }
+
+    /**
+     * Store a newly created Curso in storage.
+     *
+     * @param CreateCursoRequest $request
+     *
+     * @return Response
+     */
+    public function storeProva(Request $request)
+    {
+        $input = $request->all();
+        $extensao = $request->file('caminhoProva')->extension();
+
+        if ($extensao != 'pdf') {
+            Flash::error('O arquivo não é do tipo PDF.');
+
+            return redirect()->action('CursoController@addProva', ['id' => $request->id]);
+
+        } else {
+            // $caminho = $request->file('caminhoProva')->store('provas');
+
+            $caminho = Storage::disk('public')->putFile('provas', $request->file('caminhoProva'));
+            DB::update('update curso set nomeProva = ?, caminhoProva = ? where id = ?', [$request->nomeProva, $caminho, $request->id]);
+            $curso = DB::table('curso')->get()->where('id', $request->id)->first();
+
+            Flash::success('Prova adicionada com sucesso.');
+
+            return redirect()->action('CursoController@provas', ['id' => $request->id, 'curso' => $curso]);
+        }
     }
 
     /**

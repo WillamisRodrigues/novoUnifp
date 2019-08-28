@@ -9,7 +9,6 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -26,14 +25,18 @@
                         <a href="{!! route('cursos.edit', [$curso->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn cbtn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que deseja deletar o curso selecionado?')"]) !!}
+                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Tem certeza que deseja deletar o curso
+                        selecionado?')"]) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>
-                <td><a href="{!! route('formasPagamentos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Forma de Parcelamento</a></td>
-                <td><a href="avaliacoes" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Avaliações</a></td>
-                <td><a href="turmasCursos/{!! $curso->id !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Turmas Ativas</a></td>
-                <td><a href="{!! route('contratos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Contrato</a></td>
+                <td><a href="{!! route('formasPagamentos.show', [$curso->id]) !!}"
+                        class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Forma de Parcelamento</a>
+                </td>
+                <td><a href="turmasCursos/{!! $curso->id !!}" class="btn btn-primary btn-sm btn-flat"><i
+                            class="fa fa-bars"></i> Turmas Ativas</a></td>
+                <td><a href="{!! route('contratos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i
+                            class="fa fa-bars"></i> Contrato</a></td>
             </tr>
             @endforeach
         </tbody>

@@ -19,10 +19,6 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('avaliacoes', function () {
-    return view('cursos.avaliacoes');
-});
-
 Route::get('/carne', function () {
     return view('pdf.carne');
 });
@@ -73,7 +69,15 @@ Route::get('/pagamentos/lancar/{idPagamento}/{idAluno}', ['uses' => 'PagamentoCo
 
 Route::get('/notas/{idAluno}', ['uses' => 'PagamentoController@notas']);
 
+Route::get('/avaliacoes/{idCurso}', ['uses' => 'CursoController@provas']);
+
+Route::get('/avaliacoes/addProva/{idCurso}', ['uses' => 'CursoController@addProva']);
+
+Route::get('/avaliacoes/deletar/{idCurso}', ['uses' => 'CursoController@addProva']);
+
 Route::post('/formularioPagamento', ['uses' => 'PagamentoController@store']);
+
+Route::post('storeProva', ['uses' => 'CursoController@storeProva']);
 
 Route::resource('agendas', 'AgendaController');
 

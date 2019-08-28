@@ -18,6 +18,8 @@ class CreateCursoTable extends Migration
             $table->string('nomeCurso');
             $table->bigInteger('QtdeAulas');
             $table->bigInteger('CargaHoraria');
+            $table->string('nomeProva')->nullable();
+            $table->string('caminhoProva')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
