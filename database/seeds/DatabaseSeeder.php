@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
         DB::table('turma')->insert([
             'idCurso' => '1',
             'NomeTurma' => '1',
-            'DiasDaSemana' => $date,
+            'DiasDaSemana' => ["Seg", "Ter"],
             'Periodo' => 'Tarde',
             'Horario' => 1,
             'DataInicio' => $date,

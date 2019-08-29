@@ -20,6 +20,8 @@ use App\Models\FormasPagamento;
 use App\Repositories\FormasPagamentoRepository;
 use App\Http\Controllers\PagtoController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+
 use Illuminate\Support\Arr;
 
 class AlunoTurmaController extends Controller
@@ -50,16 +52,10 @@ class AlunoTurmaController extends Controller
      */
     public function show($id)
     {
+        // $alunos = DB::table('aluno')->where('idTurma', $id)->get();
 
-        // if (empty($aluno)) {
-        //     Flash::error('Aluno não encontrado.');
-
-        //     return redirect(route('alunos.index'));
-        // }
-
-        $alunos = DB::table('aluno')->get()->where('idTurma', $id);
-
-        // dd($alunos);
+        $unidade = Session::get('unidade');
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['idTurma', '=', $id],['deleted_at', '=', null]])->get();
 
         return view('alunos.index', ['alunos' => $alunos]);
     }

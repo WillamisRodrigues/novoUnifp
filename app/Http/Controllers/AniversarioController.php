@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateFuncionarioRequest;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\UpdateFuncionarioRequest;
 use App\Repositories\FuncionarioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
 
@@ -44,7 +46,13 @@ class AniversarioController extends AppBaseController
 
     public function professoresListar(Request $request)
     {
-        $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Professor');
+        // $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Professor');
+        $unidade = Session::get('unidade');
+        $funcionarios = DB::table('funcionario')->where([
+            ['idUnidade', '=', $unidade],
+            ['Cargo', '=', 'Professor'],
+            ['deleted_at', '=', null]
+            ])->get();
 
         return view('aniversarios.listarProfessores')
             ->with('funcionarios', $funcionarios);
@@ -52,7 +60,13 @@ class AniversarioController extends AppBaseController
 
     public function vendedoresListar(Request $request)
     {
-        $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Vendedor');
+        // $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Vendedor');
+        $unidade = Session::get('unidade');
+        $funcionarios = DB::table('funcionario')->where([
+            ['idUnidade', '=', $unidade],
+            ['Cargo', '=', 'Vendedor'],
+            ['deleted_at', '=', null]
+            ])->get();
 
         return view('relatorios.listarVendedores')
             ->with('funcionarios', $funcionarios);
@@ -60,7 +74,13 @@ class AniversarioController extends AppBaseController
 
     public function funcionarios(Request $request)
     {
-        $funcionarios = $this->funcionarioRepository->all()->where('Cargo', '<>','Professor');
+        // $funcionarios = $this->funcionarioRepository->all()->where('Cargo', '<>','Professor');
+        $unidade = Session::get('unidade');
+        $funcionarios = DB::table('funcionario')->where([
+            ['idUnidade', '=', $unidade],
+            ['Cargo', '<>', 'Professor'],
+            ['deleted_at', '=', null]
+            ])->get();
 
         return view('aniversarios.funcionarios')
             ->with('funcionarios', $funcionarios);
