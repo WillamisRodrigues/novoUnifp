@@ -72,7 +72,11 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" style="font-size: 2rem"></i> {{ Auth::user()->name }} </a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" style="font-size: 2rem"></i>
+                            {{-- {{ dd(Auth::user()) }} --}}
+                            {{ Auth::user()->name }}
+
+                        </a>
                         <ul class="dropdown-menu" style="width: 5rem">
                             <li class="user-footer">
                                 <div>
@@ -91,7 +95,11 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
-                        <a href="#" ><i class="fa fa-bank"></i> Unidade </a>
+                        <a href="#" ><i class="fa fa-bank"></i>
+                            {{-- @php
+                                echo $_SESSION["Unidade"];
+                            @endphp --}}
+                         </a>
                     </li>
                 </ul>
             </div>
@@ -114,50 +122,8 @@
 
 
     @else
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
+    <script>window.location = "/login";</script>
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{!! url('/') !!}">
-                    InfyOm Generator
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{!! url('/home') !!}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    <li><a href="{!! url('/login') !!}">Login</a></li>
-                    <li><a href="{!! url('/register') !!}">Register</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    @yield('content')
-                </div>
-            </div>
-        </div>
-    </div>
     @endif
 
     <!-- jQuery 3.1.1 -->

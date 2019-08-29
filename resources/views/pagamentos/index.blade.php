@@ -116,7 +116,7 @@
                 </table>
                 @endforeach
                 <div class="row">
-                    <a href="{!! route('turmas.index') !!}" class="btn btn-default">Voltar</a>
+                    <a href="{!! route('alunos.index') !!}" class="btn btn-default" style="margin-left: 10rem; border: 1px solid #444">Voltar</a>
                 </div>
             </div>
 

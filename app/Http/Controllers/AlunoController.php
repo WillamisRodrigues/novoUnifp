@@ -51,7 +51,6 @@ class AlunoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        // $alunos = $this->alunoRepository->all();
         $unidade = Session::get('unidade');
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 
@@ -99,10 +98,14 @@ class AlunoController extends AppBaseController
         $idParcelamento = Arr::get($inputAluno, 'idCurso');
         $parcelamentos = DB::table('formas_pagamento')->get()->where('idCurso', $idParcelamento);
 
+        $contrato = DB::table('contratos')->get()->where('id', $aluno->idCurso)->first();
+
         foreach ($parcelamentos as $parcelamento) {
             $valor = $parcelamento->ParcelaBruta;
             $qtdeParcelas = $parcelamento->QtdeParcelas;
         }
+
+        $valorMatricula = $contrato->Matricula;
 
         date_default_timezone_set('America/Sao_Paulo');
         $timestamp = date("Y-m-d H:i:s");
@@ -111,6 +114,7 @@ class AlunoController extends AppBaseController
         $mes = date("m");
         $ano = date("Y");
         $hoje = date("Y-m-d");
+
         //logica para gerar os registros de pagamentos no sistema quando um aluno for adicionado
         for ($_i = 1; $_i <= $qtdeParcelas; $_i++) {
 
@@ -128,7 +132,7 @@ class AlunoController extends AppBaseController
                         'Matricula' => $matricula,
                         'Referencia' => 'Matricula',
                         'Status' => 'Aberto',
-                        'Valor' => $valor,
+                        'Valor' => $valorMatricula,
                         'Vencimento' => $hoje,
                         'created_at' => $timestamp,
                         'updated_at' => $timestamp
