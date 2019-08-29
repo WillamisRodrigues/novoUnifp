@@ -7,6 +7,10 @@ use App\Http\Requests\UpdateCronogramaRequest;
 use App\Repositories\CronogramaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
+
 use Flash;
 use Response;
 
@@ -29,10 +33,12 @@ class CronogramaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $cronogramas = $this->cronogramaRepository->all();
+        // $cronogramas = $this->cronogramaRepository->all();
 
-        return view('cronogramas.index')
-            ->with('cronogramas', $cronogramas);
+        $unidade = Session::get('unidade');
+        $cronogramas = DB::table('cronograma')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+
+        return view('cronogramas.index')->with('cronogramas', $cronogramas);
     }
 
     /**
@@ -57,6 +63,8 @@ class CronogramaController extends AppBaseController
         $input = $request->all();
 
         $cronograma = $this->cronogramaRepository->create($input);
+        $unidade = Session::get('unidade');
+        DB::table('cronograma')->where('id', $cronograma->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Cronograma salvo com sucesso.');
 

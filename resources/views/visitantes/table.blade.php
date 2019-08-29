@@ -19,7 +19,7 @@
                 <td>{!! $visitante->nome !!}</td>
                 <td>{!! $visitante->telefone !!}</td>
                 <td>{!! $visitante->email !!}</td>
-                <td>{!! $visitante->observacao !!}</td>
+                <td style="max-width: 150px; ">{!! $visitante->observacao !!}</td>
                 <td>
                     {!! date('H:m', strtotime($visitante->horaRetorno)); !!}
                     {!! date('d/m/Y', strtotime($visitante->dataRetorno)); !!}

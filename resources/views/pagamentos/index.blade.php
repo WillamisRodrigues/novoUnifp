@@ -62,32 +62,62 @@
                             <td>
                                 {!! date('d/m/Y', strtotime($pagto->Vencimento)); !!}
                             </td>
-                            <td>{!! $pagto->Status !!}</td>
+                            <td class="text-center">
+                                @php
+                                date_default_timezone_set('America/Sao_Paulo');
+                                $date = date('Y-m-d H:i:s');
+                                if($pagto->Vencimento > $date || $pagto->Status == "Quitado"){
+                                    if($pagto->Status == "Quitado"){
+                                        echo " <span
+                                            style='border-radius: 100px; padding: 0.5rem 1rem; font-weight:bold; border: 2px solid #2BA65A; color: #2BA65A'>
+                                            Quitado </span>";
+                                    } else {
+                                        echo " <span
+                                            style='border-radius: 100px; padding: 0.5rem 1rem; font-weight:bold; border: 2px solid #3C8DBC; color: #3C8DBC'>
+                                            Aberto </span>";
+                                    }
+                                } else {
+                                    echo " <span
+                                        style='border-radius: 100px; padding: 0.5rem 1rem; font-weight:bold; border: 2px solid #DD4B39; color: #DD4B39'>
+                                        Vencido </span>";
+                                }
+                                @endphp
+                            </td>
                             <td>{!! $pagto->Forma !!}</td>
                             <td>
                                 @if($pagto->DataPgto != null)
-                                    {!! date('d/m/Y', strtotime($pagto->DataPgto)); !!}
+                                {!! date('d/m/Y', strtotime($pagto->DataPgto)); !!}
                                 @endif
                             </td>
                             <td>{!! $pagto->Multa !!}</td>
                             <td>{!! $pagto->Valor !!}</td>
                             <td>
                                 @if($pagto->DataPgto != null)
-                                    <a href="/gerarRecibo/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}" target="_blank" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Recibo</a>
+                                <a href="/gerarRecibo/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}"
+                                    target="_blank" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i>
+                                    Recibo</a>
                                 @endif
                             </td>
                             <td>{!! $pagto->Usuario !!}</td>
                             <td>
                                 @if($pagto->Data != null)
-                                    {!! date('h:i:s d/m/Y', strtotime($pagto->Data)) !!}
+                                {!! date('H:i:s d/m/Y', strtotime($pagto->Data)) !!}
                                 @endif
                             </td>
-                            <td><a href="/pagamentos/lancar/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}" class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Lançar</a></td>
+                            <td>
+                                @if($pagto->Data == null)
+                                <a href="/pagamentos/lancar/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}"
+                                    class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Lançar</a>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
                 @endforeach
+                <div class="row">
+                    <a href="{!! route('turmas.index') !!}" class="btn btn-default">Voltar</a>
+                </div>
             </div>
 
         </div>

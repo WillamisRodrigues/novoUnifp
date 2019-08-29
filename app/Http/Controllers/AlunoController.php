@@ -20,6 +20,7 @@ use App\Models\FormasPagamento;
 use App\Repositories\FormasPagamentoRepository;
 use App\Http\Controllers\PagtoController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Arr;
 
 
@@ -50,7 +51,9 @@ class AlunoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $alunos = $this->alunoRepository->all();
+        // $alunos = $this->alunoRepository->all();
+        $unidade = Session::get('unidade');
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 
         return view('alunos.index')->with('alunos', $alunos);
     }
@@ -62,13 +65,17 @@ class AlunoController extends AppBaseController
      */
     public function create()
     {
-        $funcionarios = $this->funcionarioRepository->all()->where('Cargo', 'Vendedor');
+        $unidade = Session::get('unidade');
+
+        $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Cargo', '=','Vendedor']])->get();
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $turmas = DB::table('turma')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+
         $escolaridades = $this->escolaridadeRepository->all();
-        $cursos = $this->cursoRepository->all();
-        $turmas = $this->turmaRepository->all();
         $pagamentos = $this->pagRepository->all();
         $comoConheceu = $this->comoConheceuRepository->all();
         $vencimento = DB::table('dias_vencimento')->get();
+
 
         return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimento]);
     }
@@ -84,6 +91,10 @@ class AlunoController extends AppBaseController
     {
         $inputAluno = $requestAluno->all();
         $aluno = $this->alunoRepository->create($inputAluno);
+
+        $unidade = Session::get('unidade');
+        DB::table('aluno')->where('id', $aluno->id)->update(['idUnidade' => $unidade]);
+
         $matricula = Arr::get($aluno, 'id');
         $idParcelamento = Arr::get($inputAluno, 'idCurso');
         $parcelamentos = DB::table('formas_pagamento')->get()->where('idCurso', $idParcelamento);

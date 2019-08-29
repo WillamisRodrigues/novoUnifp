@@ -9,6 +9,8 @@ use App\Repositories\AulasCronogramaRepository;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 use Flash;
 use Response;
 
@@ -44,7 +46,8 @@ class AulasCronogramaController extends AppBaseController
      */
     public function create()
     {
-        $cronogramas = DB::table('cronograma')->get() ;
+        $unidade = Session::get('unidade');
+        $cronogramas = DB::table('cronograma')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
         $dias = DB::table('dias_semana')->get();
         return view('aulas_cronogramas.create', ['cronogramas' => $cronogramas, 'dias' => $dias ]);
     }
@@ -61,12 +64,7 @@ class AulasCronogramaController extends AppBaseController
         $input = $request->all();
 
         $aulasCronograma = $this->aulasCronogramaRepository->create($input);
-        // foreach($input as $obj){
-            // dd($request->idCronograma);
-        //     $idCronograma = $obj->idCronograma;
-        // }
         $aulasCronogramas = $this->aulasCronogramaRepository->all()->where('idCronograma', $request->idCronograma);
-        // dd($aulasCronograma->idCronograma);
         Flash::success('Cronograma criado com sucesso.');
 
         $cronograma = $request->idCronograma;

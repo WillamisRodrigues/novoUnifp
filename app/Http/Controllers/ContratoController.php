@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\UpdateContratoRequest;
 use App\Repositories\ContratoRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Session;
+
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -46,7 +48,10 @@ class ContratoController extends AppBaseController
      */
     public function create($id)
     {
-        $cursos = DB::table('curso')->get()->where('id', $id)->first();
+        $unidade = Session::get('unidade');
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['id', '=',$id]])->get()->first();
+
+        // $cursos = DB::table('curso')->get()->where('id', $id)->first();
         // dd($cursos);
         return view('contratos.create', ['cursos' => $cursos]);
     }

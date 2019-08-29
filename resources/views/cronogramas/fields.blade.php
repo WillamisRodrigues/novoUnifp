@@ -5,6 +5,8 @@
         <p class="col-sm-12 col-md-6">{!! Form::text('Nome', null, ['class' => 'form-control']) !!}</p>
     </div>
 
+    <input type="hidden" name="idAulasCronograma" value="1">
+
     <!-- Submit Field -->
     <div class="row">
         <div class="col-sm-12 col-md-3"></div>

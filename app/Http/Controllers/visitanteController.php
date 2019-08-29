@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatevisitanteRequest;
 use App\Repositories\visitanteRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -30,7 +31,10 @@ class visitanteController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $visitantes = $this->visitanteRepository->all();
+        $unidade = Session::get('unidade');
+
+        // $visitantes = $this->visitanteRepository->all();
+        $visitantes = DB::table('visita')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 
         return view('visitantes.index')
             ->with('visitantes', $visitantes);
@@ -59,6 +63,8 @@ class visitanteController extends AppBaseController
         $input = $request->all();
 
         $visitante = $this->visitanteRepository->create($input);
+        $unidade = Session::get('unidade');
+        DB::table('visita')->where('id', $visitante->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Cadastro de visitante salvo com sucesso.');
 

@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateTurmaRequest;
 use App\Repositories\TurmaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Flash;
 use Response;
 use App\Repositories\CursoRepository;
@@ -111,7 +112,8 @@ class TurmaController extends AppBaseController
             return redirect(route('turmas.index'));
         }
 
-        $cursos = DB::table('curso')->get();
+        $unidade = Session::get('unidade');
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
         $professores = DB::table('funcionario')->get()->where('Cargo', 'Professor');
         $cronogramas = DB::table('cronograma')->get();
         $horarios = DB::table('horario')->get();

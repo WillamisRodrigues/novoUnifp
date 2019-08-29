@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateCursoRequest;
 use App\Repositories\CursoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
@@ -32,7 +34,9 @@ class CursoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $cursos = $this->cursoRepository->all();
+
+        $unidade = Session::get('unidade');
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 
         return view('cursos.index')->with('cursos', $cursos);
     }
@@ -71,6 +75,9 @@ class CursoController extends AppBaseController
 
         $curso = $this->cursoRepository->create($input);
 
+        $unidade = Session::get('unidade');
+        DB::table('curso')->where('id', $curso->id)->update(['idUnidade' => $unidade]);
+
         Flash::success('Curso criado com sucesso.');
 
         return redirect(route('cursos.index'));
@@ -94,7 +101,6 @@ class CursoController extends AppBaseController
             return redirect()->action('CursoController@addProva', ['id' => $request->id]);
 
         } else {
-            // $caminho = $request->file('caminhoProva')->store('provas');
 
             $caminho = Storage::disk('public')->putFile('provas', $request->file('caminhoProva'));
             DB::update('update curso set nomeProva = ?, caminhoProva = ? where id = ?', [$request->nomeProva, $caminho, $request->id]);

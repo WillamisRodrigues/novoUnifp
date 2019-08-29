@@ -46,7 +46,6 @@ class PagamentosController extends AppBaseController
 
     public function lancamento($pag, $matricula)
     {
-        dd($pag);
         $aluno = DB::table('aluno')->get()->where('id', $matricula)->first();
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $pag)->first();
         $formaPgtos = DB::table('forma_pgto')->get();
@@ -80,50 +79,30 @@ class PagamentosController extends AppBaseController
 
         date_default_timezone_set('America/Sao_Paulo');
         $date = date('Y-m-d H:i:s');
+
         if ($input['Multa'] != null) {
             DB::update('update pagamentos set Status = ?, Forma = ?, Multa = ?, Usuario = ?, Data = ?, Valor = ?, DataPgto = ? where numeroDocumento = ?', [$input['Status'], $input['FormaPagamento'], $input['Multa'], $input['Usuario'], $date, $input['Valor'], $date, $input['numeroDocumento']]);
         } else {
             DB::update('update pagamentos set Status = ?, Forma = ?, Usuario = ?, Data = ?, Valor = ?, DataPgto = ? where numeroDocumento = ?', [$input['Status'], $input['FormaPagamento'], $input['Usuario'], $date, $input['Valor'], $date, $input['numeroDocumento']]);
         }
+
         $parcela = $input['Valor'];
+
         if($input["Multa"] != null){
             $parcela += $input["Multa"];
         }
         $aluno = DB::table('aluno')->get()->where('id', $input['Matricula'])->first();
+
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $input['numeroDocumento'])->first();
-        DB::insert('insert into caixa (
-            Tipo,
-            Via,
-            FormaPgto,
-            Status,
-            Aluno,
-            Descricao,
-            Lancamento,
-            Vencimento,
-            Valor,
-            CentroCusto,
-            ContaCaixa,
-            Usuario,
-            Data) values (?,?,?,?,?,?,?,?,?,?,?,?,?)', [
-            'Pagamento',
-            'Caixa',
-            $input['FormaPagamento'],
-            'Pago',
-            $aluno->Nome,
-            'Pagamento de Parcela',
-            $date,
-            $recibo->Vencimento,
-            $parcela,
-            'Centro de Custo',
-            $input['Usuario'],
-            $input['Usuario'],
-            $date ]);
+
+        DB::insert('insert into caixa (Tipo,Via,FormaPgto,Status,Aluno,Descricao,Lancamento,Vencimento,Valor,CentroCusto,ContaCaixa,Usuario,Data) values (?,?,?,?,?,?,?,?,?,?,?,?,?)', ['Pagamento','Caixa',$input['FormaPagamento'],'Pago',$aluno->Nome,'Pagamento de Parcela',$date,$recibo->Vencimento,$parcela,'Centro de Custo',$input['Usuario'],$input['Usuario'],$date ]);
 
         $aluno = DB::table('aluno')->get()->where('id', $input['Matricula']);
         $recibo = DB::table('pagamentos')->get()->where('Matricula', $input['Matricula']);
         $formaPgtos = DB::table('forma_pgto')->get();
 
-        return view('pagamentos.index', ['alunos' => $aluno, 'pagtos' => $recibo, 'formaPgtos' => $formaPgtos]);
+        return redirect()->action('PagamentoController@show', ['id' => $input['Matricula'],'alunos' => $aluno, 'pagtos' => $recibo, 'formaPgtos' => $formaPgtos]);
+
     }
 
     /**
@@ -135,7 +114,6 @@ class PagamentosController extends AppBaseController
      */
     public function show($id)
     {
-        // $pagamentos = $this->pagamentosRepository->find($id);
         $pagamentos = DB::table('pagamentos')->get()->where('Matricula', $id);
         $aluno = DB::table('aluno')->get()->where('id', $id);
 

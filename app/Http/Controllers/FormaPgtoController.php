@@ -58,7 +58,7 @@ class FormaPgtoController extends AppBaseController
 
         $formaPgto = $this->formaPgtoRepository->create($input);
 
-        Flash::success('Forma Pgto saved successfully.');
+        Flash::success('Forma de Pagamento salva com sucesso.');
 
         return redirect(route('formaPgtos.index'));
     }
@@ -75,7 +75,7 @@ class FormaPgtoController extends AppBaseController
         $formaPgto = $this->formaPgtoRepository->find($id);
 
         if (empty($formaPgto)) {
-            Flash::error('Forma Pgto not found');
+            Flash::error('Forma de Pagamento não encontrada.');
 
             return redirect(route('formaPgtos.index'));
         }
@@ -95,7 +95,7 @@ class FormaPgtoController extends AppBaseController
         $formaPgto = $this->formaPgtoRepository->find($id);
 
         if (empty($formaPgto)) {
-            Flash::error('Forma Pgto not found');
+            Flash::error('Forma de Pagamento não encontrada.');
 
             return redirect(route('formaPgtos.index'));
         }
@@ -116,14 +116,14 @@ class FormaPgtoController extends AppBaseController
         $formaPgto = $this->formaPgtoRepository->find($id);
 
         if (empty($formaPgto)) {
-            Flash::error('Forma Pgto not found');
+            Flash::error('Forma de Pagamento não encontrada.');
 
             return redirect(route('formaPgtos.index'));
         }
 
         $formaPgto = $this->formaPgtoRepository->update($request->all(), $id);
 
-        Flash::success('Forma Pgto updated successfully.');
+        Flash::success('Forma de Pagamento atualizada com sucesso.');
 
         return redirect(route('formaPgtos.index'));
     }
@@ -142,14 +142,14 @@ class FormaPgtoController extends AppBaseController
         $formaPgto = $this->formaPgtoRepository->find($id);
 
         if (empty($formaPgto)) {
-            Flash::error('Forma Pgto not found');
+            Flash::error('Forma de Pagamento não encontrada.');
 
             return redirect(route('formaPgtos.index'));
         }
 
         $this->formaPgtoRepository->delete($id);
 
-        Flash::success('Forma Pgto deleted successfully.');
+        Flash::success('Forma de Pagamento deletada com sucesso.');
 
         return redirect(route('formaPgtos.index'));
     }

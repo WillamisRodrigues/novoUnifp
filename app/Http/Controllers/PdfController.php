@@ -41,19 +41,17 @@ class PdfController extends Controller
         $idUnidade = 1;
         //$idUnidade = $aluno->idUnidade;
         $idCurso = $aluno->idCurso;
-        $idParcelamento = $aluno->idParcelamento;
         $idTurma = $aluno->idTurma;
 
         //pegar dados das tabelas com base nos relacionamentos
         $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
         // $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('id', $idParcelamento)->first();
-        $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('idCurso', $idCurso)->first();
         $cursos = DB::table('curso')->get()->where('id', $idCurso)->first();
+        $formas_parcelamentos = DB::table('formas_pagamento')->get()->where('idCurso', $idCurso)->first();
         $turmas = DB::table('turma')->get()->where('id', $idTurma)->first();
         $contrato = DB::table('contratos')->get()->where('idCurso', $idCurso)->first();
         date_default_timezone_set('America/Sao_Paulo');
         $date = date('d/m/Y') ;
-
 
         $pdf = PDF::loadView('pdf.contrato', ['aluno' => $aluno, 'cursos' => $cursos, 'unidade' => $unidades, 'parcelamentos' => $formas_parcelamentos, 'turmas' => $turmas, 'contrato' => $contrato, 'dataAgora' => $date]);
         return $pdf->stream('invoice.pdf');

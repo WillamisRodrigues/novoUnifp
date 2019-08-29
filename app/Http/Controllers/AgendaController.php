@@ -35,6 +35,7 @@ class AgendaController extends AppBaseController
     {
         $unidade = Session::get('unidade');
         $agendas = DB::table('agenda')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Arquivado', '=','Não']])->get();
+
         return view('agendas.index')->with('agendas', $agendas);
     }
 

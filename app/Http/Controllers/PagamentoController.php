@@ -86,15 +86,6 @@ class PagamentoController extends AppBaseController
      */
     public function show($id)
     {
-        // $aluno = $this->alunoRepository->find($id);
-
-        // if (empty($aluno)) {
-        //     Flash::error('Aluno não encontrado.');
-
-        //     return redirect(route('alunos.index'));
-        // }
-
-        // return view('alunos.show')->with('aluno', $aluno);
         $alunos = $this->alunoRepository->all()->where('id', $id);
         $pagtos = $this->pagtoRepository->all()->where('Matricula', $id);
 
@@ -121,7 +112,9 @@ class PagamentoController extends AppBaseController
         }
 
         // return view('alunos.edit')->with('aluno', $aluno);
-        return view('pagamentos.edit', ['aluno' => $aluno, 'formaPgtos' => $formaPgtos]);
+        // return view('pagamentos.edit', ['aluno' => $aluno, 'formaPgtos' => $formaPgtos]);
+        return redirect()->action('PagamentoController@lancamento', ['id' => $Matricula, 'formaPgtos' => $formaPgtos]);
+
     }
 
     /**
@@ -143,11 +136,6 @@ class PagamentoController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        // $aluno = $this->alunoRepository->update($request->all(), $id);
-
-        // Flash::success('Aluno atualizado com sucesso.');
-
-        // return redirect(route('alunos.index'));
         return view('relatorios.notas');
     }
 
