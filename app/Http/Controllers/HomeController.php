@@ -24,19 +24,67 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $matriculas = DB::table('aluno')->get();
-        // // dd($matriculas);
-        // $lava = new Lavacharts();
+        $alunosAtivos = DB::table('aluno')->where([
+            ['deleted_at','=',null],
+            ['Status','=','Ativo']
+        ])->get();
+        $alunosInativos = DB::table('aluno')->where([
+            ['deleted_at','=',null],
+            ['Status','=','Ativo']
+        ])->get();
+        $turmas = DB::table('turma')->where([
+            ['deleted_at','=',null],
+            ['Status','=','Ativa']
+        ])->get();
+        $cursos = DB::table('curso')->where([
+            ['deleted_at','=',null]
+        ])->get();
+        $professores = DB::table('funcionario')->where([
+            ['deleted_at','=',null],
+            ['Inativo','=','Nao'],
+            ['Cargo','=','Professor']
+        ])->get();
+        $visitas = DB::table('visita')->where([
+            ['deleted_at','=',null]
+        ])->get();
 
-        // $teste = $lava->DataTable();
-        // $teste->addStringColumn('Teste')
-        //     ->addNumberColumn('Matriculas')
-        //     // ->addRow(['Matriculas', $matriculas])
-        //     // ->addRow(['Matriculas', $matriculas])
-        //     ->addRow(['Matriculas', $matriculas]);
+        $qtdeAlunosAtivos = 0;
+        foreach($alunosAtivos as $aluno){
+            $qtdeAlunosAtivos++;
+        }
 
-        // $lava->BarChart('Title', $teste, []);
+        $qtdeAlunosInativos = 0;
+        foreach($alunosInativos as $aluno){
+            $qtdeAlunosInativos++;
+        }
 
-        return view('home');
+        $qtdeTurmas = 0;
+        foreach($turmas as $aluno){
+            $qtdeTurmas++;
+        }
+
+        $qtdeCursos = 0;
+        foreach($cursos as $aluno){
+            $qtdeCursos++;
+        }
+
+        $qtdeProfessores = 0;
+        foreach($professores as $aluno){
+            $qtdeProfessores++;
+        }
+
+        $qtdeVisitas = 0;
+        foreach($visitas as $aluno){
+            $qtdeVisitas++;
+        }
+
+        return view('home', [
+            'AlunosAtivos' => $qtdeAlunosAtivos,
+            'AlunosInativos' => $qtdeAlunosInativos,
+            'Turmas' => $qtdeTurmas,
+            'Cursos' => $qtdeCursos,
+            'Professores' => $qtdeProfessores,
+            'Visitas' => $qtdeVisitas
+        ]);
     }
 }

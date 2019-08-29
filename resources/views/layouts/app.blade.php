@@ -96,9 +96,7 @@
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" ><i class="fa fa-bank"></i>
-                            {{-- @php
-                                echo $_SESSION["Unidade"];
-                            @endphp --}}
+                            {{-- {{ $nomeUnidade }} --}}
                          </a>
                     </li>
                 </ul>
