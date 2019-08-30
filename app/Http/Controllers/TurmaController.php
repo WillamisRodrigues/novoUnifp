@@ -112,7 +112,7 @@ class TurmaController extends AppBaseController
             return redirect(route('turmas.index'));
         }
 
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
         $professores = DB::table('funcionario')->get()->where('Cargo', 'Professor');
         $cronogramas = DB::table('cronograma')->get();

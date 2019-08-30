@@ -31,7 +31,7 @@ class visitanteController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
 
         // $visitantes = $this->visitanteRepository->all();
         $visitantes = DB::table('visita')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
@@ -63,7 +63,7 @@ class visitanteController extends AppBaseController
         $input = $request->all();
 
         $visitante = $this->visitanteRepository->create($input);
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         DB::table('visita')->where('id', $visitante->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Cadastro de visitante salvo com sucesso.');

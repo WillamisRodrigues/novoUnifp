@@ -35,7 +35,7 @@ class CursoController extends AppBaseController
     public function index(Request $request)
     {
 
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 
         return view('cursos.index')->with('cursos', $cursos);
@@ -75,7 +75,7 @@ class CursoController extends AppBaseController
 
         $curso = $this->cursoRepository->create($input);
 
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         DB::table('curso')->where('id', $curso->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Curso criado com sucesso.');

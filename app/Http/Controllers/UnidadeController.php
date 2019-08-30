@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\UpdateUnidadeRequest;
 use App\Repositories\UnidadeRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
+
+
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -31,10 +36,22 @@ class UnidadeController extends AppBaseController
      */
     public function index(Request $request)
     {
+
         $unidades = $this->unidadeRepository->all();
 
         return view('unidades.index')
             ->with('unidades', $unidades);
+    }
+
+    public static function getUnidade()
+    {
+        $usuario = DB::table('users')->where('id', Auth::user()->id)->get('idUnidade')->first();
+        if ($usuario->idUnidade) {
+            $unidade = $usuario->idUnidade;
+        } else {
+            $unidade = Session::get('unidade');
+        }
+        return $unidade;
     }
 
     /**

@@ -46,7 +46,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function create()
     {
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         $cronogramas = DB::table('cronograma')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
         $dias = DB::table('dias_semana')->get();
         return view('aulas_cronogramas.create', ['cronogramas' => $cronogramas, 'dias' => $dias ]);

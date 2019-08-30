@@ -31,7 +31,16 @@ class CaixaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $caixas = $this->caixaRepository->all();
+        // $caixas = $this->caixaRepository->all();
+
+        $unidade = UnidadeController::getUnidade();
+
+        date_default_timezone_set('America/Sao_Paulo');
+        $hoje = date('Y-m-d');
+        // $ontem = date('Y-m-d 00:00:01' , mktime(0, 0, 0, date("m"), date("d"), date("Y")));
+        // $amanha = date('Y-m-d 23:59:59' , mktime(0, 0, 0, date("m"), date("d"), date("Y")));
+
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['Lancamento', '=', $hoje],['deleted_at', '=', null]])->get();
 
         return view('caixas.index')
             ->with('caixas', $caixas);
@@ -44,8 +53,9 @@ class CaixaController extends AppBaseController
      */
     public function create()
     {
-        $formaPgto = DB::table('forma_pgto')->get();
-        $centroCusto = DB::table('centro_custo')->get();
+        $unidade = UnidadeController::getUnidade();
+        $formaPgto = DB::table('forma_pgto')->where([['deleted_at', '=', null],['idUnidade', '=', $unidade]])->get();
+        $centroCusto = DB::table('centro_custo')->where([['deleted_at', '=', null],['idUnidade', '=', $unidade]])->get();
 
         return view('caixas.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto]);
     }

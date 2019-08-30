@@ -51,7 +51,7 @@ class AlunoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 
         return view('alunos.index')->with('alunos', $alunos);
@@ -64,7 +64,7 @@ class AlunoController extends AppBaseController
      */
     public function create()
     {
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
 
         $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Cargo', '=','Vendedor']])->get();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
@@ -91,7 +91,7 @@ class AlunoController extends AppBaseController
         $inputAluno = $requestAluno->all();
         $aluno = $this->alunoRepository->create($inputAluno);
 
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         DB::table('aluno')->where('id', $aluno->id)->update(['idUnidade' => $unidade]);
 
         $matricula = Arr::get($aluno, 'id');

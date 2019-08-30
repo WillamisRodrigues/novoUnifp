@@ -88,7 +88,7 @@
                     class="fa fa-save"></i>
                 Salvar
                 Contrato</button>
-            <a href="{!! route('contratos.index') !!}" style="margin-bottom: 1rem" class="btn btn-danger btn-flat"> <i
+            <a href="{!! route('contratos.show', [$cursos->id]) !!}" style="margin-bottom: 1rem" class="btn btn-danger btn-flat"> <i
                     class="fa fa-close"></i>
                 Cancelar</a>
         </div>

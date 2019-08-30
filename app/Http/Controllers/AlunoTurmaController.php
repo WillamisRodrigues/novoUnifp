@@ -54,7 +54,7 @@ class AlunoTurmaController extends Controller
     {
         // $alunos = DB::table('aluno')->where('idTurma', $id)->get();
 
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['idTurma', '=', $id],['deleted_at', '=', null]])->get();
 
         return view('alunos.index', ['alunos' => $alunos]);

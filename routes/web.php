@@ -53,6 +53,8 @@ Route::get('/gerarRelatorio', ['uses' => 'PdfController@gerarRelatorio']);
 
 Route::get('/gerarCsv', ['uses' => 'ExportarCsvController@gerarCsv']);
 
+Route::get('/detalhesContrato/{id}', ['uses' => 'ContratoController@contrato']);
+
 Route::get('/contratos/addContrato/{idCurso}', ['uses' => 'ContratoController@create']);
 
 Route::get('/turmasCursos/{idCurso}', ['uses' => 'TurmaCursoController@show']);

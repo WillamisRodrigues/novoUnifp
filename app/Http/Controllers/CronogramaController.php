@@ -35,7 +35,7 @@ class CronogramaController extends AppBaseController
     {
         // $cronogramas = $this->cronogramaRepository->all();
 
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         $cronogramas = DB::table('cronograma')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 
         return view('cronogramas.index')->with('cronogramas', $cronogramas);
@@ -63,7 +63,7 @@ class CronogramaController extends AppBaseController
         $input = $request->all();
 
         $cronograma = $this->cronogramaRepository->create($input);
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         DB::table('cronograma')->where('id', $cronograma->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Cronograma salvo com sucesso.');

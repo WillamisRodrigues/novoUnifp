@@ -48,11 +48,8 @@ class ContratoController extends AppBaseController
      */
     public function create($id)
     {
-        $unidade = Session::get('unidade');
-        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['id', '=',$id]])->get()->first();
+        $cursos = DB::table('curso')->where([['deleted_at', '=', null], ['id', '=', $id]])->get()->first();
 
-        // $cursos = DB::table('curso')->get()->where('id', $id)->first();
-        // dd($cursos);
         return view('contratos.create', ['cursos' => $cursos]);
     }
 
@@ -67,12 +64,11 @@ class ContratoController extends AppBaseController
     {
         $input = $request->all();
 
-
-        Arr::set($input, 'Matricula', str_replace(',','.', Arr::get($input, 'Matricula')));
-        Arr::set($input, 'MultaContrato', str_replace(',','.', Arr::get($input, 'MultaContrato')));
-        Arr::set($input, 'MoraContrato', str_replace(',','.', Arr::get($input, 'MoraContrato')));
-        Arr::set($input, 'Multa', str_replace(',','.', Arr::get($input, 'Multa')));
-        Arr::set($input, 'Mora', str_replace(',','.', Arr::get($input, 'Mora')));
+        Arr::set($input, 'Matricula', str_replace(',', '.', Arr::get($input, 'Matricula')));
+        Arr::set($input, 'MultaContrato', str_replace(',', '.', Arr::get($input, 'MultaContrato')));
+        Arr::set($input, 'MoraContrato', str_replace(',', '.', Arr::get($input, 'MoraContrato')));
+        Arr::set($input, 'Multa', str_replace(',', '.', Arr::get($input, 'Multa')));
+        Arr::set($input, 'Mora', str_replace(',', '.', Arr::get($input, 'Mora')));
 
         $contrato = $this->contratoRepository->create($input);
 
@@ -80,7 +76,14 @@ class ContratoController extends AppBaseController
 
         $curso = DB::table('curso')->get()->where('id', $input['idCurso'])->first();
 
-        return redirect(route('contratos.show', ['idCurso' => $input['idCurso'], 'curso' => $curso]));
+        // return redirect(route('contratos.show', ['idCurso' => $input['idCurso'], 'curso' => $curso]));
+        return redirect()->action('ContratoController@show', ['idCurso' => $input['idCurso'], 'curso' => $curso]);
+    }
+
+    public function contrato($id)
+    {
+        $contrato = DB::table('contratos')->where('id', $id)->get()->first();
+        return view('contratos.contrato', ['contrato' => $contrato]);
     }
 
     /**
@@ -92,7 +95,7 @@ class ContratoController extends AppBaseController
      */
     public function show($id)
     {
-        $contratos = DB::table('contratos')->get()->where('idCurso', $id);
+        $contratos = DB::table('contratos')->where([['idCurso', '=', $id], ['deleted_at', '=', null]])->get();
         $curso = DB::table('curso')->get()->where('id', $id)->first();
 
         return view('contratos.show', ['contratos' => $contratos, 'curso' => $curso]);
@@ -108,13 +111,14 @@ class ContratoController extends AppBaseController
     public function edit($id)
     {
         $contrato = $this->contratoRepository->find($id);
+        $cursos = DB::table('curso')->where([['deleted_at', '=', null], ['id', '=', $id]])->get()->first();
 
         if (empty($contrato)) {
             Flash::error('Contrato not found');
 
             return redirect(route('contratos.index'));
         }
-        $cursos = DB::table('curso')->get();
+        // $cursos = DB::table('curso')->get();
 
         return view('contratos.edit', ['cursos' => $cursos, 'contrato' => $contrato]);
     }
@@ -162,11 +166,10 @@ class ContratoController extends AppBaseController
 
             return redirect(route('contratos.index'));
         }
-
         $this->contratoRepository->delete($id);
 
         Flash::success('Contrato deleted successfully.');
 
-        return redirect(route('contratos.index'));
+        return redirect()->action('ContratoController@show', ['idCurso' => $contrato->idCurso]);
     }
 }

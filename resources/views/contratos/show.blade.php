@@ -12,8 +12,8 @@
         </ol>
     </h1>
     <div class="clearfix"></div>
-    <a class="btn btn-success" style="margin-left: 1rem" href="addContrato/{!!$curso->id!!}"><i
-            class="fa fa-plus"></i> Adicionar</a>
+    <a class="btn btn-success" style="margin-left: 1rem" href="addContrato/{!!$curso->id!!}"><i class="fa fa-plus"></i>
+        Adicionar</a>
     <div class="content">
         <div class="box box-primary criar-unidade">
             <div class="box-body">
@@ -37,14 +37,9 @@
                                         {!! Form::open(['route' => ['contratos.destroy', $contrato->id], 'method' =>
                                         'delete']) !!}
                                         <div class='btn-group'>
-                                            <a href="{!! route('contratos.show', [$contrato->id]) !!}"
-                                                class='btn btn-default btn-xs'><i
-                                                    class="glyphicon glyphicon-eye-open"></i></a>
-                                            <a href="{!! route('contratos.edit', [$contrato->id]) !!}"
-                                                class='btn btn-default btn-xs'><i
-                                                    class="glyphicon glyphicon-edit"></i></a>
+                                            <a href="/detalhesContrato/{{ $contrato->id }}" class="btn btn-default"> <i class="glyphicon glyphicon-zoom-in"></i> </a>
                                             {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' =>
-                                            'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return
+                                            'submit', 'class' => 'btn btn-danger btn-md', 'onclick' => "return
                                             confirm('Tem certeza que deseja deletar o contrato selecionado?')"]) !!}
                                         </div>
                                         {!! Form::close() !!}

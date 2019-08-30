@@ -33,7 +33,7 @@ class AgendaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         $agendas = DB::table('agenda')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Arquivado', '=','Não']])->get();
 
         return view('agendas.index')->with('agendas', $agendas);
@@ -61,7 +61,7 @@ class AgendaController extends AppBaseController
         $input = $request->all();
 
         $agenda = $this->agendaRepository->create($input);
-        $unidade = Session::get('unidade');
+        $unidade = UnidadeController::getUnidade();
         DB::table('agenda')->where('id', $agenda->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Compromisso adicionado com sucesso.');

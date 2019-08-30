@@ -8,7 +8,7 @@
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
             <li><a href="{!! route('cursos.index') !!}">Cursos</a></li>
             {{-- falta a rota --}}
-            <li><a href="{!! route('cursos.index') !!}">Contratos</a></li>
+            <li><a href="{!! route('contratos.show', [$cursos->id]) !!}">Contratos</a></li>
             <li class="active">Criar</li>
         </ol>
     </h1>
