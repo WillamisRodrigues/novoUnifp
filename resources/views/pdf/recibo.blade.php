@@ -42,11 +42,11 @@
     </div>
     <div class="clearfix"></div>
     <div>
-        <h3 class="text-center"><b><u>Recibo Nº {!! $recibo->numeroDocumento !!}</u></b></h3>
+        <h3 class="text-center"><b><u>Recibo Nº {!! str_pad($recibo->numeroDocumento, 8, '0', STR_PAD_LEFT) !!}</u></b></h3>
         <h3 class="text-right"><b>R$ {!! $recibo->Valor !!}</b></h3>
         <p style="font-size: 1.3rem">Recebemos de {!! $aluno->Pagador !!} a quantia de
             {!! $valorExtenso !!} referente a parcela {!!
-            $recibo->Parcela !!}/{!! 'total' !!} do aluno <b>{!! $aluno->Nome !!}</b> - Contrato número: <b>{!! $aluno->id !!}</b>.
+            $recibo->Parcela !!}/{!! $qtdeParcelas->QtdeParcelas !!} do aluno <b>{!! $aluno->Nome !!}</b> - Contrato número: <b>{!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}</b>.
         </p>
         <p class="text-right">{!! $unidade->Cidade." - ".$unidade->UF.", ".$dateExtenso."."!!}</p>
         <p class="text-right">_________________________________________________ <br> {!! $unidade->NomeUnidade !!} -
@@ -67,11 +67,11 @@
     </div>
     <div class="clearfix"></div>
     <div>
-        <h3 class="text-center"><b><u>Recibo Nº {!! $recibo->numeroDocumento !!}</u></b></h3>
+        <h3 class="text-center"><b><u>Recibo Nº {!! str_pad($recibo->numeroDocumento, 8, '0', STR_PAD_LEFT) !!}</u></b></h3>
         <h3 class="text-right"><b>R$ {!! $recibo->Valor !!}</b></h3>
         <p style="font-size: 1.3rem">Recebemos de {!! $aluno->Pagador !!} a quantia de
             {!! $valorExtenso !!} referente a parcela {!!
-            $recibo->Parcela !!}/{!! 'total' !!} do aluno <b>{!! $aluno->Nome !!}</b> - Contrato número: <b>{!! $aluno->id !!}</b>.
+            $recibo->Parcela !!}/{!! $qtdeParcelas->QtdeParcelas !!} do aluno <b>{!! $aluno->Nome !!}</b> - Contrato número: <b>{!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}</b>.
         </p>
         <p class="text-right">{!! $unidade->Cidade." - ".$unidade->UF.", ".$dateExtenso."."!!}</p>
         <p class="text-right">_________________________________________________ <br> {!! $unidade->NomeUnidade !!} -

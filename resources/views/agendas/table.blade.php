@@ -24,16 +24,12 @@
                 <td>{!! $agenda->Assunto !!}</td>
                 <td>{!! $agenda->Resolvido !!}</td>
                 <td>
-                    {!! Form::open(['route' => ['agendas.destroy', $agenda->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
                         <a href="{!! route('agendas.show', [$agenda->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-zoom-in"></i></a>
                         <a href="{!! route('agendas.edit', [$agenda->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-edit"></i></a>
-                        {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
-                        'btn btn-danger btn-sm', 'onclick' => "return confirm('Você tem certeza que deseja deletar o compromisso selecionado?')"]) !!}
                     </div>
-                    {!! Form::close() !!}
                 </td>
             </tr>
             @endforeach

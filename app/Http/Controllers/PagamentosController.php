@@ -80,6 +80,8 @@ class PagamentosController extends AppBaseController
         date_default_timezone_set('America/Sao_Paulo');
         $date = date('Y-m-d H:i:s');
 
+        $unidade = UnidadeController::getUnidade();
+
         if ($input['Multa'] != null) {
             DB::update('update pagamentos set Status = ?, Forma = ?, Multa = ?, Usuario = ?, Data = ?, Valor = ?, DataPgto = ? where numeroDocumento = ?', [$input['Status'], $input['FormaPagamento'], $input['Multa'], $input['Usuario'], $date, $input['Valor'], $date, $input['numeroDocumento']]);
         } else {
@@ -95,7 +97,7 @@ class PagamentosController extends AppBaseController
 
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $input['numeroDocumento'])->first();
 
-        DB::insert('insert into caixa (Tipo,Via,FormaPgto,Status,Aluno,Descricao,Lancamento,Vencimento,Valor,CentroCusto,ContaCaixa,Usuario,Data,created_at,updated_at) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', ['Pagamento','Caixa',$input['FormaPagamento'],'Pago',$aluno->Nome,'Pagamento de Parcela',$date,$recibo->Vencimento,$parcela,'Centro de Custo',$input['Usuario'],$input['Usuario'],$date,$date,$date ]);
+        DB::insert('insert into caixa (Tipo,Via,FormaPgto,Status,Aluno,Descricao,Lancamento,Vencimento,Valor,CentroCusto,ContaCaixa,Usuario,Data, idUnidade,created_at,updated_at) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', ['Pagamento','Caixa',$input['FormaPagamento'],'Pago',$aluno->Nome,'Pagamento de Parcela',$date,$recibo->Vencimento,$parcela,'Pagamento',$input['Usuario'],$input['Usuario'],$date, $unidade,$date,$date ]);
 
         $aluno = DB::table('aluno')->get()->where('id', $input['Matricula']);
         $recibo = DB::table('pagamentos')->get()->where('Matricula', $input['Matricula']);

@@ -6,7 +6,8 @@
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="{!! route('pagamentos.index') !!}">Pagamentos</a></li>
+            <li><a href="{!! route('alunos.index') !!}">Alunos</a></li>
+            <li><a href="{!! route('pagamentos.show', [$aluno->id]) !!}">Pagamentos</a></li>
             <li class="active">Lançar pagamento</li>
         </ol>
     </h1>
@@ -19,14 +20,14 @@
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Nº Documento:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    {!! $recibo->numeroDocumento !!}
+                    {!! str_pad($recibo->numeroDocumento, 8, '0', STR_PAD_LEFT) !!}
                     {!! Form::hidden('numeroDocumento', $recibo->numeroDocumento) !!}
                 </div>
             </p>
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Aluno:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    {!! $aluno->id !!}, {!! $aluno->Nome !!}
+                        {!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}, {!! $aluno->Nome !!}
                     {!! Form::hidden('Matricula', $aluno->id) !!}
                 </div>
             </p>

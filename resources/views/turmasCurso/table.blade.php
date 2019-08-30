@@ -11,7 +11,6 @@
                 <th>Duração das Aulas</th>
                 <th>Professor</th>
                 <th>Vagas</th>
-                <th>Cronograma</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -21,11 +20,13 @@
 
             <tr>
                 <td>
-                    @foreach ($cursos as $curso)
-                        @if($turma->id == $curso->id)
-                            {!! $curso->nomeCurso !!}
-                        @endif
-                    @endforeach
+                    @php
+                        foreach ($cursos as $curso) {
+                            if($curso->id == $turma->idCurso){
+                                echo $curso->nomeCurso;
+                            }
+                        }
+                    @endphp
                 </td>
                 <td>{!! $turma->NomeTurma !!}</td>
                 <td>
@@ -59,9 +60,16 @@
                     {!! date('d/m/Y', strtotime($turma->DataTermino)); !!}
                 </td>
                 <td>{!! $turma->DuracaoAulas !!}</td>
-                <td>{!! $turma->Professor !!}</td>
+                <td>
+                    @php
+                        foreach ($professores as $professor) {
+                            if($professor->id == $turma->Professor){
+                                echo $professor->Nome;
+                            }
+                        }
+                    @endphp
+                </td>
                 <td>{!! $turma->Vagas !!}</td>
-                <td>{!! $turma->Cronograma !!}</td>
                 <td>
                     {!! Form::open(['route' => ['turmas.destroy', $turma->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

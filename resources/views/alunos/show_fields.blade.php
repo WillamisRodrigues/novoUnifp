@@ -1,6 +1,12 @@
 <div style="margin: 15px">
     <div class="row">
         <div class="col-md-6 col-sm-12">
+            <!-- Campo Matricula -->
+            <div class="row">
+                <p class="col-sm-12 col-md-5">{!! Form::label('Matricula', 'Matrícula:') !!}</p>
+                <p class="col-sm-12 col-md-7">{!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}</p>
+            </div>
+
             <!-- Campo Nome -->
             <div class="row">
                 <p class="col-sm-12 col-md-5">{!! Form::label('Nome', 'Nome:') !!}</p>
@@ -61,19 +67,25 @@
             <!-- Campo Curso -->
             <div class="row">
                 <p class="col-sm-12 col-md-5">{!! Form::label('idCurso', 'Curso:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->idCurso !!}</p>
+                <p class="col-sm-12 col-md-7">
+                    {!! $curso->nomeCurso !!}
+                </p>
             </div>
 
             <!-- Campo Turma -->
             <div class="row">
                 <p class="col-sm-12 col-md-5">{!! Form::label('idTurma', 'Turma:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->idTurma !!}</p>
+                <p class="col-sm-12 col-md-7">
+                    {!! $turma->NomeTurma !!}
+                </p>
             </div>
 
             <!-- Campo Parcelamento -->
             <div class="row">
                 <p class="col-sm-12 col-md-5">{!! Form::label('idParcelamento', 'Forma de Parcelamento:') !!}</p>
-                <p class="col-sm-12 col-md-7">{!! $aluno->idParcelamento !!}</p>
+                <p class="col-sm-12 col-md-7">
+                    {!! $pagamento->QtdeParcelas !!} parcelas de R${!! $pagamento->ParcelaBruta !!},00
+                </p>
             </div>
 
             <!-- Campo Vencimento -->

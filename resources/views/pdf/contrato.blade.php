@@ -121,8 +121,21 @@
             <tr>
                 <td><span>Início das Aulas:</span><br>{!! date('d/m/Y', strtotime($turmas->DataInicio)) !!}</td>
                 <td><span>Período/Horário:</span><br>{!! $turmas->Periodo !!}</td>
-                <td><span>Dias de Aula:</span><br>{!! $turmas->DiasDaSemana !!} dias</td>
-                <td><span>Matriculado sob o número:</span><br>{!! $aluno->id !!}</td>
+                <td><span>Dias de Aula:</span><br>
+                    {{-- {!! $turmas->DiasDaSemana !!} --}}
+                    @php
+                        $str1 = str_replace(","," - ", $turmas->DiasDaSemana);
+                        $str2 = str_replace("\""," ", $str1);
+                        $str3 = str_replace("]", "", $str2);
+                        $str4 = str_replace("[", "", $str3);
+                        echo $str4;
+                        // print_r($turma->DiasDaSemana);
+                        // foreach ($turma->DiasDaSemana as $dia) {
+                        //     echo "$dia ";
+                        // }
+                    @endphp
+                     </td>
+                <td><span>Matriculado sob o número:</span><br>{!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}</td>
             </tr>
         </table>
     </div>
@@ -145,8 +158,8 @@
         <div style="width: 50%; float:right">
             ______________________________________<br>
             Contratada:<br>
-            {!! 'nome da escola' !!}<br>
-            CNPJ: {!! 'cnpj da escola' !!}
+            {!! $unidade->NomeUnidade !!}<br>
+            CNPJ: {!! $unidade->CNPJ !!}
         </div>
     </div>
     <div style="clear:both"></div>

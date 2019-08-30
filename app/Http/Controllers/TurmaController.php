@@ -33,9 +33,12 @@ class TurmaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $turmas = $this->turmaRepository->all()->where('Status', 'Ativa');
+        // $turmas = $this->turmaRepository->all()->where('Status', 'Ativa');
+        $unidade = UnidadeController::getUnidade();
+        $turmas = DB::table('turma')->where([['Status', '=', 'Ativa'], ['deleted_at', '=', null],['idUnidade', '=', $unidade]])->get();
         $cursos = DB::table('curso')->get();
-        return view('turmas.index', ['turmas' => $turmas, 'cursos' => $cursos]);
+        $professores = DB::table('funcionario')->where([['Cargo', '=', 'Professor'],['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        return view('turmas.index', ['turmas' => $turmas, 'cursos' => $cursos, 'professores' => $professores]);
     }
 
     /**
@@ -66,6 +69,9 @@ class TurmaController extends AppBaseController
 
         $turma = $this->turmaRepository->create($input);
 
+        $unidade = UnidadeController::getUnidade();
+        DB::table('aluno')->where('id', $turma->id)->update(['idUnidade' => $unidade]);
+
         Flash::success('Turma criada com sucesso.');
 
         return redirect(route('turmas.index'));
@@ -87,12 +93,13 @@ class TurmaController extends AppBaseController
 
             return redirect(route('turmas.index'));
         }
-
+        $unidade = UnidadeController::getUnidade();
         $horarios = DB::table('horario')->get()->where('id', $turma->Horario)->first();
         $curso = DB::table('curso')->get()->where('id', $turma->idCurso)->first();
-        // dd($curso);
+        $professor = DB::table('funcionario')->where('id', $turma->Professor)->get()->first();
 
-        return view('turmas.show', ['turma' => $turma, 'horario' => $horarios, 'curso' => $curso]);
+
+        return view('turmas.show', ['turma' => $turma, 'horario' => $horarios, 'curso' => $curso, 'professor' => $professor]);
     }
 
     /**

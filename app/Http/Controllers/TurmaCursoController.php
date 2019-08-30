@@ -17,8 +17,11 @@ class TurmaCursoController extends Controller
      */
     public function show($id)
     {
-        $turma = DB::select('select * from turma where Status = ? and idCurso = ?', ['Ativa', $id]);
+        $unidade = UnidadeController::getUnidade();
+        $turma = DB::select('select * from turma where Status = ? and idCurso = ? and idUnidade = ?', ['Ativa', $id, $unidade]);
         $curso = DB::table('curso')->get();
+        $professores = DB::table('funcionario')->where([['Cargo', '=', 'Professor'],['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+
         // dd($turma);
 
         // if (empty($turma)) {
@@ -28,6 +31,6 @@ class TurmaCursoController extends Controller
         // }
 
 
-        return view('turmasCurso.index', ['turmas' => $turma, 'cursos' => $curso]);
+        return view('turmasCurso.index', ['turmas' => $turma, 'cursos' => $curso, 'professores' => $professores]);
     }
 }

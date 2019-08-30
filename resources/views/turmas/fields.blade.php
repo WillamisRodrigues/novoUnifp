@@ -118,7 +118,7 @@
         <p class="col-sm-12 col-md-8 select-padrao">
             <select name="Professor" id="Professor" style="width: 50%">
                 @foreach($professores as $professor )
-                <option value="{{ $professor->Nome }}">{{ $professor->Nome }}</option>
+                <option value="{{ $professor->id }}">{{ $professor->Nome }}</option>
                 @endforeach
             </select>
         </p>
@@ -138,7 +138,7 @@
             {{-- {!! Form::text('Cronograma', null, ['class' => 'form-control']) !!} --}}
             <select name="Cronograma" id="Cronograma" style="width: 50%">
                 @foreach($cronogramas as $cronograma )
-                <option value="{{ $cronograma->Nome }}">{{ $cronograma->Nome }}</option>
+                <option value="{{ $cronograma->id }}">{{ $cronograma->Nome }}</option>
                 @endforeach
             </select>
         </p>

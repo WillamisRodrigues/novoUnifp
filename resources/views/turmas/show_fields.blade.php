@@ -68,18 +68,12 @@
     <!-- Professor Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('Professor', 'Professor:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $turma->Professor !!}</p>
+        <p class="col-sm-12 col-md-8">{!! $professor->Nome !!}</p>
     </div>
 
     <!-- Vagas Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('Vagas', 'Vagas:') !!}</p>
         <p class="col-sm-12 col-md-8">{!! $turma->Vagas !!}</p>
-    </div>
-
-    <!-- Cronograma Field -->
-    <div class="row">
-        <p class="col-sm-12 col-md-4">{!! Form::label('Cronograma', 'Cronograma:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $turma->Cronograma !!}</p>
     </div>
 </div>

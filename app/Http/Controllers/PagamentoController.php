@@ -128,15 +128,15 @@ class PagamentoController extends AppBaseController
     // public function update($id, UpdateAlunoRequest $request)
     public function notas($id)
     {
-        $aluno = $this->alunoRepository->find($id);
+        $aluno = $this->alunoRepository->find($id)->first();
 
         if (empty($aluno)) {
             Flash::error('Aluno não encontrado.');
 
             return redirect(route('alunos.index'));
         }
-
-        return view('relatorios.notas');
+        // dd($aluno);
+        return view('relatorios.notas', ['aluno' => $aluno]);
     }
 
     /**

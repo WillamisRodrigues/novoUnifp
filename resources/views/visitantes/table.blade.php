@@ -28,7 +28,18 @@
                 <td>
                     {!! date('d/m/Y', strtotime($visitante->dataAtendimento)); !!}
                 </td>
-                <td>{!! $visitante->status !!}</td>
+                <td>
+                    @switch($visitante->status)
+                        @case('SemInteresse')
+                            Sem interesse
+                            @break
+                        @case('RetornarContato')
+                            A retornar contato
+                            @break
+                        @default
+                            {{$visitante->status}}
+                    @endswitch
+                </td>
                 <td>
                     {!! Form::open(['route' => ['visitantes.destroy', $visitante->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

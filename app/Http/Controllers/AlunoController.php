@@ -196,7 +196,11 @@ class AlunoController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        return view('alunos.show')->with('aluno', $aluno);
+        $turma = DB::table('turma')->where('id', $aluno->idTurma)->get()->first();
+        $curso = DB::table('curso')->where('id', $aluno->idCurso)->get()->first();
+        $pagamento = DB::table('formas_pagamento')->where('idCurso', $curso->id)->get()->first();
+
+        return view('alunos.show', ['aluno' => $aluno, 'turma' => $turma, 'curso' => $curso, 'pagamento' => $pagamento]);
     }
 
     /**

@@ -27,6 +27,7 @@ class PdfController extends Controller
         //falta id da unidade
         $idUnidade = 1;
         $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
+        dd($boletos);
 
         $pdf = PDF::loadView('pdf.carne', ['aluno' => $aluno, 'unidade' => $unidades, 'boletos' => $boletos, 'parcelamento' => $formas_parcelamentos]);
         return $pdf->stream('invoice.pdf');;
@@ -69,11 +70,12 @@ class PdfController extends Controller
         $aluno = DB::table('aluno')->get()->where('id', $id)->first();
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $pag)->first();
         $unidade = DB::table('unidade')->get()->where('id', $idUnidade)->first();
+        $parcelas = DB::table('formas_pagamento')->where('idCurso', $aluno->idCurso)->get('QtdeParcelas')->first();
 
         $valorExtenso = $this->convert_number_to_words($recibo->Valor);
 
         date_default_timezone_set('America/Sao_Paulo');
-        $date = date('d/m/Y h:i:s');
+        $date = date('d/m/Y H:i:s');
         $dia = date('d');
         $mes = date('M');
         switch ($mes) {
@@ -117,7 +119,7 @@ class PdfController extends Controller
         $ano = date('Y');
         $dateExtenso = "$dia de $mes de $ano";
 
-        $pdf = PDF::loadView('pdf.recibo',['unidade' => $unidade, 'aluno' => $aluno, 'date' => $date, 'dateExtenso' => $dateExtenso, 'recibo' => $recibo, 'valorExtenso' => $valorExtenso]);
+        $pdf = PDF::loadView('pdf.recibo',['unidade' => $unidade, 'aluno' => $aluno, 'date' => $date, 'dateExtenso' => $dateExtenso, 'recibo' => $recibo, 'valorExtenso' => $valorExtenso, 'qtdeParcelas' => $parcelas]);
         return $pdf->stream('invoice.pdf');
     }
 
@@ -189,7 +191,7 @@ class PdfController extends Controller
         }
 
         if ($number < 0) {
-            return $negative . convert_number_to_words(abs($number));
+            return $negative . $this->convert_number_to_words(abs($number));
         }
 
         $string = $fraction = null;
@@ -215,7 +217,7 @@ class PdfController extends Controller
                 $remainder = $number % 100;
                 $string = $dictionary[$hundreds];
                 if ($remainder) {
-                    $string .= $conjunction . convert_number_to_words($remainder);
+                    $string .= $conjunction . $this->convert_number_to_words($remainder);
                 }
                 break;
             default:
@@ -223,15 +225,15 @@ class PdfController extends Controller
                 $numBaseUnits = (int) ($number / $baseUnit);
                 $remainder = $number % $baseUnit;
                 if ($baseUnit == 1000) {
-                    $string = convert_number_to_words($numBaseUnits) . ' ' . $dictionary[1000];
+                    $string = $this->convert_number_to_words($numBaseUnits) . ' ' . $dictionary[1000];
                 } elseif ($numBaseUnits == 1) {
-                    $string = convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit][0];
+                    $string = $this->convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit][0];
                 } else {
-                    $string = convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit][1];
+                    $string = $this->convert_number_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit][1];
                 }
                 if ($remainder) {
                     $string .= $remainder < 100 ? $conjunction : $separator;
-                    $string .= convert_number_to_words($remainder);
+                    $string .= $this->convert_number_to_words($remainder);
                 }
                 break;
         }
@@ -322,7 +324,7 @@ class PdfController extends Controller
         }
 
         if ($number < 0) {
-            return $negative . convert_decimal_to_words(abs($number));
+            return $negative . $this->convert_decimal_to_words(abs($number));
         }
 
         $string = $fraction = null;
@@ -348,7 +350,7 @@ class PdfController extends Controller
                 $remainder = $number % 100;
                 $string = $dictionary[$hundreds];
                 if ($remainder) {
-                    $string .= $conjunction . convert_decimal_to_words($remainder);
+                    $string .= $conjunction . $this->convert_decimal_to_words($remainder);
                 }
                 break;
             default:
@@ -356,15 +358,15 @@ class PdfController extends Controller
                 $numBaseUnits = (int) ($number / $baseUnit);
                 $remainder = $number % $baseUnit;
                 if ($baseUnit == 1000) {
-                    $string = convert_decimal_to_words($numBaseUnits) . ' ' . $dictionary[1000];
+                    $string = $this->convert_decimal_to_words($numBaseUnits) . ' ' . $dictionary[1000];
                 } elseif ($numBaseUnits == 1) {
-                    $string = convert_decimal_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit][0];
+                    $string = $this->convert_decimal_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit][0];
                 } else {
-                    $string = convert_decimal_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit][1];
+                    $string = $this->convert_decimal_to_words($numBaseUnits) . ' ' . $dictionary[$baseUnit][1];
                 }
                 if ($remainder) {
                     $string .= $remainder < 100 ? $conjunction : $separator;
-                    $string .= convert_decimal_to_words($remainder);
+                    $string .= $this->convert_decimal_to_words($remainder);
                 }
                 break;
         }

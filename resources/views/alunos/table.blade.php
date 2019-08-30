@@ -23,7 +23,9 @@
         <tbody>
             @foreach($alunos as $aluno)
             <tr>
-                <td class="text-center">{!! $aluno->id !!}</td>
+                <td class="text-center">
+                    {!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}
+                </td>
                 <td>{!! $aluno->Nome !!}</td>
                 <td class="text-center">
                     @if($aluno->Sexo == 'Masculino')
