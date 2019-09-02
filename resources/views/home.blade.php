@@ -102,7 +102,26 @@
     </div>
     <div class="row" style="margin-top: 2rem">
         <div class="col-xs-12 col-sm-12" style=" border-radius: 10px;">
-            <p style="padding:2rem; height: 300px;background-color: white;"> Número de Matrículas por Vendedor</p>
+            <div style="padding:2rem; height: 300px;background-color: white;">
+                <div class="table-responsive">
+                    <table class="table display datatable-list">
+                        <thead>
+                            <tr>
+                                <th>Vendedor</th>
+                                <th>Qtde Matrículas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($vendedores as $vendedor)
+                            <tr>
+                                <td>{!! $vendedor->Vendedor !!}</td>
+                                <td>{!! $vendedor->count !!}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

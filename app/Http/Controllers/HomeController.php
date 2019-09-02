@@ -75,8 +75,8 @@ class HomeController extends Controller
         $alunosM = DB::table('aluno')->where([['Sexo', '=', 'Feminino'], ['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
 
         //nivel de adimplencia
-        $emDia = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/['Status', '<>', 'Atrasado']])->get();
-        $atrasados = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/['Status', '=', 'Vencido']])->get();
+        $emDia = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/ ['Status', '<>', 'Atrasado']])->get();
+        $atrasados = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/ ['Status', '=', 'Vencido']])->get();
 
         //inicia todos os gráficos
         $MatriculasMes = \Lava::DataTable();
@@ -236,12 +236,18 @@ class HomeController extends Controller
             'colors' => ['#14486B', '#F75A5E']
         ]);
 
+        // vendedores
+        $vendedores = DB::table('aluno')->selectRaw('Vendedor, COUNT(*) as count')->groupBy('Vendedor')->orderBy('count', 'desc')->get();
+        $unidades = DB::table('unidade')->where('id', $unidade)->get()->first();
+
         return view('home', [
             'AlunosAtivos' => $qtdeAlunosAtivos,
             'AlunosInativos' => $qtdeAlunosInativos,
             'Turmas' => $qtdeTurmas,
             'Cursos' => $qtdeCursos,
             'Professores' => $qtdeProfessores,
+            'vendedores' => $vendedores,
+            'unidades' => $unidades,
             'Visitas' => $qtdeVisitas
         ]);
     }
