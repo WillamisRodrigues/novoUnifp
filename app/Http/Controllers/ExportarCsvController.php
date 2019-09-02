@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class ExportarCsvController extends Controller
 {
     public function gerarCsv(){
+        // Excel::
         return Excel::download(new ExportarLancamentos, 'lancamentos.csv');
     }
 }

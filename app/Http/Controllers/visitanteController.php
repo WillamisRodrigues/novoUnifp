@@ -91,6 +91,8 @@ class visitanteController extends AppBaseController
         return view('visitantes.show')->with('visitante', $visitante);
     }
 
+
+
     /**
      * Show the form for editing the specified visitante.
      *
