@@ -63,7 +63,15 @@
     <!-- Aluno Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Aluno', 'Aluno:') !!}</p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('Aluno', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-6 select-padrao">
+            <select name="CentroCusto" id="CentroCusto">
+                @foreach ($alunos as $aluno)
+                <option value="{!! $aluno->Nome !!}">
+                    {!! $aluno->Nome !!}
+                </option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Lancamento Field -->

@@ -17,32 +17,32 @@
 
     <div class="clearfix"></div>
     <div class="row" style="margin-left: 5rem">
-        {!! Form::open() !!}
+        {!! Form::open(['route' => 'filtroReceitas']) !!}
         <p class="select-padrao col-md-2"> Selecione o ano:
-            <select name="cursos" id="cursos">
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
+            <select name="ano" id="ano">
                 <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
             </select>
         </p>
         <p class="select-padrao col-md-2"> Selecione o mês:
-            <select name="turmas" id="turmas">
-                <option value="Janeiro">Janeiro</option>
-                <option value="Fevereiro">Fevereiro</option>
-                <option value="Março">Março</option>
-                <option value="Abril">Abril</option>
-                <option value="Maio">Maio</option>
-                <option value="Junho">Junho</option>
-                <option value="Julho">Julho</option>
-                <option value="Agosto">Agosto</option>
-                <option value="Setembro">Setembro</option>
-                <option value="Outubro">Outubro</option>
-                <option value="Novembro">Novembro</option>
-                <option value="Dezembro">Dezembro</option>
+            <select name="mes" id="mes">
+                <option value="01">Janeiro</option>
+                <option value="02">Fevereiro</option>
+                <option value="03">Março</option>
+                <option value="04">Abril</option>
+                <option value="05">Maio</option>
+                <option value="06">Junho</option>
+                <option value="07">Julho</option>
+                <option value="08">Agosto</option>
+                <option value="09">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
             </select>
         </p>
-        {!! Form::close() !!}
         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Filtrar</button>
+        {!! Form::close() !!}
     </div>
     <div class="box box-primary">
         <div class="box-body">
@@ -63,12 +63,55 @@
                     <tbody>
                         @foreach($caixas as $caixa)
                         <tr>
-                            <td>{!! date('Y', strtotime($caixa->Lancamento)); !!}</td>
-                            <td>{!! date('M', strtotime($caixa->Lancamento)); !!}</td>
+                            <td>{!! date('Y', strtotime($caixa->created_at)); !!}</td>
+                            <td>
+                                {{-- {!! date('M', strtotime($caixa->Lancamento)); !!} --}}
+                                @switch(date('M', strtotime($caixa->created_at)))
+                                    @case('Jan')
+                                        {!! 'Janeiro' !!}
+                                        @break
+                                    @case('Feb')
+                                        {!! 'Fevereiro' !!}
+                                        @break
+                                    @case('Mar')
+                                        {!! 'Março' !!}
+                                        @break
+                                    @case('Apr')
+                                        {!! 'Abril' !!}
+                                        @break
+                                    @case('May')
+                                        {!! 'Maio' !!}
+                                        @break
+                                    @case('Jun')
+                                        {!! 'Junho' !!}
+                                        @break
+                                    @case('Jul')
+                                        {!! 'Julho' !!}
+                                        @break
+                                    @case('Aug')
+                                        {!! 'Agosto' !!}
+                                        @break
+                                    @case('Sep')
+                                        {!! 'Setembro' !!}
+                                        @break
+                                    @case('Oct')
+                                        {!! 'Outubro' !!}
+                                        @break
+                                    @case('Nov')
+                                        {!! 'Novembro' !!}
+                                        @break
+                                    @case('Dec')
+                                        {!! 'Dezembro' !!}
+                                        @break
+                                    @default
+                                        {!! 'Não encontrado' !!}
+
+                                @endswitch
+                            </td>
                             <td>{!! $caixa->Via !!}</td>
                             <td>{!! $caixa->ContaCaixa !!}</td>
                             <td>{!! $caixa->CentroCusto !!}</td>
-                            <td>R$ {!! $caixa->Valor !!},00</td>
+                            <td>R$ {!! $caixa->Valor !!}</td>
                             <td>{!! $caixa->Usuario !!}</td>
                             <td>
                                 {!! date('H:m:s d/m/Y', strtotime($caixa->Data)); !!}

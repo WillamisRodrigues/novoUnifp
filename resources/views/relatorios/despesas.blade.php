@@ -16,31 +16,6 @@
     @include('flash::message')
 
     <div class="clearfix"></div>
-    {{-- <div class="row" style="margin-left: 5rem">
-        <p class="select-padrao col-md-2"> Selecione o ano:
-            <select name="cursos" id="cursos">
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-                <option value="2019">2019</option>
-            </select>
-        </p>
-        <p class="select-padrao col-md-2"> Selecione o mês:
-            <select name="turmas" id="turmas">
-                <option value="Janeiro">Janeiro</option>
-                <option value="Fevereiro">Fevereiro</option>
-                <option value="Março">Março</option>
-                <option value="Abril">Abril</option>
-                <option value="Maio">Maio</option>
-                <option value="Junho">Junho</option>
-                <option value="Julho">Julho</option>
-                <option value="Agosto">Agosto</option>
-                <option value="Setembro">Setembro</option>
-                <option value="Outubro">Outubro</option>
-                <option value="Novembro">Novembro</option>
-                <option value="Dezembro">Dezembro</option>
-            </select>
-        </p>
-    </div> --}}
     <div class="box box-primary">
         <div class="box-body">
             <div class="table-responsive">
@@ -65,7 +40,7 @@
                             <td>{!! $caixa->Via !!}</td>
                             <td>{!! $caixa->ContaCaixa !!}</td>
                             <td>{!! $caixa->CentroCusto !!}</td>
-                            <td>R$ {!! $caixa->Valor !!},00</td>
+                            <td>R$ {!! $caixa->Valor !!}</td>
                             <td>{!! $caixa->Usuario !!}</td>
                             <td>
                                 {!! date('H:m:s d/m/Y', strtotime($caixa->Data)); !!}

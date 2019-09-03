@@ -62,7 +62,15 @@
     <!-- Aluno Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Aluno', 'Aluno:') !!}</p>
-        <p class="col-sm-12 col-md-6">{!! Form::text('Aluno', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-6 select-padrao">
+            <select name="CentroCusto" id="CentroCusto">
+                @foreach ($alunos as $aluno)
+                <option value="{!! $aluno->Nome !!}">
+                    {!! $aluno->Nome !!}
+                </option>
+                @endforeach
+            </select>
+        </p>
     </div>
 
     <!-- Lancamento Field -->
@@ -87,7 +95,8 @@
     <!-- Valor Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Valor', 'Valor:') !!}</p>
-        <div class="col-sm-12 col-md-6 input-group" style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
+        <div class="col-sm-12 col-md-6 input-group"
+            style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
             {!! Form::text('Valor', null, ['class' => 'form-control', 'id' => 'Valor'])!!}
             <div class="input-group-addon">
                 <i class="glyphicon glyphicon-usd"></i>

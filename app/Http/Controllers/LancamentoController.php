@@ -83,8 +83,10 @@ class LancamentoController extends AppBaseController
     {
         $formaPgto = DB::table('forma_pgto')->get();
         $centroCusto = DB::table('centro_custo')->get();
+        $unidade = UnidadeController::getUnidade();
+        $alunos = DB::table('aluno')->where([['deleted_at', '=' ,null], ['idUnidade', '=', $unidade]])->get();
 
-        return view('lancamentos.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto]);
+        return view('lancamentos.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'alunos' => $alunos]);
     }
 
     /**
@@ -147,8 +149,10 @@ class LancamentoController extends AppBaseController
         // return view('lancamentos.edit')->with('caixa', $caixa);
         $formaPgto = DB::table('forma_pgto')->get();
         $centroCusto = DB::table('centro_custo')->get();
+        $unidade = UnidadeController::getUnidade();
+        $alunos = DB::table('aluno')->where([['deleted_at', '=' ,null], ['idUnidade', '=', $unidade]])->get();
 
-        return view('lancamentos.edit', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'caixa' => $caixa]);
+        return view('lancamentos.edit', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'caixa' => $caixa, 'alunos' => $alunos]);
     }
 
     /**

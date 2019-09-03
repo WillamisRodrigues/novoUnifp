@@ -58,7 +58,7 @@
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                 <ul class="nav navbar-nav ">
                     <li class="dropdown drop-menu-mobile">
-                        <ul class="sidebar-menu" data-widget="tree">
+                        <ul class="sidebar-menu" data-widget="tree" style="font-size: 1.2rem">
                             @include('layouts.menu')
                         </ul>
                     </li>
@@ -73,7 +73,6 @@
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" style="font-size: 2rem"></i>
-                            {{-- {{ dd(Auth::user()) }} --}}
                             {{ Auth::user()->name }}
 
                         </a>

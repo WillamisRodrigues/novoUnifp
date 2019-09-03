@@ -54,10 +54,11 @@ class CaixaController extends AppBaseController
     public function create()
     {
         $unidade = UnidadeController::getUnidade();
-        $formaPgto = DB::table('forma_pgto')->where([['deleted_at', '=', null],['idUnidade', '=', $unidade]])->get();
-        $centroCusto = DB::table('centro_custo')->where([['deleted_at', '=', null],['idUnidade', '=', $unidade]])->get();
+        $formaPgto = DB::table('forma_pgto')->where([['deleted_at', '=', null]])->get();
+        $centroCusto = DB::table('centro_custo')->where([['deleted_at', '=', null]])->get();
+        $alunos = DB::table('aluno')->where([['deleted_at', '=' ,null], ['idUnidade', '=', $unidade]])->get();
 
-        return view('caixas.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto]);
+        return view('caixas.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'alunos' => $alunos]);
     }
 
     /**
@@ -119,8 +120,10 @@ class CaixaController extends AppBaseController
 
         $formaPgto = DB::table('forma_pgto')->get();
         $centroCusto = DB::table('centro_custo')->get();
+        $unidade = UnidadeController::getUnidade();
+        $alunos = DB::table('aluno')->where([['deleted_at', '=' ,null], ['idUnidade', '=', $unidade]])->get();
 
-        return view('caixas.edit', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'caixa' => $caixa]);
+        return view('caixas.edit', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'caixa' => $caixa, 'alunos' => $alunos]);
     }
 
     /**

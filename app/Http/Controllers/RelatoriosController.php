@@ -31,43 +31,64 @@ class RelatoriosController extends Controller
      */
     public function index(Request $request)
     {
-        $caixas = $this->caixaRepository->all()->where('Tipo', 'Receita');
+        // $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
+        $unidade = UnidadeController::getUnidade();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
         $sum = 0;
 
         foreach ($caixas as $caixa) {
             $sum += $caixa->Valor;
-            // echo $caixa->Valor;
         }
-        $sum = 'Total: R$'.$sum.',00';
+        $sum = 'Total: R$' . $sum;
 
         return view('relatorios.receitas', ['caixas' => $caixas, 'sum' => $sum]);
-        // return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas]);
     }
     public function despesas(Request $request)
     {
-        $caixas = $this->caixaRepository->all()->where('Tipo', 'Receita');
+        $unidade = UnidadeController::getUnidade();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Tipo', '=', 'Despesa']])->get();
         $sum = 0;
 
         foreach ($caixas as $caixa) {
             $sum += $caixa->Valor;
-            // echo $caixa->Valor;
         }
-        $sum = 'Total: R$'.$sum.',00';
+        $sum = 'Total: R$' . $sum ;
 
         return view('relatorios.despesas', ['caixas' => $caixas, 'sum' => $sum]);
-        // return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas]);
     }
 
-    public function alunosAtrasados(){
+    public function filtroDespesas(Request $request)
+    {
+        $dataInicio = "$request->ano-$request->mes-01 00:00:00";
+        $dataFim = "$request->ano-$request->mes-31 23:59:59";
+
+        $unidade = UnidadeController::getUnidade();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Tipo', '=', 'Receita'],['created_at', '>=', $dataInicio], ['created_at', '<=', $dataFim]])->get();
+
+        $sum = 0;
+
+        foreach ($caixas as $caixa) {
+            $sum += $caixa->Valor;
+        }
+        $sum = 'Total: R$' . $sum;
+
+        return view('relatorios.receitas', ['caixas' => $caixas, 'sum' => $sum]);
+    }
+
+    public function alunosAtrasados()
+    {
         return view('relatorios.alunosAtrasados');
     }
-    public function geralAlunos(){
+    public function geralAlunos()
+    {
         return view('relatorios.geralAlunos');
     }
-    public function geralRecebimentos(){
+    public function geralRecebimentos()
+    {
         return view('relatorios.geralRecebimentos');
     }
-    public function previsaoRecebimentos(){
+    public function previsaoRecebimentos()
+    {
         return view('relatorios.previsaoRecebimentos');
     }
 

@@ -84,10 +84,10 @@
         <li class="{{ Request::is('centroCustos*') ? 'active' : '' }}">
             <a href="{!! route('centroCustos.index') !!}"><i class="fa fa-cube"></i><span>Centro Custos</span></a>
         </li>
-        <li class="{{ Request::is('formasPagamentos*') ? 'active' : '' }}">
+        {{-- <li class="{{ Request::is('formasPagamentos*') ? 'active' : '' }}">
             <a href="{!! route('formasPagamentos.index') !!}"><i class="fa fa-cube"></i><span>Formas
                     de Parcelamento</span></a>
-        </li>
+        </li> --}}
         <li class="{{ Request::is('formaPgtos*') ? 'active' : '' }}">
             <a href="{!! route('formaPgtos.index') !!}"><i class="fa fa-cube"></i><span>Formas de Pagamento</span></a>
         </li>

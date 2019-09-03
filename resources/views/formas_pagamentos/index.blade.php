@@ -12,8 +12,6 @@
     </h1>
 </section>
 <div class="clearfix"></div>
-<a class="btn btn-success" style="margin-left: 1rem" href="{!! route('formasPagamentos.create') !!}"><i
-        class="fa fa-plus"></i> Adicionar</a>
 <div class="content">
     <div class="clearfix"></div>
 
