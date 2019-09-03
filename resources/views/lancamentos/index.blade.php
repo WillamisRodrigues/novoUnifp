@@ -23,7 +23,7 @@
 
     <div class="dados" id="formulario-lancamentos">
 
-        {!! Form::open(['route' => 'lancamentos.index']) !!}
+        {!! Form::open(['url' => 'filtroLancamentos']) !!}
         <div class="ml-5">
             <div>
                 <div style="display: inline-block">Mês:</div>
@@ -37,14 +37,11 @@
             </div>
 
             <div style=" margin-left: 3rem" class="row">
-                <div>
-                    {!! Form::radio('Tipo', 'Sangria', ['style' => 'margin-left: 1rem']) !!} {!! Form::label('Tipo',
-                    'Sangria') !!}
-                </div>
-                <div style=" margin-left: 1rem">
-                    {!! Form::radio('Tipo', 'Receita', ['style' => 'margin-left: 2rem']) !!} {!! Form::label('Tipo',
-                    'Receita') !!}
-                </div>
+                {!! Form::radio('Tipo', 'Sangria', false, [ 'id' => 'Sangria' ]) !!}
+                {!! Form::label('Sangria', 'Sangria') !!}
+                {!! Form::radio('Tipo', 'Receita', false, [ 'id' => 'Receita', 'style' => 'margin-left:
+                1rem' ]) !!}
+                {!! Form::label('Receita', 'Receita') !!}
             </div>
 
             <div style=" margin-left: 5rem">
@@ -52,8 +49,11 @@
                     Caixa:
                 </div>
                 <div style="display: inline-block">
-                    {!! Form::select('ContaCaixa', ['route' => 'Selecione a conta caixa'], 'Selecione a conta caixa')!!}
-                </div>
+                    <select name="Usuario" id="Usuario">
+                        @foreach ($contaCaixa as $user)
+                        <option value="{!! $user->Nome !!}">{!! $user->Nome !!}</option>
+                        @endforeach
+                    </select> </div>
             </div>
 
             <div style=" margin-left: 3rem">
@@ -61,19 +61,23 @@
                     Centro de Caixa:
                 </div>
                 <div style="display: inline-block">
-                    {!! Form::select('CentroCusto', ['route' => 'Selecione o centro de custo'], 'Selecione a centro de
-                    custo')!!}
+                    <select name="CentroCusto" id="CentroCusto">
+                        @foreach ($centroCusto as $cc)
+                        <option value="{!! $cc->CentroCusto !!}">{!! $cc->CentroCusto !!}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
-        {!! Form::close() !!}
     </div>
 
     <div class="row" style="margin-left: 0.5rem">
         <button class="btn btn-primary btn-flat" style="margin-bottom:1rem; margin-top: 1rem;" type="submit"><i
                 class="fa fa-search"></i> Procurar</button>
         <a href="/lancamentos-avancado" class="btn btn-warning btn-flat"
-            style="margin-bottom: 1rem; margin-top:1rem;"><i style=" font-size: 1.5rem" class="fa fa-search-plus"></i> Busca Avançada</a>
+            style="margin-bottom: 1rem; margin-top:1rem;"><i style=" font-size: 1.5rem" class="fa fa-search-plus"></i>
+            Busca Avançada</a>
+        {!! Form::close() !!}
     </div>
 
     <div class="row">
@@ -100,8 +104,10 @@
     </div>
 
     <div style="margin-top: 4rem">
-        <a href="/gerarCsv" target="_blank" class="btn btn-flat btn-success"><i class="fa fa-table"></i> Exportar planilha</a>
-        <a href="/gerarRelatorio" target="_blank" class="btn btn-flat btn-primary ml-5"><i class="fa fa-file-text"></i> Exportar PDF</a>
+        <a href="/gerarCsv" target="_blank" class="btn btn-flat btn-success"><i class="fa fa-table"></i> Exportar
+            planilha</a>
+        <a href="/gerarRelatorio" target="_blank" class="btn btn-flat btn-primary ml-5"><i class="fa fa-file-text"></i>
+            Exportar PDF</a>
     </div>
 
     <div class="box box-primary">

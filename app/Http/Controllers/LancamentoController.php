@@ -31,10 +31,47 @@ class LancamentoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $caixas = $this->caixaRepository->all();
+        // $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $unidade = UnidadeController::getUnidade();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $centroCusto = DB::table('centro_custo')->get();
 
-        return view('lancamentos.index')
-            ->with('caixas', $caixas);
+        return view('lancamentos.index', ['caixas' => $caixas, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto]);
+    }
+
+    public function avancado()
+    {
+        $unidade = UnidadeController::getUnidade();
+        $formas = DB::table('forma_pgto')->get();
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $centroCusto = DB::table('centro_custo')->get();
+
+
+        return view('lancamentos.avancado', ['formas' => $formas, 'alunos' => $alunos, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto]);
+    }
+
+    public function buscaAvancada(Request $request)
+    {
+
+        $unidade = UnidadeController::getUnidade();
+        // $dados = DB::select('select * from caixa where deleted_at = null & Tipo = :tipo & Via = :via & FormaPgto = :forma & Status = :status & Aluno = :aluno & Lancamento >= :lancamentoinicio & Lancamento <= :lancamentofim & Vencimento >= :vencimentoinicio & Vencimento <= :vencimentofim & Valor = :valor & idUnidade = :unidade', [1]);
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+
+
+        return view('lancamentos.index', ['caixas' => $caixas]);
+    }
+
+    public function filtroLancamentos(Request $request)
+    {
+
+        $unidade = UnidadeController::getUnidade();
+        // $dados = DB::select('select * from caixa where deleted_at = null & Tipo = :tipo & Via = :via & FormaPgto = :forma & Status = :status & Aluno = :aluno & Lancamento >= :lancamentoinicio & Lancamento <= :lancamentofim & Vencimento >= :vencimentoinicio & Vencimento <= :vencimentofim & Valor = :valor & idUnidade = :unidade', [1]);
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+
+
+        return view('lancamentos.index', ['caixas' => $caixas]);
     }
 
     /**

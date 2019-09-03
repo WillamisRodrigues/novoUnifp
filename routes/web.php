@@ -77,11 +77,17 @@ Route::get('/avaliacoes/addProva/{idCurso}', ['uses' => 'CursoController@addProv
 
 Route::get('/avaliacoes/deletar/{idCurso}', ['uses' => 'CursoController@addProva']);
 
+Route::get('/lancamentos-avancado', ['uses' => 'LancamentoController@avancado']);
+
 Route::post('/formularioPagamento', ['uses' => 'PagamentoController@store']);
 
 Route::post('storeProva', ['uses' => 'CursoController@storeProva']);
 
 Route::post('escolherUnidade', ['uses' => 'EscolherUnidadeController@escolher']);
+
+Route::post('buscaAvancada', ['uses' => 'LancamentoController@buscaAvancada']);
+
+Route::post('filtroLancamentos', ['uses' => 'LancamentoController@filtroLancamentos']);
 
 Route::resource('agendas', 'AgendaController');
 
