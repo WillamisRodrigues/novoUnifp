@@ -77,7 +77,16 @@ class RelatoriosController extends Controller
 
     public function alunosAtrasados()
     {
-        return view('relatorios.alunosAtrasados');
+        $hoje = date('Y-m-d');
+        $unidade = UnidadeController::getUnidade();
+        $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
+        $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']])->get();
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+
+        // dd($turmas);
+
+        return view('relatorios.alunosAtrasados', ['alunos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos]);
     }
     public function geralAlunos()
     {

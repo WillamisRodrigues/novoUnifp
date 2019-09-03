@@ -70,21 +70,85 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td>00000000</td>
-                        <td>nome do aluno</td>
-                        <td>Estudando</td>
-                        <td>Design Standard</td>
-                        <td>Turma 01</td>
-                        <td>Manhã</td>
-                        <td>
-                            <p class="bg-vermelho-redondo">Atrasado</p>
-                        </td>
-                        <td>Parcela</td>
-                        <td>Mensalidade</td>
-                        <td>08/08/2019</td>
-                        <td>
-                            <p class="bg-vermelho-redondo">Vencido</p>
-                        </td>
+                        @foreach ($alunos as $aluno)
+                        <tr>
+                            <td>
+                                @php
+                                    foreach ($alunoGeral as $alunoG) {
+                                        if($aluno->Matricula == $alunoG->id){
+                                            echo str_pad($alunoG->id, 8, '0', STR_PAD_LEFT);
+                                        }
+                                    }
+                                @endphp
+                            </td>
+                            <td>
+                                {{-- {!! $aluno->Nome !!} --}}
+                                @php
+                                    foreach ($alunoGeral as $alunoG) {
+                                        if($aluno->Matricula == $alunoG->id){
+                                            echo $alunoG->Nome;
+                                        }
+                                    }
+                                @endphp
+                            </td>
+                            <td>
+                                {{-- {!! $aluno->Status !!} --}}
+                                @php
+                                    foreach ($alunoGeral as $alunoG) {
+                                        if($aluno->Matricula == $alunoG->id){
+                                            echo $alunoG->Status;
+                                        }
+                                    }
+                                @endphp
+                            </td>
+                            <td>
+                                {{-- {!! $aluno->Curso !!} --}}
+                                @php
+                                foreach ($alunoGeral as $alunoG) {
+                                    foreach ($cursos as $curso) {
+                                        if($curso->id == $alunoG->idCurso && $aluno->Matricula == $alunoG->id){
+                                            echo $curso->nomeCurso;
+                                        }
+                                    }
+                                }
+                                @endphp
+                            </td>
+                            <td>
+                                {{-- {!! $aluno->Turma !!} --}}
+                                @php
+                                foreach ($alunoGeral as $alunoG) {
+                                    foreach ($turmas as $turma) {
+                                        if($turma->id == $alunoG->idTurma && $aluno->Matricula == $alunoG->id){
+                                            echo $turma->NomeTurma;
+                                        }
+                                    }
+                                }
+                                @endphp
+                            </td>
+                            <td>
+                                @php
+                                foreach ($alunoGeral as $alunoG) {
+                                    foreach ($turmas as $turma) {
+                                        if($turma->id == $alunoG->idTurma && $aluno->Matricula == $alunoG->id){
+                                            echo $turma->Periodo;
+                                        }
+                                    }
+                                }
+                                @endphp
+                            </td>
+                            <td>
+                                <p class="bg-vermelho-redondo">Atrasado</p>
+                            </td>
+                            <td>{!! $aluno->Parcela !!}</td>
+                            <td>{!! $aluno->Referencia !!}</td>
+                            <td>
+                                {!! $aluno->Vencimento !!}
+                            </td>
+                            <td>
+                                <p class="bg-vermelho-redondo">Vencido</p>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
