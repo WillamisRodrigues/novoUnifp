@@ -41,7 +41,10 @@ class RelatoriosController extends Controller
         }
         $sum = 'Total: R$' . $sum;
 
-        return view('relatorios.receitas', ['caixas' => $caixas, 'sum' => $sum]);
+        $centroCusto = DB::table('centro_custo')->get();
+        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+
+        return view('relatorios.receitas', ['caixas' => $caixas, 'sum' => $sum, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto]);
     }
     public function despesas(Request $request)
     {
@@ -72,7 +75,10 @@ class RelatoriosController extends Controller
         }
         $sum = 'Total: R$' . $sum;
 
-        return view('relatorios.receitas', ['caixas' => $caixas, 'sum' => $sum]);
+        $centroCusto = DB::table('centro_custo')->get();
+        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+
+        return view('relatorios.receitas', ['caixas' => $caixas, 'sum' => $sum, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto]);
     }
 
     public function alunosAtrasados()

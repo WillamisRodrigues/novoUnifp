@@ -76,6 +76,9 @@ class CaixaController extends AppBaseController
 
         $caixa = $this->caixaRepository->create($input);
 
+        $unidade = UnidadeController::getUnidade();
+        DB::update('update caixa set idUnidade = ? where id = ?', [$unidade, $caixa->id]);
+
         Flash::success('Caixa do Dia criado com sucesso.');
 
         return redirect(route('caixas.index'));

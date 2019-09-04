@@ -24,7 +24,34 @@
     <!-- Nivelacesso Field -->
     <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('nivelAcesso', 'Nivel Acesso:') !!}</p>
-        <p class="col-sm-12 col-md-8">{!! $usuario->nivelAcesso !!}</p>
+        <p class="col-sm-12 col-md-8">
+            {{-- {!! $usuario->nivelAcesso !!} --}}
+            @switch($usuario->nivelAcesso)
+                @case(0)
+                    {!! "Administrador" !!}
+                    @break
+                @case(1)
+                    {!! "Supervisor" !!}
+                    @break
+                @case(2)
+                    {!! "Gestor" !!}
+                    @break
+                @case(3)
+                    {!! "Secretaria" !!}
+                    @break
+                @case(4)
+                    {!! "Professor" !!}
+                    @break
+                @case(5)
+                    {!! "Comercial" !!}
+                    @break
+                @case(6)
+                    {!! "Atendimento" !!}
+                    @break
+                @default
+                    {!! "Sem perfil definido" !!}
+            @endswitch
+        </p>
     </div>
 
     <!-- Unidadeescolar Field -->

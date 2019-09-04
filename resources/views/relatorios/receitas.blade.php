@@ -41,6 +41,22 @@
                 <option value="12">Dezembro</option>
             </select>
         </p>
+        <p class="select-padrao col-md-2">
+            <select name="contaCaixa" id="contaCaixa">
+                <option value="">Conta Caixa</option>
+                @foreach ($contaCaixa as $user)
+                    <option value="{!! $user->Nome !!}">{!! $user->Nome !!}</option>
+                @endforeach
+            </select>
+        </p>
+        <p class="select-padrao col-md-2">
+            <select name="centroCusto" id="centroCusto">
+                <option value="">Centro de Custo</option>
+                @foreach ($centroCusto as $cc)
+                <option value="{!! $cc->CentroCusto !!}">{!! $cc->CentroCusto !!}</option>
+                @endforeach
+            </select>
+        </p>
         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Filtrar</button>
         {!! Form::close() !!}
     </div>
@@ -114,7 +130,7 @@
                             <td>R$ {!! $caixa->Valor !!}</td>
                             <td>{!! $caixa->Usuario !!}</td>
                             <td>
-                                {!! date('H:m:s d/m/Y', strtotime($caixa->Data)); !!}
+                                {!! date('H:m:s d/m/Y', strtotime($caixa->created_at)); !!}
                             </td>
                         </tr>
                         @endforeach

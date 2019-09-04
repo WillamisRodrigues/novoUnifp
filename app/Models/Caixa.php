@@ -29,7 +29,7 @@ class Caixa extends Model
     use SoftDeletes;
 
     public $table = 'caixa';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -86,7 +86,6 @@ class Caixa extends Model
         'FormaPgto' => 'required',
         'Status' => 'required',
         'Descricao' => 'required',
-        'Aluno' => 'required',
         'Lancamento' => 'required',
         'Vencimento' => 'required',
         'Valor' => 'required',
@@ -96,5 +95,5 @@ class Caixa extends Model
         'Data' => 'required'
     ];
 
-    
+
 }

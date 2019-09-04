@@ -43,7 +43,14 @@
                 <td>
                     {!! date('d/m/Y', strtotime($caixa->Vencimento)); !!}
                 </td>
-                <td>R$ {!! $caixa->Valor !!}</td>
+                <td>
+                    {{-- R$ {!! $caixa->Valor !!} --}}
+                    @if ($caixa->Tipo == 'Sangria')
+                        <span style="color: #E6564C">R$ -{!! $caixa->Valor !!}</span>
+                    @else
+                        <span>R$ {!! $caixa->Valor !!}</span>
+                    @endif
+                </td>
                 <td>{!! $caixa->ContaCaixa !!}</td>
                 <td>{!! $caixa->CentroCusto !!}</td>
                 <td>{!! $caixa->Usuario !!}</td>

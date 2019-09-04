@@ -33,19 +33,36 @@ class LancamentoController extends AppBaseController
     {
         // $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
         $unidade = UnidadeController::getUnidade();
-        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
-        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $centroCusto = DB::table('centro_custo')->get();
 
-        return view('lancamentos.index', ['caixas' => $caixas, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto]);
+        $caixaMesReceitas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
+        $caixaMesDespesas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Sangria']])->get();
+
+        $receitasMes = 0;
+        $despesasMes = 0;
+        $saldoAnterior = 0;
+
+        foreach ($caixaMesDespesas as $item) {
+            $despesasMes += $item->Valor;
+        }
+        foreach ($caixaMesReceitas as $item) {
+            $receitasMes += $item->Valor;
+        }
+
+        $saldoAtual = $receitasMes - $despesasMes;
+        $saldoMes = $receitasMes - $despesasMes;
+
+        return view('lancamentos.index', ['caixas' => $caixas, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto, 'receitasMes' => $receitasMes, 'depesasMes' => $despesasMes, 'saldoAtual' => $saldoAtual, 'saldoMes' => $saldoMes]);
     }
 
     public function avancado()
     {
         $unidade = UnidadeController::getUnidade();
         $formas = DB::table('forma_pgto')->get();
-        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
-        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $centroCusto = DB::table('centro_custo')->get();
 
 
@@ -57,7 +74,7 @@ class LancamentoController extends AppBaseController
 
         $unidade = UnidadeController::getUnidade();
         // $dados = DB::select('select * from caixa where deleted_at = null & Tipo = :tipo & Via = :via & FormaPgto = :forma & Status = :status & Aluno = :aluno & Lancamento >= :lancamentoinicio & Lancamento <= :lancamentofim & Vencimento >= :vencimentoinicio & Vencimento <= :vencimentofim & Valor = :valor & idUnidade = :unidade', [1]);
-        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
 
         return view('lancamentos.index', ['caixas' => $caixas]);
@@ -68,10 +85,28 @@ class LancamentoController extends AppBaseController
 
         $unidade = UnidadeController::getUnidade();
         // $dados = DB::select('select * from caixa where deleted_at = null & Tipo = :tipo & Via = :via & FormaPgto = :forma & Status = :status & Aluno = :aluno & Lancamento >= :lancamentoinicio & Lancamento <= :lancamentofim & Vencimento >= :vencimentoinicio & Vencimento <= :vencimentofim & Valor = :valor & idUnidade = :unidade', [1]);
-        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $caixaMesReceitas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
+        $caixaMesDespesas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Sangria']])->get();
+
+        $receitasMes = 0;
+        $despesasMes = 0;
+        $saldoAnterior = 0;
+
+        foreach ($caixaMesDespesas as $item) {
+            $despesasMes += $item->Valor;
+        }
+        foreach ($caixaMesReceitas as $item) {
+            $receitasMes += $item->Valor;
+        }
+
+        $saldoAtual = $receitasMes - $despesasMes;
+        $saldoMes = $receitasMes - $despesasMes;
+        $centroCusto = DB::table('centro_custo')->get();
+        $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
 
-        return view('lancamentos.index', ['caixas' => $caixas]);
+        return view('lancamentos.index', ['caixas' => $caixas, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto, 'receitasMes' => $receitasMes, 'depesasMes' => $despesasMes, 'saldoAtual' => $saldoAtual, 'saldoMes' => $saldoMes]);
     }
 
     /**
@@ -84,7 +119,7 @@ class LancamentoController extends AppBaseController
         $formaPgto = DB::table('forma_pgto')->get();
         $centroCusto = DB::table('centro_custo')->get();
         $unidade = UnidadeController::getUnidade();
-        $alunos = DB::table('aluno')->where([['deleted_at', '=' ,null], ['idUnidade', '=', $unidade]])->get();
+        $alunos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
 
         return view('lancamentos.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'alunos' => $alunos]);
     }
@@ -150,7 +185,7 @@ class LancamentoController extends AppBaseController
         $formaPgto = DB::table('forma_pgto')->get();
         $centroCusto = DB::table('centro_custo')->get();
         $unidade = UnidadeController::getUnidade();
-        $alunos = DB::table('aluno')->where([['deleted_at', '=' ,null], ['idUnidade', '=', $unidade]])->get();
+        $alunos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
 
         return view('lancamentos.edit', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'caixa' => $caixa, 'alunos' => $alunos]);
     }

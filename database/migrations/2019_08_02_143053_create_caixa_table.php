@@ -20,7 +20,7 @@ class CreateCaixaTable extends Migration
             $table->string('FormaPgto');
             $table->enum('Status', ['Pago', 'FaltaPagar']);
             $table->longText('Descricao');
-            $table->string('Aluno');
+            $table->string('Aluno')->nullable();
             $table->date('Lancamento');
             $table->date('Vencimento');
             $table->float('Valor', 8, 2);

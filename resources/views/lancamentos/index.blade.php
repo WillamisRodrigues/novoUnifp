@@ -83,11 +83,11 @@
     <div class="row">
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Receitas desse Mês</div>
-            <div class="text-success" style="font-weight: bolder;">Valor</div>
+            <div class="text-success" style="font-weight: bolder;">{!! 'R$ '.$receitasMes !!}</div>
         </div>
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Despesas desse Mês</div>
-            <div class="text-danger" style="font-weight: bolder;">(Valor)</div>
+            <div class="text-danger" style="font-weight: bolder;">({!! 'R$ '.$depesasMes !!})</div>
         </div>
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Saldo Anterior</div>
@@ -95,11 +95,11 @@
         </div>
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Saldo desse Mês</div>
-            <div class="text-primary" style="font-weight: bolder;">Valor</div>
+            <div class="text-primary" style="font-weight: bolder;">{!! 'R$ '.$saldoMes !!}</div>
         </div>
         <div class="receitas">
             <div><i class="fa fa-money"></i> Saldo Atual</div>
-            <div class="text-primary" style="font-weight: bolder">Valor</div>
+            <div class="text-primary" style="font-weight: bolder">{!! 'R$ '.$saldoAtual !!}</div>
         </div>
     </div>
 

@@ -56,11 +56,11 @@
     <!-- Descricao Field -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Descricao', 'Descrição:') !!}</p>
-        <p class="col-sm-12 col-md-6">{!! Form::textarea('Descricao', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-sm-12 col-md-6">{!! Form::text('Descricao', null, ['class' => 'form-control']) !!}</p>
     </div>
 
     <!-- Aluno Field -->
-    <div class="row">
+    {{-- <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Aluno', 'Aluno:') !!}</p>
         <p class="col-sm-12 col-md-6 select-padrao">
             <select name="CentroCusto" id="CentroCusto">
@@ -71,7 +71,7 @@
                 @endforeach
             </select>
         </p>
-    </div>
+    </div> --}}
 
     <!-- Lancamento Field -->
     <input type="hidden" name="Lancamento" id="Lancamento" value="{!!  date(" Y-m-d H:m:s") !!}">
