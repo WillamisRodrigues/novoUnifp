@@ -40,6 +40,7 @@ class usuario extends Model
         'unidadeEscolar',
         'email_verified_at',
         'password',
+        'idUnidade',
         'remember_token'
     ];
 
@@ -50,6 +51,7 @@ class usuario extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'idUnidade' => 'integer',
         'name' => 'string',
         'email' => 'string',
         'nascimento' => 'date',

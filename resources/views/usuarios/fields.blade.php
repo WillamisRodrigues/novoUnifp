@@ -1,7 +1,7 @@
 <div class="container formulario-padrao">
     <!-- Name Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('name', 'Name:') !!}<span style="color: red">*</span></p>
+        <p class="col-md-4 col-sm-12">{!! Form::label('name', 'Nome:') !!}<span style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12">{!! Form::text('name', null, ['class' => 'form-control', ])!!}</p>
     </div>
     <!-- Email Field -->
@@ -46,10 +46,22 @@
         </p>
     </div>
     <!-- Unidadeescolar Field -->
+    <input type="hidden" name="unidadeEscolar" value="0">
+
+    <!-- id da unidade Field -->
     <div class="row">
-        <p class="col-md-4 col-sm-12">{!! Form::label('unidadeEscolar', 'Unidade Escolar:') !!}<span
+        <p class="col-md-4 col-sm-12">{!! Form::label('idUnidade', 'Unidade Escolar:') !!}<span
                 style="color: red">*</span></p>
-        <p class="col-md-8 col-sm-12">{!! Form::text('unidadeEscolar', null, ['class' => 'form-control']) !!}</p>
+        <p class="col-md-8 col-sm-12 select-padrao">
+            {{-- {!! Form::text('idUnidade', null, ['class' => 'form-control']) !!} --}}
+            <select name="idUnidade" id="idUnidade">
+                <option value=""></option>
+                @foreach ($unidades as $uni)
+                    <option value="{!! $uni->id !!}">{!! $uni->NomeUnidade !!}</option>
+                @endforeach
+            </select>
+            <small><br>Importante: deixar este campo (Unidade Escolar) em branco para o cadastro de um administrador.</small>
+        </p>
 
     </div>
     <!-- Password Field -->

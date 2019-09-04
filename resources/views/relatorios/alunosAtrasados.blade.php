@@ -82,7 +82,6 @@
                                 @endphp
                             </td>
                             <td>
-                                {{-- {!! $aluno->Nome !!} --}}
                                 @php
                                     foreach ($alunoGeral as $alunoG) {
                                         if($aluno->Matricula == $alunoG->id){
@@ -92,7 +91,6 @@
                                 @endphp
                             </td>
                             <td>
-                                {{-- {!! $aluno->Status !!} --}}
                                 @php
                                     foreach ($alunoGeral as $alunoG) {
                                         if($aluno->Matricula == $alunoG->id){
@@ -102,7 +100,6 @@
                                 @endphp
                             </td>
                             <td>
-                                {{-- {!! $aluno->Curso !!} --}}
                                 @php
                                 foreach ($alunoGeral as $alunoG) {
                                     foreach ($cursos as $curso) {
@@ -114,7 +111,6 @@
                                 @endphp
                             </td>
                             <td>
-                                {{-- {!! $aluno->Turma !!} --}}
                                 @php
                                 foreach ($alunoGeral as $alunoG) {
                                     foreach ($turmas as $turma) {

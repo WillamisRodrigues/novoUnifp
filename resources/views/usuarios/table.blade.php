@@ -6,14 +6,14 @@
                 <th>E-mail</th>
                 <th>Data de Nascimento</th>
                 <th>Perfil</th>
-                <th>Unidade Escolar</th>
+                <th>Unidade</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach($usuarios as $usuario)
             <tr>
-                <td>{!! $usuario->name !!}</td>
+                <td>{!! $usuario->name  !!}</td>
                 <td>{!! $usuario->email !!}</td>
                 <td>
                     {!! date('d/m/Y', strtotime($usuario->nascimento)); !!}
@@ -46,7 +46,19 @@
                     @endswitch
                 </td>
                 {{-- Falta fazer switch case para unidades  --}}
-                <td>{!! $usuario->unidadeEscolar !!}</td>
+                <td>
+                    {{-- {!! $usuario->unidadeEscolar !!} --}}
+                    @php
+                        foreach ($unidades as $unidade) {
+                            if($unidade->id == $usuario->idUnidade){
+                                echo $unidade->NomeUnidade;
+                            }
+                        }
+                        if(!$usuario->idUnidade){
+                            echo "Administrador";
+                        }
+                    @endphp
+                </td>
                 <td>
                     {!! Form::open(['route' => ['usuarios.destroy', $usuario->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

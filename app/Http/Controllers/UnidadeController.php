@@ -46,10 +46,14 @@ class UnidadeController extends AppBaseController
     public static function getUnidade()
     {
         $usuario = DB::table('users')->where('id', Auth::user()->id)->get('idUnidade')->first();
+
         if ($usuario->idUnidade) {
             $unidade = $usuario->idUnidade;
+            $nomeUnidade = DB::table('unidade')->where('id', $unidade)->get()->first();
+            Session::put('nomeUnidade', $nomeUnidade);
         } else {
             $unidade = Session::get('unidade');
+            Session::put('nomeUnidade', "");
         }
         return $unidade;
     }
@@ -61,7 +65,8 @@ class UnidadeController extends AppBaseController
      */
     public function create()
     {
-        return view('unidades.create');
+        $unidades = DB::table('unidade')->get();
+        return view('unidades.create', ['unidades' => $unidades]);
     }
 
     /**
@@ -75,14 +80,13 @@ class UnidadeController extends AppBaseController
     {
         $input = $request->all();
 
-        $caminho = $request->file('Logotipo')->store('imagens/logotipos');
-
-        // dd($caminho);
-
         $unidade = $this->unidadeRepository->create($input);
-        $path = Storage::disk('public')->putFile('logotipos-unidades', $request->file('Logotipo'));
-        DB::update('update unidade set Logotipo = ? where id = ?', [$path, $unidade->id]);
 
+        if($request->file('Logotipo')){
+            $caminho = $request->file('Logotipo')->store('imagens/logotipos');
+            $path = Storage::disk('public')->putFile('logotipos-unidades', $request->file('Logotipo'));
+            DB::update('update unidade set Logotipo = ? where id = ?', [$path, $unidade->id]);
+        }
 
         Flash::success('Unidade criada com sucesso.');
 
@@ -119,6 +123,7 @@ class UnidadeController extends AppBaseController
     public function edit($id)
     {
         $unidade = $this->unidadeRepository->find($id);
+        $unidades = DB::table('unidade')->get();
 
         if (empty($unidade)) {
             Flash::error('Unidade não encontrada.');
@@ -126,7 +131,7 @@ class UnidadeController extends AppBaseController
             return redirect(route('unidades.index'));
         }
 
-        return view('unidades.edit')->with('unidade', $unidade);
+        return view('unidades.edit', ['unidades' => $unidades, 'unidade' => $unidade]);
     }
 
     /**

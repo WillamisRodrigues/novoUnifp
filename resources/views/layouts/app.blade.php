@@ -95,7 +95,7 @@
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" ><i class="fa fa-bank"></i>
-                            {{-- {{ $nomeUnidade }} --}}
+                            {{ Session::get('nomeUnidade') }}
                          </a>
                     </li>
                 </ul>

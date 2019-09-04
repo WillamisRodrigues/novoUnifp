@@ -8,6 +8,7 @@ use App\Repositories\FuncionarioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class FuncionarioController extends AppBaseController
@@ -29,18 +30,19 @@ class FuncionarioController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $funcionarios = $this->funcionarioRepository->all();
+        // $funcionarios = $this->funcionarioRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
-        return view('funcionarios.index')
-            ->with('funcionarios', $funcionarios);
+        return view('funcionarios.index')->with('funcionarios', $funcionarios);
     }
 
     public function aniversario(Request $request)
     {
-        $funcionarios = $this->funcionarioRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
-        return view('funcionarios.aniversario')
-            ->with('funcionarios', $funcionarios);
+        return view('funcionarios.aniversario')->with('funcionarios', $funcionarios);
     }
 
     /**
@@ -65,6 +67,8 @@ class FuncionarioController extends AppBaseController
         $input = $request->all();
 
         $funcionario = $this->funcionarioRepository->create($input);
+        $unidade = UnidadeController::getUnidade();
+        DB::update('update funcionario set idUnidade = ? where id = ?', [$unidade, $funcionario->id]);
 
         Flash::success('Funcionário salvo com sucesso.');
 

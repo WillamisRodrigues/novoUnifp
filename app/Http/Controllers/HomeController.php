@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Khill\Lavacharts\Lavacharts;
 
 class HomeController extends Controller

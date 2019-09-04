@@ -28,9 +28,9 @@
     </div>
 
     <!-- Unidadeescolar Field -->
-    <div class="row">
+    {{-- <div class="row">
         <p class="col-sm-12 col-md-4">{!! Form::label('unidadeEscolar', 'Unidade Escolar:') !!}</p>
         <p class="col-sm-12 col-md-8">{!! $usuario->unidadeEscolar !!}</p>
-    </div>
+    </div> --}}
 
 </div>

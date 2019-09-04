@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class usuarioController extends AppBaseController
@@ -31,9 +32,9 @@ class usuarioController extends AppBaseController
     public function index(Request $request)
     {
         $usuarios = $this->usuarioRepository->all();
+        $unidades = DB::table('unidade')->get();
 
-        return view('usuarios.index')
-            ->with('usuarios', $usuarios);
+        return view('usuarios.index', ['usuarios' => $usuarios, 'unidades' => $unidades]);
     }
 
     /**
@@ -43,7 +44,8 @@ class usuarioController extends AppBaseController
      */
     public function create()
     {
-        return view('usuarios.create');
+        $unidades = DB::table('unidade')->get();
+        return view('usuarios.create', ['unidades' => $unidades]);
     }
 
     /**
@@ -104,7 +106,9 @@ class usuarioController extends AppBaseController
             return redirect(route('usuarios.index'));
         }
 
-        return view('usuarios.edit')->with('usuario', $usuario);
+        $unidades = DB::table('unidade')->get();
+
+        return view('usuarios.edit', ['usuario' => $usuario, 'unidades' => $unidades]);
     }
 
     /**
