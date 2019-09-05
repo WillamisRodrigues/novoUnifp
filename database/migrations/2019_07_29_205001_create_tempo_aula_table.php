@@ -16,6 +16,7 @@ class CreateTempoAulaTable extends Migration
         Schema::create('tempo_aula', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('tempoAula');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

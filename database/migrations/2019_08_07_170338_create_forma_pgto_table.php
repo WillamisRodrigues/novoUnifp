@@ -16,6 +16,7 @@ class CreateFormaPgtoTable extends Migration
         Schema::create('forma_pgto', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('FormaPagamento');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

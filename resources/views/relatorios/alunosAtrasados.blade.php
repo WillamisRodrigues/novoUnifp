@@ -35,10 +35,10 @@
             {!! Form::label('Vencimento', 'Vencimento', ['class' => 'col-sm-1']) !!}
             Entre:
 
-            <input type="date" name="Vencimento" id="Vencimento">
+            <input type="date" name="VencimentoInicial" id="VencimentoInicial">
             e
 
-            <input type="date" name="Vencimento" id="Vencimento">
+            <input type="date" name="VencimentoFinal" id="VencimentoFinal">
         </div>
         <div style="margin-top: 1rem">
             <button type="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i> Filtrar</button>
@@ -138,7 +138,9 @@
                             <td>{!! $aluno->Parcela !!}</td>
                             <td>{!! $aluno->Referencia !!}</td>
                             <td>
-                                {!! $aluno->Vencimento !!}
+                                {{-- {!! $aluno->Vencimento !!} --}}
+                                {!! date('d/m/Y', strtotime($aluno->Vencimento)); !!}
+
                             </td>
                             <td>
                                 <p class="bg-vermelho-redondo">Vencido</p>

@@ -16,6 +16,7 @@ class CreateEscolaridadeTable extends Migration
         Schema::create('escolaridade', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('Escolaridade');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

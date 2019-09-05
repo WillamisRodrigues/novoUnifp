@@ -441,7 +441,7 @@
                         </select>
                     </p>
                 </div>
-                <input type="hidden" name="Status" id="Status" value="Ativo">
+                <input type="hidden" name="Status" id="Status" value="Estudando">
             </div>
         </div>
         <!-- /.tab-pane -->

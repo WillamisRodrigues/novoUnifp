@@ -16,6 +16,7 @@ class CreateDiasSemanaTable extends Migration
         Schema::create('dias_semana', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('DiasSemana');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

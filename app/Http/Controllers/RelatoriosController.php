@@ -85,10 +85,39 @@ class RelatoriosController extends Controller
     {
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
-        $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
-        $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']])->get();
+        $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]]);
+        $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']]);
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
-        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]]);
+        if ($request->Status) {
+            $alunos = $alunos->where('Status', '=', $request->Status);
+        }
+        if ($request->Periodo) {
+            $turmas = $turmas->where('Periodo', '=', $request->Periodo)->get();
+            $i = 0;
+            foreach ($turmas as $turma) {
+                $idTurmas[$i] = $turma->id;
+                $i++;
+            }
+            $i--;
+            while($i >= 0){
+                $alunos = $alunos->where('idTurma', '=' , $idTurmas[$i]);
+                $i--;
+            }
+        }
+        if ($request->VencimentoInicial) {
+            $alunosAtrasados = $alunosAtrasados->where('Vencimento', '>', $request->VencimentoInicial);
+        }
+        if ($request->VencimentoFinal) {
+            $alunosAtrasados = $alunosAtrasados->where('Vencimento', '<', $request->VencimentoFinal);
+        }
+
+        $alunos = $alunos->get();
+        // $turmas = $turmas->get();
+        $alunosAtrasados = $alunosAtrasados->get();
+        dd($alunos);
+
+
 
         return view('relatorios.alunosAtrasados', ['alunos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos]);
     }

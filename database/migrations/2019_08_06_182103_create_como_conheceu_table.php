@@ -16,6 +16,7 @@ class CreateComoConheceuTable extends Migration
         Schema::create('como_conheceu', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('ComoConheceu');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

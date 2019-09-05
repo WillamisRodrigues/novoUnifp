@@ -19,6 +19,7 @@ class CreateFrequenciaTable extends Migration
             $table->bigInteger('idTurma')->nullable();
             $table->bigInteger('idAula')->nullable();
             $table->tinyInteger('Frequencia')->default(0); //0 - falta, 1 - compareceu
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

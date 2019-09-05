@@ -16,6 +16,7 @@ class CreateCentroCustoTable extends Migration
         Schema::create('centro_custo', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('CentroCusto');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

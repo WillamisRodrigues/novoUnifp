@@ -49,7 +49,7 @@ class CreateAlunoTable extends Migration
             $table->string('Celular1');
             $table->string('Celular2');
             $table->string('Usuario_id');
-            $table->string('Status');
+            $table->enum('Status', ['Estudando', 'Trancado', 'Desistente', 'Concluido', 'Abandono']);
             $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();

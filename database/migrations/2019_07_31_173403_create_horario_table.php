@@ -17,6 +17,7 @@ class CreateHorarioTable extends Migration
             $table->bigIncrements('id');
             $table->string('HorarioInicio');
             $table->string('HorarioTermina');
+            $table->integer('idUnidade')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

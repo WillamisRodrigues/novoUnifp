@@ -70,7 +70,7 @@ class TurmaController extends AppBaseController
         $turma = $this->turmaRepository->create($input);
 
         $unidade = UnidadeController::getUnidade();
-        DB::table('aluno')->where('id', $turma->id)->update(['idUnidade' => $unidade]);
+        DB::table('turma')->where('id', $turma->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Turma criada com sucesso.');
 
