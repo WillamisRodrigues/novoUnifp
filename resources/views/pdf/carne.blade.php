@@ -46,13 +46,13 @@
             </tr>
             <tr>
                 <td class="font-weight-bold" style="width: 13%">Matrícula</td>
-                <td> {!! $aluno->id !!} - {!! $aluno->Nome !!}</td>
-                <td colspan='3'><span style='font-weight:bold'>Aluno</span>: {!! $aluno->id !!} - {!! $aluno->Nome !!}</td>
-                <td><span style='font-weight:bold'>Valor do Doc.</span>: R$ {!! $boleto->Valor !!},00 </td>
+                <td> {!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!} - {!! $aluno->Nome !!}</td>
+                <td colspan='3'><span style='font-weight:bold'>Aluno</span>: {!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!} - {!! $aluno->Nome !!}</td>
+                <td><span style='font-weight:bold'>Valor do Doc.</span>: R$ {!! number_format($boleto->Valor, 2, ',', '.') !!} </td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Carnê/Folha</td>
-                <td>Nª. {!! $boleto->numeroDocumento !!}</td>
+                <td>Nª. {!! str_pad($boleto->numeroDocumento, 8, '0', STR_PAD_LEFT) !!}</td>
                 <td><span>Multa por atraso</span><br> <span class='text-right'>10%</span> </td>
                 <td><span>Data da Emissão</span><br> <span class='text-right'>{!! date('d/m/Y'); !!}</span> </td>
                 <td style="width: 7%"><span>Controle </span><br></td>
@@ -62,11 +62,11 @@
                 <td class="font-weight-bold">Vencimento</td>
                 <td>{!! date('d/m/Y', strtotime($boleto->Vencimento)); !!}</td>
                 <td colspan='3'>Instruções: cobrar R$0,30 juros ao dia</td>
-                <td><b>Carnê/Folha</b> <br> <span class='text-right'>Nº. {!! $boleto->numeroDocumento !!}</span></td>
+                <td><b>Carnê/Folha</b> <br> <span class='text-right'>Nº. {!! str_pad($boleto->numeroDocumento, 8, '0', STR_PAD_LEFT) !!}</span></td>
             </tr>
             <tr>
                 <td class="font-weight-bold">Valor</td>
-                <td>R$ {!! $boleto->Valor !!},00</td>
+                <td>R$ {!! number_format($boleto->Valor, 2, ',', '.') !!}</td>
                 <td colspan='3'><span style="font-weight: bolder">Sacador</span>: {!! $aluno->Pagador !!}</td>
                 <td><b>Valor cobrado:</b> </td>
             </tr>

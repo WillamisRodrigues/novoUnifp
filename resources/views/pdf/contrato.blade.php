@@ -86,14 +86,14 @@
         <h6>04 - Do valor do Contrato e das Condições de Pagamento</h6>
         <table style="width: 100%">
             <tr>
-                <td><span>Valor Total do Curso:</span><br> R$ {!! $parcelamentos->BrutoTotal !!}</td>
+                <td><span>Valor Total do Curso:</span><br> R$ {!! number_format($parcelamentos->BrutoTotal, 2, ',', '.') !!}</td>
                 <td><span>Quantidade de Parcelas:</span><br>{!! $parcelamentos->QtdeParcelas !!} parcelas</td>
-                <td><span>Valor de Cada Parcela:</span><br> R$ {!! $parcelamentos->ParcelaBruta !!}</td>
-                <td><span>Desconto de Pontualidade:</span><br> R$ {!! $parcelamentos->DescontoPontualidade !!}</td>
+                <td><span>Valor de Cada Parcela:</span><br> R$ {!! number_format($parcelamentos->ParcelaBruta, 2, ',', '.') !!}</td>
+                <td><span>Desconto de Pontualidade:</span><br> R$ {!! number_format($parcelamentos->DescontoPontualidade, 2, ',', '.') !!}</td>
             </tr>
             <tr>
-                <td colspan="2"><span>Mora Diára por Atraso de Pagamento:</span><br>R$ {!! $contrato->Mora !!}</td>
-                <td colspan="2"><span>Multa por Atraso do Pagamento:</span><br>R$ {!! $contrato->Multa !!}</td>
+                <td colspan="2"><span>Mora Diára por Atraso de Pagamento:</span><br>R$ {!! number_format($contrato->Mora, 2, ',', '.') !!}</td>
+                <td colspan="2"><span>Multa por Atraso do Pagamento:</span><br>R$ {!! number_format($contrato->Multa, 2, ',', '.') !!}</td>
             </tr>
             <tr>
                 <td colspan="4">

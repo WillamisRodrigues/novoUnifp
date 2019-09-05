@@ -89,8 +89,8 @@
                                 {!! date('d/m/Y', strtotime($pagto->DataPgto)); !!}
                                 @endif
                             </td>
-                            <td>{!! $pagto->Multa !!}</td>
-                            <td>{!! $pagto->Valor !!}</td>
+                            <td>{!! number_format($pagto->Multa, 2, ',', '.') !!}</td>
+                            <td>{!! number_format($pagto->Valor, 2, ',', '.')  !!}</td>
                             <td>
                                 @if($pagto->DataPgto != null)
                                 <a href="/gerarRecibo/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}"

@@ -23,11 +23,8 @@ class PdfController extends Controller
         $boletos = DB::table('pagamentos')->get()->where('Matricula',$id);
         $idParcelamento = $aluno->idCurso;
         $formas_parcelamentos = DB::table('formas_pagamento')->where([['idCurso', '=', $aluno->idCurso],['deleted_at', '=', null],])->get()->first();
-        //pega id das relações
-        //falta id da unidade
-        $idUnidade = 1;
+        $idUnidade = UnidadeController::getUnidade();
         $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
-        dd($boletos);
 
         $pdf = PDF::loadView('pdf.carne', ['aluno' => $aluno, 'unidade' => $unidades, 'boletos' => $boletos, 'parcelamento' => $formas_parcelamentos]);
         return $pdf->stream('invoice.pdf');;
@@ -36,11 +33,7 @@ class PdfController extends Controller
     public function gerarContrato($id)
     {
         $aluno = DB::table('aluno')->get()->where('id', $id)->first();
-
-        //pega id das relações referentes a tabela aluno
-        //falta id da unidade
-        $idUnidade = 1;
-        //$idUnidade = $aluno->idUnidade;
+        $idUnidade = UnidadeController::getUnidade();
         $idCurso = $aluno->idCurso;
         $idTurma = $aluno->idTurma;
 
@@ -66,18 +59,20 @@ class PdfController extends Controller
     }
 
     public function gerarRecibo($pag, $id){
-        $idUnidade = 1;
+        $idUnidade = UnidadeController::getUnidade();
         $aluno = DB::table('aluno')->get()->where('id', $id)->first();
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $pag)->first();
         $unidade = DB::table('unidade')->get()->where('id', $idUnidade)->first();
         $parcelas = DB::table('formas_pagamento')->where('idCurso', $aluno->idCurso)->get('QtdeParcelas')->first();
 
+        $recibo->Valor = number_format($recibo->Valor, 2, '.', '.');
         $valorExtenso = $this->convert_number_to_words($recibo->Valor);
+        $recibo->Valor = number_format($recibo->Valor, 2, ',', '.');
 
         date_default_timezone_set('America/Sao_Paulo');
         $date = date('d/m/Y H:i:s');
         $dia = date('d');
-        $mes = date('M');
+        $mes = date('m');
         switch ($mes) {
             case 1:
                 $mes = 'Janeiro';

@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
             'nivelAcesso' => 0,
             'unidadeEscolar' => 0,
             'nascimento' => '2023/10/10',
-            'idUnidade' => 1,
             'created_at' => $date,
             'updated_at' => $date
         ]);

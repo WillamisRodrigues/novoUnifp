@@ -5,12 +5,12 @@
         </p>
         <div class="col-sm-12 col-md-6">
             {{-- {!! Form::text('DiasSemana', null, ['class' => 'form-control']) !!} --}}
-            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Seg"> Segunda</p>
-            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Ter"> Terça</p>
-            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Qua"> Quarta</p>
-            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Qui"> Quinta</p>
-            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Sex"> Sexta</p>
-            <p><input type="checkbox" name="DiasSemana[]" id="DiasSemana" value="Sab"> Sábado</p>
+            <p><input type="checkbox" name="DiasSemana[]" id="Seg" value="Seg"><label for="Seg">Segunda</label></p>
+            <p><input type="checkbox" name="DiasSemana[]" id="Ter" value="Ter"><label for="Ter">Terça</label></p>
+            <p><input type="checkbox" name="DiasSemana[]" id="Qua" value="Qua"><label for="Qua">Quarta</label></p>
+            <p><input type="checkbox" name="DiasSemana[]" id="Qui" value="Qui"><label for="Qui">Quinta</label></p>
+            <p><input type="checkbox" name="DiasSemana[]" id="Sex" value="Sex"><label for="Sex">Sexta</label></p>
+            <p><input type="checkbox" name="DiasSemana[]" id="Sab" value="Sab"><label for="Sab">Sábado</label></p>
         </div>
     </div>
 
