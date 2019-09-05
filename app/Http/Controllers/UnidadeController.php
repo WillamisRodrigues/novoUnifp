@@ -53,7 +53,8 @@ class UnidadeController extends AppBaseController
             Session::put('nomeUnidade', $nomeUnidade);
         } else {
             $unidade = Session::get('unidade');
-            Session::put('nomeUnidade', "");
+            // $nomeUnidade = DB::table('unidade')->where('id', $unidade)->get()->first();
+            // Session::put('nomeUnidade', $nomeUnidade->NomeUnidade);
         }
         return $unidade;
     }

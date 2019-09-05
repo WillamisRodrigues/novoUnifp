@@ -12,7 +12,7 @@
             <tr>
                 <td>{!! $cronograma->Nome !!}</td>
                 <td>
-                    <a href="{!! route('aulasCronogramas.show', [$cronograma->id]) !!}" class="btn btn-primary"><i class="fa fa-bars"></i>
+                    <a href="{!! route('aulasCronogramas.show', [$cronograma->id]) !!}" class="btn btn-primary btn-flat"><i class="fa fa-bars"></i>
                         Aulas do Cronograma</a>
                 </td>
                 <td>

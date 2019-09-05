@@ -91,6 +91,8 @@ Route::post('filtroLancamentos', ['uses' => 'LancamentoController@filtroLancamen
 
 Route::post('filtro-receitas', ['as' => 'filtroReceitas', 'uses' => 'RelatoriosController@filtroDespesas']);
 
+Route::post('filtroAlunosAtrasados', ['as' => 'filtroAlunosAtrasados', 'uses' => 'RelatoriosController@filtroAlunosAtrasados']);
+
 Route::resource('agendas', 'AgendaController');
 
 Route::resource('agendasArquivada', 'AgendasArquivadaController');

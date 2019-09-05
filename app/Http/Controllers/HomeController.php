@@ -76,8 +76,8 @@ class HomeController extends Controller
         $alunosM = DB::table('aluno')->where([['Sexo', '=', 'Feminino'], ['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
 
         //nivel de adimplencia
-        $emDia = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/ ['Status', '<>', 'Atrasado']])->get();
-        $atrasados = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/ ['Status', '=', 'Vencido']])->get();
+        $emDia = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/ ['Status', '<>', 'Atrasado'], ['idUnidade', '=', $unidade]])->get();
+        $atrasados = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/ ['Status', '=', 'Vencido'], ['idUnidade', '=', $unidade]])->get();
 
         //inicia todos os gráficos
         $MatriculasMes = \Lava::DataTable();
@@ -121,6 +121,7 @@ class HomeController extends Controller
         *   ####################################################################################
         *
         *               FALTA OS DADOS PARA O GRÁFICO DE RECEITAS E DESPESAS
+        *                      E DO GRÁFICO DE ALUNOS POR IDADE
         *
         *              ATUALMENTE OS DADOS ESTÃO SENDO SETADOS ALEATORIAMENTE
         *                APENAS PARA O PREENCHIMENDO DE DADOS E O GRÁFICO

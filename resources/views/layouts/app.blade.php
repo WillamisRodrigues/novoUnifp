@@ -80,7 +80,7 @@
                             <li class="user-footer">
                                 <div>
                                     <a href="#" class="btn btn-danger btn-block" class="botao-logout-mobile"
-                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sair</a>
+                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Sair</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;"> @csrf </form>
                                 </div>

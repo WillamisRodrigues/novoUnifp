@@ -33,7 +33,7 @@ class RelatoriosController extends Controller
     {
         // $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
         $unidade = UnidadeController::getUnidade();
-        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
         $sum = 0;
 
         foreach ($caixas as $caixa) {
@@ -49,13 +49,13 @@ class RelatoriosController extends Controller
     public function despesas(Request $request)
     {
         $unidade = UnidadeController::getUnidade();
-        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Tipo', '=', 'Despesa']])->get();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Despesa']])->get();
         $sum = 0;
 
         foreach ($caixas as $caixa) {
             $sum += $caixa->Valor;
         }
-        $sum = 'Total: R$' . $sum ;
+        $sum = 'Total: R$' . $sum;
 
         return view('relatorios.despesas', ['caixas' => $caixas, 'sum' => $sum]);
     }
@@ -66,7 +66,7 @@ class RelatoriosController extends Controller
         $dataFim = "$request->ano-$request->mes-31 23:59:59";
 
         $unidade = UnidadeController::getUnidade();
-        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Tipo', '=', 'Receita'],['created_at', '>=', $dataInicio], ['created_at', '<=', $dataFim]])->get();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita'], ['created_at', '>=', $dataInicio], ['created_at', '<=', $dataFim]])->get();
 
         $sum = 0;
 
@@ -81,6 +81,18 @@ class RelatoriosController extends Controller
         return view('relatorios.receitas', ['caixas' => $caixas, 'sum' => $sum, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto]);
     }
 
+    public function filtroAlunosAtrasados(Request $request)
+    {
+        $hoje = date('Y-m-d');
+        $unidade = UnidadeController::getUnidade();
+        $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
+        $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']])->get();
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+
+        return view('relatorios.alunosAtrasados', ['alunos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos]);
+    }
+
     public function alunosAtrasados()
     {
         $hoje = date('Y-m-d');
@@ -90,13 +102,19 @@ class RelatoriosController extends Controller
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
-        // dd($turmas);
-
         return view('relatorios.alunosAtrasados', ['alunos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos]);
     }
     public function geralAlunos()
     {
-        return view('relatorios.geralAlunos');
+        $hoje = date('Y-m-d');
+        $unidade = UnidadeController::getUnidade();
+        $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
+        $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']])->get();
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        // dd($alunos);
+
+        return view('relatorios.geralAlunos', ['alunos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos, 'hoje' => $hoje]);
     }
     public function geralRecebimentos()
     {

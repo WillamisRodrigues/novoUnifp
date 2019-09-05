@@ -8,7 +8,7 @@
     <div class="clearfix"></div>
 
     <div class="container" style="width: 80%; margin: 1rem auto;">
-        {!! Form::open() !!}
+        {!! Form::open(['url' => 'filtroAlunosAtrasados']) !!}
         <div class="row">
             {!! Form::label('Status', 'Status', ['class' => 'col-sm-1']) !!}
             <input type="radio" name="Status" id="Estudando" value="Estudando">
