@@ -48,10 +48,11 @@ class TurmaController extends AppBaseController
      */
     public function create()
     {
-        $cursos = $this->cursoRepository->all();
-        $professores = DB::table('funcionario')->get()->where('Cargo', 'Professor');
-        $cronogramas = DB::table('cronograma')->get();
-        $horarios = DB::table('horario')->get();
+        $unidade = UnidadeController::getUnidade();
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $professores = DB::table('funcionario')->where([['Cargo', '=', 'Professor'], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $cronogramas = DB::table('cronograma')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $horarios = DB::table('horario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
         return view('turmas.create', ['cursos' => $cursos, 'professores' => $professores, 'cronogramas' => $cronogramas, 'horarios' => $horarios]);
     }

@@ -15,7 +15,7 @@
         keepStatic: true
     });
     $("input[id*='Celular']").inputmask({
-        mask: ['(99) 999999-9999'],
+        mask: ['(99) 99999-9999'],
         keepStatic: true
     });
 </script>

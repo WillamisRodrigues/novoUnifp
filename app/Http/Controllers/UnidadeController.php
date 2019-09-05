@@ -83,7 +83,7 @@ class UnidadeController extends AppBaseController
 
         $unidade = $this->unidadeRepository->create($input);
 
-        if($request->file('Logotipo')){
+        if ($request->file('Logotipo')) {
             $caminho = $request->file('Logotipo')->store('imagens/logotipos');
             $path = Storage::disk('public')->putFile('logotipos-unidades', $request->file('Logotipo'));
             DB::update('update unidade set Logotipo = ? where id = ?', [$path, $unidade->id]);
@@ -154,6 +154,12 @@ class UnidadeController extends AppBaseController
         }
 
         $unidade = $this->unidadeRepository->update($request->all(), $id);
+
+        if ($request->file('Logotipo')) {
+            $caminho = $request->file('Logotipo')->store('imagens/logotipos');
+            $path = Storage::disk('public')->putFile('logotipos-unidades', $request->file('Logotipo'));
+            DB::update('update unidade set Logotipo = ? where id = ?', ["//storage/".$path, $unidade->id]);
+        }
 
         Flash::success('Unidade atualizada com sucesso.');
 

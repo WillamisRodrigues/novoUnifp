@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard')
+
 @section('content')
 <div class="" style="padding: 10px 20px">
     <h3>Dashboard</h3>

@@ -8,6 +8,7 @@ use App\Repositories\DiasSemanaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class DiasSemanaController extends AppBaseController
@@ -29,7 +30,8 @@ class DiasSemanaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $diasSemanas = $this->diasSemanaRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $diasSemanas = $this->diasSemanaRepository->all()->where('idUnidade', '=', $unidade);
 
         return view('dias_semanas.index')
             ->with('diasSemanas', $diasSemanas);
@@ -57,6 +59,8 @@ class DiasSemanaController extends AppBaseController
         $input = $request->all();
 
         $diasSemana = $this->diasSemanaRepository->create($input);
+        $unidade = UnidadeController::getUnidade();
+        DB::update('update dias_semana set idUnidade = ? where id = ?', [$unidade, $diasSemana->id]);
 
         Flash::success('Dia de Aula adicionado com sucesso.');
 
@@ -122,6 +126,8 @@ class DiasSemanaController extends AppBaseController
         }
 
         $diasSemana = $this->diasSemanaRepository->update($request->all(), $id);
+        $unidade = UnidadeController::getUnidade();
+        DB::update('update dias_semana set idUnidade = ? where id = ?', [$unidade, $diasSemana->id]);
 
         Flash::success('Dia de Aula atualizado com sucesso.');
 

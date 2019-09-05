@@ -8,6 +8,7 @@ use App\Repositories\FormaPgtoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class FormaPgtoController extends AppBaseController
@@ -29,7 +30,8 @@ class FormaPgtoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $formaPgtos = $this->formaPgtoRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $formaPgtos = $this->formaPgtoRepository->all()->where('idUnidade', '=', $unidade);
 
         return view('forma_pgtos.index')
             ->with('formaPgtos', $formaPgtos);
@@ -57,6 +59,8 @@ class FormaPgtoController extends AppBaseController
         $input = $request->all();
 
         $formaPgto = $this->formaPgtoRepository->create($input);
+        $unidade = UnidadeController::getUnidade();
+        DB::update('update forma_pgto set idUnidade = ? where id = ?', [$unidade, $formaPgto->id]);
 
         Flash::success('Forma de Pagamento salva com sucesso.');
 

@@ -8,6 +8,7 @@ use App\Repositories\HorarioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class HorarioController extends AppBaseController
@@ -29,7 +30,9 @@ class HorarioController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $horarios = $this->horarioRepository->all();
+
+        $unidade = UnidadeController::getUnidade();
+        $horarios = $this->horarioRepository->all()->where('idUnidade', '=', $unidade);
 
         return view('horarios.index')
             ->with('horarios', $horarios);
@@ -57,6 +60,9 @@ class HorarioController extends AppBaseController
         $input = $request->all();
 
         $horario = $this->horarioRepository->create($input);
+
+        $unidade = UnidadeController::getUnidade();
+        DB::update('update horario set idUnidade = ? where id = ?', [$unidade, $horario->id]);
 
         Flash::success('Horário criado com sucesso.');
 

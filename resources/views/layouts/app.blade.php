@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Futuro no Presente - UniFP</title>
+    <title>UniFP - @yield('title','Futuro no Presente')</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" href="{{ url('imagens/icons/icon-fp.png') }}" type="image/x-icon" />

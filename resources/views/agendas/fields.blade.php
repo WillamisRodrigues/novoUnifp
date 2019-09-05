@@ -5,13 +5,13 @@
         <p class="col-sm-12 col-md-3" style="font-weight: bold"> Prioridade<span style="color: red">*</span></p>
         </td>
         <p class="col-sm-12 col-md-9 row">
-            <label class="col-xs-6 col-sm-3 col-md-2">{!! Form::radio('prioridade', 'Baixa', ['class' =>
+            <label class="col-xs-6 col-sm-3 col-md-3">{!! Form::radio('prioridade', 'Baixa', ['class' =>
                 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: green"> Baixa </span>
             </label>
-            <label class="col-xs-6 col-sm-3 col-md-2">{!! Form::radio('prioridade', 'Média', ['class' =>
+            <label class="col-xs-6 col-sm-3 col-md-3">{!! Form::radio('prioridade', 'Média', ['class' =>
                 'form-control']) !!} <span class="input-radio-prioridade" style="background-color: orange"> Média
                 </span> </label>
-            <label class="col-xs-6 col-sm-3 col-md-2">{!! Form::radio('prioridade', 'Alta', ['class' => 'form-control'])
+            <label class="col-xs-6 col-sm-3 col-md-3">{!! Form::radio('prioridade', 'Alta', ['class' => 'form-control'])
                 !!} <span class="input-radio-prioridade" style="background-color: red"> Alta </span> </label>
         </p>
     </div>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Agenda - Editar Compromisso')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-right">

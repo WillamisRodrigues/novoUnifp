@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Agenda Arquivada')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Agenda Arquivada</h1>

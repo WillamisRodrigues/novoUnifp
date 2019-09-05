@@ -52,4 +52,10 @@
         <p class="col-sm-12 col-md-3">{!! Form::label('Tipo', 'Tipo:') !!}</p>
         <p class="col-sm-12 col-md-9">{!! $unidade->Tipo !!}</p>
     </div>
+
+    <!-- Campo Tipo -->
+    <div class="row">
+        <p class="col-sm-12 col-md-3">{!! Form::label('Logotipo', 'Logotipo:') !!}</p>
+        <p class="col-sm-12 col-md-9"><img src="/{!! $unidade->Logotipo !!}" alt="Logotipo da Unidade"></p>
+    </div>
 </div>

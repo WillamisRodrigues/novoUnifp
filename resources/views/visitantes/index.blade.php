@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Visitantes')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Visitantes</h1>
