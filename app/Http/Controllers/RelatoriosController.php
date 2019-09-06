@@ -85,48 +85,101 @@ class RelatoriosController extends Controller
     {
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
-        $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]]);
+        $pagamentosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['Vencimento', '<', $hoje], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]]);
         $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']]);
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]]);
-        if ($request->Status) {
+        if ($request->Status && !$request->Periodo) {
             $alunos = $alunos->where('Status', '=', $request->Status);
-        }
-        if ($request->Periodo) {
-            $turmas = $turmas->where('Periodo', '=', $request->Periodo)->get();
             $i = 0;
-            foreach ($turmas as $turma) {
+            $idAluno[0] = 0;
+            foreach ($alunos->get() as $aluno) {
+                $idAluno[$i] = $aluno->id;
+                $i++;
+            }
+            if ($i > 0) {
+                $i--;
+            }
+            while ($i >= 0) {
+                $pagamentosAtrasados = $pagamentosAtrasados->where('Matricula', '=', $idAluno[$i]);
+                $i--;
+            }
+            // dd($pagamentosAtrasados->get());
+        }
+        if ($request->Periodo && $request->Status) {
+            $turmas = $turmas->where('Periodo', '=', $request->Periodo);
+            $i = 0;
+            foreach ($turmas->get() as $turma) {
+                $idTurmas[$i] = $turma->id;
+                $i++;
+            }
+            $j = $i--;
+            $j--;
+            while ($j >= 0) {
+                $alunos = $alunos->where('idTurma', '=', $idTurmas[$j]);
+                $j--;
+            }
+            $i = 0;
+            foreach ($alunos->get() as $aluno) {
+                $idAluno[$i] = $aluno->id;
+                $i++;
+            }
+            $i--;
+            while ($i >= 0) {
+                $pagamentosAtrasados = $pagamentosAtrasados->where('Matricula', '=', $idAluno[$i]);
+                $i--;
+            }
+        }
+        if($request->Periodo && $request->Status){
+            $turmas = $turmas->where('Periodo', '=', $request->Periodo);
+
+            $i = 0;
+            foreach ($turmas->get() as $turma) {
                 $idTurmas[$i] = $turma->id;
                 $i++;
             }
             $i--;
-            while($i >= 0){
-                $alunos = $alunos->where('idTurma', '=' , $idTurmas[$i]);
+            while ($i >= 0) {
+                $alunos = $alunos->where('idTurma', '=', $idTurmas[$i]);
                 $i--;
             }
+            $alunos = $alunos->where('Status', '=', $request->Status);
+
+            $j = 0;
+            foreach ($alunos->get() as $aluno) {
+                $idAluno[$j] = $aluno->id;
+                $j++;
+            }
+            $j--;
+            while ($j >= 0) {
+                $pagamentosAtrasados = $pagamentosAtrasados->where('Matricula', '=', $idAluno[$j]);
+                $j--;
+            }
+
+            // dd($pagamentosAtrasados->get());
         }
         if ($request->VencimentoInicial) {
-            $alunosAtrasados = $alunosAtrasados->where('Vencimento', '>', $request->VencimentoInicial);
+            $pagamentosAtrasados = $pagamentosAtrasados->where('Vencimento', '>', $request->VencimentoInicial);
         }
         if ($request->VencimentoFinal) {
-            $alunosAtrasados = $alunosAtrasados->where('Vencimento', '<', $request->VencimentoFinal);
+            $pagamentosAtrasados = $pagamentosAtrasados->where('Vencimento', '<', $request->VencimentoFinal);
         }
 
         $alunos = $alunos->get();
-        // $turmas = $turmas->get();
-        $alunosAtrasados = $alunosAtrasados->get();
-        dd($alunos);
+        $turmas = $turmas->get();
+        $pagamentosAtrasados = $pagamentosAtrasados->get();
+        // dd($pagamentosAtrasados);
 
 
 
-        return view('relatorios.alunosAtrasados', ['alunos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos]);
+        return view('relatorios.alunosAtrasados', ['alunos' => $pagamentosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos]);
     }
 
     public function alunosAtrasados()
     {
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
-        $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
+        $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['idUnidade', '=', $unidade], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
         $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']])->get();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();

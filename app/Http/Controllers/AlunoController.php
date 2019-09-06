@@ -135,6 +135,7 @@ class AlunoController extends AppBaseController
                         'Valor' => $valorMatricula,
                         'Vencimento' => $hoje,
                         'created_at' => $timestamp,
+                        'idUnidade' => $unidade,
                         'updated_at' => $timestamp
                     ]
                 );
@@ -148,6 +149,7 @@ class AlunoController extends AppBaseController
                         'Valor' => $valor,
                         'Vencimento' => $dataVencimento,
                         'created_at' => $timestamp,
+                        'idUnidade' => $unidade,
                         'updated_at' => $timestamp
                     ]
                 );
