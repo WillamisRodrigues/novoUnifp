@@ -18,6 +18,7 @@ class FornecedorController extends AppBaseController
     public function __construct(FornecedorRepository $fornecedorRepo)
     {
         $this->fornecedorRepository = $fornecedorRepo;
+        $unidade = UnidadeController::getUnidade();
     }
 
     /**
@@ -29,7 +30,7 @@ class FornecedorController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $fornecedors = $this->fornecedorRepository->all();
+        $fornecedors = $this->fornecedorRepository->all()->where('idUnidade', $this->unidade);
 
         return view('fornecedors.index')
             ->with('fornecedors', $fornecedors);
@@ -57,6 +58,8 @@ class FornecedorController extends AppBaseController
         $input = $request->all();
 
         $fornecedor = $this->fornecedorRepository->create($input);
+
+        DB::table('fornecedor')->where('id', $fornecedor->id)->update(['idUnidade' => $this->unidade]);
 
         Flash::success('Fornecedor salvo com sucesso.');
 

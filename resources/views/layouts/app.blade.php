@@ -94,7 +94,7 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
-                        <a href="#" ><i class="fa fa-bank"></i>
+                        <a href="{!! route('unidades.index') !!}" ><i class="fa fa-bank"></i>
                             {{ Session::get('nomeUnidade') }}
                          </a>
                     </li>

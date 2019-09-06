@@ -38,7 +38,8 @@ class AniversarioController extends AppBaseController
 
     public function professores(Request $request)
     {
-        $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Professor');
+        $unidade = UnidadeController::getUnidade();
+        $funcionarios = $this->funcionarioRepository->all()->where([['Cargo', '=', 'Professor'], ['idUnidade', '=', $unidade]]);
 
         return view('aniversarios.professores')
             ->with('funcionarios', $funcionarios);
@@ -108,6 +109,8 @@ class AniversarioController extends AppBaseController
         $input = $request->all();
 
         $funcionario = $this->funcionarioRepository->create($input);
+        $unidade = UnidadeController::getUnidade();
+        DB::table('funcionario')->where('id', $funcionario->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Funcionário salvo com sucesso.');
 

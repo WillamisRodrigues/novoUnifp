@@ -29,7 +29,8 @@ class EscolaridadeController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $escolaridades = $this->escolaridadeRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $escolaridades = $this->escolaridadeRepository->all()->where('idUnidade' ,$unidade);
 
         return view('escolaridades.index')
             ->with('escolaridades', $escolaridades);

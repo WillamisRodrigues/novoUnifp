@@ -52,7 +52,19 @@
         <!-- Status Field -->
         <div class="row">
                 <p class="col-md-2 col-sm-12">{!! Form::label('status', 'Status:') !!}</p>
-                <p class="col-md-8 col-sm-12">{!! $visitante->status !!}</p>
+                <p class="col-md-8 col-sm-12">
+                    {{-- {!! $visitante->status !!} --}}
+                    @switch($visitante->status)
+                        @case('SemInteresse')
+                            Sem interesse
+                            @break
+                        @case('RetornarContato')
+                            A retornar contato
+                            @break
+                        @default
+                            {{$visitante->status}}
+                    @endswitch
+                </p>
         </div>
 
     </div>

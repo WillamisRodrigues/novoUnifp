@@ -29,7 +29,8 @@ class TempoAulaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $tempoAulas = $this->tempoAulaRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $tempoAulas = $this->tempoAulaRepository->all()->where('idUnidade', $unidade);
 
         return view('tempo_aulas.index')
             ->with('tempoAulas', $tempoAulas);
@@ -57,6 +58,9 @@ class TempoAulaController extends AppBaseController
         $input = $request->all();
 
         $tempoAula = $this->tempoAulaRepository->create($input);
+
+        $unidade = UnidadeController::getUnidade();
+        DB::table('tempo_aula')->where('id', $tempoAula->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Tempo de Aula salvo com sucesso.');
 
