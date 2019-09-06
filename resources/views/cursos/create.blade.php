@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Cursos - Adicionar')
+
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Cursos</h1>

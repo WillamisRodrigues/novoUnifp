@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Escolaridade - Detalhes')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-right">

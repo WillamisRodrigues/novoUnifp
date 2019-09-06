@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Escolaridade')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Lista de Escolaridades</h1>

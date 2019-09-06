@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Aulas do Cronograma - Adicionar')
+
 @section('content')
 <section class="content-header" style="margin-bottom: 10px">
     <h1 class="pull-left">Aulas do Cronograma</h1>

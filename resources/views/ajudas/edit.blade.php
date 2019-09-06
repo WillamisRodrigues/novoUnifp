@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Ajuda - Editar')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Edição da Ajuda</h1>

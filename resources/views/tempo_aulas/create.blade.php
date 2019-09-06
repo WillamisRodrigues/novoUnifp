@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Tempo de Aula - Adicionar')
+
 @section('content')
     <section class="content-header">
             <h1 class="pull-left">Tempo de Aula</h1>

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Formas de Parcelamento')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Formas de Parcelamento</h1>

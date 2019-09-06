@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Relatório de Notas')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Relatório de Notas</h1>

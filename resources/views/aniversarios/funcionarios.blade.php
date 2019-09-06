@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Aniversário de Funcionários')
+
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Aniversário de Funcionários</h1>

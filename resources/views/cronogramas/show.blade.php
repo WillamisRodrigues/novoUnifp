@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Cronogramas - Detalhes')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Cronograma</h1>

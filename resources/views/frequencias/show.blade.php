@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Fornecedores - Detalhes')
+
 @section('content')
 <section class="content-header">
     <h1>

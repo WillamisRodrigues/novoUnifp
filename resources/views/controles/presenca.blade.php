@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Controle de Presença')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Controle de Presença de Alunos</h1>

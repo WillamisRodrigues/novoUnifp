@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Formas de Pagamento - Detalhes')
+
 @section('content')
     <section class="content-header">
         <h1>

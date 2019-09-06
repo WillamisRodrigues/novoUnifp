@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Nível de Acesso - Detalhes')
+
 @section('content')
     <section class="content-header">
         <h1>

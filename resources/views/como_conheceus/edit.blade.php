@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Como Conheceu - Editar')
+
 @section('content')
     <section class="content-header">
             <h1 class="pull-left">Como Conheceu</h1>

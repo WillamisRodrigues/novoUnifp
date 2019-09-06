@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Tempo de Aula - Detalhes')
+
 @section('content')
     <section class="content-header">
         <h1>

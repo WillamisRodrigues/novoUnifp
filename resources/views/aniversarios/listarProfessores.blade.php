@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Aniversários de Professores')
+
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Professores</h1>

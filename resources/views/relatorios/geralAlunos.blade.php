@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Relatório Geral de Alunos')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Relatório Geral de Alunos</h1>

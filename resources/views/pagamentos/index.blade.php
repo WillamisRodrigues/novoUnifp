@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Pagamentos')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Pagamentos</h1>

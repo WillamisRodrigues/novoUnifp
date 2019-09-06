@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Centro de Custos - Editar')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Centro de Custos</h1>

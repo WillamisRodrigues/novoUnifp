@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Dias da Semana - Editar')
+
 @section('content')
     <section class="content-header">
             <h1 class="pull-left">Dias de Aula</h1>

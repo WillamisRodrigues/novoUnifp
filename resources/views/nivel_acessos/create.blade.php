@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Nível de Acesso - Adicionar')
+
 @section('content')
     <section class="content-header">
             <h1 class="pull-left">Adicionar Perfil</h1>

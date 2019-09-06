@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Comunicados - Editar')
+
 @section('content')
     <section class="content-header">
         <h1>

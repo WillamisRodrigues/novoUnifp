@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Usuário - Detalhes')
 
 @section('content')
     <section class="content-header">

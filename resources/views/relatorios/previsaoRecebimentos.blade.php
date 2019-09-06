@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Previsão de Recebimentos')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Previsão de Recebimentos</h1>

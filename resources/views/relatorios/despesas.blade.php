@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Relatório de Despesas')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Relatório de Despesas</h1>

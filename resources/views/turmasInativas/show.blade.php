@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Turmas Inativas')
 
 @section('content')
 <section class="content-header">

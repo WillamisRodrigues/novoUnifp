@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Comunicados')
+
 @section('content')
     <section class="content-header">
         <h1 class="pull-left">Comunicados</h1>
@@ -19,7 +21,7 @@
             </div>
         </div>
         <div class="text-center">
-        
+
         </div>
     </div>
 @endsection

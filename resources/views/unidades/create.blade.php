@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Unidades - Adicionar')
+
 @section('content')
 <section class="content-header">
     <h1 class="pull-right">
