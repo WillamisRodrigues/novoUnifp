@@ -29,17 +29,11 @@ class AniversarioController extends AppBaseController
      *
      * @return Response
      */
-    // public function index(Request $request)
-    // {
-    //     $funcionarios = $this->funcionarioRepository->all()->where('Cargo','<>', 'Professor');
-    //     return view('aniversarios.funcionarios')
-    //         ->with('funcionarios', $funcionarios);
-    // }
 
     public function professores(Request $request)
     {
         $unidade = UnidadeController::getUnidade();
-        $funcionarios = $this->funcionarioRepository->all()->where([['Cargo', '=', 'Professor'], ['idUnidade', '=', $unidade]]);
+        $funcionarios = DB::table('funcionario')->where([['Cargo', '=', 'Professor'], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
         return view('aniversarios.professores')
             ->with('funcionarios', $funcionarios);
@@ -47,7 +41,6 @@ class AniversarioController extends AppBaseController
 
     public function professoresListar(Request $request)
     {
-        // $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Professor');
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([
             ['idUnidade', '=', $unidade],
@@ -61,7 +54,6 @@ class AniversarioController extends AppBaseController
 
     public function vendedoresListar(Request $request)
     {
-        // $funcionarios = $this->funcionarioRepository->all()->where('Cargo','Vendedor');
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([
             ['idUnidade', '=', $unidade],
@@ -75,7 +67,6 @@ class AniversarioController extends AppBaseController
 
     public function funcionarios(Request $request)
     {
-        // $funcionarios = $this->funcionarioRepository->all()->where('Cargo', '<>','Professor');
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([
             ['idUnidade', '=', $unidade],

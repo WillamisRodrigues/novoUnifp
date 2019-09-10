@@ -20,25 +20,25 @@
                 <table class="table display datatable-list" id="alunos-table">
                     <thead>
                         <tr>
-                            <th>Quantidade de Recebimentos</th>
+                            <th class="text-center">Quantidade de Recebimentos</th>
                             <th>Valor Total</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1000</td>
-                            <td>R$10.000,00</td>
+                            <td class="text-center">{!! $qtdeAtrasado !!}</td>
+                            <td>R$ {!! number_format($somaAtrasado, 2, ',', '.') !!}</td>
                             <td><p class="bg-vermelho-redondo">Vencido</p></td>
                         </tr>
                         <tr>
-                            <td>1000</td>
-                            <td>R$10.000,00</td>
+                            <td class="text-center">{!! $qtdeAberto !!}</td>
+                            <td>R$ {!! number_format($somaAberto, 2, ',', '.') !!}</td>
                             <td><p class="bg-vermelho-redondo" style="background-color: #00A65A">Aberto</p></td>
                         </tr>
                         <tr>
-                            <td>1000</td>
-                            <td>R$10.000,00</td>
+                            <td class="text-center">{!! $qtdeQuitado !!}</td>
+                            <td>R$ {!! number_format($somaQuitado, 2, ',', '.') !!}</td>
                             <td><p class="bg-vermelho-redondo" style="background-color: #777777">Quitado</p></td>
                         </tr>
                     </tbody>
