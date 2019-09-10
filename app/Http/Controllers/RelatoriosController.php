@@ -7,6 +7,7 @@ use App\Http\Requests\CreateCaixaRequest;
 use App\Http\Requests\UpdateCaixaRequest;
 use App\Repositories\CaixaRepository;
 use App\Http\Controllers\AppBaseController;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 use Flash;
 use Response;
@@ -203,20 +204,58 @@ class RelatoriosController extends Controller
         }
         if ($request->Pagamentos) {
             if ($request->Pagamentos == "Atrasado") {
-                $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<', $hoje], ['DataPgto', '=', null],['deleted_at', '=', null]])->get();
-                dd($alunosAtrasados);
+                $alunosAtrasados = $this->atrasados();
+                // $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['deleted_at', '=', null], ['Status', '=', "Quitado"]])->get();
             }
             if ($request->Pagamentos == "Em dia") {
-                $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<', $hoje], ['DataPgto', '<>', null], ['deleted_at', '=', null]])->get();
+                $alunosAtrasados = $this->emDia();
+                // $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['deleted_at', '=', null], ['Status', '<>', "Quitado"]])->get();
             }
         } else {
-            $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
+            $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['deleted_at', '=', null]])->get();
         }
 
         $turmas = $turmas->get();
         $alunos = $alunos->get();
 
+        // dd($alunosAtrasados);
+
         return view('relatorios.geralAlunos', ['pagamentos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos, 'hoje' => $hoje]);
+    }
+
+    public function atrasados()
+    {
+        $unidade = UnidadeController::getUnidade();
+        $pagamentos = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Status', '<>', 'Quitado']])->get()->last();
+        return $pagamentos;
+    }
+
+    public function emDia()
+    {
+        $unidade = UnidadeController::getUnidade();
+        $pagamentos = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Status', '=', 'Quitado']])->get()->last();
+        return $pagamentos;
+    }
+
+    public static function pagamentos($id)
+    {
+        $hoje = date('Y-m-d');
+        $unidade = UnidadeController::getUnidade();
+        $pagamentos = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+
+        $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
+
+        foreach ($pagamentos as $pagamento) {
+            if ($pagamento->Matricula == $id) {
+                if ($pagamento->DataPgto) {
+                    $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
+                } else {
+                    $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
+                }
+            }
+        }
+
+        return $resultado;
     }
 
     public function geralRecebimentos()
@@ -225,7 +264,93 @@ class RelatoriosController extends Controller
     }
     public function previsaoRecebimentos()
     {
-        return view('relatorios.previsaoRecebimentos');
+        $unidade = UnidadeController::getUnidade();
+        $pagamentos = DB::table('pagamentos');
+        // DB::select('posts.id','posts.title','posts.body')->from('posts')->where('posts.author_id', '=', 1)
+        // DB::table('orders')->selectRaw('price * ? as price_with_tax', [1.0825])->get();
+        $pgJan = DB::select('select Valor from pagamentos where Vencimento > "2019-01-01" and Vencimento < "2019-01-31"');
+        $pgFev = DB::select('select Valor from pagamentos where Vencimento > "2019-02-01" and Vencimento < "2019-02-31"');
+        $pgMar = DB::select('select Valor from pagamentos where Vencimento > "2019-03-01" and Vencimento < "2019-03-31"');
+        $pgAbr = DB::select('select Valor from pagamentos where Vencimento > "2019-04-01" and Vencimento < "2019-04-31"');
+        $pgMai = DB::select('select Valor from pagamentos where Vencimento > "2019-05-01" and Vencimento < "2019-05-31"');
+        $pgJun = DB::select('select Valor from pagamentos where Vencimento > "2019-06-01" and Vencimento < "2019-06-31"');
+        $pgJul = DB::select('select Valor from pagamentos where Vencimento > "2019-07-01" and Vencimento < "2019-07-31"');
+        $pgAgo = DB::select('select Valor from pagamentos where Vencimento > "2019-08-01" and Vencimento < "2019-08-31"');
+        $pgSet = DB::select('select Valor from pagamentos where Vencimento > "2019-09-01" and Vencimento < "2019-09-31"');
+        $pgOut = DB::select('select Valor from pagamentos where Vencimento > "2019-10-01" and Vencimento < "2019-10-31"');
+        $pgNov = DB::select('select Valor from pagamentos where Vencimento > "2019-11-01" and Vencimento < "2019-11-31"');
+        $pgDez = DB::select('select Valor from pagamentos where Vencimento > "2019-12-01" and Vencimento < "2019-12-31"');
+
+        // dd($pgDez);
+
+        $somaJan = 0;
+        foreach ($pgJan as $pgto) {
+            $somaJan = $somaJan + $pgto->Valor;
+        }
+        $somaFev = 0;
+        foreach ($pgFev as $pgto) {
+            $somaFev = $somaFev + $pgto->Valor;
+        }
+        $somaMar = 0;
+        foreach ($pgMar as $pgto) {
+            $somaMar = $somaMar + $pgto->Valor;
+        }
+        $somaAbr = 0;
+        foreach ($pgAbr as $pgto) {
+            $somaAbr = $somaAbr + $pgto->Valor;
+        }
+        $somaMai = 0;
+        foreach ($pgMai as $pgto) {
+            $somaMai = $somaMai + $pgto->Valor;
+        }
+        $somaJun = 0;
+        foreach ($pgJun as $pgto) {
+            $somaJun = $somaJun + $pgto->Valor;
+        }
+        $somaJul = 0;
+        foreach ($pgJul as $pgto) {
+            $somaJul = $somaJul + $pgto->Valor;
+        }
+        $somaAgo = 0;
+        foreach ($pgAgo as $pgto) {
+            $somaAgo = $somaAgo + $pgto->Valor;
+        }
+        $somaSet = 0;
+        foreach ($pgSet as $pgto) {
+            $somaSet = $somaSet + $pgto->Valor;
+        }
+        $somaOut = 0;
+        foreach ($pgOut as $pgto) {
+            $somaOut = $somaOut + $pgto->Valor;
+        }
+        $somaNov = 0;
+        foreach ($pgNov as $pgto) {
+            $somaNov = $somaNov + $pgto->Valor;
+        }
+        $somaDez = 0;
+        foreach ($pgDez as $pgto) {
+            $somaDez = $somaDez + $pgto->Valor;
+        }
+
+        $somas = [$somaJan, $somaFev, $somaMar, $somaAbr, $somaMai, $somaJun, $somaJul, $somaAgo, $somaSet, $somaOut, $somaNov, $somaDez];
+
+        // dd($somas);
+
+        return view('relatorios.previsaoRecebimentos', ['somaJan' => $somaJan, 'somaFev' => $somaFev, 'somaMar' => $somaMar, 'somaAbr' => $somaAbr, 'somaJun' => $somaJun, 'somaJul' => $somaJul, 'somaAgo' => $somaAgo, 'somaSet' => $somaSet, 'somaOut' => $somaOut, 'somaMai' => $somaMai, 'somaNov' => $somaNov, 'somaDez' => $somaDez]);
+    }
+
+    public function filtroRecebimentos(Request $request)
+    {
+        $unidade = UnidadeController::getUnidade();
+        $dataInicio = "$request->Ano-$request->Mes-01";
+        $dataFim = "$request->Ano-$request->Mes-21";
+        $pgMes = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['Vencimento', '>', $dataInicio], ['Vencimento', '<', $dataFim]])->get();
+        $soma = 0;
+        foreach($pgMes as $pagto){
+            $soma = $soma + $pagto->Valor;
+        }
+        // dd($soma);
+        return view('relatorios.previsaoRecebimento', ['soma' => $soma, 'ano' => $request->Ano, 'mes' => $request->Mes]);
     }
 
     /**

@@ -30,8 +30,8 @@ class HomeController extends Controller
         $unidade = UnidadeController::getUnidade();
 
         //captação de dados para alimentação da home
-        $alunosAtivos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativo']])->get();
-        $alunosInativos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Inativo']])->get();
+        $alunosAtivos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Estudando']])->get();
+        $alunosInativos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '<>', 'Estudando']])->get();
         $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']])->get();
         $cursos = DB::table('curso')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
         $professores = DB::table('funcionario')->where([['deleted_at', '=', null], ['Inativo', '=', 'Nao'], ['idUnidade', '=', $unidade], ['Cargo', '=', 'Professor']])->get();

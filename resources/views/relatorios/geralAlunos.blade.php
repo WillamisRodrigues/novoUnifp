@@ -114,15 +114,18 @@
                             <td>{!! '$aluno->Media' !!}</td>
                             <td>
                                 @php
-                                    foreach ($pagamentos as $pagamento) {
-                                        if($pagamento->Matricula == $aluno->id){
-                                            if($pagamento->DataPgto){
-                                                $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
-                                            } else {
-                                                $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
-                                            }
-                                        }
-                                    }
+                                    // $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
+                                    // foreach ($pagamentos as $pagamento) {
+                                    //     if($pagamento->Matricula == $aluno->id){
+                                    //         if($pagamento->DataPgto){
+                                    //             $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
+                                    //         } else {
+                                    //             $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
+                                    //         }
+                                    //     }
+                                    // }
+                                    // echo $resultado;
+                                    $resultado = App\Http\Controllers\RelatoriosController::pagamentos($aluno->id);
                                     echo $resultado;
                                 @endphp
                             </td>
