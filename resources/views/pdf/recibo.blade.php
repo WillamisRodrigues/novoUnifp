@@ -52,7 +52,7 @@
         <p class="text-right">_________________________________________________ <br> {!! $unidade->NomeUnidade !!} -
             CNPJ: {!! $unidade->CNPJ !!}</p>
     </div>
-    <br><br><br><br>
+    <br><br>
     <div style="border-top: 2px dotted black; height: 20px"></div>
     <div style="margin-top: 2%">
         <div class="" style="width: 30%; float: left">

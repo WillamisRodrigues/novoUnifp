@@ -10,6 +10,7 @@ use App\Http\Controllers\AppBaseController;
 use DateTime;
 use Illuminate\Support\Facades\DB;
 use Flash;
+use Illuminate\Support\Arr;
 use Response;
 
 
@@ -201,9 +202,11 @@ class RelatoriosController extends Controller
         if ($request->Pagamentos) {
             if ($request->Pagamentos == "Atrasado") {
                 $alunosAtrasados = $this->atrasados();
+
             }
             if ($request->Pagamentos == "Em dia") {
                 $alunosAtrasados = $this->emDia();
+
             }
         } else {
             $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['deleted_at', '=', null]])->get();
@@ -231,20 +234,44 @@ class RelatoriosController extends Controller
 
     public static function pagamentos($id)
     {
+        $dia = date('d');
+        $mes = date('m');
+        $ano = date('Y');
         $hoje = date('Y-m-d');
+        $aluno = DB::table('aluno')->where('id', $id)->get()->first();
         $unidade = UnidadeController::getUnidade();
-        $pagamentos = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
-        $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
+        if ($dia >= 1 && $dia <= $aluno->Vencimento) {
+            $mesPg = $mes - 1;
+            $mesPg = str_pad($mesPg, 2, '0', STR_PAD_LEFT);
+        } else if ($aluno->Vencimento < $dia && $dia <= 31) {
+            $mesPg = $mes;
+        }
 
-        foreach ($pagamentos as $pagamento) {
-            if ($pagamento->Matricula == $id) {
-                if ($pagamento->DataPgto) {
+        if ($mes == 1) {
+            $anoPg = $ano - 1;
+            $mesPg = 12;
+        } else {
+            $anoPg = $ano;
+        }
+
+        $diaVenc = str_pad($aluno->Vencimento, 2, '0', STR_PAD_LEFT);
+        $diaPg = "$anoPg-$mesPg-$diaVenc";
+        $pagamentos = DB::select('select * from pagamentos where Vencimento = ? and Matricula = ?;', [$diaPg, $id]);
+        $matricula = DB::table('pagamentos')->where([['Referencia', '=', 'Matricula'], ['Matricula', '=', $id]])->get()->first();
+
+        if ($matricula->DataPgto) {
+            if ($pagamentos) {
+                if ($pagamentos->DataPgto) {
                     $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
                 } else {
                     $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
                 }
+            } else {
+                $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
             }
+        } else {
+            $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
         }
 
         return $resultado;
@@ -260,19 +287,19 @@ class RelatoriosController extends Controller
 
         $somaQuitado = 0;
         $qtdeQuitado = 0;
-        foreach($quitado as $boleto){
+        foreach ($quitado as $boleto) {
             $somaQuitado = $somaQuitado + $boleto->Valor;
             $qtdeQuitado++;
         }
         $somaAtrasado = 0;
         $qtdeAtrasado = 0;
-        foreach($atrasado as $boleto){
+        foreach ($atrasado as $boleto) {
             $somaAtrasado = $somaAtrasado + $boleto->Valor;
             $qtdeAtrasado++;
         }
         $somaAberto = 0;
         $qtdeAberto = 0;
-        foreach($aberto as $boleto){
+        foreach ($aberto as $boleto) {
             $somaAberto = $somaAberto + $boleto->Valor;
             $qtdeAberto++;
         }
@@ -284,7 +311,7 @@ class RelatoriosController extends Controller
             'qtdeAtrasado' => $qtdeAtrasado,
             'somaAberto' => $somaAberto,
             'qtdeAberto' => $qtdeAberto,
-            ]);
+        ]);
     }
     public function previsaoRecebimentos()
     {
@@ -362,7 +389,7 @@ class RelatoriosController extends Controller
         $dataFim = "$request->Ano-$request->Mes-21";
         $pgMes = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['Vencimento', '>', $dataInicio], ['Vencimento', '<', $dataFim]])->get();
         $soma = 0;
-        foreach($pgMes as $pagto){
+        foreach ($pgMes as $pagto) {
             $soma = $soma + $pagto->Valor;
         }
         return view('relatorios.previsaoRecebimento', ['soma' => $soma, 'ano' => $request->Ano, 'mes' => $request->Mes]);

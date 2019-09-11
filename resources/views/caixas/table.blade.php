@@ -45,9 +45,9 @@
                 </td>
                 <td>
                     @if ($caixa->Tipo == 'Sangria')
-                        <span style="color: #E6564C">R$ -{!! $caixa->Valor !!}</span>
+                        <span style="color: #E6564C">R$ -{!! number_format($caixa->Valor, 2, ',', '.') !!}</span>
                     @else
-                        <span>R$ {!! $caixa->Valor !!}</span>
+                        <span>R$ {!! number_format($caixa->Valor, 2, ',', '.') !!}</span>
                     @endif
                 </td>
                 <td>{!! $caixa->ContaCaixa !!}</td>

@@ -301,7 +301,10 @@ class PdfController extends Controller
         }
 
         switch (true) {
-            case $number < 21:
+            case $number == 00;
+                $string = "zero";
+                break;
+            case $number < 21 && $number != 0:
                 $string = $dictionary[$number];
                 break;
             case $number < 100:
@@ -435,7 +438,10 @@ class PdfController extends Controller
         }
 
         switch (true) {
-            case $number < 21:
+            case $number == 00;
+                $string = "zero";
+                break;
+            case $number < 21 && $number != 0:
                 $string = $dictionary[$number];
                 break;
             case $number < 100:

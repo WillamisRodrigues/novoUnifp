@@ -13,9 +13,9 @@
         <div class="row">
             {!! Form::label('Sexo', 'Sexo', ['class' => 'col-sm-1']) !!}
             <input type="radio" name="Sexo" id="Masculino" value="Masculino">
-            <label style="font-weight: 100" for="Masculino">Masc</label>
+            <label style="font-weight: 100" for="Masculino">Masculino</label>
             <input type="radio" name="Sexo" id="Feminino" value="Feminino" style="margin-left:1rem">
-            <label style="font-weight: 100" for="Feminino">Fem</label>
+            <label style="font-weight: 100" for="Feminino">Feminino</label>
         </div>
         <div class="row">
             {!! Form::label('Status', 'Status', ['class' => 'col-sm-1']) !!}
@@ -69,7 +69,6 @@
                             <th>Curso</th>
                             <th>Turma</th>
                             <th>Período</th>
-                            {{-- <th>Horário</th> --}}
                             <th>Frequência %</th>
                             <th>Nota Média</th>
                             <th>Pagamentos</th>
@@ -82,7 +81,6 @@
                             <td>{!! $aluno->Nome !!}</td>
                             <td>{!! $aluno->Sexo !!}</td>
                             <td>
-                                {{-- {!! $aluno->NascimentoAluno !!} --}}
                                 {!! date('d/m/Y', strtotime($aluno->NascimentoAluno)); !!}
                             </td>
                             <td>{!! $aluno->Status !!}</td>
@@ -92,7 +90,6 @@
                                         {!! $curso->nomeCurso !!}
                                     @endif
                                 @endforeach
-                                {{-- {!! $aluno->idCurso !!} --}}
                             </td>
                             <td>
                                 @foreach ($turmas as $turma)
@@ -100,7 +97,6 @@
                                         {!! $turma->NomeTurma !!}
                                     @endif
                                 @endforeach
-                                {{-- {!! $aluno->idTurma !!} --}}
                             </td>
                             <td>
                                 @foreach ($turmas as $turma)
@@ -108,23 +104,11 @@
                                         {!! $turma->Periodo !!}
                                     @endif
                                 @endforeach
-                                {{-- {!! '$aluno->Periodo' !!} --}}
                             </td>
                             <td>{!! '$aluno->Frequencia' !!}</td>
                             <td>{!! '$aluno->Media' !!}</td>
                             <td>
                                 @php
-                                    // $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
-                                    // foreach ($pagamentos as $pagamento) {
-                                    //     if($pagamento->Matricula == $aluno->id){
-                                    //         if($pagamento->DataPgto){
-                                    //             $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
-                                    //         } else {
-                                    //             $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
-                                    //         }
-                                    //     }
-                                    // }
-                                    // echo $resultado;
                                     $resultado = App\Http\Controllers\RelatoriosController::pagamentos($aluno->id);
                                     echo $resultado;
                                 @endphp

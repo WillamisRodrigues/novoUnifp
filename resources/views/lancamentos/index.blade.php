@@ -29,13 +29,39 @@
         <div class="ml-5">
             <div>
                 <div style="display: inline-block">Mês:</div>
-                <div style="display: inline-block">{!! Form::select('Mes', ['Janeiro', 'Fevereiro', 'Março', 'Abril',
-                    'Maio', 'Junho',
-                    'Julho','Agosto','Setembro', 'Outubro', 'Novembro', 'Dezembro'], 'Selecione o mês') !!}</div>
+                <div style="display: inline-block" class="select-padrao">
+                    {{-- {!! Form::select('Mes', ['Janeiro', 'Fevereiro', 'Março', 'Abril','Maio','Junho','Julho','Agosto','Setembro', 'Outubro', 'Novembro', 'Dezembro'], 'Selecione o mês') !!} --}}
+                    <select name="Mes" id="Mes">
+                        <option value="">Escolha o mês</option>
+                        <option value="01">Janeiro</option>
+                        <option value="02">Fevereiro</option>
+                        <option value="03">Março</option>
+                        <option value="04">Abril</option>
+                        <option value="05">Maio</option>
+                        <option value="06">Junho</option>
+                        <option value="07">Julho</option>
+                        <option value="08">Agosto</option>
+                        <option value="09">Setembro</option>
+                        <option value="10">Outubro</option>
+                        <option value="11">Novembro</option>
+                        <option value="12">Dezembro</option>
+                    </select>
+                </div>
             </div>
 
             <div style=" margin-left: 3rem">
-                Ano: {!! Form::select('Ano', ['2017','2018','2019'], 'Selecione o ano') !!}
+                Ano: {{-- Ano: {!! Form::select('Ano', ['2017','2018','2019'], 'Selecione o ano') !!} --}}
+                <div class="select-padrao">
+                    <select name="Ano" id="Ano">
+                        <option value="">Escolha o ano</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
             </div>
 
             <div style=" margin-left: 3rem" class="row">
@@ -52,6 +78,7 @@
                 </div>
                 <div style="display: inline-block">
                     <select name="Usuario" id="Usuario">
+                        <option value="">Escolha um Usuário</option>
                         @foreach ($contaCaixa as $user)
                         <option value="{!! $user->Nome !!}">{!! $user->Nome !!}</option>
                         @endforeach
@@ -64,6 +91,7 @@
                 </div>
                 <div style="display: inline-block">
                     <select name="CentroCusto" id="CentroCusto">
+                        <option value="">Escolha um Centro de Custo</option>
                         @foreach ($centroCusto as $cc)
                         <option value="{!! $cc->CentroCusto !!}">{!! $cc->CentroCusto !!}</option>
                         @endforeach
@@ -85,11 +113,13 @@
     <div class="row">
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Receitas desse Mês</div>
-            <div class="text-success" style="font-weight: bolder;">R$ {!! number_format($receitasMes, 2, ',', '.') !!}</div>
+            <div class="text-success" style="font-weight: bolder;">R$ {!! number_format($receitasMes, 2, ',', '.') !!}
+            </div>
         </div>
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Despesas desse Mês</div>
-            <div class="text-danger" style="font-weight: bolder;">(R$ {!! number_format($depesasMes, 2, ',', '.') !!})</div>
+            <div class="text-danger" style="font-weight: bolder;">(R$ {!! number_format($depesasMes, 2, ',', '.') !!})
+            </div>
         </div>
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Saldo Anterior</div>
@@ -97,11 +127,13 @@
         </div>
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Saldo desse Mês</div>
-            <div class="text-primary" style="font-weight: bolder;">R$ {!! number_format($saldoMes, 2, ',', '.') !!}</div>
+            <div class="text-primary" style="font-weight: bolder;">R$ {!! number_format($saldoMes, 2, ',', '.') !!}
+            </div>
         </div>
         <div class="receitas">
             <div><i class="fa fa-money"></i> Saldo Atual</div>
-            <div class="text-primary" style="font-weight: bolder">R$ {!! number_format($saldoAtual, 2, ',', '.') !!}</div>
+            <div class="text-primary" style="font-weight: bolder">R$ {!! number_format($saldoAtual, 2, ',', '.') !!}
+            </div>
         </div>
     </div>
 
