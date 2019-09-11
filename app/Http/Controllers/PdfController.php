@@ -20,9 +20,9 @@ class PdfController extends Controller
     public function gerarCarne($id)
     {
         $aluno = DB::table('aluno')->get()->where('id', $id)->first();
-        $boletos = DB::table('pagamentos')->get()->where('Matricula',$id);
+        $boletos = DB::table('pagamentos')->get()->where('Matricula', $id);
         $idParcelamento = $aluno->idCurso;
-        $formas_parcelamentos = DB::table('formas_pagamento')->where([['idCurso', '=', $aluno->idCurso],['deleted_at', '=', null],])->get()->first();
+        $formas_parcelamentos = DB::table('formas_pagamento')->where([['idCurso', '=', $aluno->idCurso], ['deleted_at', '=', null],])->get()->first();
         $idUnidade = UnidadeController::getUnidade();
         $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
 
@@ -45,20 +45,124 @@ class PdfController extends Controller
         $turmas = DB::table('turma')->get()->where('id', $idTurma)->first();
         $contrato = DB::table('contratos')->get()->where('idCurso', $idCurso)->first();
         date_default_timezone_set('America/Sao_Paulo');
-        $date = date('d/m/Y') ;
+        $date = date('d/m/Y');
 
         $pdf = PDF::loadView('pdf.contrato', ['aluno' => $aluno, 'cursos' => $cursos, 'unidade' => $unidades, 'parcelamentos' => $formas_parcelamentos, 'turmas' => $turmas, 'contrato' => $contrato, 'dataAgora' => $date]);
         return $pdf->stream('invoice.pdf');
     }
 
-    public function gerarRelatorio(){
+    public function gerarRelatorio()
+    {
         $viewRelatorio = view('pdf.relatorio');
         $dados = DB::table('caixa')->get();
         $pdf = PDF::loadView('pdf.relatorio', ['caixas' => $dados])->setPaper('a3', 'landscape');
         return $pdf->stream('invoice.pdf');
     }
 
-    public function gerarRecibo($pag, $id){
+    public function exportarRecebimentos()
+    {
+
+        $unidade = UnidadeController::getUnidade();
+        $hoje = date('Y-m-d');
+        $quitado = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['Status', '=', 'Quitado']])->get();
+        $atrasado = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['Status', '<>', 'Quitado'], ['Vencimento', '<', $hoje]])->get();
+        $aberto = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['Status', '<>', 'Quitado'], ['Vencimento', '>=', $hoje]])->get();
+
+        $somaQuitado = 0;
+        $qtdeQuitado = 0;
+        foreach ($quitado as $boleto) {
+            $somaQuitado = $somaQuitado + $boleto->Valor;
+            $qtdeQuitado++;
+        }
+        $somaAtrasado = 0;
+        $qtdeAtrasado = 0;
+        foreach ($atrasado as $boleto) {
+            $somaAtrasado = $somaAtrasado + $boleto->Valor;
+            $qtdeAtrasado++;
+        }
+        $somaAberto = 0;
+        $qtdeAberto = 0;
+        foreach ($aberto as $boleto) {
+            $somaAberto = $somaAberto + $boleto->Valor;
+            $qtdeAberto++;
+        }
+
+        $dados = DB::table('caixa')->get();
+        $pdf = PDF::loadView('pdf.recebimentos', ['somaQuitado' => $somaQuitado,'qtdeQuitado' => $qtdeQuitado,'somaAtrasado' => $somaAtrasado,'qtdeAtrasado' => $qtdeAtrasado,'somaAberto' => $somaAberto,'qtdeAberto' => $qtdeAberto]);
+        return $pdf->stream('invoice.pdf');
+    }
+
+    public function exportarPrevisao(){
+        $unidade = UnidadeController::getUnidade();
+        $pagamentos = DB::table('pagamentos');
+        $pgJan = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-01-01" and Vencimento < "2019-01-31"', [$unidade]);
+        $pgFev = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-02-01" and Vencimento < "2019-02-31"', [$unidade]);
+        $pgMar = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-03-01" and Vencimento < "2019-03-31"', [$unidade]);
+        $pgAbr = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-04-01" and Vencimento < "2019-04-31"', [$unidade]);
+        $pgMai = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-05-01" and Vencimento < "2019-05-31"', [$unidade]);
+        $pgJun = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-06-01" and Vencimento < "2019-06-31"', [$unidade]);
+        $pgJul = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-07-01" and Vencimento < "2019-07-31"', [$unidade]);
+        $pgAgo = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-08-01" and Vencimento < "2019-08-31"', [$unidade]);
+        $pgSet = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-09-01" and Vencimento < "2019-09-31"', [$unidade]);
+        $pgOut = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-10-01" and Vencimento < "2019-10-31"', [$unidade]);
+        $pgNov = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-11-01" and Vencimento < "2019-11-31"', [$unidade]);
+        $pgDez = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-12-01" and Vencimento < "2019-12-31"', [$unidade]);
+
+        $somaJan = 0;
+        foreach ($pgJan as $pgto) {
+            $somaJan = $somaJan + $pgto->Valor;
+        }
+        $somaFev = 0;
+        foreach ($pgFev as $pgto) {
+            $somaFev = $somaFev + $pgto->Valor;
+        }
+        $somaMar = 0;
+        foreach ($pgMar as $pgto) {
+            $somaMar = $somaMar + $pgto->Valor;
+        }
+        $somaAbr = 0;
+        foreach ($pgAbr as $pgto) {
+            $somaAbr = $somaAbr + $pgto->Valor;
+        }
+        $somaMai = 0;
+        foreach ($pgMai as $pgto) {
+            $somaMai = $somaMai + $pgto->Valor;
+        }
+        $somaJun = 0;
+        foreach ($pgJun as $pgto) {
+            $somaJun = $somaJun + $pgto->Valor;
+        }
+        $somaJul = 0;
+        foreach ($pgJul as $pgto) {
+            $somaJul = $somaJul + $pgto->Valor;
+        }
+        $somaAgo = 0;
+        foreach ($pgAgo as $pgto) {
+            $somaAgo = $somaAgo + $pgto->Valor;
+        }
+        $somaSet = 0;
+        foreach ($pgSet as $pgto) {
+            $somaSet = $somaSet + $pgto->Valor;
+        }
+        $somaOut = 0;
+        foreach ($pgOut as $pgto) {
+            $somaOut = $somaOut + $pgto->Valor;
+        }
+        $somaNov = 0;
+        foreach ($pgNov as $pgto) {
+            $somaNov = $somaNov + $pgto->Valor;
+        }
+        $somaDez = 0;
+        foreach ($pgDez as $pgto) {
+            $somaDez = $somaDez + $pgto->Valor;
+        }
+
+        $pdf = PDF::loadView('pdf.previsaoRecebimentos', ['somaJan' => $somaJan, 'somaFev' => $somaFev, 'somaMar' => $somaMar, 'somaAbr' => $somaAbr, 'somaJun' => $somaJun, 'somaJul' => $somaJul, 'somaAgo' => $somaAgo, 'somaSet' => $somaSet, 'somaOut' => $somaOut, 'somaMai' => $somaMai, 'somaNov' => $somaNov, 'somaDez' => $somaDez]);
+        return $pdf->stream('invoice.pdf');
+    }
+
+    public function gerarRecibo($pag, $id)
+    {
         $idUnidade = UnidadeController::getUnidade();
         $aluno = DB::table('aluno')->get()->where('id', $id)->first();
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $pag)->first();
@@ -114,12 +218,13 @@ class PdfController extends Controller
         $ano = date('Y');
         $dateExtenso = "$dia de $mes de $ano";
 
-        $pdf = PDF::loadView('pdf.recibo',['unidade' => $unidade, 'aluno' => $aluno, 'date' => $date, 'dateExtenso' => $dateExtenso, 'recibo' => $recibo, 'valorExtenso' => $valorExtenso, 'qtdeParcelas' => $parcelas]);
+        $pdf = PDF::loadView('pdf.recibo', ['unidade' => $unidade, 'aluno' => $aluno, 'date' => $date, 'dateExtenso' => $dateExtenso, 'recibo' => $recibo, 'valorExtenso' => $valorExtenso, 'qtdeParcelas' => $parcelas]);
         return $pdf->stream('invoice.pdf');
     }
 
     //Serviço para converter um número para uma string por extenso
-    protected function convert_number_to_words($number) {
+    protected function convert_number_to_words($number)
+    {
 
         $hyphen      = '-';
         $conjunction = ' e ';
@@ -208,7 +313,7 @@ class PdfController extends Controller
                 }
                 break;
             case $number < 1000:
-                $hundreds  = floor($number / 100)*100;
+                $hundreds  = floor($number / 100) * 100;
                 $remainder = $number % 100;
                 $string = $dictionary[$hundreds];
                 if ($remainder) {
@@ -245,14 +350,15 @@ class PdfController extends Controller
             // var_dump($words);
 
             // $string .= implode(' ', $words)." centavos";
-            $string .= $this->convert_decimal_to_words($fraction)." centavos";
+            $string .= $this->convert_decimal_to_words($fraction) . " centavos";
         } else {
             $string .= ' reais';
         }
 
         return $string;
     }
-    function convert_decimal_to_words($number) {
+    function convert_decimal_to_words($number)
+    {
 
         $hyphen      = '-';
         $conjunction = ' e ';
@@ -341,7 +447,7 @@ class PdfController extends Controller
                 }
                 break;
             case $number < 1000:
-                $hundreds  = floor($number / 100)*100;
+                $hundreds  = floor($number / 100) * 100;
                 $remainder = $number % 100;
                 $string = $dictionary[$hundreds];
                 if ($remainder) {

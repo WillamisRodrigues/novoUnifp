@@ -9,7 +9,8 @@
 <div class="content">
     <div class="clearfix"></div>
 
-        <button type="submit" style="margin-left:30% ;margin-top: 1rem" class="btn btn-info btn-flat"><i class="fa fa-print"></i> Exportar</button>
+        {{-- <button type="submit" style="margin-left:30% ;margin-top: 1rem" class="btn btn-info btn-flat"><i class="fa fa-print"></i> Exportar</button> --}}
+        <a href="/exportarRecebimentos" target="_blank" class="btn btn-flat btn-info" style="margin-left:30% ;margin-top: 1rem"><i class="fa fa-print"></i> Exportar</a>
 
     @include('flash::message')
 

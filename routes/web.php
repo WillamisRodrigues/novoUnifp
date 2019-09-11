@@ -47,6 +47,10 @@ Route::get('/gerarCarne/{idAluno}', ['uses' => 'PdfController@gerarCarne']);
 
 Route::get('/gerarContrato/{idAluno}', ['uses' => 'PdfController@gerarContrato']);
 
+Route::get('/exportarRecebimentos', ['uses' => 'PdfController@exportarRecebimentos']);
+
+Route::get('/exportarPrevisao', ['uses' => 'PdfController@exportarPrevisao']);
+
 Route::get('/AlunosTurma/{idTurma}', ['uses' => 'AlunoTurmaController@show']);
 
 Route::get('/gerarRelatorio', ['uses' => 'PdfController@gerarRelatorio']);

@@ -40,7 +40,8 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i> Filtrar</button>
-                <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-print"></i> Exportar</button>
+                {{-- <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-print"></i> Exportar</button> --}}
+                <a href="/exportarPrevisao" target="_blank" class="btn btn-flat btn-info" ><i class="fa fa-print"></i> Exportar</a>
             </div>
             {!! Form::close() !!}
         </div>
