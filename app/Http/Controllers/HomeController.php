@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Khill\Lavacharts\Lavacharts;
@@ -76,8 +77,91 @@ class HomeController extends Controller
         $alunosM = DB::table('aluno')->where([['Sexo', '=', 'Feminino'], ['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
 
         //nivel de adimplencia
-        $emDia = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/ ['Status', '<>', 'Atrasado'], ['idUnidade', '=', $unidade]])->get();
-        $atrasados = DB::table('pagamentos')->where([['deleted_at', '=', null],/* ['idUnidade', '=', $unidade],*/ ['Status', '=', 'Vencido'], ['idUnidade', '=', $unidade]])->get();
+        $emDia = DB::table('pagamentos')->where([['deleted_at', '=', null], ['Status', '<>', 'Atrasado'], ['idUnidade', '=', $unidade]])->get();
+        $atrasados = DB::table('pagamentos')->where([['deleted_at', '=', null], ['Status', '=', 'Vencido'], ['idUnidade', '=', $unidade]])->get();
+
+        //receitas
+        $unidade = UnidadeController::getUnidade();
+        $ano = date("Y");
+
+        $janeiroInicio =    "$ano-01-01";
+        $janeiroFim =       "$ano-01-31";
+        $fevereiroInicio =  "$ano-02-01";
+        $fevereiroFim =     "$ano-02-31";
+        $marcoInicio =      "$ano-03-01";
+        $marcoFim =         "$ano-03-31";
+        $abrilInicio =      "$ano-04-01";
+        $abrilFim =         "$ano-04-31";
+        $maioInicio =       "$ano-05-01";
+        $maioFim =          "$ano-05-31";
+        $junhoInicio =      "$ano-06-01";
+        $junhoFim =         "$ano-06-31";
+        $julhoInicio =      "$ano-07-01";
+        $julhoFim =         "$ano-07-31";
+        $agostoInicio =     "$ano-08-01";
+        $agostoFim =        "$ano-08-31";
+        $setembroInicio =   "$ano-09-01";
+        $setembroFim =      "$ano-09-31";
+        $outubroInicio =    "$ano-10-01";
+        $outubroFim =       "$ano-10-31";
+        $novembroInicio =   "$ano-11-01";
+        $novembroFim =      "$ano-11-31";
+        $dezembroInicio =   "$ano-12-01";
+        $dezembroFim =      "$ano-12-31";
+
+        $pgJan = DB::select('select SUM(Valor) as sumJan from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $janeiroInicio, $janeiroFim]);
+        $pgFev = DB::select('select SUM(Valor) as sumFev from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $fevereiroInicio, $fevereiroFim]);
+        $pgMar = DB::select('select SUM(Valor) as sumMar from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $marcoInicio, $marcoFim]);
+        $pgAbr = DB::select('select SUM(Valor) as sumAbr from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $abrilInicio, $abrilFim]);
+        $pgMai = DB::select('select SUM(Valor) as sumMai from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $maioInicio, $maioFim]);
+        $pgJun = DB::select('select SUM(Valor) as sumJun from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $junhoInicio, $junhoFim]);
+        $pgJul = DB::select('select SUM(Valor) as sumJul from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $julhoInicio, $julhoFim]);
+        $pgAgo = DB::select('select SUM(Valor) as sumAgo from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $agostoInicio, $agostoFim]);
+        $pgSet = DB::select('select SUM(Valor) as sumSet from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $setembroInicio, $setembroFim]);
+        $pgOut = DB::select('select SUM(Valor) as sumOut from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $outubroInicio, $outubroFim]);
+        $pgNov = DB::select('select SUM(Valor) as sumNov from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $novembroInicio, $novembroFim]);
+        $pgDez = DB::select('select SUM(Valor) as sumDez from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $dezembroInicio, $dezembroFim]);
+
+        // despesas
+        $caixaJan = DB::select('select SUM(Valor) as sumJan from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $janeiroInicio, $janeiroFim]);
+        $caixaFev = DB::select('select SUM(Valor) as sumFev from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $fevereiroInicio, $fevereiroFim]);
+        $caixaMar = DB::select('select SUM(Valor) as sumMar from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $marcoInicio, $marcoFim]);
+        $caixaAbr = DB::select('select SUM(Valor) as sumAbr from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $abrilInicio, $abrilFim]);
+        $caixaMai = DB::select('select SUM(Valor) as sumMai from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $maioInicio, $maioFim]);
+        $caixaJun = DB::select('select SUM(Valor) as sumJun from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $junhoInicio, $junhoFim]);
+        $caixaJul = DB::select('select SUM(Valor) as sumJul from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $julhoInicio, $julhoFim]);
+        $caixaAgo = DB::select('select SUM(Valor) as sumAgo from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $agostoInicio, $agostoFim]);
+        $caixaSet = DB::select('select SUM(Valor) as sumSet from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $setembroInicio, $setembroFim]);
+        $caixaOut = DB::select('select SUM(Valor) as sumOut from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $outubroInicio, $outubroFim]);
+        $caixaNov = DB::select('select SUM(Valor) as sumNov from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $novembroInicio, $novembroFim]);
+        $caixaDez = DB::select('select SUM(Valor) as sumDez from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $dezembroInicio, $dezembroFim]);
+
+        //idades
+        $qtdeIdades1 = 0;
+        $qtdeIdades2 = 0;
+        $qtdeIdades3 = 0;
+        $qtdeIdades4 = 0;
+        $qtdeIdades5 = 0;
+        foreach ($alunosAtivos as $aluno) {
+            $age = $this->idade($aluno->NascimentoAluno);
+            switch (true) {
+                case ($age <= 20):
+                    $qtdeIdades1++;
+                    break;
+                case ($age > 20 && $age <= 28):
+                    $qtdeIdades2++;
+                    break;
+                case ($age > 28 && $age <= 40):
+                    $qtdeIdades3++;
+                    break;
+                case ($age > 40 && $age <= 55):
+                    $qtdeIdades4++;
+                    break;
+                case ($age > 55):
+                    $qtdeIdades5++;
+                    break;
+            }
+        }
 
         //inicia todos os gráficos
         $MatriculasMes = \Lava::DataTable();
@@ -103,6 +187,7 @@ class HomeController extends Controller
             ->addRow(['Nov', count($matriculasNov)])
             ->addRow(['Dez', count($matriculasDez)]);
 
+        #gráfico de matriculas por dia do mes atual
         $MatriculasDia->addStringColumn('Month')
             ->addNumberColumn('Número de Matrículas por Dia')
             ->addRow(['01', count($matricula0)])
@@ -116,44 +201,31 @@ class HomeController extends Controller
             ->addRow(['25', count($matricula8)])
             ->addRow(['28', count($matricula9)]);
 
-
-        /*
-        *   ####################################################################################
-        *
-        *               FALTA OS DADOS PARA O GRÁFICO DE RECEITAS E DESPESAS
-        *                      E DO GRÁFICO DE ALUNOS POR IDADE
-        *
-        *              ATUALMENTE OS DADOS ESTÃO SENDO SETADOS ALEATORIAMENTE
-        *                APENAS PARA O PREENCHIMENDO DE DADOS E O GRÁFICO
-        *                               SER GERADO E EXIBIDO
-        *
-        *   ####################################################################################
-        */
-
+        # gráfco de receitas e despesas por mes no ano atual
         $finances->addStringColumn('Mês')
             ->addNumberColumn('Receitas')
             ->addNumberColumn('Despesas')
-            ->addRow(['Jan', rand(100, 999), rand(100, 999)])
-            ->addRow(['Fev', rand(100, 999), rand(100, 999)])
-            ->addRow(['Mar', rand(100, 999), rand(100, 999)])
-            ->addRow(['Abr', rand(100, 999), rand(100, 999)])
-            ->addRow(['Mai', rand(100, 999), rand(100, 999)])
-            ->addRow(['Jun', rand(100, 999), rand(100, 999)])
-            ->addRow(['Jul', rand(100, 999), rand(100, 999)])
-            ->addRow(['Ago', rand(100, 999), rand(100, 999)])
-            ->addRow(['Set', rand(100, 999), rand(100, 999)])
-            ->addRow(['Out', rand(100, 999), rand(100, 999)])
-            ->addRow(['Nov', rand(100, 999), rand(100, 999)])
-            ->addRow(['Dez', rand(100, 999), rand(100, 999)]);
+            ->addRow(['Jan', $pgJan[0]->sumJan, $caixaJan[0]->sumJan])
+            ->addRow(['Fev', $pgFev[0]->sumFev, $caixaFev[0]->sumFev])
+            ->addRow(['Mar', $pgMar[0]->sumMar, $caixaMar[0]->sumMar])
+            ->addRow(['Abr', $pgAbr[0]->sumAbr, $caixaAbr[0]->sumAbr])
+            ->addRow(['Mai', $pgMai[0]->sumMai, $caixaMai[0]->sumMai])
+            ->addRow(['Jun', $pgJun[0]->sumJun, $caixaJun[0]->sumJun])
+            ->addRow(['Jul', $pgJul[0]->sumJul, $caixaJul[0]->sumJul])
+            ->addRow(['Ago', $pgAgo[0]->sumAgo, $caixaAgo[0]->sumAgo])
+            ->addRow(['Set', $pgSet[0]->sumSet, $caixaSet[0]->sumSet])
+            ->addRow(['Out', $pgOut[0]->sumOut, $caixaOut[0]->sumOut])
+            ->addRow(['Nov', $pgNov[0]->sumNov, $caixaNov[0]->sumNov])
+            ->addRow(['Dez', $pgDez[0]->sumDez, $caixaDez[0]->sumDez]);
 
         # gráfico de alunos por idade
         $reasons->addStringColumn('Reasons')
             ->addNumberColumn('Percent')
-            ->addRow(['0 a 20 anos', 20])
-            ->addRow(['21 a 28 anos', 20])
-            ->addRow(['29 a 40 anos', 20])
-            ->addRow(['41 a 55 anos', 20])
-            ->addRow(['+ de 55 anos', 20]);
+            ->addRow(['0 a 20 anos', $qtdeIdades1])
+            ->addRow(['21 a 28 anos', $qtdeIdades2])
+            ->addRow(['29 a 40 anos', $qtdeIdades3])
+            ->addRow(['41 a 55 anos', $qtdeIdades4])
+            ->addRow(['+ de 55 anos', $qtdeIdades5]);
 
         # gráfico de alunos por sexo
         $alunosSexo->addStringColumn('Alunos por sexo')
@@ -252,5 +324,16 @@ class HomeController extends Controller
             'unidades' => $unidades,
             'Visitas' => $qtdeVisitas
         ]);
+    }
+    public function idade($idade)
+    {
+        $dateSrc = $idade;
+        $birthDate = date('d/m/Y', strtotime($dateSrc));
+        $birthDate = explode("/", $birthDate);
+        $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+            ? ((date("Y") - $birthDate[2]) - 1)
+            : (date("Y") - $birthDate[2]));
+
+        return $age;
     }
 }

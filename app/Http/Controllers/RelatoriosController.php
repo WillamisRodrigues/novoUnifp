@@ -202,11 +202,9 @@ class RelatoriosController extends Controller
         if ($request->Pagamentos) {
             if ($request->Pagamentos == "Atrasado") {
                 $alunosAtrasados = $this->atrasados();
-
             }
             if ($request->Pagamentos == "Em dia") {
                 $alunosAtrasados = $this->emDia();
-
             }
         } else {
             $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['deleted_at', '=', null]])->get();
@@ -315,20 +313,47 @@ class RelatoriosController extends Controller
     }
     public function previsaoRecebimentos()
     {
-        $unidade = UnidadeController::getUnidade();
         $pagamentos = DB::table('pagamentos');
-        $pgJan = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-01-01" and Vencimento < "2019-01-31"', [$unidade]);
-        $pgFev = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-02-01" and Vencimento < "2019-02-31"', [$unidade]);
-        $pgMar = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-03-01" and Vencimento < "2019-03-31"', [$unidade]);
-        $pgAbr = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-04-01" and Vencimento < "2019-04-31"', [$unidade]);
-        $pgMai = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-05-01" and Vencimento < "2019-05-31"', [$unidade]);
-        $pgJun = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-06-01" and Vencimento < "2019-06-31"', [$unidade]);
-        $pgJul = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-07-01" and Vencimento < "2019-07-31"', [$unidade]);
-        $pgAgo = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-08-01" and Vencimento < "2019-08-31"', [$unidade]);
-        $pgSet = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-09-01" and Vencimento < "2019-09-31"', [$unidade]);
-        $pgOut = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-10-01" and Vencimento < "2019-10-31"', [$unidade]);
-        $pgNov = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-11-01" and Vencimento < "2019-11-31"', [$unidade]);
-        $pgDez = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-12-01" and Vencimento < "2019-12-31"', [$unidade]);
+        $unidade = UnidadeController::getUnidade();
+        $ano = date("Y");
+
+        $janeiroInicio =    "$ano-01-01";
+        $janeiroFim =       "$ano-01-31";
+        $fevereiroInicio =  "$ano-02-01";
+        $fevereiroFim =     "$ano-02-31";
+        $marcoInicio =      "$ano-03-01";
+        $marcoFim =         "$ano-03-31";
+        $abrilInicio =      "$ano-04-01";
+        $abrilFim =         "$ano-04-31";
+        $maioInicio =       "$ano-05-01";
+        $maioFim =          "$ano-05-31";
+        $junhoInicio =      "$ano-06-01";
+        $junhoFim =         "$ano-06-31";
+        $julhoInicio =      "$ano-07-01";
+        $julhoFim =         "$ano-07-31";
+        $agostoInicio =     "$ano-08-01";
+        $agostoFim =        "$ano-08-31";
+        $setembroInicio =   "$ano-09-01";
+        $setembroFim =      "$ano-09-31";
+        $outubroInicio =    "$ano-10-01";
+        $outubroFim =       "$ano-10-31";
+        $novembroInicio =   "$ano-11-01";
+        $novembroFim =      "$ano-11-31";
+        $dezembroInicio =   "$ano-12-01";
+        $dezembroFim =      "$ano-12-31";
+
+        $pgJan = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $janeiroInicio, $janeiroFim]);
+        $pgFev = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $fevereiroInicio, $fevereiroFim]);
+        $pgMar = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $marcoInicio, $marcoFim]);
+        $pgAbr = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $abrilInicio, $abrilFim]);
+        $pgMai = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $maioInicio, $maioFim]);
+        $pgJun = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $junhoInicio, $junhoFim]);
+        $pgJul = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $julhoInicio, $julhoFim]);
+        $pgAgo = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $agostoInicio, $agostoFim]);
+        $pgSet = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $setembroInicio, $setembroFim]);
+        $pgOut = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $outubroInicio, $outubroFim]);
+        $pgNov = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $novembroInicio, $novembroFim]);
+        $pgDez = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $dezembroInicio, $dezembroFim]);
 
         $somaJan = 0;
         foreach ($pgJan as $pgto) {
@@ -513,4 +538,6 @@ class RelatoriosController extends Controller
 
         return redirect(route('caixas.index'));
     }
+
+
 }

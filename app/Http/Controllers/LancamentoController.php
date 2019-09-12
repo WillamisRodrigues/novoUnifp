@@ -139,6 +139,9 @@ class LancamentoController extends AppBaseController
 
         $caixa = $this->caixaRepository->create($input);
 
+        $unidade = UnidadeController::getUnidade();
+        DB::update('update caixa set idUnidade =? where id = ?', [$unidade, $caixa->id]);
+
         Flash::success('Lançamento criado com sucesso.');
 
         return redirect(route('lancamentos.index'));

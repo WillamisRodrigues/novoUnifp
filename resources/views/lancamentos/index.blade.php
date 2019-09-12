@@ -50,7 +50,7 @@
             </div>
 
             <div style=" margin-left: 3rem">
-                Ano: {{-- Ano: {!! Form::select('Ano', ['2017','2018','2019'], 'Selecione o ano') !!} --}}
+                Ano: {{-- {!! Form::select('Ano', ['2017','2018','2019'], 'Selecione o ano') !!} --}}
                 <div class="select-padrao">
                     <select name="Ano" id="Ano">
                         <option value="">Escolha o ano</option>
