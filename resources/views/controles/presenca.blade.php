@@ -22,19 +22,30 @@
         {{-- falta a rota --}}
         {!! Form::open(['route' => 'alunos.store']) !!}
         <p class="select-padrao col-md-2"> Selecione o curso:
-            <select name="cursos" id="cursos">
+            <select name="cursos" id="cursos" class="cursos">
+                <option value="">Cursos</option>
                 @foreach($cursos as $curso )
-                <option value="{{ $curso->nomeCurso }}">{{ $curso->nomeCurso }}</option>
+                <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
                 @endforeach
             </select>
         </p>
         <p class="select-padrao col-md-2"> Selecione a turma:
             <select name="turmas" id="turmas">
-                @foreach($turmas as $turma )
-                <option value="{{ $turma->NomeTurma }}">{{ $turma->NomeTurma }}</option>
-                @endforeach
+                <option value="">Turmas</option>
+                {{-- @foreach($turmas as $turma )
+                <option value="{{ $turma->id }}">{{ $turma->NomeTurma }}</option>
+                @endforeach --}}
             </select>
         </p>
+        <p class="select-padrao col-md-3"> Selecione o módulo:
+            <select name="modulo" id="modulo">
+                <option value="">Módulos</option>
+                {{-- @foreach($turmas as $turma )
+                <option value="{{ $turma->id }}">{{ $turma->NomeTurma }}</option>
+                @endforeach --}}
+            </select>
+        </p>
+        <input type="hidden" id="idUnidade" name="unidade" value="{!! $unidade !!}">
         {!! Form::close() !!}
         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Filtrar</button>
     </div>
@@ -99,8 +110,40 @@
 
         </div>
     </div>
-    <div class="text-center">
-
-    </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function(){
+        $(".cursos").change(function(){
+            var curso_id=$(this).val();
+            var unidade_id = document.getElementById("idUnidade").value;
+
+            var data = {
+                unidade: unidade_id,
+                curso: curso_id
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "api/getTurmas/" + unidade_id + "/" + curso_id,
+                cache: false,
+                success: function(turmas){
+                    turmas.forEach(element => {
+                        var selectTurmas = document.getElementById("turmas");
+                        var opt = document.createElement("option");
+                        opt.value= element.id;
+                        opt.innerHTML = element.nome;
+
+                        selectTurmas.appendChild(opt);
+                        // index++
+                    });
+                }
+            });
+
+        });
+    });
+
+</script>
 @endsection

@@ -33,11 +33,12 @@ class PresencaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $alunos = $this->alunoRepository->all();
-        $cursos = $this->cursoRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $alunos = $this->alunoRepository->all()->where('idUnidade', $unidade);
+        $cursos = $this->cursoRepository->all()->where('idUnidade', $unidade);
         $turmas = $this->turmaRepository->all()->where('Status','Ativa');
 
-        return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas]);
+        return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas, 'unidade' => $unidade]);
     }
 
     /**
