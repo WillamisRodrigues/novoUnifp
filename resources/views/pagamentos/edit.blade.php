@@ -88,13 +88,15 @@
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Multa:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    {!! Form::text('Multa', null) !!}
+                    {{-- {!! Form::text('Multa', null) !!} --}}
+                    <input type="text" name="Multa" id="Multa" value="{!! number_format($recibo->Multa, 2, ',', '.') !!}">
                 </div>
             </p>
             <p class="row">
                 <div class="col-md-3 col-sm-3 col-xs-12" style="font-weight:bold">Valor:</div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    {!! Form::text('Valor', null) !!}
+                    {{-- {!! Form::text('Valor', null) !!} --}}
+                    <input type="text" name="Valor" id="Valor" value="{!! number_format($recibo->Valor, 2, ',', '.') !!}">
                 </div>
             </p>
             <div class="form-group col-sm-12" style="margin-top: 15px">

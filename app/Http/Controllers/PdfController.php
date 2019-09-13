@@ -164,14 +164,15 @@ class PdfController extends Controller
     public function gerarRecibo($pag, $id)
     {
         $idUnidade = UnidadeController::getUnidade();
-        $aluno = DB::table('aluno')->get()->where('id', $id)->first();
-        $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $pag)->first();
-        $unidade = DB::table('unidade')->get()->where('id', $idUnidade)->first();
+        $aluno = DB::table('aluno')->where('id', $id)->get()->first();
+        $recibo = DB::table('pagamentos')->where('numeroDocumento', $pag)->get()->first();
+        $caixa = DB::table('caixa')->where('numeroDocumento', $pag)->get()->first();
+        $unidade = DB::table('unidade')->where('id', $idUnidade)->get()->first();
         $parcelas = DB::table('formas_pagamento')->where('idCurso', $aluno->idCurso)->get('QtdeParcelas')->first();
 
-        $recibo->Valor = number_format($recibo->Valor, 2, '.', '.');
-        $valorExtenso = $this->convert_number_to_words($recibo->Valor);
-        $recibo->Valor = number_format($recibo->Valor, 2, ',', '.');
+        $caixa->Valor = number_format($caixa->Valor, 2, '.', '.');
+        $valorExtenso = $this->convert_number_to_words($caixa->Valor);
+        $caixa->Valor = number_format($caixa->Valor, 2, ',', '.');
 
         date_default_timezone_set('America/Sao_Paulo');
         $date = date('d/m/Y H:i:s');
@@ -218,7 +219,7 @@ class PdfController extends Controller
         $ano = date('Y');
         $dateExtenso = "$dia de $mes de $ano";
 
-        $pdf = PDF::loadView('pdf.recibo', ['unidade' => $unidade, 'aluno' => $aluno, 'date' => $date, 'dateExtenso' => $dateExtenso, 'recibo' => $recibo, 'valorExtenso' => $valorExtenso, 'qtdeParcelas' => $parcelas]);
+        $pdf = PDF::loadView('pdf.recibo', ['unidade' => $unidade, 'aluno' => $aluno, 'date' => $date, 'dateExtenso' => $dateExtenso, 'recibo' => $recibo, 'valorExtenso' => $valorExtenso, 'qtdeParcelas' => $parcelas, 'caixa' => $caixa]);
         return $pdf->stream('invoice.pdf');
     }
 

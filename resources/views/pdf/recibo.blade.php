@@ -43,7 +43,7 @@
     <div class="clearfix"></div>
     <div>
         <h3 class="text-center"><b><u>Recibo Nº {!! str_pad($recibo->numeroDocumento, 8, '0', STR_PAD_LEFT) !!}</u></b></h3>
-        <h3 class="text-right"><b>R$ {!! $recibo->Valor !!}</b></h3>
+        <h3 class="text-right"><b>R$ {!! $caixa->Valor !!}</b></h3>
         <p style="font-size: 1.3rem">Recebemos de {!! $aluno->Pagador !!} a quantia de
             <strong>{!! $valorExtenso !!}</strong> referente a parcela {!!
             $recibo->Parcela !!}/{!! $qtdeParcelas->QtdeParcelas !!} do aluno <b>{!! $aluno->Nome !!}</b> - Contrato número: <b>{!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}</b>.
@@ -52,7 +52,7 @@
         <p class="text-right">_________________________________________________ <br> {!! $unidade->NomeUnidade !!} -
             CNPJ: {!! $unidade->CNPJ !!}</p>
     </div>
-    <br><br>
+
     <div style="border-top: 2px dotted black; height: 20px"></div>
     <div style="margin-top: 2%">
         <div class="" style="width: 30%; float: left">
@@ -70,7 +70,7 @@
 
     <div>
         <h3 class="text-center"><b><u>Recibo Nº {!! str_pad($recibo->numeroDocumento, 8, '0', STR_PAD_LEFT) !!}</u></b></h3>
-        <h3 class="text-right"><b>R$ {!! $recibo->Valor !!}</b></h3>
+        <h3 class="text-right"><b>R$ {!! $caixa->Valor !!}</b></h3>
         <p style="font-size: 1.3rem">Recebemos de {!! $aluno->Pagador !!} a quantia de
             <strong>{!! $valorExtenso !!}</strong> referente a parcela {!!
             $recibo->Parcela !!}/{!! $qtdeParcelas->QtdeParcelas !!} do aluno <b>{!! $aluno->Nome !!}</b> - Contrato número: <b>{!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}</b>.

@@ -97,7 +97,7 @@ class PagamentosController extends AppBaseController
 
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $input['numeroDocumento'])->first();
 
-        DB::insert('insert into caixa (Tipo,Via,FormaPgto,Status,Aluno,Descricao,Lancamento,Vencimento,Valor,CentroCusto,ContaCaixa,Usuario,Data, idUnidade,created_at,updated_at) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', ['Receita','Caixa',$input['FormaPagamento'],'Pago',$aluno->Nome,'Pagamento de Parcela',$date,$recibo->Vencimento,$parcela,'Pagamento',$input['Usuario'],$input['Usuario'],$date, $unidade,$date,$date ]);
+        DB::insert('insert into caixa (Tipo,Via,FormaPgto,Status,numeroDocumento,Aluno,Descricao,Lancamento,Vencimento,Valor,CentroCusto,ContaCaixa,Usuario,Data, idUnidade,created_at,updated_at) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', ['Receita','Caixa',$input['FormaPagamento'],'Pago',$input['numeroDocumento'],$aluno->Nome,'Pagamento de Parcela',$date,$recibo->Vencimento,$parcela,'Pagamento',$input['Usuario'],$input['Usuario'],$date, $unidade,$date,$date ]);
 
         $aluno = DB::table('aluno')->get()->where('id', $input['Matricula']);
         $recibo = DB::table('pagamentos')->get()->where('Matricula', $input['Matricula']);

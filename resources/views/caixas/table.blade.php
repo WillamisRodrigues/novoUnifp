@@ -59,5 +59,22 @@
             </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total: R$ {!! number_format($total, 2, ',', '.') !!}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tfoot>
     </table>
 </div>

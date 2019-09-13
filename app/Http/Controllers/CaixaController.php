@@ -31,19 +31,22 @@ class CaixaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        // $caixas = $this->caixaRepository->all();
-
         $unidade = UnidadeController::getUnidade();
 
         date_default_timezone_set('America/Sao_Paulo');
         $hoje = date('Y-m-d');
-        // $ontem = date('Y-m-d 00:00:01' , mktime(0, 0, 0, date("m"), date("d"), date("Y")));
-        // $amanha = date('Y-m-d 23:59:59' , mktime(0, 0, 0, date("m"), date("d"), date("Y")));
 
-        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['Lancamento', '=', $hoje],['deleted_at', '=', null]])->get();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['Lancamento', '=', $hoje], ['deleted_at', '=', null]])->get();
+        $soma = 0;
+        foreach ($caixas as $caixa) {
+            if ($caixa->Tipo == "Receita") {
+                $soma += $caixa->Valor;
+            } else {
+                $soma -= $caixa->Valor;
+            }
+        }
 
-        return view('caixas.index')
-            ->with('caixas', $caixas);
+        return view('caixas.index', ['caixas' => $caixas, 'total' => $soma]);
     }
 
     /**
@@ -56,7 +59,7 @@ class CaixaController extends AppBaseController
         $unidade = UnidadeController::getUnidade();
         $formaPgto = DB::table('forma_pgto')->where([['deleted_at', '=', null]])->get();
         $centroCusto = DB::table('centro_custo')->where([['deleted_at', '=', null]])->get();
-        $alunos = DB::table('aluno')->where([['deleted_at', '=' ,null], ['idUnidade', '=', $unidade]])->get();
+        $alunos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
 
         return view('caixas.create', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'alunos' => $alunos]);
     }
@@ -72,7 +75,7 @@ class CaixaController extends AppBaseController
     {
         $input = $request->all();
 
-        Arr::set($input, 'Valor', str_replace(',','.', Arr::get($input, 'Valor')));
+        Arr::set($input, 'Valor', str_replace(',', '.', Arr::get($input, 'Valor')));
 
         $caixa = $this->caixaRepository->create($input);
 
@@ -124,7 +127,7 @@ class CaixaController extends AppBaseController
         $formaPgto = DB::table('forma_pgto')->get();
         $centroCusto = DB::table('centro_custo')->get();
         $unidade = UnidadeController::getUnidade();
-        $alunos = DB::table('aluno')->where([['deleted_at', '=' ,null], ['idUnidade', '=', $unidade]])->get();
+        $alunos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
 
         return view('caixas.edit', ['formapgtos' => $formaPgto, 'centroCustos' => $centroCusto, 'caixa' => $caixa, 'alunos' => $alunos]);
     }

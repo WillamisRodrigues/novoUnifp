@@ -18,6 +18,7 @@ class CreateCaixaTable extends Migration
             $table->string('Tipo');
             $table->string('Via');
             $table->string('FormaPgto');
+            $table->bigInteger('numeroDocumento')->nullable();
             $table->enum('Status', ['Pago', 'FaltaPagar']);
             $table->longText('Descricao');
             $table->string('Aluno')->nullable();

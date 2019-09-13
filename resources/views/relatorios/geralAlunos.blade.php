@@ -77,7 +77,7 @@
                     <tbody>
                         @foreach ($alunoGeral as $aluno)
                         <tr>
-                            <td>{!! $aluno->id !!}</td>
+                            <td>{!! str_pad($aluno->id, 8, '0', STR_PAD_LEFT) !!}</td>
                             <td>{!! $aluno->Nome !!}</td>
                             <td>{!! $aluno->Sexo !!}</td>
                             <td>
