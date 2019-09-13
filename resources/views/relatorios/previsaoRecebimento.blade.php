@@ -23,7 +23,8 @@
             </select>
             <div class="col-sm-1"></div>
             <span class="col-sm-1" style="font-weight: bolder; margin-top: 0.5rem">Mês:</span>
-            <select required class="col-sm-1" name="Mes" id="Mes">
+            <select class="col-sm-1" name="Mes" id="Mes">
+                <option value="">Mês</option>
                 <option value="01">Janeiro</option>
                 <option value="02">Fevereiro</option>
                 <option value="03">Março</option>
@@ -40,7 +41,6 @@
             <div class="col-sm-1"></div>
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-warning btn-flat"><i class="fa fa-search"></i> Filtrar</button>
-                {{-- <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-print"></i> Exportar</button> --}}
                 <a href="/exportarPrevisao" target="_blank" class="btn btn-flat btn-info" ><i class="fa fa-print"></i> Exportar</a>
 
             </div>
@@ -103,6 +103,8 @@
                                     @case(12)
                                         Dezembro
                                         @break
+                                    @default
+                                        Janeiro - Dezembro
                                 @endswitch
                             </td>
                             <td>R$ {!! number_format($soma, 2, ',', '.') !!}</td>

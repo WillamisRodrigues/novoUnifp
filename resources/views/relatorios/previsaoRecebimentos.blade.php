@@ -23,7 +23,8 @@
             </select>
             <div class="col-sm-1"></div>
             <span class="col-sm-1" style="font-weight: bolder; margin-top: 0.5rem">Mês:</span>
-            <select required class="col-sm-1" name="Mes" id="Mes">
+            <select class="col-sm-1" name="Mes" id="Mes">
+                <option value="">Mês</option>
                 <option value="01">Janeiro</option>
                 <option value="02">Fevereiro</option>
                 <option value="03">Março</option>

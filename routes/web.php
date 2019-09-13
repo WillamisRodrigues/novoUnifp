@@ -83,6 +83,8 @@ Route::get('/avaliacoes/deletar/{idCurso}', ['uses' => 'CursoController@addProva
 
 Route::get('/lancamentos-avancado', ['uses' => 'LancamentoController@avancado']);
 
+Route::get('/modulos/adicionarModulo/{idCurso}', ['uses' => 'ModuloController@add']);
+
 Route::post('/formularioPagamento', ['uses' => 'PagamentoController@store']);
 
 Route::post('storeProva', ['uses' => 'CursoController@storeProva']);
@@ -172,3 +174,6 @@ Route::resource('pdf', 'PdfController');
 Route::resource('diasVencimentos', 'DiasVencimentoController');
 
 Route::resource('pagamentos', 'PagamentosController');
+
+
+Route::resource('modulos', 'ModuloController');

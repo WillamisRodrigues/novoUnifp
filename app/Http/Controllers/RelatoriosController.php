@@ -410,8 +410,13 @@ class RelatoriosController extends Controller
     public function filtroRecebimentos(Request $request)
     {
         $unidade = UnidadeController::getUnidade();
-        $dataInicio = "$request->Ano-$request->Mes-01";
-        $dataFim = "$request->Ano-$request->Mes-21";
+        if ($request->Mes) {
+            $dataInicio = "$request->Ano-$request->Mes-01";
+            $dataFim = "$request->Ano-$request->Mes-31";
+        } else {
+            $dataInicio = "$request->Ano-01-01";
+            $dataFim = "$request->Ano-12-31";
+        }
         $pgMes = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['Vencimento', '>', $dataInicio], ['Vencimento', '<', $dataFim]])->get();
         $soma = 0;
         foreach ($pgMes as $pagto) {
@@ -538,6 +543,4 @@ class RelatoriosController extends Controller
 
         return redirect(route('caixas.index'));
     }
-
-
 }

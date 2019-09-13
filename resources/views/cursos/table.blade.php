@@ -9,6 +9,7 @@
                 <th></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +36,8 @@
                 </td>
                 <td><a href="turmasCursos/{!! $curso->id !!}" class="btn btn-primary btn-sm btn-flat"><i
                             class="fa fa-bars"></i> Turmas Ativas</a></td>
-                <td><a href="{!! route('contratos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i
-                            class="fa fa-bars"></i> Contrato</a></td>
+                <td><a href="{!! route('contratos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Contrato</a></td>
+                <td><a href="{!! route('modulos.show', [$curso->id]) !!}" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-bars"></i> Módulos</a></td>
             </tr>
             @endforeach
         </tbody>
