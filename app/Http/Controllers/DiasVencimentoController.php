@@ -29,7 +29,8 @@ class DiasVencimentoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $diasVencimentos = $this->diasVencimentoRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $diasVencimentos = $this->diasVencimentoRepository->all()->where('idUnidade', $unidade);
 
         return view('dias_vencimentos.index')
             ->with('diasVencimentos', $diasVencimentos);
@@ -57,6 +58,9 @@ class DiasVencimentoController extends AppBaseController
         $input = $request->all();
 
         $diasVencimento = $this->diasVencimentoRepository->create($input);
+
+        $unidade = UnidadeController::getUnidade();
+        DB::update('update dias_vencimento set idUnidade = ? where id = ?', [$unidade, $diasVencimento->id]);
 
         Flash::success('Dias Vencimento saved successfully.');
 

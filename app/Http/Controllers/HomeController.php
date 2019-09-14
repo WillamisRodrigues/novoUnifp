@@ -311,7 +311,7 @@ class HomeController extends Controller
         ]);
 
         // vendedores
-        $vendedores = DB::table('aluno')->selectRaw('Vendedor, COUNT(*) as count')->groupBy('Vendedor')->orderBy('count', 'desc')->get();
+        $vendedores = DB::table('aluno')->selectRaw('Vendedor, COUNT(*) as count')->where('idUnidade', $unidade)->groupBy('Vendedor')->orderBy('count', 'desc')->get();
         $unidades = DB::table('unidade')->where('id', $unidade)->get()->first();
 
         return view('home', [

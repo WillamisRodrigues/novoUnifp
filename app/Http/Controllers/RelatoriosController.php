@@ -170,12 +170,11 @@ class RelatoriosController extends Controller
 
     public function filtroGeralAlunos(Request $request)
     {
-
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
-        $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']]);
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]]);
+        $turmas = DB::table('turma')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Status', '=', 'Ativa']]);
 
         if ($request->Sexo) {
             $alunos = $alunos->where('Sexo', '=', $request->Sexo);
@@ -191,25 +190,91 @@ class RelatoriosController extends Controller
                 $listaTurmas[$j] = $item->id;
                 $j++;
             }
-            if ($j != 0) {
-                $j--;
-            }
-            while ($j >= 0) {
-                $alunos = $alunos->where('idTurma', '=', $listaTurmas[$j]);
-                $j--;
-            }
+            $alunos = $alunos->whereIn('idTurma', $listaTurmas);
         }
         if ($request->Pagamentos) {
+            $dia = date('d');
+            $mes = date('m');
+            $ano = date('Y');
+            $hoje = date('Y-m-d');
+
             if ($request->Pagamentos == "Atrasado") {
-                $alunosAtrasados = $this->atrasados();
+                $listaAlunosPagamento[0] = 0;
+                $i = 0;
+                //selecionar todos os registros de mensalidade do mes atual que não possuem datapgto
+                foreach ($alunos->get() as $aluno) {
+                    if ($dia >= 1 && $dia <= $aluno->Vencimento) {
+                        $mesPg = $mes - 1;
+                        $mesPg = str_pad($mesPg, 2, '0', STR_PAD_LEFT);
+                    } else if ($aluno->Vencimento < $dia && $dia <= 31) {
+                        $mesPg = $mes;
+                    }
+
+                    if ($mes == 1) {
+                        $anoPg = $ano - 1;
+                        $mesPg = 12;
+                    } else {
+                        $anoPg = $ano;
+                    }
+                    $diaVenc = str_pad($aluno->Vencimento, 2, '0', STR_PAD_LEFT);
+                    $diaPg = "$anoPg-$mesPg-$diaVenc";
+                    $matricula = DB::table('pagamentos')->where([['Referencia', '=', 'Matricula'], ['Matricula', '=', $aluno->id]])->get()->first();
+
+                    if ($matricula->DataPgto) {
+                        $pagamentos = DB::select('select * from pagamentos where Vencimento = ? and Matricula = ?;', [$diaPg, $aluno->id]);
+                        if ($pagamentos) {
+                            if (!$pagamentos->DataPgto) {
+                                $listaAlunosPagamento[$i] = $aluno->id;
+                                $i++;
+                            }
+                        }
+                    } else {
+                        $listaAlunosPagamento[$i] = $aluno->id;
+                        $i++;
+                    }
+                }
             }
             if ($request->Pagamentos == "Em dia") {
-                $alunosAtrasados = $this->emDia();
+                $listaAlunosPagamento[0] = 0;
+                $i = 0;
+                //selecionar todos os registros de mensalidade do mes atual que possuem datapgto
+                foreach ($alunos->get() as $aluno) {
+                    if ($dia >= 1 && $dia <= $aluno->Vencimento) {
+                        $mesPg = $mes - 1;
+                        $mesPg = str_pad($mesPg, 2, '0', STR_PAD_LEFT);
+                    } else if ($aluno->Vencimento < $dia && $dia <= 31) {
+                        $mesPg = $mes;
+                    }
+
+                    if ($mes == 1) {
+                        $anoPg = $ano - 1;
+                        $mesPg = 12;
+                    } else {
+                        $anoPg = $ano;
+                    }
+                    $diaVenc = str_pad($aluno->Vencimento, 2, '0', STR_PAD_LEFT);
+                    $diaPg = "$anoPg-$mesPg-$diaVenc";
+                    $pagamentos = DB::select('select * from pagamentos where Vencimento = ? and Matricula = ?;', [$diaPg, $aluno->id]);
+                    $matricula = DB::table('pagamentos')->where([['Referencia', '=', 'Matricula'], ['Matricula', '=', $aluno->id]])->get()->first();
+
+                    if ($matricula->DataPgto) {
+                        if ($pagamentos) {
+                            if ($pagamentos->DataPgto) {
+                                $listaAlunosPagamento[$i] = $aluno->id;
+                                $i++;
+                            }
+                        } else {
+                            $listaAlunosPagamento[$i] = $aluno->id;
+                            $i++;
+                        }
+                    }
+                }
             }
+            $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['deleted_at', '=', null]])->get();
+            $alunos = $alunos->whereIn('id', $listaAlunosPagamento);
         } else {
             $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<=', $hoje], ['deleted_at', '=', null]])->get();
         }
-
         $turmas = $turmas->get();
         $alunos = $alunos->get();
 
