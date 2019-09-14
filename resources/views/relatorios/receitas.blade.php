@@ -129,7 +129,7 @@
                             <td>{!! $caixa->Via !!}</td>
                             <td>{!! $caixa->ContaCaixa !!}</td>
                             <td>{!! $caixa->CentroCusto !!}</td>
-                            <td>R$ {!! $caixa->Valor !!}</td>
+                            <td>R$ {!! number_format($caixa->Valor, 2, ',', '.') !!}</td>
                             <td>{!! $caixa->Usuario !!}</td>
                             <td>
                                 {!! date('H:m:s d/m/Y', strtotime($caixa->created_at)); !!}
@@ -143,7 +143,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>{!! $sum !!}</td>
+                        <td>Total: R$ {!! number_format($sum, 2, ',', '.') !!}</td>
                         <td></td>
                         <td></td>
                     </tfoot>

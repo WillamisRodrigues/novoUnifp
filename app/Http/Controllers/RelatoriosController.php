@@ -40,7 +40,7 @@ class RelatoriosController extends Controller
         foreach ($caixas as $caixa) {
             $sum += $caixa->Valor;
         }
-        $sum = 'Total: R$' . $sum;
+        // $sum = 'Total: R$' . $sum;
 
         $centroCusto = DB::table('centro_custo')->get();
         $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
@@ -75,7 +75,7 @@ class RelatoriosController extends Controller
         foreach ($caixas as $caixa) {
             $sum += $caixa->Valor;
         }
-        $sum = 'Total: R$' . $sum;
+        // $sum = 'Total: R$' . $sum;
 
         $centroCusto = DB::table('centro_custo')->get();
         $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();

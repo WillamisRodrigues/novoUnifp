@@ -13,10 +13,23 @@ use Illuminate\Database\Eloquent\Collection;
 class PdfController extends Controller
 {
     //
-    public function index()
+    // public function index()
+    // {
+    //     return view('pdf.index');
+    // }
+
+    public function cancelamento($id)
     {
-        return view('pdf.index');
+        $idUnidade = UnidadeController::getUnidade();
+        $unidade = DB::table('unidade')->where('id', '=', $idUnidade)->get()->first();
+        $aluno = DB::table('aluno')->where('id', '=', $id)->get()->first();
+        $curso = DB::table('curso')->where('id', '=', $aluno->idCurso)->get()->first();
+
+        $pdf = PDF::loadView('pdf.cancelamento', ['unidade' => $unidade, 'aluno' => $aluno, 'curso' => $curso]);
+        return $pdf->stream('invoice.pdf');
+        // return view('pdf.cancelamento', ['unidade' => $unidade, 'aluno' => $aluno, 'curso' => $curso]);
     }
+
     public function gerarCarne($id)
     {
         $aluno = DB::table('aluno')->get()->where('id', $id)->first();
@@ -27,7 +40,7 @@ class PdfController extends Controller
         $unidades = DB::table('unidade')->get()->where('id', $idUnidade)->first();
 
         $pdf = PDF::loadView('pdf.carne', ['aluno' => $aluno, 'unidade' => $unidades, 'boletos' => $boletos, 'parcelamento' => $formas_parcelamentos]);
-        return $pdf->stream('invoice.pdf');;
+        return $pdf->stream('invoice.pdf');
     }
 
     public function gerarContrato($id)
@@ -88,11 +101,12 @@ class PdfController extends Controller
         }
 
         $dados = DB::table('caixa')->get();
-        $pdf = PDF::loadView('pdf.recebimentos', ['somaQuitado' => $somaQuitado,'qtdeQuitado' => $qtdeQuitado,'somaAtrasado' => $somaAtrasado,'qtdeAtrasado' => $qtdeAtrasado,'somaAberto' => $somaAberto,'qtdeAberto' => $qtdeAberto]);
+        $pdf = PDF::loadView('pdf.recebimentos', ['somaQuitado' => $somaQuitado, 'qtdeQuitado' => $qtdeQuitado, 'somaAtrasado' => $somaAtrasado, 'qtdeAtrasado' => $qtdeAtrasado, 'somaAberto' => $somaAberto, 'qtdeAberto' => $qtdeAberto]);
         return $pdf->stream('invoice.pdf');
     }
 
-    public function exportarPrevisao(){
+    public function exportarPrevisao()
+    {
         $unidade = UnidadeController::getUnidade();
         $pagamentos = DB::table('pagamentos');
         $pgJan = DB::select('select Valor from pagamentos where idUnidade=? and Vencimento > "2019-01-01" and Vencimento < "2019-01-31"', [$unidade]);

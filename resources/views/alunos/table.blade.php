@@ -42,12 +42,9 @@
                 <td><a href="{!! route('frequencias.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Frequência</i></a></td>
                 <td>
-                    <button href="#"
-                            {{-- target="_blank"  --}}
-                            class="btn btn-flat botao-cancelamento"
-                            style="border: 1px solid #D73925; color: #D73925; background-color:white">
-                        <i class="fa fa-print"></i> Cancelamento
-                    </button>
+                    @if ($aluno->Status == "Desistente")
+                        <a href="/termoCancelamento/{!! $aluno->id !!}" target="_blank" class="btn btn-flat botao-cancelamento" style="border: 1px solid #D73925; color: #D73925; background-color:white"> <i class="fa fa-print"></i> Cancelamento </a>
+                    @endif
                 </td>
                 <td class="text-center">
                     10.0
