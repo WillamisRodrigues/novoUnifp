@@ -65,7 +65,7 @@
                 </div>
 
                 <!-- Campo Nascimentoaluno -->
-                <div class="row">
+                {{-- <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('NascimentoAluno', 'Data de Nascimento:')
                         !!}<span style="color: red">*</span></p>
                     <div class="col-xs-12 col-sm-6 col-md-6 input-group"
@@ -76,7 +76,7 @@
                             <i class="fa fa-calendar"></i>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
 
                 <!-- Campo Estadocivilaluno -->
@@ -208,13 +208,15 @@
 
                 {!! Form::hidden('Usuario_id', Auth::user()->id) !!}
 
+                {!! Form::hidden('DataCadastro', $aluno->DataCadastro)!!}
+                {!! Form::hidden('NascimentoAluno', $aluno->NascimentoAluno)!!}
+                {!! Form::hidden('NascimentoContratante', $aluno->NascimentoContratante)!!}
                 <!-- Campo Datacadastro -->
-                <div class="row">
+                {{-- <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('DataCadastro', 'Data de Cadastro:') !!}<span
                             style="color: red">*</span></p>
                     <div class="col-xs-12 col-sm-6 col-md-6 input-group"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
-                        {{-- {!! Form::date('DataCadastro', null, ['class' => 'form-control', 'id' =>'DataCadastro'])!!} --}}
                         {!! Form::text('DataCadastro', date('d/m/Y', strtotime($aluno->DataCadastro)), ['readonly' =>
                         'true', 'class' => 'form-control']) !!}
                         <div class="input-group-addon">
@@ -222,7 +224,7 @@
                         </div>
                     </div>
 
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- /.tab-pane -->
@@ -246,7 +248,7 @@
                 </div>
 
                 <!-- Campo Nascimentocontratante -->
-                <div class="row">
+                {{-- <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('NascimentoContratante', 'Data de
                         Nascimento:')
                         !!}<span style="color: red">*</span>
@@ -259,7 +261,7 @@
                             <i class="fa fa-calendar"></i>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 <!-- Campo Estadocivilcontratante -->
                 <div class="row">
@@ -411,7 +413,8 @@
                         @php
                         foreach ($cursos as $curso) {
                             if($curso->id == $aluno->idCurso){
-                                echo '<input class="form-control" style="width: 50%" type="text" name="Turma" value="'.$curso->nomeCurso.'" readonly>';
+                                echo '<input class="form-control" style="width: 50%" type="text" name="Curso" value="'.$curso->nomeCurso.'" readonly>';
+                                echo '<input type="hidden" name="idCurso" value="'.$curso->id.'" readonly>';
                             }
                         }
                         @endphp

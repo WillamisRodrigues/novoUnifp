@@ -31,6 +31,30 @@
         mask: ['99999-999'],
         keepStatic: true
     });
+    $(document).ready(function(){
+        $(".cursos").change(function(){
+            var curso_id=$(this).val();
+            var unidade_id = document.getElementById("idUnidade").value;
+
+            console.log(curso_id);
+            console.log(unidade_id);
+
+            $.ajax({
+                type: "GET",
+                url: "/api/getTurmas/" + unidade_id + "/" + curso_id,
+                success: function(turmas){
+                    turmas.forEach(element => {
+                        var selectTurmas = document.getElementById("turmas");
+                        var opt = document.createElement("option");
+                        opt.value= element.id;
+                        opt.innerHTML = element.nome;
+
+                        selectTurmas.appendChild(opt);
+                    });
+                }
+            });
+        });
+    });
 </script>
 @endsection
 
@@ -392,7 +416,10 @@
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('idCurso', 'Curso:') !!}<span
                             style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-                        <select name="idCurso" id="idCurso" style="width: 50%">
+                        {{-- <select name="idCurso" id="idCurso" class="cursos" style="width: 50%"> --}}
+                                <select name="idCurso" id="cursos" class="cursos" style="width: 50%">
+
+                            <option value=""></option>
                             @foreach($cursos as $curso)
                             <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
                             @endforeach
@@ -405,13 +432,16 @@
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('idTurma', 'Turma:') !!}<span
                             style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-                        <select name="idTurma" id="idTurma" style="width: 50%">
+                        <select name="idTurma" id="turmas" style="width: 50%">
+                            <option value=""></option>
+                        </select>
+                        {{-- <select name="idTurma" id="idTurma" style="width: 50%">
                             @foreach($turmas as $turma )
                                 <option value="{{ $turma->id }}">
                                     {{ $turma->NomeTurma }}
                                 </option>
                             @endforeach
-                            </select>
+                            </select> --}}
                         </p>
                     </div>
 
@@ -442,6 +472,7 @@
                     </p>
                 </div>
                 <input type="hidden" name="Status" id="Status" value="Estudando">
+                <input type="hidden" id="idUnidade" name="unidade" value="{!! $unidade !!}">
             </div>
         </div>
         <!-- /.tab-pane -->

@@ -73,10 +73,10 @@ class AlunoController extends AppBaseController
         $escolaridades = $this->escolaridadeRepository->all();
         $pagamentos = $this->pagRepository->all();
         $comoConheceu = $this->comoConheceuRepository->all();
-        $vencimento = DB::table('dias_vencimento')->get();
+        $vencimento = DB::table('dias_vencimento')->where('idUnidade', $unidade)->get();
 
 
-        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimento]);
+        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimento, 'unidade' => $unidade]);
     }
 
     /**
@@ -214,14 +214,15 @@ class AlunoController extends AppBaseController
      */
     public function edit($id)
     {
+        $unidade = UnidadeController::getUnidade();
         $aluno = $this->alunoRepository->find($id);
-        $funcionarios = $this->funcionarioRepository->all()->where('Cargo', 'Vendedor');
         $escolaridades = $this->escolaridadeRepository->all();
-        $cursos = $this->cursoRepository->all();
-        $turmas = $this->turmaRepository->all();
+        $funcionarios = DB::table('funcionario')->where([['Cargo', '=', 'Vendedor'], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $turmas = DB::table('turma')->where([['idUnidade', '=', $unidade], ['Status', '=', 'Ativa'], ['idCurso', '=', $aluno->idTurma], ['deleted_at', '=', null]])->get();
+        $vencimento = DB::table('dias_vencimento')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $pagamentos = $this->pagRepository->all();
         $comoConheceu = $this->comoConheceuRepository->all();
-        $vencimento = DB::table('dias_vencimento')->get();
 
         if (empty($aluno)) {
             Flash::error('Aluno não encontrado.');
