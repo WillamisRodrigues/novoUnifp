@@ -77,7 +77,7 @@ class HomeController extends Controller
         $alunosM = DB::table('aluno')->where([['Sexo', '=', 'Feminino'], ['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
 
         //nivel de adimplencia
-        $emDia = DB::table('pagamentos')->where([['deleted_at', '=', null], ['Status', '<>', 'Atrasado'], ['idUnidade', '=', $unidade]])->get();
+        $emDia = DB::table('pagamentos')->where([['deleted_at', '=', null], ['Status', '<>', 'Vencido'], ['idUnidade', '=', $unidade]])->get();
         $atrasados = DB::table('pagamentos')->where([['deleted_at', '=', null], ['Status', '=', 'Vencido'], ['idUnidade', '=', $unidade]])->get();
 
         //receitas

@@ -60,7 +60,7 @@
                             style="color: red">*</span>
                     </p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-conheceu">
-                        {!! Form::select('Sexo', array('Masculino' => 'Masculino', 'Feminino' => 'Feminino',)) !!}
+                        {!! Form::text('Sexo', $aluno->Sexo, ['readonly' => 'true', 'class' => 'form-control']) !!}
                     </p>
                 </div>
 
@@ -70,8 +70,8 @@
                         !!}<span style="color: red">*</span></p>
                     <div class="col-xs-12 col-sm-6 col-md-6 input-group"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
-                        {!! Form::date('NascimentoAluno', null, ['class' => 'form-control', 'id' =>
-                        'NascimentoAluno'])!!}
+                        {!! Form::text('NascimentoAluno', date('d/m/Y', strtotime($aluno->NascimentoAluno)), ['readonly'
+                        => 'true', 'class' => 'form-control', 'id' =>'NascimentoAluno']) !!}
                         <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
@@ -104,16 +104,21 @@
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('RgAluno', 'RG:') !!}<span
                             style="color: red">*</span>
                     </p>
-                    <p class="col-xs-12 col-sm-6 col-md-6">{!! Form::text('RgAluno', null, ['class' => 'form-control'])
-                        !!}</p>
+                    <p class="col-xs-12 col-sm-6 col-md-6">
+                        {!! Form::text('RgAluno', $aluno->RgAluno, ['readonly' => 'true', 'class' => 'form-control'])
+                        !!}
+                    </p>
                 </div>
 
                 <!-- Campo Cpfaluno -->
                 <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('CpfAluno', 'CPF:') !!}<span
                             style="color: red">*</span></p>
-                    <p class="col-xs-12 col-sm-6 col-md-6">{!! Form::text('CpfAluno', null, ['class' => 'form-control'])
-                        !!}</p>
+                    <p class="col-xs-12 col-sm-6 col-md-6">
+                        {{-- {!! Form::text('CpfAluno', null, ['class' => 'form-control'])!!} --}}
+                        {!! Form::text('CpfAluno', $aluno->CpfAluno, ['readonly' => 'true', 'class' => 'form-control'])
+                        !!}
+                    </p>
                 </div>
 
                 <!-- Campo Escolaridade -->
@@ -150,7 +155,9 @@
                 <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Mae', 'Nome da Mãe:') !!}<span
                             style="color: red">*</span></p>
-                    <p class="col-xs-12 col-sm-6 col-md-6">{!! Form::text('Mae', null, ['class' => 'form-control']) !!}
+                    <p class="col-xs-12 col-sm-6 col-md-6">
+                        {{-- {!! Form::text('Mae', null, ['class' => 'form-control']) !!} --}}
+                        {!! Form::text('Mae', $aluno->Mae, ['readonly' => 'true', 'class' => 'form-control']) !!}
                     </p>
                 </div>
 
@@ -158,7 +165,10 @@
                 <div class="row">
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Pai', 'Nome do Pai:') !!}<span
                             style="color: red">*</span></p>
-                    <p class="col-xs-12 col-sm-6 col-md-6">{!! Form::text('Pai', null, ['class' => 'form-control']) !!}
+                    <p class="col-xs-12 col-sm-6 col-md-6">
+                        {{-- {!! Form::text('Pai', null, ['class' => 'form-control']) !!} --}}
+                        {!! Form::text('Pai', $aluno->Pai, ['readonly' => 'true', 'class' => 'form-control']) !!}
+
                     </p>
                 </div>
 
@@ -204,8 +214,9 @@
                             style="color: red">*</span></p>
                     <div class="col-xs-12 col-sm-6 col-md-6 input-group"
                         style="padding-right: 15px; padding-left: 15px; margin-bottom: 10px;">
-                        {!! Form::date('DataCadastro', null, ['class' => 'form-control', 'id' =>
-                        'DataCadastro'])!!}
+                        {{-- {!! Form::date('DataCadastro', null, ['class' => 'form-control', 'id' =>'DataCadastro'])!!} --}}
+                        {!! Form::text('DataCadastro', date('d/m/Y', strtotime($aluno->DataCadastro)), ['readonly' =>
+                        'true', 'class' => 'form-control']) !!}
                         <div class="input-group-addon">
                             <i class="fa fa-calendar"></i>
                         </div>
@@ -392,11 +403,18 @@
                     <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('idCurso', 'Curso:') !!}<span
                             style="color: red">*</span></p>
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-                        <select name="idCurso" id="idCurso" style="width: 50%">
+                        {{-- <select name="idCurso" id="idCurso" style="width: 50%">
                             @foreach($cursos as $curso)
                             <option value="{{ $curso->id }}">{{ $curso->nomeCurso }}</option>
                             @endforeach
-                        </select>
+                        </select> --}}
+                        @php
+                        foreach ($cursos as $curso) {
+                            if($curso->id == $aluno->idCurso){
+                                echo '<input class="form-control" style="width: 50%" type="text" name="Turma" value="'.$curso->nomeCurso.'" readonly>';
+                            }
+                        }
+                        @endphp
                     </p>
                 </div>
 
@@ -407,13 +425,15 @@
                     <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
                         <select name="idTurma" id="idTurma" style="width: 50%">
                             @foreach($turmas as $turma )
-                                <option value="{{ $turma->id }}">
-                                    {{ $turma->NomeTurma }}
-                                </option>
-                            @endforeach
-                            </select>
-                        </p>
-                    </div>
+                            <option value="{{ $turma->id }}">
+                        {{ $turma->NomeTurma }}
+                        </option>
+                        @endforeach
+                        </select>
+                        {{-- {!! Form::text('Turma', , ['readonly' => 'true', 'class' => 'form-control']) !!} --}}
+
+                    </p>
+                </div>
 
                 <!-- Campo Parcelamento -->
                 {{-- <div class="row">
@@ -423,30 +443,48 @@
                         <select name="idParcelamento" id="idParcelamento" style="width: 50%">
                             @foreach($pagamentos as $pagamento )
                             <option value="{{ $pagamento->id }}">{{ $pagamento->QtdeParcelas }}x de
-                            R${{ $pagamento->ParcelaBruta }},00 - Total = R${{ $pagamento->BrutoTotal }},00</option>
-                            @endforeach
-                        </select>
-                    </p>
-                </div> --}}
+                R${{ $pagamento->ParcelaBruta }},00 - Total = R${{ $pagamento->BrutoTotal }},00</option>
+                @endforeach
+                </select>
+                </p>
+            </div> --}}
 
-                <!-- Campo Vencimento -->
-                <div class="row">
-                    <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Vencimento', 'Dia do Vencimento:') !!}<span
-                            style="color: red">*</span></p>
-                    <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
-                        <select name="Vencimento" id="Vencimento" style="width: 50%">
-                            @foreach($vencimentos as $vencimento )
-                            <option value="{!! $vencimento->diaVencimento !!}">{!! $vencimento->diaVencimento !!}</option>
-                            @endforeach
-                        </select>
-                    </p>
-                </div>
-                <input type="hidden" name="Status" id="Status" value="Estudando">
+            <!-- Campo Vencimento -->
+            <div class="row">
+                <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Vencimento', 'Dia do Vencimento:') !!}<span
+                        style="color: red">*</span></p>
+                <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
+                    <select name="Vencimento" id="Vencimento" style="width: 50%">
+                        @foreach($vencimentos as $vencimento )
+                        <option value="{!! $vencimento->diaVencimento !!}">{!! $vencimento->diaVencimento !!}</option>
+                        @endforeach
+                    </select>
+                </p>
             </div>
+            {{-- <input type="hidden" name="Status" id="Status" value="Estudando"> --}}
+
+            <!-- Campo Status -->
+            <div class="row">
+                <p class="col-xs-12 col-sm-3 col-md-3">{!! Form::label('Status', 'Dia do Status:') !!}<span
+                        style="color: red">*</span></p>
+                <p class="col-xs-12 col-sm-6 col-md-6 select-padrao">
+                    <select name="Status" id="Status" style="width: 50%">
+                        <option value="">Status</option>
+                        <option value="Estudando">Estudando </option>
+                        <option value="Trancado">Trancado</option>
+                        <option value="Desistente">Desistente</option>
+                        <option value="Concluido">Concluido </option>
+                        <option value="Abandono">Abandono</option>
+                    </select>
+                </p>
+            </div>
+            {{-- <select name="Status" id="Status">
+                </select> --}}
         </div>
-        <!-- /.tab-pane -->
     </div>
-    <!-- /.tab-content -->
+    <!-- /.tab-pane -->
+</div>
+<!-- /.tab-content -->
 </div>
 <!-- nav-tabs-custom -->
 <!-- Campo Submit -->

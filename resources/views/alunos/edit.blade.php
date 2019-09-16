@@ -15,30 +15,19 @@
 </section>
 <div class="content">
     @include('adminlte-templates::common.errors')
-    {{-- <div class="box box-primary criar-unidade">
-        <div class="box-body">
-            <div class="row">
-                {!! Form::model($aluno, ['route' => ['alunos.update', $aluno->id], 'method' => 'patch']) !!}
-
-                @include('alunos.fields')
-
-                {!! Form::close() !!}
-            </div>
-        </div>
-    </div> --}}
-    {{-- <div class="box box-primary criar-unidade"> --}}
 
     <div class="clearfix"></div>
     <div class="box-body criar-aluno">
         <div class="clearfix"></div>
         <div class="row">
-            {!! Form::open(['route' => 'alunos.store']) !!}
+            {{-- {!! Form::open(['route' => 'alunos.store']) !!} --}}
+            {!! Form::model($aluno, ['route' => ['alunos.update', $aluno->id], 'method' => 'patch']) !!}
 
-            @include('alunos.fields')
+
+            @include('alunos.fieldsEdit')
 
             {!! Form::close() !!}
         </div>
     </div>
-    {{-- </div> --}}
 </div>
 @endsection

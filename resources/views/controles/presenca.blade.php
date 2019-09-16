@@ -20,8 +20,9 @@
     <div class="clearfix"></div>
     <div class="row">
         {{-- falta a rota --}}
-        {!! Form::open(['route' => 'alunos.store']) !!}
-        <p class="select-padrao col-md-2"> Selecione o curso:
+        {{-- {!! Form::open(['route' => 'alunos.store']) !!} --}}
+        {!! Form::open(['id' => 'filtroPresença']) !!}
+        <p class="select-padrao col-md-3"> Selecione o curso:
             <select name="cursos" id="cursos" class="cursos">
                 <option value="">Cursos</option>
                 @foreach($cursos as $curso )
@@ -29,7 +30,7 @@
                 @endforeach
             </select>
         </p>
-        <p class="select-padrao col-md-2"> Selecione a turma:
+        <p class="select-padrao col-md-3"> Selecione a turma:
             <select name="turmas" id="turmas">
                 <option value="">Turmas</option>
                 {{-- @foreach($turmas as $turma )
@@ -47,7 +48,7 @@
         </p>
         <input type="hidden" id="idUnidade" name="unidade" value="{!! $unidade !!}">
         {!! Form::close() !!}
-        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Filtrar</button>
+        <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-search"></i> Filtrar</button>
     </div>
     <div class="box box-primary">
         <div class="box-body">
@@ -74,8 +75,8 @@
                             <th class="text-center">Aula 16</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach($alunos as $aluno)
+                    <tbody id="listaAlunos">
+                        {{-- @foreach($alunos as $aluno)
                         <tr>
                             <td>{!! $aluno->Nome !!}</td>
                             <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
@@ -94,16 +95,16 @@
                             <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
                             <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
                             <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            {{-- <td>
+                            <td>
                                 {!! Form::open(['route' => ['alunos.destroy', $aluno->id], 'method' => 'delete']) !!}
                                 <div class='btn-group'>
                                     <a href="{!! route('alunos.edit', [$aluno->id]) !!}"
                                         class='btn btn-default btn-sm'><i class="glyphicon glyphicon-edit"></i></a>
                                 </div>
                                 {!! Form::close() !!}
-                            </td> --}}
+                            </td>
                         </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>
             </div>
@@ -119,11 +120,6 @@
         $(".cursos").change(function(){
             var curso_id=$(this).val();
             var unidade_id = document.getElementById("idUnidade").value;
-
-            var data = {
-                unidade: unidade_id,
-                curso: curso_id
-            }
 
             $.ajax({
                 type: "GET",
@@ -141,7 +137,46 @@
                     });
                 }
             });
+        });
 
+        $(".cursos").change(function(){
+            var curso_id=$(this).val();
+            var unidade_id = document.getElementById("idUnidade").value;
+
+            $.ajax({
+                type: "GET",
+                url: "api/getModulos/" + unidade_id + "/" + curso_id,
+                cache: false,
+                success: function(modulos){
+                    modulos.forEach(element => {
+                        var selectModulos = document.getElementById("modulo");
+                        var opt = document.createElement("option");
+                        opt.value= element.id;
+                        opt.innerHTML = element.nome;
+
+                        selectModulos.appendChild(opt);
+                        // index++
+                    });
+                }
+            });
+
+        });
+
+        $('#filtroPresença').submit(function(e) {
+            e.preventDefault();
+            var formulario = $(this);
+
+            $.ajax({
+                type: "POST",
+                data: formulario.serialize(),
+                url: "api/filtroPresença/" + curso_id + "/" + turma_id + "/" + modulo_id,
+                async: false
+            }).done(function(data) {
+                console.log("Sucesso!");
+                console.log(formulario.serialize());
+            }).fail(function() {
+                console.log("Ops! Algo errado aconteceu.");
+            })
         });
     });
 

@@ -99,9 +99,14 @@ class PagamentosController extends AppBaseController
 
         DB::insert('insert into caixa (Tipo,Via,FormaPgto,Status,numeroDocumento,Aluno,Descricao,Lancamento,Vencimento,Valor,CentroCusto,ContaCaixa,Usuario,Data, idUnidade,created_at,updated_at) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', ['Receita','Caixa',$input['FormaPagamento'],'Pago',$input['numeroDocumento'],$aluno->Nome,'Pagamento de Parcela',$date,$recibo->Vencimento,$parcela,'Pagamento',$input['Usuario'],$input['Usuario'],$date, $unidade,$date,$date ]);
 
+        //atualizar status de pagamento
+        $hoje = date('Y-m-d');
+        DB::update('update pagamentos set Status = "Vencido" where Vencimento < ? and DataPgto is null', [$hoje]);
+
         $aluno = DB::table('aluno')->get()->where('id', $input['Matricula']);
         $recibo = DB::table('pagamentos')->get()->where('Matricula', $input['Matricula']);
         $formaPgtos = DB::table('forma_pgto')->get();
+
 
         return redirect()->action('PagamentoController@show', ['id' => $input['Matricula'],'alunos' => $aluno, 'pagtos' => $recibo, 'formaPgtos' => $formaPgtos]);
 

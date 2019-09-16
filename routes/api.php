@@ -31,3 +31,15 @@ Route::get('getTurmas/{unidade}/{id}', function($unidade, $id) {
     }
     return $res;
 });
+
+Route::get('getModulos/{unidade}/{id}', function($unidade, $id) {
+    $modulos = DB::table('modulos')->where([['idUnidade', '=', $unidade], ['idCurso', '=', $id], ['deleted_at', '=', null]])->get();
+    $res = array();
+    $i = 0;
+    foreach ($modulos as $modulo) {
+        $item = array('id' => $modulo->id, 'nome' => $modulo->nomeModulo);
+        array_push($res, $item);
+        $i++;
+    }
+    return $res;
+});
