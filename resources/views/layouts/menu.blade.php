@@ -152,7 +152,7 @@
         </li>
     </ul>
 </li>
-
+@can('Admin')
 <!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-folder-o"></i>
@@ -183,4 +183,4 @@
         </li>
     </ul>
 </li>
-
+@endcan

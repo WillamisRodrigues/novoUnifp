@@ -72,7 +72,8 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" style="font-size: 2rem"></i>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"
+                                style="font-size: 2rem"></i>
                             {{ Auth::user()->name }}
 
                         </a>
@@ -80,7 +81,8 @@
                             <li class="user-footer">
                                 <div>
                                     <a href="#" class="btn btn-danger btn-block" class="botao-logout-mobile"
-                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Sair</a>
+                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
+                                            class="fa fa-sign-out"></i> Sair</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                         style="display: none;"> @csrf </form>
                                 </div>
@@ -93,10 +95,18 @@
                 <ul class="nav navbar-nav">
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
+                        @if (Gate::allows('Admin'))
+                            <a href="{!! route('unidades.index') !!}">
+                                <i class="fa fa-bank"></i>
+                                {{ Session::get('nomeUnidade') }}
+                            </a>
+                            @else
+                            <a href="#">
+                                <i class="fa fa-bank"></i>
+                                {{ Session::get('nomeUnidade') }}
+                            </a>
+                        @endif
                         <!-- Menu Toggle Button -->
-                        <a href="{!! route('unidades.index') !!}" ><i class="fa fa-bank"></i>
-                            {{ Session::get('nomeUnidade') }}
-                         </a>
                     </li>
                 </ul>
             </div>
@@ -119,7 +129,9 @@
 
 
     @else
-    <script>window.location = "/login";</script>
+    <script>
+        window.location = "/login";
+    </script>
 
     @endif
 
