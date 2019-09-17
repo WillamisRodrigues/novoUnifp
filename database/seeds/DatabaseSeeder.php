@@ -114,5 +114,47 @@ class DatabaseSeeder extends Seeder
             'created_at' => $date,
             'updated_at' => $date
         ]);
+        DB::table('perfil')->insert([
+            'perfilAcesso' => 'Administrador',
+            'nivelAcesso' => 0,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        DB::table('perfil')->insert([
+            'perfilAcesso' => 'Supervisor',
+            'nivelAcesso' => 1,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        DB::table('perfil')->insert([
+            'perfilAcesso' => 'Gestor',
+            'nivelAcesso' => 2,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        DB::table('perfil')->insert([
+            'perfilAcesso' => 'Secretaria',
+            'nivelAcesso' => 3,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        DB::table('perfil')->insert([
+            'perfilAcesso' => 'Professor',
+            'nivelAcesso' => 4,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        DB::table('perfil')->insert([
+            'perfilAcesso' => 'Comercial',
+            'nivelAcesso' => 5,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+        DB::table('perfil')->insert([
+            'perfilAcesso' => 'Atendimento',
+            'nivelAcesso' => 6,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
     }
 }

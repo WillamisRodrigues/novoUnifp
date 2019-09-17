@@ -31,7 +31,8 @@ class usuarioController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $usuarios = $this->usuarioRepository->all();
+        $unidade = UnidadeController::getUnidade();
+        $usuarios = $this->usuarioRepository->all()->where('idUnidade', $unidade);
         $unidades = DB::table('unidade')->get();
 
         return view('usuarios.index', ['usuarios' => $usuarios, 'unidades' => $unidades]);
@@ -45,7 +46,8 @@ class usuarioController extends AppBaseController
     public function create()
     {
         $unidades = DB::table('unidade')->get();
-        return view('usuarios.create', ['unidades' => $unidades]);
+        $niveis = DB::table('perfil')->orderBy('nivelAcesso', 'asc')->get();
+        return view('usuarios.create', ['unidades' => $unidades, 'niveis' => $niveis]);
     }
 
     /**
@@ -107,8 +109,10 @@ class usuarioController extends AppBaseController
         }
 
         $unidades = DB::table('unidade')->get();
+        $niveis = DB::table('perfil')->get();
 
-        return view('usuarios.edit', ['usuario' => $usuario, 'unidades' => $unidades]);
+
+        return view('usuarios.edit', ['usuario' => $usuario, 'unidades' => $unidades, 'niveis' => $niveis]);
     }
 
     /**

@@ -152,35 +152,40 @@
         </li>
     </ul>
 </li>
-@can('Admin')
+
+{{-- @if (Gate::allows('Admin') || Gate::allows('Supervisor')) --}}
 <!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-folder-o"></i>
         Administrador <i class="glyphicon glyphicon-chevron-down"></i>
     </a>
     <ul class="dropdown-menu drop-menu-item-top">
-        <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
-            <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Escolas</span></a>
-        </li>
-        <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
-            <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>
-        </li>
+        {{-- @if (Gate::allows('Admin')) --}}
+            <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
+                    <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Escolas</span></a>
+            </li>
+            <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
+                <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>
+            </li>
+        {{-- @endif --}}
         <li class="{{ Request::is('comoConheceus*') ? 'active' : '' }}">
-            <a href="{!! route('comoConheceus.index') !!}"><i class="fa fa-list"></i><span>Como Conheceu</span></a>
+            <a href="{!! route('comoConheceus.index') !!}"><i class="fa fa-rocket"></i><span>Como Conheceu</span></a>
         </li>
-        <li class="{{ Request::is('tempoAulas*') ? 'active' : '' }}">
-            <a href="{!! route('tempoAulas.index') !!}"><i class="fa fa-star"></i><span>Tempo de Aula</span></a>
-        </li>
-        <li class="{{ Request::is('ajudas*') ? 'active' : '' }}">
-            <a href="{!! route('ajudas.index') !!}"><i class="fa fa-question-circle"></i><span>Edição da
-                    Ajuda</span></a>
-        </li>
-        <li class="{{ Request::is('nivelAcessos*') ? 'active' : '' }}">
-            <a href="{!! route('nivelAcessos.index') !!}"><i class="fa fa-list"></i><span>Perfil de Acesso</span></a>
-        </li>
-        <li class="{{ Request::is('diasVencimentos*') ? 'active' : '' }}">
-            <a href="{!! route('diasVencimentos.index') !!}"><i class="glyphicon glyphicon-calendar"></i><span>Dias de Vencimento</span></a>
-        </li>
+        {{-- @if (Gate::allows('Admin')) --}}
+            <li class="{{ Request::is('tempoAulas*') ? 'active' : '' }}">
+                <a href="{!! route('tempoAulas.index') !!}"><i class="fa fa-star"></i><span>Tempo de Aula</span></a>
+            </li>
+            <li class="{{ Request::is('ajudas*') ? 'active' : '' }}">
+                <a href="{!! route('ajudas.index') !!}"><i class="fa fa-question-circle"></i><span>Edição da
+                        Ajuda</span></a>
+            </li>
+            <li class="{{ Request::is('nivelAcessos*') ? 'active' : '' }}">
+                <a href="{!! route('nivelAcessos.index') !!}"><i class="fa fa-list"></i><span>Perfil de Acesso</span></a>
+            </li>
+            <li class="{{ Request::is('diasVencimentos*') ? 'active' : '' }}">
+                <a href="{!! route('diasVencimentos.index') !!}"><i class="glyphicon glyphicon-calendar"></i><span>Dias de Vencimento</span></a>
+            </li>
+        {{-- @endif --}}
     </ul>
 </li>
-@endcan
+{{-- @endif --}}

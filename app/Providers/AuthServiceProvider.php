@@ -30,32 +30,28 @@ class AuthServiceProvider extends ServiceProvider
             return $user->nivelAcesso == '0';
         });
 
-        $gate->define('Gerente', function($user){
+        $gate->define('Supervisor', function($user){
             return $user->nivelAcesso == '1';
         });
 
-        $gate->define('Supervisor', function($user){
+        $gate->define('Gestor', function($user){
             return $user->nivelAcesso == '2';
         });
 
-        $gate->define('Gestor', function($user){
+        $gate->define('Secretaria', function($user){
             return $user->nivelAcesso == '3';
         });
 
-        $gate->define('Secretaria', function($user){
+        $gate->define('Professor', function($user){
             return $user->nivelAcesso == '4';
         });
 
-        $gate->define('Professor', function($user){
+        $gate->define('Comercial', function($user){
             return $user->nivelAcesso == '5';
         });
 
-        $gate->define('Comercial', function($user){
-            return $user->nivelAcesso == '6';
-        });
-
         $gate->define('Atendimento', function($user){
-            return $user->nivelAcesso == '7';
+            return $user->nivelAcesso == '6';
         });
     }
 }

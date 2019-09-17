@@ -40,9 +40,12 @@
         <p class="col-md-4 col-sm-12">{!! Form::label('nivelAcesso', 'Nivel de Acesso:') !!}<span
                 style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12 select-padrao">
-            {!! Form::select('nivelAcesso', array(
-            '0' => 'Administrador', '1' => 'Supervisor', '2' => 'Gestor', '3' => 'Secretaria', '4' => 'Professor', '5'
-            => 'Comercial','6' => 'Atendimento','7' => 'Cobrança'), ['class' => 'form-control']) !!}
+            <select name="nivelAcesso" id="nivelAcesso" style="width: 50%">
+                <option value=""></option>
+                @foreach ($niveis as $nivel)
+                    <option value="{!! $nivel->nivelAcesso !!}">{!! $nivel->perfilAcesso !!}</option>
+                @endforeach
+            </select>
         </p>
     </div>
     <!-- Unidadeescolar Field -->
@@ -53,14 +56,25 @@
         <p class="col-md-4 col-sm-12">{!! Form::label('idUnidade', 'Unidade Escolar:') !!}<span
                 style="color: red">*</span></p>
         <p class="col-md-8 col-sm-12 select-padrao">
-            {{-- {!! Form::text('idUnidade', null, ['class' => 'form-control']) !!} --}}
-            <select name="idUnidade" id="idUnidade">
+            <select name="idUnidade" id="idUnidade" style="width: 50%">
                 <option value=""></option>
-                @foreach ($unidades as $uni)
-                    <option value="{!! $uni->id !!}">{!! $uni->NomeUnidade !!}</option>
-                @endforeach
+                    @if (Gate::allows('Admin'))
+                        @foreach ($unidades as $uni)
+                            <option value="{!! $uni->id !!}">{!! $uni->NomeUnidade !!}</option>
+                        @endforeach
+                    @else
+                        <option value="{!! Auth::user()->idUnidade !!}">
+                            @foreach ($unidades as $unidade)
+                                @if (Auth::user()->idUnidade == $unidade->id)
+                                    {!! $unidade->NomeUnidade !!}
+                                @endif
+                            @endforeach
+                        </option>
+                    @endif
             </select>
-            <small><br>Importante: deixar este campo (Unidade Escolar) em branco para o cadastro de um administrador.</small>
+            @if (Gate::allows('Admin'))
+                <small><br>Importante: deixar este campo (Unidade Escolar) em branco para o cadastro de um administrador.</small>
+            @endif
         </p>
 
     </div>
