@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Yajra\Acl\Traits\HasRole;
+
 
 /**
  * Class usuario
@@ -19,9 +23,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string password
  * @property string remember_token
  */
-class usuario extends Model
+// class usuario extends Model
+class usuario extends Authenticatable
 {
     use SoftDeletes;
+    use Notifiable;
+    use HasRole;
 
     public $table = 'users';
 
@@ -75,6 +82,4 @@ class usuario extends Model
         'unidadeEscolar' => 'required',
         'password' => 'required'
     ];
-
-
 }

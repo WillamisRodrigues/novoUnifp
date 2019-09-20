@@ -190,6 +190,7 @@ return [
         //Exportar para csv
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        Yajra\Acl\AclServiceProvider::class,
 
     ],
 

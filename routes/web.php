@@ -105,7 +105,7 @@ Route::post('filtroGeralAlunos', ['as' => 'filtroGeralAlunos', 'uses' => 'Relato
 
 Route::post('filtroRecebimentos', ['as' => 'filtroRecebimentos', 'uses' => 'RelatoriosController@filtroRecebimentos']);
 
-Route::resource('agendas', 'AgendaController');
+Route::resource('agendas', 'AgendaController')->middleware('role:admin');
 
 Route::resource('agendasArquivada', 'AgendasArquivadaController');
 
@@ -179,3 +179,8 @@ Route::resource('pagamentos', 'PagamentosController');
 
 
 Route::resource('modulos', 'ModuloController');
+
+
+Route::resource('permissions', 'PermissionController');
+
+Route::resource('roles', 'RolesController');

@@ -3,6 +3,7 @@
     <a href="/home"><i class="fa fa-area-chart"></i>
         Dashboard</a>
 </li>
+@role('admin')
 
 <!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
@@ -15,7 +16,7 @@
     <a href="https://fpeduc.com/unifp/treinamentos/" target="_blank"><i class="fa fa-television"></i>
         Treinamentos</a>
 </li>
-
+@endRole
 <!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i
@@ -85,13 +86,13 @@
             <a href="{!! route('centroCustos.index') !!}"><i class="fa fa-cube"></i><span>Centro Custos</span></a>
         </li>
         {{-- <li class="{{ Request::is('formasPagamentos*') ? 'active' : '' }}">
-            <a href="{!! route('formasPagamentos.index') !!}"><i class="fa fa-cube"></i><span>Formas
-                    de Parcelamento</span></a>
-        </li> --}}
-        <li class="{{ Request::is('formaPgtos*') ? 'active' : '' }}">
-            <a href="{!! route('formaPgtos.index') !!}"><i class="fa fa-cube"></i><span>Formas de Pagamento</span></a>
-        </li>
-    </ul>
+        <a href="{!! route('formasPagamentos.index') !!}"><i class="fa fa-cube"></i><span>Formas
+                de Parcelamento</span></a>
+</li> --}}
+<li class="{{ Request::is('formaPgtos*') ? 'active' : '' }}">
+    <a href="{!! route('formaPgtos.index') !!}"><i class="fa fa-cube"></i><span>Formas de Pagamento</span></a>
+</li>
+</ul>
 </li>
 
 <!-- Menu Toggle Button -->
@@ -153,39 +154,41 @@
     </ul>
 </li>
 
-{{-- @if (Gate::allows('Admin') || Gate::allows('Supervisor')) --}}
 <!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-folder-o"></i>
         Administrador <i class="glyphicon glyphicon-chevron-down"></i>
     </a>
     <ul class="dropdown-menu drop-menu-item-top">
-        {{-- @if (Gate::allows('Admin')) --}}
-            <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
-                    <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Escolas</span></a>
-            </li>
-            <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
-                <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>
-            </li>
-        {{-- @endif --}}
+        <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
+            <a href="{!! route('unidades.index') !!}"><i class="fa fa-bank"></i><span>Escolas</span></a>
+        </li>
+        <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
+            <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>
+        </li>
         <li class="{{ Request::is('comoConheceus*') ? 'active' : '' }}">
             <a href="{!! route('comoConheceus.index') !!}"><i class="fa fa-rocket"></i><span>Como Conheceu</span></a>
         </li>
-        {{-- @if (Gate::allows('Admin')) --}}
-            <li class="{{ Request::is('tempoAulas*') ? 'active' : '' }}">
-                <a href="{!! route('tempoAulas.index') !!}"><i class="fa fa-star"></i><span>Tempo de Aula</span></a>
-            </li>
-            <li class="{{ Request::is('ajudas*') ? 'active' : '' }}">
-                <a href="{!! route('ajudas.index') !!}"><i class="fa fa-question-circle"></i><span>Edição da
-                        Ajuda</span></a>
-            </li>
-            <li class="{{ Request::is('nivelAcessos*') ? 'active' : '' }}">
-                <a href="{!! route('nivelAcessos.index') !!}"><i class="fa fa-list"></i><span>Perfil de Acesso</span></a>
-            </li>
-            <li class="{{ Request::is('diasVencimentos*') ? 'active' : '' }}">
-                <a href="{!! route('diasVencimentos.index') !!}"><i class="glyphicon glyphicon-calendar"></i><span>Dias de Vencimento</span></a>
-            </li>
-        {{-- @endif --}}
+        <li class="{{ Request::is('tempoAulas*') ? 'active' : '' }}">
+            <a href="{!! route('tempoAulas.index') !!}"><i class="fa fa-star"></i><span>Tempo de Aula</span></a>
+        </li>
+        <li class="{{ Request::is('ajudas*') ? 'active' : '' }}">
+            <a href="{!! route('ajudas.index') !!}"><i class="fa fa-question-circle"></i><span>Edição da
+                    Ajuda</span></a>
+        </li>
+        <li class="{{ Request::is('nivelAcessos*') ? 'active' : '' }}">
+            <a href="{!! route('nivelAcessos.index') !!}"><i class="fa fa-list"></i><span>Perfil de Acesso</span></a>
+        </li>
+        <li class="{{ Request::is('diasVencimentos*') ? 'active' : '' }}">
+            <a href="{!! route('diasVencimentos.index') !!}"><i class="glyphicon glyphicon-calendar"></i><span>Dias de
+                    Vencimento</span></a>
+        </li>
+        <li class="{{ Request::is('permissions*') ? 'active' : '' }}">
+            <a href="{!! route('permissions.index') !!}"><i class="fa fa-edit"></i><span>Permissions</span></a>
+        </li>
+
+        <li class="{{ Request::is('roles*') ? 'active' : '' }}">
+            <a href="{!! route('roles.index') !!}"><i class="fa fa-edit"></i><span>Roles</span></a>
+        </li>
     </ul>
 </li>
-{{-- @endif --}}

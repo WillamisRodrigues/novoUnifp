@@ -19,11 +19,12 @@
        <div class="box box-primary criar-unidade">
            <div class="box-body">
                <div class="row">
-                   {!! Form::model($nivelAcesso, ['route' => ['nivelAcessos.update', $nivelAcesso->id], 'method' => 'patch']) !!}
+                   {{-- {!! Form::model($nivelAcesso, ['route' => ['nivelAcessos.update', $nivelAcesso->id], 'method' => 'patch']) !!} --}}
+                        {{-- @include('nivel_acessos.fields') --}}
+                   {{-- {!! Form::close() !!} --}}
 
-                        @include('nivel_acessos.fields')
 
-                   {!! Form::close() !!}
+
                </div>
            </div>
        </div>

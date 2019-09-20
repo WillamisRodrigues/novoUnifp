@@ -56,6 +56,6 @@
     <!-- Campo Tipo -->
     <div class="row">
         <p class="col-sm-12 col-md-3">{!! Form::label('Logotipo', 'Logotipo:') !!}</p>
-        <p class="col-sm-12 col-md-9"><img src="/{!! $unidade->Logotipo !!}" alt="Logotipo da Unidade"></p>
+        <p class="col-sm-12 col-md-9"><img src="../storage/{!! $unidade->Logotipo !!}" alt="Logotipo da Unidade"></p>
     </div>
 </div>
