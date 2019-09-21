@@ -136,6 +136,7 @@ class usuarioController extends AppBaseController
         }
 
         $usuario = $this->usuarioRepository->update($request->all(), $id);
+        DB::update('update role_user set role_id = ?, updated_at = ? where user_id = ?', [$request->nivelAcesso, date("Y-m-d H:i:s"), $id]);
 
         Flash::success('Usuario atualizado com sucesso.');
 

@@ -180,7 +180,7 @@ class nivelAcessoController extends AppBaseController
             return redirect(route('nivelAcessos.index'));
         }
 
-        $this->nivelAcessoRepository->delete($id);
+        DB::update('update roles set deleted_at = ? where id = ?', [date('Y-m-d H:i:s'), $id]);
 
         Flash::success('Nivel de acesso deletado com sucesso.');
 

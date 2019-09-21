@@ -15,7 +15,17 @@ class HomeController extends Controller
      * @return void
      */
     public function __construct()
-    { }
+    {
+        // $permissoes = DB::table('permissions')->get();
+        // foreach ($permissoes as $permissao) {
+        //     DB::insert('insert into permission_role (permission_id, role_id, created_at, updated_at) values (?, ?, ?, ?)', [$permissao->id, 4, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
+        //     DB::insert('insert into permission_role (permission_id, role_id, created_at, updated_at) values (?, ?, ?, ?)', [$permissao->id, 5, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
+        //     DB::insert('insert into permission_role (permission_id, role_id, created_at, updated_at) values (?, ?, ?, ?)', [$permissao->id, 6, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
+        //     DB::insert('insert into permission_role (permission_id, role_id, created_at, updated_at) values (?, ?, ?, ?)', [$permissao->id, 7, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
+        //     DB::insert('insert into permission_role (permission_id, role_id, created_at, updated_at) values (?, ?, ?, ?)', [$permissao->id, 8, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
+        //     DB::insert('insert into permission_role (permission_id, role_id, created_at, updated_at) values (?, ?, ?, ?)', [$permissao->id, 9, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
+        // }
+    }
 
     /**
      * Show the application dashboard.

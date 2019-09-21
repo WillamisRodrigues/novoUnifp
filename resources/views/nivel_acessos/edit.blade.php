@@ -14,17 +14,6 @@
 </style>
 @endsection
 
-@section('scripts')
-<script>
-    function toggle(source) {
-  checkboxes = document.getElementById('agenda');
-  for(var i=0, n=checkboxes.length;i<n;i++) {
-    checkboxes[i].checked = source.checked;
-  }
-}
-</script>
-@endsection
-
 @section('content')
 <section class="content-header">
     <h1 class="pull-left">Editar Perfil</h1>
@@ -42,8 +31,7 @@
     <div class="box box-primary criar-unidade">
         <div class="box-body">
             {!! Form::open(['url' => 'atualizarPermissoes']) !!}
-            <button type="submit" class="btn btn-success pull-right"> <i class="fas fa-sync-alt"></i> Atualizar
-                Permissões </button>
+            <button type="submit" class="btn btn-success pull-right"> <i class="fas fa-sync-alt"></i> Atualizar Permissões </button>
             <table class="table display text-center">
                 <thead>
                     <tr>
@@ -58,8 +46,7 @@
                 <tbody>
                     @foreach ($resources as $resource)
                     <tr>
-                        <td>{!! $resource->resource !!} - Selecione Todos <input type="checkbox"
-                                id="{!! $resource->resource !!}"  onClick="toggle(this)" > </td>
+                        <td>{!! $resource->resource !!} </td>
                         @foreach ($permissoes as $permissao)
                         @if ($permissao->resource == $resource->resource)
                         <td>
@@ -75,6 +62,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <button type="submit" class="btn btn-success pull-right"> <i class="fas fa-sync-alt"></i> Atualizar Permissões </button>
             {!! Form::close() !!}
         </div>
     </div>

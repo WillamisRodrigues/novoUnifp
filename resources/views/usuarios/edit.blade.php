@@ -21,7 +21,7 @@
                <div class="row">
                    {!! Form::model($usuario, ['route' => ['usuarios.update', $usuario->id], 'method' => 'patch']) !!}
 
-                        @include('usuarios.fields')
+                        @include('usuarios.fieldsEdit')
 
                    {!! Form::close() !!}
                </div>
