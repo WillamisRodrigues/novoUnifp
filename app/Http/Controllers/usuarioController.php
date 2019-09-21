@@ -34,8 +34,9 @@ class usuarioController extends AppBaseController
         $unidade = UnidadeController::getUnidade();
         $usuarios = $this->usuarioRepository->all()->where('idUnidade', $unidade);
         $unidades = DB::table('unidade')->get();
+        $niveis = DB::table('roles')->where('deleted_at', null)->get();
 
-        return view('usuarios.index', ['usuarios' => $usuarios, 'unidades' => $unidades]);
+        return view('usuarios.index', ['usuarios' => $usuarios, 'unidades' => $unidades, 'niveis' => $niveis]);
     }
 
     /**
@@ -46,7 +47,7 @@ class usuarioController extends AppBaseController
     public function create()
     {
         $unidades = DB::table('unidade')->get();
-        $niveis = DB::table('perfil')->orderBy('nivelAcesso', 'asc')->get();
+        $niveis = DB::table('roles')->where('deleted_at', null)->get();
         return view('usuarios.create', ['unidades' => $unidades, 'niveis' => $niveis]);
     }
 
@@ -62,9 +63,10 @@ class usuarioController extends AppBaseController
         $input = $request->all();
 
         $input['password'] = Hash::make($input['password']);
-        // Hash::make($data['password']);
 
         $usuario = $this->usuarioRepository->create($input);
+
+        DB::insert('insert into role_user (role_id, user_id, created_at, updated_at) values (?, ?, ?, ?)', [$request->nivelAcesso, $usuario->id, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
 
         Flash::success('Usuario salvo com sucesso.');
 
@@ -109,7 +111,7 @@ class usuarioController extends AppBaseController
         }
 
         $unidades = DB::table('unidade')->get();
-        $niveis = DB::table('perfil')->get();
+        $niveis = DB::table('roles')->where('deleted_at', null)->get();
 
 
         return view('usuarios.edit', ['usuario' => $usuario, 'unidades' => $unidades, 'niveis' => $niveis]);

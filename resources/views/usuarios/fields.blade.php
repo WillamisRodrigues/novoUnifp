@@ -43,7 +43,7 @@
             <select name="nivelAcesso" id="nivelAcesso" style="width: 50%">
                 <option value=""></option>
                 @foreach ($niveis as $nivel)
-                    <option value="{!! $nivel->nivelAcesso !!}">{!! $nivel->perfilAcesso !!}</option>
+                    <option value="{!! $nivel->id !!}">{!! $nivel->name !!}</option>
                 @endforeach
             </select>
         </p>

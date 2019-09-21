@@ -1,23 +1,17 @@
-<!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="/home"><i class="fa fa-area-chart"></i>
         Dashboard</a>
 </li>
-@role('admin')
 
-<!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="https://fpeduc.com/loja/" target="_blank"><i class="fa fa-shopping-basket"></i>
         E-commerce</a>
 </li>
-
-<!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="https://fpeduc.com/unifp/treinamentos/" target="_blank"><i class="fa fa-television"></i>
         Treinamentos</a>
 </li>
-@endRole
-<!-- Menu Toggle Button -->
+
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i
             class="glyphicon glyphicon-calendar"></i> Agenda <i class="glyphicon glyphicon-chevron-down"></i> </a>
@@ -33,7 +27,6 @@
     </ul>
 </li>
 
-<!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa  fa-keyboard-o"></i>
         Secretaria <i class="glyphicon glyphicon-chevron-down"></i> </a>
@@ -65,7 +58,6 @@
     </ul>
 </li>
 
-<!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-money"></i>
         Financeiro <i class="glyphicon glyphicon-chevron-down"></i> </a>
@@ -95,7 +87,6 @@
 </ul>
 </li>
 
-<!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-file-text-o"></i>
         Relatórios <i class="glyphicon glyphicon-chevron-down"></i> </a>
@@ -123,7 +114,6 @@
     </ul>
 </li>
 
-<!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-gear"></i> Manutenção
         <i class="glyphicon glyphicon-chevron-down"></i> </a>
@@ -154,7 +144,6 @@
     </ul>
 </li>
 
-<!-- Menu Toggle Button -->
 <li class="dropdown menu-top-navbar">
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i class="fa fa-folder-o"></i>
         Administrador <i class="glyphicon glyphicon-chevron-down"></i>
@@ -182,13 +171,6 @@
         <li class="{{ Request::is('diasVencimentos*') ? 'active' : '' }}">
             <a href="{!! route('diasVencimentos.index') !!}"><i class="glyphicon glyphicon-calendar"></i><span>Dias de
                     Vencimento</span></a>
-        </li>
-        <li class="{{ Request::is('permissions*') ? 'active' : '' }}">
-            <a href="{!! route('permissions.index') !!}"><i class="fa fa-edit"></i><span>Permissions</span></a>
-        </li>
-
-        <li class="{{ Request::is('roles*') ? 'active' : '' }}">
-            <a href="{!! route('roles.index') !!}"><i class="fa fa-edit"></i><span>Roles</span></a>
         </li>
     </ul>
 </li>

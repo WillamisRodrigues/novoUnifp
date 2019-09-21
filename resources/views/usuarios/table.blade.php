@@ -19,31 +19,11 @@
                     {!! date('d/m/Y', strtotime($usuario->nascimento)); !!}
                 </td>
                 <td>
-                    @switch($usuario->nivelAcesso)
-                        @case(0)
-                            {!! "Administrador" !!}
-                            @break
-                        @case(1)
-                            {!! "Supervisor" !!}
-                            @break
-                        @case(2)
-                            {!! "Gestor" !!}
-                            @break
-                        @case(3)
-                            {!! "Secretaria" !!}
-                            @break
-                        @case(4)
-                            {!! "Professor" !!}
-                            @break
-                        @case(5)
-                            {!! "Comercial" !!}
-                            @break
-                        @case(6)
-                            {!! "Atendimento" !!}
-                            @break
-                        @default
-                            {!! "Sem perfil definido" !!}
-                    @endswitch
+                    @foreach ($niveis as $nivel)
+                        @if ($nivel->id == $usuario->nivelAcesso)
+                            {!! $nivel->name !!}
+                        @endif
+                    @endforeach
                 </td>
                 {{-- Falta fazer switch case para unidades  --}}
                 <td>

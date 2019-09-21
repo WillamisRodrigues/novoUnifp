@@ -3,13 +3,15 @@
         <thead>
             <tr>
                 <th>Perfil de Acesso</th>
+                <th>Descrição</th>
                 <th>Editar Permissões</th>
             </tr>
         </thead>
         <tbody>
             @foreach($nivelAcessos as $nivelAcesso)
             <tr>
-                <td>{!! $nivelAcesso->perfilAcesso !!}</td>
+                <td>{!! $nivelAcesso->name !!}</td>
+                <td>{!! $nivelAcesso->description !!}</td>
                 <td>
                     {!! Form::open(['route' => ['nivelAcessos.destroy', $nivelAcesso->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

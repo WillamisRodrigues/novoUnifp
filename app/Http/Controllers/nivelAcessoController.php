@@ -8,6 +8,7 @@ use App\Repositories\nivelAcessoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class nivelAcessoController extends AppBaseController
@@ -27,9 +28,36 @@ class nivelAcessoController extends AppBaseController
      *
      * @return Response
      */
+
+    public function atualizarPermissoes(Request $request)
+    {
+        $permissoes = DB::table('permission_role')->where('role_id', $request->permissao)->get();
+        if ($permissoes) {
+            DB::delete('delete from permission_role where role_id = ?', [$request->permissao]);
+        }
+
+        $chaves = $request->keys();
+        unset($chaves[0]);
+        unset($chaves[1]);
+
+        $listaInsert = [];
+        foreach ($chaves as $chave) {
+            $listaInsert[] = [
+                'permission_id'  => $chave,
+                'role_id'    => $request->permissao,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
+        }
+
+        DB::table('permission_role')->insert($listaInsert);
+
+        return redirect(route('nivelAcessos.index'));
+    }
+
     public function index(Request $request)
     {
-        $nivelAcessos = $this->nivelAcessoRepository->all();
+        $nivelAcessos = DB::table('roles')->where('deleted_at', null)->get();
 
         return view('nivel_acessos.index')
             ->with('nivelAcessos', $nivelAcessos);
@@ -56,7 +84,7 @@ class nivelAcessoController extends AppBaseController
     {
         $input = $request->all();
 
-        $nivelAcesso = $this->nivelAcessoRepository->create($input);
+        $nivelAcesso = DB::insert('insert into roles (name, slug, description, system, created_at, updated_at) values (?, ?, ?, ?, ?, ?)', [$request->name, $request->name, $request->description, 0, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
 
         Flash::success('Nivel de Acesso salvo com sucesso.');
 
@@ -72,7 +100,8 @@ class nivelAcessoController extends AppBaseController
      */
     public function show($id)
     {
-        $nivelAcesso = $this->nivelAcessoRepository->find($id);
+
+        $nivelAcesso = DB::table('roles')->where([['deleted_at', '=', null], ['id', '=', $id]])->get();
 
         if (empty($nivelAcesso)) {
             Flash::error('Nivel de acesso não encontrado.');
@@ -92,7 +121,11 @@ class nivelAcessoController extends AppBaseController
      */
     public function edit($id)
     {
-        $nivelAcesso = $this->nivelAcessoRepository->find($id);
+        $nivelAcesso = DB::table('roles')->where([['deleted_at', '=', null], ['id', '=', $id]])->get()->first();
+        $permissoes_concedidas = DB::table('permission_role')->where('role_id', $id)->get();
+        $resources = DB::table('permissions')->select('resource')->groupBy('resource')->get();
+        $permissoes = DB::table('permissions')->get();
+        // dd($permissoes_concedidas);
 
         if (empty($nivelAcesso)) {
             Flash::error('Nivel de acesso não encontrado.');
@@ -100,7 +133,7 @@ class nivelAcessoController extends AppBaseController
             return redirect(route('nivelAcessos.index'));
         }
 
-        return view('nivel_acessos.edit')->with('nivelAcesso', $nivelAcesso);
+        return view('nivel_acessos.edit', ['nivelAcesso' => $nivelAcesso, 'permissoes' => $permissoes, 'permissoes_concedidas' => $permissoes_concedidas, 'resources' => $resources]);
     }
 
     /**
@@ -113,7 +146,7 @@ class nivelAcessoController extends AppBaseController
      */
     public function update($id, UpdatenivelAcessoRequest $request)
     {
-        $nivelAcesso = $this->nivelAcessoRepository->find($id);
+        $nivelAcesso = DB::table('roles')->where([['deleted_at', '=', null], ['id', '=', $id]])->get();
 
         if (empty($nivelAcesso)) {
             Flash::error('Nivel de acesso não encontrado.');
@@ -139,7 +172,7 @@ class nivelAcessoController extends AppBaseController
      */
     public function destroy($id)
     {
-        $nivelAcesso = $this->nivelAcessoRepository->find($id);
+        $nivelAcesso = DB::table('roles')->where([['deleted_at', '=', null], ['id', '=', $id]])->get();
 
         if (empty($nivelAcesso)) {
             Flash::error('Nivel de acesso não encontrado.');

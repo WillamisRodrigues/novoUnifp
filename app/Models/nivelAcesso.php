@@ -18,7 +18,7 @@ class nivelAcesso extends Model
     use SoftDeletes;
 
     public $table = 'perfil';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -27,8 +27,8 @@ class nivelAcesso extends Model
 
 
     public $fillable = [
-        'perfilAcesso',
-        'nivelAcesso'
+        'name',
+        'description'
     ];
 
     /**
@@ -38,8 +38,8 @@ class nivelAcesso extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'perfilAcesso' => 'string',
-        'nivelAcesso' => 'integer'
+        'name' => 'string',
+        'description' => 'string'
     ];
 
     /**
@@ -48,9 +48,9 @@ class nivelAcesso extends Model
      * @var array
      */
     public static $rules = [
-        'perfilAcesso' => 'required',
-        'nivelAcesso' => 'required'
+        'name' => 'required',
+        'description' => 'required'
     ];
 
-    
+
 }
