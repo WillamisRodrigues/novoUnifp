@@ -8,6 +8,7 @@ use App\Repositories\RolesRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class RolesController extends AppBaseController
@@ -152,5 +153,12 @@ class RolesController extends AppBaseController
         Flash::success('Roles deleted successfully.');
 
         return redirect(route('roles.index'));
+    }
+
+    public static function nivel($id)
+    {
+        $idNivel = DB::table('role_user')->where('user_id', $id)->value('role_id');
+        $slugNivel = DB::table('roles')->where('id', $idNivel)->value('slug');
+        return $slugNivel;
     }
 }

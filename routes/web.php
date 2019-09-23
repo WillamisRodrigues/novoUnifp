@@ -7,7 +7,7 @@
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web!
 |
 */
 
@@ -107,82 +107,78 @@ Route::post('filtroRecebimentos', ['as' => 'filtroRecebimentos', 'uses' => 'Rela
 
 Route::post('atualizarPermissoes', ['as' => 'atualizarPermissoes', 'uses' => 'nivelAcessoController@atualizarPermissoes']);
 
-Route::resource('agendas', 'AgendaController')->middleware('role:Administrador');
+Route::resource('agendas', 'AgendaController')->middleware('canAtLeast:agendas.index');
 
-Route::resource('agendasArquivada', 'AgendasArquivadaController');
+Route::resource('agendasArquivada', 'AgendasArquivadaController')->middleware('canAtLeast:agendas.index');
 
-Route::resource('unidades', 'UnidadeController');
+Route::resource('unidades', 'UnidadeController')->middleware('canAtLeast:unidades.index');
 
-Route::resource('escolaridades', 'EscolaridadeController');
+Route::resource('escolaridades', 'EscolaridadeController')->middleware('canAtLeast:escpçarodades.index');
 
-Route::resource('tempoAulas', 'TempoAulaController');
+Route::resource('tempoAulas', 'TempoAulaController')->middleware('canAtLeast:tempo_aulas.index');
 
-Route::resource('nivelAcessos', 'nivelAcessoController');
+Route::resource('nivelAcessos', 'nivelAcessoController')->middleware('canAtLeast:nivel_acesso.index');
 
-Route::resource('usuarios', 'usuarioController');
+Route::resource('usuarios', 'usuarioController')->middleware('canAtLeast:usuarios.index');
 
-Route::resource('visitantes', 'visitanteController');
+Route::resource('visitantes', 'visitanteController')->middleware('canAtLeast:visitantes.index');
 
-Route::resource('funcionarios', 'FuncionarioController');
+Route::resource('funcionarios', 'FuncionarioController')->middleware('canAtLeast:funcionarios.index');
 
-Route::resource('fornecedors', 'FornecedorController');
+Route::resource('fornecedors', 'FornecedorController')->middleware('canAtLeast:fornecedores.index');
 
-Route::resource('horarios', 'HorarioController');
+Route::resource('horarios', 'HorarioController')->middleware('canAtLeast:horarios.index');
 
-Route::resource('diasSemanas', 'DiasSemanaController');
+Route::resource('diasSemanas', 'DiasSemanaController')->middleware('canAtLeast:dias_semanas.index');
 
-Route::resource('ajudas', 'AjudaController');
+Route::resource('ajudas', 'AjudaController')->middleware('canAtLeast:ajudas.index');
 
-Route::resource('alunos', 'AlunoController');
+Route::resource('alunos', 'AlunoController')->middleware('canAtLeast:alunos.index');
 
-Route::resource('cursos', 'CursoController');
+Route::resource('cursos', 'CursoController')->middleware('canAtLeast:cursos.index');
 
-Route::resource('formasPagamentos', 'FormasPagamentoController');
+Route::resource('formasPagamentos', 'FormasPagamentoController')->middleware('canAtLeast:formas_parcelamento.index');
 
-Route::resource('turmas', 'TurmaController');
+Route::resource('turmas', 'TurmaController')->middleware('canAtLeast:turmas.index');
 
-Route::resource('turmasInativas', 'TurmaInativaController');
+Route::resource('turmasInativas', 'TurmaInativaController')->middleware('canAtLeast:turmas.index');
 
-// Route::resource('turmasCursos', 'TurmaCursoController');
+Route::resource('aulasCronogramas', 'AulasCronogramaController')->middleware('canAtLeast:aulas_cronogramas.index');
 
-Route::resource('aulasCronogramas', 'AulasCronogramaController');
+Route::resource('cronogramas', 'CronogramaController')->middleware('canAtLeast:cronogramas.index');
 
-Route::resource('cronogramas', 'CronogramaController');
+Route::resource('centroCustos', 'CentroCustoController')->middleware('canAtLeast:centro_custos.index');
 
-Route::resource('centroCustos', 'CentroCustoController');
+Route::resource('caixas', 'CaixaController')->middleware('canAtLeast:caixas.index');
 
-Route::resource('caixas', 'CaixaController');
+Route::resource('lancamentos', 'LancamentoController')->middleware('canAtLeast:lancamentos.index');
 
-Route::resource('lancamentos', 'LancamentoController');
+Route::resource('aniversarios', 'AniversarioController')->middleware('canAtLeast:funcionarios.index');
 
-Route::resource('aniversarios', 'AniversarioController');
+Route::resource('presenca', 'PresencaController')->middleware('canAtLeast:controles.index');
 
-Route::resource('presenca', 'PresencaController');
+Route::resource('pagamento', 'PagamentoController')->middleware('canAtLeast:pagamentos.index');
 
-Route::resource('pagamento', 'PagamentoController');
+Route::resource('frequencias', 'FrequenciaController')->middleware('canAtLeast:controles.index');
 
-Route::resource('frequencias', 'FrequenciaController');
+Route::resource('comoConheceus', 'ComoConheceuController')->middleware('canAtLeast:como_conheceu.index');
 
-Route::resource('comoConheceus', 'ComoConheceuController');
+Route::resource('formaPgtos', 'FormaPgtoController')->middleware('canAtLeast:forma_pagamentos.index');
 
-Route::resource('formaPgtos', 'FormaPgtoController');
+Route::resource('pagtos', 'PagtoController')->middleware('canAtLeast:pagamentos.index');
 
-Route::resource('pagtos', 'PagtoController');
+Route::resource('comunicados', 'ComunicadosController')->middleware('canAtLeast:comunicados.index');
 
-Route::resource('comunicados', 'ComunicadosController');
+Route::resource('contratos', 'ContratoController')->middleware('canAtLeast:contratos.index');
 
-Route::resource('contratos', 'ContratoController');
+Route::resource('pdf', 'PdfController')->middleware('canAtLeast:relatorios.index');
 
-Route::resource('pdf', 'PdfController');
+Route::resource('diasVencimentos', 'DiasVencimentoController')->middleware('canAtLeast:dias_vencimentos.index');
 
-Route::resource('diasVencimentos', 'DiasVencimentoController');
+Route::resource('pagamentos', 'PagamentosController')->middleware('canAtLeast:pagamentos.index');
 
-Route::resource('pagamentos', 'PagamentosController');
+Route::resource('modulos', 'ModuloController')->middleware('canAtLeast:nivel_acesso.index');
 
+Route::resource('permissions', 'PermissionController')->middleware('canAtLeast:nivel_acesso.index');
 
-Route::resource('modulos', 'ModuloController');
-
-
-Route::resource('permissions', 'PermissionController');
-
-Route::resource('roles', 'RolesController');
+Route::resource('roles', 'RolesController')->middleware('canAtLeast:nivel_acesso.index');

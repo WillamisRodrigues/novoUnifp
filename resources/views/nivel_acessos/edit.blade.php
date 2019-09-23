@@ -32,6 +32,7 @@
         <div class="box-body">
             {!! Form::open(['url' => 'atualizarPermissoes']) !!}
             <button type="submit" class="btn btn-success pull-right"> <i class="fas fa-sync-alt"></i> Atualizar Permissões </button>
+            <a href="{!! route('nivelAcessos.index') !!}"  style="margin-right: 5px" class="btn btn-default pull-right">Voltar</a>
             <table class="table display text-center">
                 <thead>
                     <tr>
@@ -63,6 +64,7 @@
                 </tbody>
             </table>
             <button type="submit" class="btn btn-success pull-right"> <i class="fas fa-sync-alt"></i> Atualizar Permissões </button>
+            <a href="{!! route('nivelAcessos.index') !!}"  style="margin-right: 5px" class="btn btn-default pull-right">Voltar</a>
             {!! Form::close() !!}
         </div>
     </div>
