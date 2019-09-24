@@ -153,4 +153,16 @@ class PermissionController extends AppBaseController
 
         return redirect(route('permissions.index'));
     }
+
+    public function temPermissao($slug){
+        $userId = Auth::user()->id;
+        $role = DB::table('role_user')->where('id', $userId)->get()->first();
+        $permissionId = DB::table('permissions')->where('slug', $slug)->get()->first();
+        $permissao = DB::table('permission_role')->where([['permission_id', '=', $permissionId->id], ['role_id', '=', $role->id]])->get();
+        if($permissao){
+            return true;
+        } else {
+            return abort('404', 'Você não possui permissão para acessar essa página.');
+        }
+    }
 }

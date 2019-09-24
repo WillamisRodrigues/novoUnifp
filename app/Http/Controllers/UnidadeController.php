@@ -37,6 +37,8 @@ class UnidadeController extends AppBaseController
     public function index(Request $request)
     {
 
+        PermissionController::temPermissao('unidades.index');
+
         $unidades = $this->unidadeRepository->all();
 
         return view('unidades.index')
