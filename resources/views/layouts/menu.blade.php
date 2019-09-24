@@ -18,7 +18,6 @@
     <a href="#" class="dropdown-toggle drop-menu-item-main" data-toggle="dropdown"><i
             class="glyphicon glyphicon-calendar"></i> Agenda <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
-
         @canAtLeast(['agenda.index'])
         <li class="{{ Request::is('agendas*') ? 'active' : '' }}">
             <a href="{!! route('agendas.index') !!}" style="display: inline-block"><i
@@ -32,6 +31,7 @@
                     class="glyphicon glyphicon-calendar"></i>Agenda Arquivada</a>
         </li>
         @endCanAtLeast
+
     </ul>
 </li>
 
@@ -158,26 +158,26 @@
         </li>
         @endCanAtLeast
 
-        @canAtLeast(['relatorios.index'])
+        @canAtLeast(['unidades.index'])
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="/previsaoRecebimentos"><i class="fa fa-list"></i><span>Previsão de Recebimentos</span></a>
         </li>
         @endCanAtLeast
 
-        @canAtLeast(['relatorios.index'])
+        @canAtLeast(['unidades.index'])
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="/geralRecebimentos"><i class="fa fa-list"></i><span>Resumo Geral de Recebimentos</span></a>
         </li>
         @endCanAtLeast
 
-        @canAtLeast(['funcionarios.index'])
+        @canAtLeast(['aniversarios.index'])
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="/funcionarios-aniversario"><i class="fa fa-birthday-cake"></i><span>Aniversário de
                     Funcionários</span></a>
         </li>
         @endCanAtLeast
 
-        @canAtLeast(['funcionarios.index'])
+        @canAtLeast(['aniversarios.index'])
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="/professores-aniversario"><i class="fa fa-birthday-cake"></i><span>Aniversário de
                     Professores</span></a>
@@ -194,13 +194,13 @@
         <i class="glyphicon glyphicon-chevron-down"></i> </a>
     <ul class="dropdown-menu drop-menu-item-top">
 
-        @canAtLeast(['funcionarios.index'])
+        @canAtLeast(['aniversarios.index'])
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="professores-listar"><i class="fa fa-user-o"></i><span>Professores</span></a>
         </li>
         @endCanAtLeast
 
-        @canAtLeast(['funcionarios.index'])
+        @canAtLeast(['aniversarios.index'])
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="/vendedores-listar"><i class="fa fa-user-o"></i><span>Vendedores</span></a>
         </li>

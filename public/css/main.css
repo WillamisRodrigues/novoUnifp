@@ -13,6 +13,7 @@
     border-top-color: #00A65A;
 }
 
+.sidebar-menu li ul li a,
 .sidebar-menu li a {
     padding: 15px 10px !important;
     background-color: #00A65A !important;
