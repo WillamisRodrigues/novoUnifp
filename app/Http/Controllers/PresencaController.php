@@ -33,6 +33,7 @@ class PresencaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('controles.index');
         $unidade = UnidadeController::getUnidade();
         $alunos = $this->alunoRepository->all()->where('idUnidade', $unidade);
         $cursos = $this->cursoRepository->all()->where('idUnidade', $unidade);

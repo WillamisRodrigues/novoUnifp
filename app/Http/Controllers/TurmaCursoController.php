@@ -17,6 +17,7 @@ class TurmaCursoController extends Controller
      */
     public function show($id)
     {
+        PermissionController::temPermissao('turmas.index');
         $unidade = UnidadeController::getUnidade();
         $turma = DB::select('select * from turma where Status = ? and idCurso = ? and idUnidade = ?', ['Ativa', $id, $unidade]);
         $curso = DB::table('curso')->get();

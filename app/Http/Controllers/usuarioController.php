@@ -31,6 +31,7 @@ class usuarioController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('usuarios.index');
         $unidade = UnidadeController::getUnidade();
         $usuarios = $this->usuarioRepository->all()->where('idUnidade', $unidade);
         $unidades = DB::table('unidade')->get();
@@ -46,6 +47,7 @@ class usuarioController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('usuarios.update');
         $unidades = DB::table('unidade')->get();
         $niveis = DB::table('roles')->where('deleted_at', null)->get();
         return view('usuarios.create', ['unidades' => $unidades, 'niveis' => $niveis]);
@@ -60,6 +62,7 @@ class usuarioController extends AppBaseController
      */
     public function store(CreateusuarioRequest $request)
     {
+        PermissionController::temPermissao('usuarios.update');
         $input = $request->all();
 
         $input['password'] = Hash::make($input['password']);
@@ -82,6 +85,7 @@ class usuarioController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('usuarios.index');
         $usuario = $this->usuarioRepository->find($id);
 
         if (empty($usuario)) {
@@ -102,6 +106,7 @@ class usuarioController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('usuarios.edit');
         $usuario = $this->usuarioRepository->find($id);
 
         if (empty($usuario)) {
@@ -127,6 +132,7 @@ class usuarioController extends AppBaseController
      */
     public function update($id, UpdateusuarioRequest $request)
     {
+        PermissionController::temPermissao('usuarios.edit');
         $usuario = $this->usuarioRepository->find($id);
 
         if (empty($usuario)) {
@@ -154,6 +160,7 @@ class usuarioController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('usuarios.delete');
         $usuario = $this->usuarioRepository->find($id);
 
         if (empty($usuario)) {

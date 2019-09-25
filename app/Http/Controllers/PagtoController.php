@@ -29,6 +29,7 @@ class PagtoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('pagamentos.index');
         $pagtos = $this->pagtoRepository->all();
 
         return view('pagtos.index')
@@ -42,6 +43,7 @@ class PagtoController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('pagamentos.update');
         return view('pagtos.create');
     }
 
@@ -54,6 +56,7 @@ class PagtoController extends AppBaseController
      */
     public function store(CreatePagtoRequest $request)
     {
+        PermissionController::temPermissao('pagamentos.update');
         $input = $request->all();
 
         $pagto = $this->pagtoRepository->create($input);
@@ -72,6 +75,7 @@ class PagtoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('pagamentos.index');
         $pagto = $this->pagtoRepository->find($id);
 
         if (empty($pagto)) {
@@ -92,6 +96,7 @@ class PagtoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('pagamentos.edit');
         $pagto = $this->pagtoRepository->find($id);
 
         if (empty($pagto)) {
@@ -113,6 +118,7 @@ class PagtoController extends AppBaseController
      */
     public function update($id, UpdatePagtoRequest $request)
     {
+        PermissionController::temPermissao('pagamentos.edit');
         $pagto = $this->pagtoRepository->find($id);
 
         if (empty($pagto)) {
@@ -139,6 +145,7 @@ class PagtoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('pagamentos.delete');
         $pagto = $this->pagtoRepository->find($id);
 
         if (empty($pagto)) {

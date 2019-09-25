@@ -31,6 +31,7 @@ class TurmaInativaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('turmas.index');
         // $turmas = $this->turmaRepository->all()->where('Status', 'Inativa');
 
         $unidade = UnidadeController::getUnidade();

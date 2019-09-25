@@ -33,6 +33,7 @@ class RelatoriosController extends Controller
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('relatorios.index');
         $unidade = UnidadeController::getUnidade();
         $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
         $sum = 0;
@@ -50,6 +51,7 @@ class RelatoriosController extends Controller
 
     public function despesas(Request $request)
     {
+        PermissionController::temPermissao('relatorios.index');
         $unidade = UnidadeController::getUnidade();
         $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Despesa']])->get();
         $sum = 0;
@@ -64,6 +66,7 @@ class RelatoriosController extends Controller
 
     public function filtroDespesas(Request $request)
     {
+        PermissionController::temPermissao('relatorios.index');
         $dataInicio = "$request->ano-$request->mes-01 00:00:00";
         $dataFim = "$request->ano-$request->mes-31 23:59:59";
 
@@ -85,6 +88,7 @@ class RelatoriosController extends Controller
 
     public function alunosAtrasados()
     {
+        PermissionController::temPermissao('relatorios.index');
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
         $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['idUnidade', '=', $unidade], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
@@ -97,6 +101,7 @@ class RelatoriosController extends Controller
 
     public function filtroAlunosAtrasados(Request $request)
     {
+        PermissionController::temPermissao('relatorios.index');
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
         $pagamentosAtrasados = DB::table('pagamentos');
@@ -158,6 +163,7 @@ class RelatoriosController extends Controller
 
     public function geralAlunos()
     {
+        PermissionController::temPermissao('relatorios.index');
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
         $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
@@ -170,6 +176,7 @@ class RelatoriosController extends Controller
 
     public function filtroGeralAlunos(Request $request)
     {
+        PermissionController::temPermissao('relatorios.index');
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
@@ -283,6 +290,7 @@ class RelatoriosController extends Controller
 
     public function atrasados()
     {
+        PermissionController::temPermissao('relatorios.index');
         $unidade = UnidadeController::getUnidade();
         $pagamentos = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Status', '<>', 'Quitado']])->get()->last();
         return $pagamentos;
@@ -290,6 +298,7 @@ class RelatoriosController extends Controller
 
     public function emDia()
     {
+        PermissionController::temPermissao('relatorios.index');
         $unidade = UnidadeController::getUnidade();
         $pagamentos = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Status', '=', 'Quitado']])->get()->last();
         return $pagamentos;
@@ -297,6 +306,7 @@ class RelatoriosController extends Controller
 
     public static function pagamentos($id)
     {
+        PermissionController::temPermissao('relatorios.index');
         $dia = date('d');
         $mes = date('m');
         $ano = date('Y');
@@ -342,6 +352,7 @@ class RelatoriosController extends Controller
 
     public function geralRecebimentos()
     {
+        PermissionController::temPermissao('relatorios.index');
         $unidade = UnidadeController::getUnidade();
         $hoje = date('Y-m-d');
         $quitado = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['Status', '=', 'Quitado']])->get();
@@ -378,6 +389,7 @@ class RelatoriosController extends Controller
     }
     public function previsaoRecebimentos()
     {
+        PermissionController::temPermissao('relatorios.index');
         $pagamentos = DB::table('pagamentos');
         $unidade = UnidadeController::getUnidade();
         $ano = date("Y");
@@ -474,6 +486,7 @@ class RelatoriosController extends Controller
 
     public function filtroRecebimentos(Request $request)
     {
+        PermissionController::temPermissao('relatorios.index');
         $unidade = UnidadeController::getUnidade();
         if ($request->Mes) {
             $dataInicio = "$request->Ano-$request->Mes-01";
@@ -497,6 +510,7 @@ class RelatoriosController extends Controller
      */
     public function create()
     {
+        PermissionController::temPermissao('relatorios.update');
         return view('caixas.create');
     }
 
@@ -509,6 +523,7 @@ class RelatoriosController extends Controller
      */
     public function store(CreateCaixaRequest $request)
     {
+        PermissionController::temPermissao('relatorios.update');
         $input = $request->all();
 
         $caixa = $this->caixaRepository->create($input);
@@ -527,6 +542,7 @@ class RelatoriosController extends Controller
      */
     public function show($id)
     {
+        PermissionController::temPermissao('relatorios.index');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -547,6 +563,7 @@ class RelatoriosController extends Controller
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('relatorios.edit');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -568,6 +585,7 @@ class RelatoriosController extends Controller
      */
     public function update($id, UpdateCaixaRequest $request)
     {
+        PermissionController::temPermissao('relatorios.edit');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -594,6 +612,7 @@ class RelatoriosController extends Controller
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('relatorios.delete');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {

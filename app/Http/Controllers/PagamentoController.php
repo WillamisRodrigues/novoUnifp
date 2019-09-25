@@ -35,6 +35,7 @@ class PagamentoController extends AppBaseController
      */
     public function index($id)
     {
+        PermissionController::temPermissao('pagamentos.index');
         $alunos = $this->alunoRepository->all()->where('id', $id);
         $pagtos = $this->pagtoRepository->all()->where('Matricula', $id);
 
@@ -43,7 +44,7 @@ class PagamentoController extends AppBaseController
 
     public function lancamento($pag, $matricula)
     {
-
+        PermissionController::temPermissao('pagamentos.index');
         $aluno = DB::table('aluno')->get()->where('id', $matricula)->first();
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $pag)->first();
         $formaPgtos = DB::table('forma_pgto')->get();
@@ -62,6 +63,7 @@ class PagamentoController extends AppBaseController
      */
     public function store(Request $request)
     {
+        PermissionController::temPermissao('pagamentos.update');
         $input = $request->all();
 
         $aluno = $this->alunoRepository->find($input->Matricula);
@@ -86,6 +88,7 @@ class PagamentoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('pagamentos.update');
         $alunos = $this->alunoRepository->all()->where('id', $id);
         $pagtos = $this->pagtoRepository->all()->where('Matricula', $id);
 
@@ -101,6 +104,7 @@ class PagamentoController extends AppBaseController
      */
     public function edit($Matricula, $Parcela)
     {
+        PermissionController::temPermissao('pagamentos.edit');
         $aluno = $this->alunoRepository->find($Matricula);
         $formaPgtos = $this->formaPgtoRepository->all();
         $pagtos = $this->pagtoRepository->all()->where('Matricula', $Matricula)->where('Parcela', $Parcela);
@@ -128,6 +132,7 @@ class PagamentoController extends AppBaseController
     // public function update($id, UpdateAlunoRequest $request)
     public function notas($id)
     {
+        PermissionController::temPermissao('pagamentos.index');
         $aluno = $this->alunoRepository->find($id)->first();
 
         if (empty($aluno)) {
@@ -150,6 +155,7 @@ class PagamentoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('pagamentos.delete');
         $aluno = $this->alunoRepository->find($id);
 
         if (empty($aluno)) {

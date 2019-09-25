@@ -31,6 +31,7 @@ class nivelAcessoController extends AppBaseController
 
     public function atualizarPermissoes(Request $request)
     {
+        PermissionController::temPermissao('nivel_acesso.edit');
         $permissoes = DB::table('permission_role')->where('role_id', $request->permissao)->get();
         if ($permissoes) {
             DB::delete('delete from permission_role where role_id = ?', [$request->permissao]);
@@ -57,6 +58,7 @@ class nivelAcessoController extends AppBaseController
 
     public function index(Request $request)
     {
+        PermissionController::temPermissao('nivel_acesso.index');
         $nivelAcessos = DB::table('roles')->where('deleted_at', null)->get();
 
         return view('nivel_acessos.index')
@@ -70,6 +72,7 @@ class nivelAcessoController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('nivel_acesso.update');
         return view('nivel_acessos.create');
     }
 
@@ -82,6 +85,7 @@ class nivelAcessoController extends AppBaseController
      */
     public function store(CreatenivelAcessoRequest $request)
     {
+        PermissionController::temPermissao('nivel_acesso.update');
         $input = $request->all();
 
         $nivelAcesso = DB::insert('insert into roles (name, slug, description, system, created_at, updated_at) values (?, ?, ?, ?, ?, ?)', [$request->name, $request->name, $request->description, 0, date("Y-m-d H:i:s"), date("Y-m-d H:i:s")]);
@@ -100,6 +104,7 @@ class nivelAcessoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('nivel_acesso.index');
 
         $nivelAcesso = DB::table('roles')->where([['deleted_at', '=', null], ['id', '=', $id]])->get();
 
@@ -121,6 +126,7 @@ class nivelAcessoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('nivel_acesso.edit');
         $nivelAcesso = DB::table('roles')->where([['deleted_at', '=', null], ['id', '=', $id]])->get()->first();
         $permissoes_concedidas = DB::table('permission_role')->where('role_id', $id)->get();
         $resources = DB::table('permissions')->select('resource')->groupBy('resource')->get();
@@ -146,6 +152,7 @@ class nivelAcessoController extends AppBaseController
      */
     public function update($id, UpdatenivelAcessoRequest $request)
     {
+        PermissionController::temPermissao('nivel_acesso.edit');
         $nivelAcesso = DB::table('roles')->where([['deleted_at', '=', null], ['id', '=', $id]])->get();
 
         if (empty($nivelAcesso)) {
@@ -172,6 +179,7 @@ class nivelAcessoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('nivel_acesso.delete');
         $nivelAcesso = DB::table('roles')->where([['deleted_at', '=', null], ['id', '=', $id]])->get();
 
         if (empty($nivelAcesso)) {

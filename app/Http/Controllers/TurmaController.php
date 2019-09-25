@@ -33,6 +33,7 @@ class TurmaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('turmas.index');
         // $turmas = $this->turmaRepository->all()->where('Status', 'Ativa');
         $unidade = UnidadeController::getUnidade();
         $turmas = DB::table('turma')->where([['Status', '=', 'Ativa'], ['deleted_at', '=', null],['idUnidade', '=', $unidade]])->get();
@@ -48,6 +49,7 @@ class TurmaController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('turmas.update');
         $unidade = UnidadeController::getUnidade();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $professores = DB::table('funcionario')->where([['Cargo', '=', 'Professor'], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
@@ -66,6 +68,7 @@ class TurmaController extends AppBaseController
      */
     public function store(CreateTurmaRequest $request)
     {
+        PermissionController::temPermissao('turmas.update');
         $input = $request->all();
 
         $turma = $this->turmaRepository->create($input);
@@ -87,6 +90,7 @@ class TurmaController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('turmas.index');
         $turma = $this->turmaRepository->find($id);
 
         if (empty($turma)) {
@@ -112,6 +116,7 @@ class TurmaController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('turmas.edit');
         $turma = $this->turmaRepository->find($id);
 
         if (empty($turma)) {
@@ -143,6 +148,7 @@ class TurmaController extends AppBaseController
      */
     public function update($id, UpdateTurmaRequest $request)
     {
+        PermissionController::temPermissao('turmas.edit');
         $turma = $this->turmaRepository->find($id);
 
         if (empty($turma)) {
@@ -169,6 +175,7 @@ class TurmaController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('turmas.delete');
         $turma = $this->turmaRepository->find($id);
 
         if (empty($turma)) {

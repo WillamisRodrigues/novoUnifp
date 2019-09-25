@@ -38,6 +38,7 @@ class PagamentosController extends AppBaseController
      */
     public function index($id)
     {
+        PermissionController::temPermissao('pagamentos.index');
         $alunos = $this->alunoRepository->all()->where('id', $id);
         $pagtos = $this->pagtoRepository->all()->where('Matricula', $id);
 
@@ -46,6 +47,7 @@ class PagamentosController extends AppBaseController
 
     public function lancamento($pag, $matricula)
     {
+        PermissionController::temPermissao('pagamentos.index');
         $aluno = DB::table('aluno')->get()->where('id', $matricula)->first();
         $recibo = DB::table('pagamentos')->get()->where('numeroDocumento', $pag)->first();
         $formaPgtos = DB::table('forma_pgto')->get();
@@ -60,6 +62,7 @@ class PagamentosController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('pagamentos.update');
         return view('pagamentos.create');
     }
 
@@ -72,6 +75,7 @@ class PagamentosController extends AppBaseController
      */
     public function store(CreatePagamentosRequest $request)
     {
+        PermissionController::temPermissao('pagamentos.update');
         $input = $request->all();
 
         Arr::set($input, 'Multa', str_replace(',', '.', Arr::get($input, 'Multa')));
@@ -121,6 +125,7 @@ class PagamentosController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('pagamentos.index');
         $pagamentos = DB::table('pagamentos')->get()->where('Matricula', $id);
         $aluno = DB::table('aluno')->get()->where('id', $id);
 
@@ -142,6 +147,7 @@ class PagamentosController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('pagamentos.edit');
         $pagamentos = $this->pagamentosRepository->find($id);
 
         if (empty($pagamentos)) {
@@ -163,6 +169,7 @@ class PagamentosController extends AppBaseController
      */
     public function update($id, UpdatePagamentosRequest $request)
     {
+        PermissionController::temPermissao('pagamentos.edit');
         $pagamentos = $this->pagamentosRepository->find($id);
 
         if (empty($pagamentos)) {
@@ -189,6 +196,7 @@ class PagamentosController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('pagamentos.delete');
         $pagamentos = $this->pagamentosRepository->find($id);
 
         if (empty($pagamentos)) {

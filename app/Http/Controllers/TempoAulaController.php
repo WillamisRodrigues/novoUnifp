@@ -29,6 +29,7 @@ class TempoAulaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('tempo_aulas.index');
         $unidade = UnidadeController::getUnidade();
         $tempoAulas = $this->tempoAulaRepository->all()->where('idUnidade', $unidade);
 
@@ -43,6 +44,7 @@ class TempoAulaController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('tempo_aulas.update');
         return view('tempo_aulas.create');
     }
 
@@ -55,6 +57,7 @@ class TempoAulaController extends AppBaseController
      */
     public function store(CreateTempoAulaRequest $request)
     {
+        PermissionController::temPermissao('tempo_aulas.update');
         $input = $request->all();
 
         $tempoAula = $this->tempoAulaRepository->create($input);
@@ -76,6 +79,7 @@ class TempoAulaController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('tempo_aulas.index');
         $tempoAula = $this->tempoAulaRepository->find($id);
 
         if (empty($tempoAula)) {
@@ -96,6 +100,7 @@ class TempoAulaController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('tempo_aulas.edit');
         $tempoAula = $this->tempoAulaRepository->find($id);
 
         if (empty($tempoAula)) {
@@ -117,6 +122,7 @@ class TempoAulaController extends AppBaseController
      */
     public function update($id, UpdateTempoAulaRequest $request)
     {
+        PermissionController::temPermissao('tempo_aulas.edit');
         $tempoAula = $this->tempoAulaRepository->find($id);
 
         if (empty($tempoAula)) {
@@ -143,6 +149,7 @@ class TempoAulaController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('tempo_aulas.delete');
         $tempoAula = $this->tempoAulaRepository->find($id);
 
         if (empty($tempoAula)) {

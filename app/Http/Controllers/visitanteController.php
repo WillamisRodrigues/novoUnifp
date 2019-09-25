@@ -31,6 +31,7 @@ class visitanteController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('visitantes.index');
         $unidade = UnidadeController::getUnidade();
 
         // $visitantes = $this->visitanteRepository->all();
@@ -47,6 +48,7 @@ class visitanteController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('visitantes.update');
         $conheceu = DB::table('como_conheceu')->get();
         return view('visitantes.create', ['comoConheceu' => $conheceu]);
     }
@@ -60,6 +62,7 @@ class visitanteController extends AppBaseController
      */
     public function store(CreatevisitanteRequest $request)
     {
+        PermissionController::temPermissao('visitantes.update');
         $input = $request->all();
 
         $visitante = $this->visitanteRepository->create($input);
@@ -80,6 +83,7 @@ class visitanteController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('visitantes.index');
         $visitante = $this->visitanteRepository->find($id);
 
         if (empty($visitante)) {
@@ -102,6 +106,7 @@ class visitanteController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('visitantes.edit');
         $visitante = $this->visitanteRepository->find($id);
         $conheceu = DB::table('como_conheceu')->get();
 
@@ -125,6 +130,7 @@ class visitanteController extends AppBaseController
      */
     public function update($id, UpdatevisitanteRequest $request)
     {
+        PermissionController::temPermissao('visitantes.edit');
         $visitante = $this->visitanteRepository->find($id);
 
         if (empty($visitante)) {
@@ -151,6 +157,7 @@ class visitanteController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('visitantes.delete');
         $visitante = $this->visitanteRepository->find($id);
 
         if (empty($visitante)) {
