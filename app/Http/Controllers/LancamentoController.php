@@ -31,6 +31,7 @@ class LancamentoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('lancamentos.index');
         // $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
         $unidade = UnidadeController::getUnidade();
         $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
@@ -59,6 +60,7 @@ class LancamentoController extends AppBaseController
 
     public function avancado()
     {
+        PermissionController::temPermissao('lancamentos.index');
         $unidade = UnidadeController::getUnidade();
         $formas = DB::table('forma_pgto')->get();
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
@@ -71,7 +73,7 @@ class LancamentoController extends AppBaseController
 
     public function buscaAvancada(Request $request)
     {
-
+        PermissionController::temPermissao('lancamentos.index');
         $unidade = UnidadeController::getUnidade();
         // $dados = DB::select('select * from caixa where deleted_at = null & Tipo = :tipo & Via = :via & FormaPgto = :forma & Status = :status & Aluno = :aluno & Lancamento >= :lancamentoinicio & Lancamento <= :lancamentofim & Vencimento >= :vencimentoinicio & Vencimento <= :vencimentofim & Valor = :valor & idUnidade = :unidade', [1]);
         $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
@@ -82,7 +84,7 @@ class LancamentoController extends AppBaseController
 
     public function filtroLancamentos(Request $request)
     {
-
+        PermissionController::temPermissao('lancamentos.index');
         $unidade = UnidadeController::getUnidade();
         // $dados = DB::select('select * from caixa where deleted_at = null & Tipo = :tipo & Via = :via & FormaPgto = :forma & Status = :status & Aluno = :aluno & Lancamento >= :lancamentoinicio & Lancamento <= :lancamentofim & Vencimento >= :vencimentoinicio & Vencimento <= :vencimentofim & Valor = :valor & idUnidade = :unidade', [1]);
         $caixaMesReceitas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
@@ -116,6 +118,7 @@ class LancamentoController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('lancamentos.update');
         $formaPgto = DB::table('forma_pgto')->get();
         $centroCusto = DB::table('centro_custo')->get();
         $unidade = UnidadeController::getUnidade();
@@ -133,6 +136,7 @@ class LancamentoController extends AppBaseController
      */
     public function store(CreateCaixaRequest $request)
     {
+        PermissionController::temPermissao('lancamentos.update');
         $input = $request->all();
 
         Arr::set($input, 'Valor', str_replace(',', '.', Arr::get($input, 'Valor')));
@@ -156,6 +160,7 @@ class LancamentoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('lancamentos.index');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -176,6 +181,7 @@ class LancamentoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('lancamentos.edit');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -203,6 +209,7 @@ class LancamentoController extends AppBaseController
      */
     public function update($id, UpdateCaixaRequest $request)
     {
+        PermissionController::temPermissao('lancamentos.edit');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -229,6 +236,7 @@ class LancamentoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('lancamentos.delete');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {

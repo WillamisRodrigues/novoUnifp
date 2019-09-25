@@ -30,6 +30,7 @@ class DiasSemanaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('dias_semanas.index');
         $unidade = UnidadeController::getUnidade();
         $diasSemanas = $this->diasSemanaRepository->all()->where('idUnidade', '=', $unidade);
 
@@ -44,6 +45,7 @@ class DiasSemanaController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('dias_semanas.update');
         return view('dias_semanas.create');
     }
 
@@ -56,6 +58,7 @@ class DiasSemanaController extends AppBaseController
      */
     public function store(CreateDiasSemanaRequest $request)
     {
+        PermissionController::temPermissao('dias_semanas.update');
         $input = $request->all();
 
         $diasSemana = $this->diasSemanaRepository->create($input);
@@ -76,6 +79,7 @@ class DiasSemanaController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('dias_semanas.index');
         $diasSemana = $this->diasSemanaRepository->find($id);
 
         if (empty($diasSemana)) {
@@ -96,6 +100,7 @@ class DiasSemanaController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('dias_semanas.edit');
         $diasSemana = $this->diasSemanaRepository->find($id);
 
         if (empty($diasSemana)) {
@@ -117,6 +122,7 @@ class DiasSemanaController extends AppBaseController
      */
     public function update($id, UpdateDiasSemanaRequest $request)
     {
+        PermissionController::temPermissao('dias_semanas.edit');
         $diasSemana = $this->diasSemanaRepository->find($id);
 
         if (empty($diasSemana)) {
@@ -145,6 +151,7 @@ class DiasSemanaController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('dias_semanas.delete');
         $diasSemana = $this->diasSemanaRepository->find($id);
 
         if (empty($diasSemana)) {

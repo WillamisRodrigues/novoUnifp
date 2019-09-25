@@ -29,6 +29,7 @@ class ComoConheceuController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('como_conheceu.index');
         $comoConheceus = $this->comoConheceuRepository->all();
 
         return view('como_conheceus.index')
@@ -42,6 +43,7 @@ class ComoConheceuController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('como_conheceu.update');
         return view('como_conheceus.create');
     }
 
@@ -54,6 +56,7 @@ class ComoConheceuController extends AppBaseController
      */
     public function store(CreateComoConheceuRequest $request)
     {
+        PermissionController::temPermissao('como_conheceu.update');
         $input = $request->all();
 
         $comoConheceu = $this->comoConheceuRepository->create($input);
@@ -72,6 +75,7 @@ class ComoConheceuController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('como_conheceu.index');
         $comoConheceu = $this->comoConheceuRepository->find($id);
 
         if (empty($comoConheceu)) {
@@ -92,6 +96,7 @@ class ComoConheceuController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('como_conheceu.edit');
         $comoConheceu = $this->comoConheceuRepository->find($id);
 
         if (empty($comoConheceu)) {
@@ -113,6 +118,7 @@ class ComoConheceuController extends AppBaseController
      */
     public function update($id, UpdateComoConheceuRequest $request)
     {
+        PermissionController::temPermissao('como_conheceu.edit');
         $comoConheceu = $this->comoConheceuRepository->find($id);
 
         if (empty($comoConheceu)) {
@@ -139,6 +145,7 @@ class ComoConheceuController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('como_conheceu.delete');
         $comoConheceu = $this->comoConheceuRepository->find($id);
 
         if (empty($comoConheceu)) {

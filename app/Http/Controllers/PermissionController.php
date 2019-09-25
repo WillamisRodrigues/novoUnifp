@@ -8,6 +8,8 @@ use App\Repositories\PermissionRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class PermissionController extends AppBaseController
@@ -154,9 +156,9 @@ class PermissionController extends AppBaseController
         return redirect(route('permissions.index'));
     }
 
-    public function temPermissao($slug){
+    public static function temPermissao($slug){
         $userId = Auth::user()->id;
-        $role = DB::table('role_user')->where('id', $userId)->get()->first();
+        $role = DB::table('role_user')->where('user_id', $userId)->get()->first();
         $permissionId = DB::table('permissions')->where('slug', $slug)->get()->first();
         $permissao = DB::table('permission_role')->where([['permission_id', '=', $permissionId->id], ['role_id', '=', $role->id]])->get();
         if($permissao){

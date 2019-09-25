@@ -32,6 +32,7 @@ class FormasPagamentoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('forma_pagamento.index');
         $formasPagamentos = $this->formasPagamentoRepository->all();
 
         return view('formas_pagamentos.index')
@@ -45,6 +46,7 @@ class FormasPagamentoController extends AppBaseController
      */
     public function create($id)
     {
+        PermissionController::temPermissao('forma_pagamento.update');
         $curso = DB::table('curso')->get()->where('id', $id)->first();
         return view('formas_pagamentos.create', ['curso' => $curso]);
     }
@@ -58,6 +60,7 @@ class FormasPagamentoController extends AppBaseController
      */
     public function store(CreateFormasPagamentoRequest $request)
     {
+        PermissionController::temPermissao('forma_pagamento.update');
         $input = $request->all();
 
         Arr::set($input, 'BrutoTotal', str_replace(',','.', Arr::get($input, 'BrutoTotal')));
@@ -84,6 +87,7 @@ class FormasPagamentoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('forma_pagamento.index');
         // $formasPagamento = $this->formasPagamentoRepository->find($id);
         // $formasPagamento = DB::table('formas_pagamento')->get()->where(['idCurso' => $id], ['deleted_at' => null]);
         $formasPagamento = DB::table('formas_pagamento')->where([['idCurso', '=', $id],['deleted_at', '=', null],])->get();
@@ -107,6 +111,7 @@ class FormasPagamentoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('forma_pagamento.edit');
         $formasPagamento = $this->formasPagamentoRepository->find($id);
 
         if (empty($formasPagamento)) {
@@ -128,6 +133,7 @@ class FormasPagamentoController extends AppBaseController
      */
     public function update($id, UpdateFormasPagamentoRequest $request)
     {
+        PermissionController::temPermissao('forma_pagamento.edit');
         $formasPagamento = $this->formasPagamentoRepository->find($id);
 
         if (empty($formasPagamento)) {
@@ -154,6 +160,7 @@ class FormasPagamentoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('forma_pagamento.delete');
         $formasPagamento = $this->formasPagamentoRepository->find($id);
 
         if (empty($formasPagamento)) {

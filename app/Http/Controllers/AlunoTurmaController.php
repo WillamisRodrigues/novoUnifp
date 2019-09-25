@@ -52,6 +52,7 @@ class AlunoTurmaController extends Controller
      */
     public function show($id)
     {
+        PermissionController::temPermissao('alunos.index');
         // $alunos = DB::table('aluno')->where('idTurma', $id)->get();
 
         $unidade = UnidadeController::getUnidade();

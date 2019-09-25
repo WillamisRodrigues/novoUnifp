@@ -33,6 +33,7 @@ class CronogramaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('cronogramas.index');
         // $cronogramas = $this->cronogramaRepository->all();
 
         $unidade = UnidadeController::getUnidade();
@@ -48,6 +49,7 @@ class CronogramaController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('cronogramas.update');
         return view('cronogramas.create');
     }
 
@@ -60,6 +62,7 @@ class CronogramaController extends AppBaseController
      */
     public function store(CreateCronogramaRequest $request)
     {
+        PermissionController::temPermissao('cronogramas.update');
         $input = $request->all();
 
         $cronograma = $this->cronogramaRepository->create($input);
@@ -80,6 +83,7 @@ class CronogramaController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('cronogramas.index');
         $cronograma = $this->cronogramaRepository->find($id);
 
         if (empty($cronograma)) {
@@ -100,6 +104,8 @@ class CronogramaController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('cronogramas.edit');
+
         $cronograma = $this->cronogramaRepository->find($id);
 
         if (empty($cronograma)) {
@@ -121,6 +127,7 @@ class CronogramaController extends AppBaseController
      */
     public function update($id, UpdateCronogramaRequest $request)
     {
+        PermissionController::temPermissao('cronogramas.edit');
         $cronograma = $this->cronogramaRepository->find($id);
 
         if (empty($cronograma)) {
@@ -147,6 +154,7 @@ class CronogramaController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('cronogramas.delete');
         $cronograma = $this->cronogramaRepository->find($id);
 
         if (empty($cronograma)) {

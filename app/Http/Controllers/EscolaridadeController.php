@@ -29,6 +29,7 @@ class EscolaridadeController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('escolaridades.index');
         $unidade = UnidadeController::getUnidade();
         $escolaridades = $this->escolaridadeRepository->all()->where('idUnidade' ,$unidade);
 
@@ -43,6 +44,7 @@ class EscolaridadeController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('escolaridades.update');
         return view('escolaridades.create');
     }
 
@@ -55,6 +57,7 @@ class EscolaridadeController extends AppBaseController
      */
     public function store(CreateEscolaridadeRequest $request)
     {
+        PermissionController::temPermissao('escolaridades.update');
         $input = $request->all();
 
         $escolaridade = $this->escolaridadeRepository->create($input);
@@ -73,6 +76,7 @@ class EscolaridadeController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('escolaridades.index');
         $escolaridade = $this->escolaridadeRepository->find($id);
 
         if (empty($escolaridade)) {
@@ -93,6 +97,7 @@ class EscolaridadeController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('escolaridades.edit');
         $escolaridade = $this->escolaridadeRepository->find($id);
 
         if (empty($escolaridade)) {
@@ -114,6 +119,7 @@ class EscolaridadeController extends AppBaseController
      */
     public function update($id, UpdateEscolaridadeRequest $request)
     {
+        PermissionController::temPermissao('escolaridades.edit');
         $escolaridade = $this->escolaridadeRepository->find($id);
 
         if (empty($escolaridade)) {
@@ -140,6 +146,7 @@ class EscolaridadeController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('escolaridades.delete');
         $escolaridade = $this->escolaridadeRepository->find($id);
 
         if (empty($escolaridade)) {

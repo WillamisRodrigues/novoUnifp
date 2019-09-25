@@ -35,6 +35,7 @@ class ContratoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('contratos.index');
         $contratos = $this->contratoRepository->all();
 
         return view('contratos.index')
@@ -48,6 +49,7 @@ class ContratoController extends AppBaseController
      */
     public function create($id)
     {
+        PermissionController::temPermissao('contratos.update');
         $cursos = DB::table('curso')->where([['deleted_at', '=', null], ['id', '=', $id]])->get()->first();
 
         return view('contratos.create', ['cursos' => $cursos]);
@@ -62,6 +64,7 @@ class ContratoController extends AppBaseController
      */
     public function store(CreateContratoRequest $request)
     {
+        PermissionController::temPermissao('contratos.update');
         $input = $request->all();
 
         Arr::set($input, 'Matricula', str_replace(',', '.', Arr::get($input, 'Matricula')));
@@ -82,6 +85,7 @@ class ContratoController extends AppBaseController
 
     public function contrato($id)
     {
+        PermissionController::temPermissao('contratos.index');
         $contrato = DB::table('contratos')->where('id', $id)->get()->first();
         return view('contratos.contrato', ['contrato' => $contrato]);
     }
@@ -95,6 +99,7 @@ class ContratoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('contratos.index');
         $contratos = DB::table('contratos')->where([['idCurso', '=', $id], ['deleted_at', '=', null]])->get();
         $curso = DB::table('curso')->get()->where('id', $id)->first();
 
@@ -110,6 +115,7 @@ class ContratoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('contratos.edit');
         $contrato = $this->contratoRepository->find($id);
         $cursos = DB::table('curso')->where([['deleted_at', '=', null], ['id', '=', $id]])->get()->first();
 
@@ -133,6 +139,7 @@ class ContratoController extends AppBaseController
      */
     public function update($id, UpdateContratoRequest $request)
     {
+        PermissionController::temPermissao('contratos.edit');
         $contrato = $this->contratoRepository->find($id);
 
         if (empty($contrato)) {
@@ -159,6 +166,7 @@ class ContratoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('contratos.delete');
         $contrato = $this->contratoRepository->find($id);
 
         if (empty($contrato)) {

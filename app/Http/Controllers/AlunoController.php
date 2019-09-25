@@ -51,6 +51,7 @@ class AlunoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('alunos.index');
         $unidade = UnidadeController::getUnidade();
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 
@@ -64,6 +65,7 @@ class AlunoController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('alunos.update');
         $unidade = UnidadeController::getUnidade();
 
         $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Cargo', '=','Vendedor']])->get();
@@ -88,6 +90,7 @@ class AlunoController extends AppBaseController
      */
     public function store(CreateAlunoRequest $requestAluno)
     {
+        PermissionController::temPermissao('alunos.update');
         $inputAluno = $requestAluno->all();
         $aluno = $this->alunoRepository->create($inputAluno);
 
@@ -214,6 +217,7 @@ class AlunoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('alunos.edit');
         $unidade = UnidadeController::getUnidade();
         $aluno = $this->alunoRepository->find($id);
         $escolaridades = $this->escolaridadeRepository->all();
@@ -243,6 +247,7 @@ class AlunoController extends AppBaseController
      */
     public function update($id, UpdateAlunoRequest $request)
     {
+        PermissionController::temPermissao('alunos.edit');
         $aluno = $this->alunoRepository->find($id);
 
         if (empty($aluno)) {
@@ -269,6 +274,7 @@ class AlunoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('alunos.delete');
         $aluno = $this->alunoRepository->find($id);
 
         if (empty($aluno)) {

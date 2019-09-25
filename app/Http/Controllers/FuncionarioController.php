@@ -30,6 +30,7 @@ class FuncionarioController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('funcionarios.index');
         // $funcionarios = $this->funcionarioRepository->all();
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
@@ -39,6 +40,7 @@ class FuncionarioController extends AppBaseController
 
     public function aniversario(Request $request)
     {
+        PermissionController::temPermissao('aniversarios.index');
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
@@ -52,6 +54,7 @@ class FuncionarioController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('funcionarios.update');
         return view('funcionarios.create');
     }
 
@@ -64,6 +67,7 @@ class FuncionarioController extends AppBaseController
      */
     public function store(CreateFuncionarioRequest $request)
     {
+        PermissionController::temPermissao('funcionarios.update');
         $input = $request->all();
 
         $funcionario = $this->funcionarioRepository->create($input);
@@ -84,6 +88,7 @@ class FuncionarioController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('funcionarios.index');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
@@ -104,6 +109,7 @@ class FuncionarioController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('funcionarios.edit');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
@@ -125,6 +131,7 @@ class FuncionarioController extends AppBaseController
      */
     public function update($id, UpdateFuncionarioRequest $request)
     {
+        PermissionController::temPermissao('funcionarios.indeedit');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
@@ -151,6 +158,7 @@ class FuncionarioController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('funcionarios.delete');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {

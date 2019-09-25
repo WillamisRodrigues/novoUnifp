@@ -29,6 +29,7 @@ class CentroCustoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('centro_custo.index');
         $centroCustos = $this->centroCustoRepository->all();
 
         return view('centro_custos.index')
@@ -42,6 +43,7 @@ class CentroCustoController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('centro_custo.update');
         return view('centro_custos.create');
     }
 
@@ -54,6 +56,7 @@ class CentroCustoController extends AppBaseController
      */
     public function store(CreateCentroCustoRequest $request)
     {
+        PermissionController::temPermissao('centro_custo.update');
         $input = $request->all();
 
         $centroCusto = $this->centroCustoRepository->create($input);
@@ -72,6 +75,7 @@ class CentroCustoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('centro_custo.index');
         $centroCusto = $this->centroCustoRepository->find($id);
 
         if (empty($centroCusto)) {
@@ -92,6 +96,7 @@ class CentroCustoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('centro_custo.edit');
         $centroCusto = $this->centroCustoRepository->find($id);
 
         if (empty($centroCusto)) {
@@ -113,6 +118,7 @@ class CentroCustoController extends AppBaseController
      */
     public function update($id, UpdateCentroCustoRequest $request)
     {
+        PermissionController::temPermissao('centro_custo.edit');
         $centroCusto = $this->centroCustoRepository->find($id);
 
         if (empty($centroCusto)) {
@@ -139,6 +145,7 @@ class CentroCustoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('centro_custo.delete');
         $centroCusto = $this->centroCustoRepository->find($id);
 
         if (empty($centroCusto)) {

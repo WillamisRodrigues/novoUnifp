@@ -29,6 +29,7 @@ class DiasVencimentoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('dias_vencimentos.index');
         $unidade = UnidadeController::getUnidade();
         $diasVencimentos = $this->diasVencimentoRepository->all()->where('idUnidade', $unidade);
 
@@ -43,6 +44,7 @@ class DiasVencimentoController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('dias_vencimentos.update');
         return view('dias_vencimentos.create');
     }
 
@@ -55,6 +57,7 @@ class DiasVencimentoController extends AppBaseController
      */
     public function store(CreateDiasVencimentoRequest $request)
     {
+        PermissionController::temPermissao('dias_vencimentos.update');
         $input = $request->all();
 
         $diasVencimento = $this->diasVencimentoRepository->create($input);
@@ -76,6 +79,7 @@ class DiasVencimentoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('dias_vencimentos.index');
         $diasVencimento = $this->diasVencimentoRepository->find($id);
 
         if (empty($diasVencimento)) {
@@ -96,6 +100,7 @@ class DiasVencimentoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('dias_vencimentos.edit');
         $diasVencimento = $this->diasVencimentoRepository->find($id);
 
         if (empty($diasVencimento)) {
@@ -117,6 +122,7 @@ class DiasVencimentoController extends AppBaseController
      */
     public function update($id, UpdateDiasVencimentoRequest $request)
     {
+        PermissionController::temPermissao('dias_vencimentos.edit');
         $diasVencimento = $this->diasVencimentoRepository->find($id);
 
         if (empty($diasVencimento)) {
@@ -143,6 +149,7 @@ class DiasVencimentoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('dias_vencimentos.delete');
         $diasVencimento = $this->diasVencimentoRepository->find($id);
 
         if (empty($diasVencimento)) {

@@ -68,6 +68,7 @@ class UnidadeController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('unidades.update');
         $unidades = DB::table('unidade')->get();
         return view('unidades.create', ['unidades' => $unidades]);
     }
@@ -81,6 +82,7 @@ class UnidadeController extends AppBaseController
      */
     public function store(CreateUnidadeRequest $request)
     {
+        PermissionController::temPermissao('unidades.update');
         $input = $request->all();
 
         $unidade = $this->unidadeRepository->create($input);
@@ -125,6 +127,7 @@ class UnidadeController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('unidades.edit');
         $unidade = $this->unidadeRepository->find($id);
         $unidades = DB::table('unidade')->get();
 
@@ -147,6 +150,7 @@ class UnidadeController extends AppBaseController
      */
     public function update($id, UpdateUnidadeRequest $request)
     {
+        PermissionController::temPermissao('unidades.edit');
         $unidade = $this->unidadeRepository->find($id);
 
         if (empty($unidade)) {
@@ -179,6 +183,7 @@ class UnidadeController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('unidades.delete');
         $unidade = $this->unidadeRepository->find($id);
 
         if (empty($unidade)) {

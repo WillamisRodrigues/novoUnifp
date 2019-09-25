@@ -31,6 +31,7 @@ class CaixaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('caixas.index');
         $unidade = UnidadeController::getUnidade();
 
         date_default_timezone_set('America/Sao_Paulo');
@@ -56,6 +57,7 @@ class CaixaController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('caixas.update');
         $unidade = UnidadeController::getUnidade();
         $formaPgto = DB::table('forma_pgto')->where([['deleted_at', '=', null]])->get();
         $centroCusto = DB::table('centro_custo')->where([['deleted_at', '=', null]])->get();
@@ -73,6 +75,7 @@ class CaixaController extends AppBaseController
      */
     public function store(CreateCaixaRequest $request)
     {
+        PermissionController::temPermissao('caixas.update');
         $input = $request->all();
 
         Arr::set($input, 'Valor', str_replace(',', '.', Arr::get($input, 'Valor')));
@@ -96,6 +99,7 @@ class CaixaController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('caixas.index');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -116,6 +120,7 @@ class CaixaController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('caixas.edit');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -142,6 +147,7 @@ class CaixaController extends AppBaseController
      */
     public function update($id, UpdateCaixaRequest $request)
     {
+        PermissionController::temPermissao('caixas.update');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {
@@ -168,6 +174,7 @@ class CaixaController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('caixas.delete');
         $caixa = $this->caixaRepository->find($id);
 
         if (empty($caixa)) {

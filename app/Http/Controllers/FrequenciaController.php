@@ -31,9 +31,8 @@ class FrequenciaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('controles.index');
         $frequencias = $this->frequenciaRepository->all();
-
-
 
         return view('frequencias.index')
             ->with('frequencias', $frequencias);
@@ -46,6 +45,7 @@ class FrequenciaController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('controles.update');
         return view('frequencias.create');
     }
 
@@ -58,6 +58,7 @@ class FrequenciaController extends AppBaseController
      */
     public function store(CreateFrequenciaRequest $request)
     {
+        PermissionController::temPermissao('controles.update');
         $input = $request->all();
 
         $frequencia = $this->frequenciaRepository->create($input);
@@ -76,6 +77,7 @@ class FrequenciaController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('controles.index');
         $alunos = $this->alunoRepository->all()->where('id',$id);
         $frequencias = $this->frequenciaRepository->all()->where('idAluno', $id);
         // $frequencias = $this->frequenciaRepository->all();
@@ -98,6 +100,7 @@ class FrequenciaController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('controles.edit');
         $frequencia = $this->frequenciaRepository->find($id);
 
         if (empty($frequencia)) {
@@ -119,6 +122,7 @@ class FrequenciaController extends AppBaseController
      */
     public function update($id, UpdateFrequenciaRequest $request)
     {
+        PermissionController::temPermissao('controles.edit');
         $frequencia = $this->frequenciaRepository->find($id);
 
         if (empty($frequencia)) {
@@ -145,6 +149,7 @@ class FrequenciaController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('controles.delete');
         $frequencia = $this->frequenciaRepository->find($id);
 
         if (empty($frequencia)) {

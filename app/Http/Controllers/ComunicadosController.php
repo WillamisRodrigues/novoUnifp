@@ -30,6 +30,7 @@ class ComunicadosController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('comunicados.index');
         $comunicados = $this->comunicadosRepository->all();
 
         return view('comunicados.index')
@@ -43,6 +44,7 @@ class ComunicadosController extends AppBaseController
      */
     public function create($id)
     {
+        PermissionController::temPermissao('comunicados.update');
         return view('comunicados.create', ['matricula' => $id]);
     }
 
@@ -55,6 +57,7 @@ class ComunicadosController extends AppBaseController
      */
     public function store(CreateComunicadosRequest $request)
     {
+        PermissionController::temPermissao('comunicados.update');
         $input = $request->all();
         $comunicados = $this->comunicadosRepository->create($input);
         // dd($comunicados->idAluno);
@@ -73,6 +76,7 @@ class ComunicadosController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('comunicados.index');
         // $comunicados = $this->comunicadosRepository->all();
         $alunos = DB::table('aluno')->get()->where('id', $id);
         $comunicados = DB::table('comunicados')->get()->where('idAluno', $id);
@@ -98,6 +102,7 @@ class ComunicadosController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('comunicados.edit');
         $comunicados = $this->comunicadosRepository->find($id);
 
         if (empty($comunicados)) {
@@ -119,6 +124,7 @@ class ComunicadosController extends AppBaseController
      */
     public function update($id, UpdateComunicadosRequest $request)
     {
+        PermissionController::temPermissao('comunicados.edit');
         $comunicados = $this->comunicadosRepository->find($id);
 
         if (empty($comunicados)) {
@@ -145,6 +151,7 @@ class ComunicadosController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('comunicados.delete');
         $comunicados = $this->comunicadosRepository->find($id);
 
         if (empty($comunicados)) {

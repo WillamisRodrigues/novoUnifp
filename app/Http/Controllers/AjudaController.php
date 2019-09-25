@@ -29,6 +29,7 @@ class AjudaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('ajudas.index');
         $ajudas = $this->ajudaRepository->all();
 
         return view('ajudas.index')
@@ -42,6 +43,7 @@ class AjudaController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('ajudas.update');
         return view('ajudas.create');
     }
 
@@ -54,6 +56,7 @@ class AjudaController extends AppBaseController
      */
     public function store(CreateAjudaRequest $request)
     {
+        PermissionController::temPermissao('ajudas.update');
         $input = $request->all();
 
         $ajuda = $this->ajudaRepository->create($input);
@@ -92,6 +95,7 @@ class AjudaController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('ajudas.edit');
         $ajuda = $this->ajudaRepository->find($id);
 
         if (empty($ajuda)) {
@@ -113,6 +117,7 @@ class AjudaController extends AppBaseController
      */
     public function update($id, UpdateAjudaRequest $request)
     {
+        PermissionController::temPermissao('ajudas.edit');
         $ajuda = $this->ajudaRepository->find($id);
 
         if (empty($ajuda)) {
@@ -139,6 +144,7 @@ class AjudaController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('ajudas.delete');
         $ajuda = $this->ajudaRepository->find($id);
 
         if (empty($ajuda)) {

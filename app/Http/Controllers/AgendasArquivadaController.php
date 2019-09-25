@@ -31,6 +31,7 @@ class AgendasArquivadaController extends Controller
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('agendas.index');
         // $agendas = $this->agendaRepository->all()->where('Arquivado', 'Sim');
         $unidade = UnidadeController::getUnidade();
         $agendas = DB::table('agenda')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Arquivado', '=','Sim']])->get();

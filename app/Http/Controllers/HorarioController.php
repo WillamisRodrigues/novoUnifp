@@ -30,7 +30,7 @@ class HorarioController extends AppBaseController
      */
     public function index(Request $request)
     {
-
+        PermissionController::temPermissao('horarios.index');
         $unidade = UnidadeController::getUnidade();
         $horarios = $this->horarioRepository->all()->where('idUnidade', '=', $unidade);
 
@@ -45,6 +45,7 @@ class HorarioController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('horarios.update');
         return view('horarios.create');
     }
 
@@ -57,6 +58,7 @@ class HorarioController extends AppBaseController
      */
     public function store(CreateHorarioRequest $request)
     {
+        PermissionController::temPermissao('horarios.update');
         $input = $request->all();
 
         $horario = $this->horarioRepository->create($input);
@@ -78,6 +80,7 @@ class HorarioController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('horarios.index');
         $horario = $this->horarioRepository->find($id);
 
         if (empty($horario)) {
@@ -98,6 +101,7 @@ class HorarioController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('horarios.edit');
         $horario = $this->horarioRepository->find($id);
 
         if (empty($horario)) {
@@ -119,6 +123,7 @@ class HorarioController extends AppBaseController
      */
     public function update($id, UpdateHorarioRequest $request)
     {
+        PermissionController::temPermissao('horarios.edit');
         $horario = $this->horarioRepository->find($id);
 
         if (empty($horario)) {
@@ -145,6 +150,7 @@ class HorarioController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('horarios.delete');
         $horario = $this->horarioRepository->find($id);
 
         if (empty($horario)) {

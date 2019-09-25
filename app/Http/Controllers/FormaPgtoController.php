@@ -30,6 +30,7 @@ class FormaPgtoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('forma_pagamento.index');
         $unidade = UnidadeController::getUnidade();
         $formaPgtos = $this->formaPgtoRepository->all()->where('idUnidade', '=', $unidade);
 
@@ -44,6 +45,7 @@ class FormaPgtoController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('forma_pagamento.update');
         return view('forma_pgtos.create');
     }
 
@@ -56,6 +58,7 @@ class FormaPgtoController extends AppBaseController
      */
     public function store(CreateFormaPgtoRequest $request)
     {
+        PermissionController::temPermissao('forma_pagamento.update');
         $input = $request->all();
 
         $formaPgto = $this->formaPgtoRepository->create($input);
@@ -76,6 +79,7 @@ class FormaPgtoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('forma_pagamento.index');
         $formaPgto = $this->formaPgtoRepository->find($id);
 
         if (empty($formaPgto)) {
@@ -96,6 +100,7 @@ class FormaPgtoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('forma_pagamento.edit');
         $formaPgto = $this->formaPgtoRepository->find($id);
 
         if (empty($formaPgto)) {
@@ -117,6 +122,7 @@ class FormaPgtoController extends AppBaseController
      */
     public function update($id, UpdateFormaPgtoRequest $request)
     {
+        PermissionController::temPermissao('forma_pagamento.edit');
         $formaPgto = $this->formaPgtoRepository->find($id);
 
         if (empty($formaPgto)) {
@@ -143,6 +149,7 @@ class FormaPgtoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('forma_pagamento.delete');
         $formaPgto = $this->formaPgtoRepository->find($id);
 
         if (empty($formaPgto)) {

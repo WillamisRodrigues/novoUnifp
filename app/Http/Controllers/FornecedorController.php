@@ -30,6 +30,7 @@ class FornecedorController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('fornecedores.index');
         $fornecedors = $this->fornecedorRepository->all()->where('idUnidade', $this->unidade);
 
         return view('fornecedors.index')
@@ -43,6 +44,7 @@ class FornecedorController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('fornecedores.update');
         return view('fornecedors.create');
     }
 
@@ -55,6 +57,7 @@ class FornecedorController extends AppBaseController
      */
     public function store(CreateFornecedorRequest $request)
     {
+        PermissionController::temPermissao('fornecedores.update');
         $input = $request->all();
 
         $fornecedor = $this->fornecedorRepository->create($input);
@@ -75,6 +78,7 @@ class FornecedorController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('fornecedores.index');
         $fornecedor = $this->fornecedorRepository->find($id);
 
         if (empty($fornecedor)) {
@@ -95,6 +99,7 @@ class FornecedorController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('fornecedores.edit');
         $fornecedor = $this->fornecedorRepository->find($id);
 
         if (empty($fornecedor)) {
@@ -116,6 +121,7 @@ class FornecedorController extends AppBaseController
      */
     public function update($id, UpdateFornecedorRequest $request)
     {
+        PermissionController::temPermissao('fornecedores.edit');
         $fornecedor = $this->fornecedorRepository->find($id);
 
         if (empty($fornecedor)) {
@@ -142,6 +148,7 @@ class FornecedorController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('fornecedores.delete');
         $fornecedor = $this->fornecedorRepository->find($id);
 
         if (empty($fornecedor)) {

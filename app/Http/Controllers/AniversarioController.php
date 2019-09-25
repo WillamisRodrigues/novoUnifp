@@ -32,6 +32,7 @@ class AniversarioController extends AppBaseController
 
     public function professores(Request $request)
     {
+        PermissionController::temPermissao('aniversarios.index');
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([['Cargo', '=', 'Professor'], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
 
@@ -41,6 +42,7 @@ class AniversarioController extends AppBaseController
 
     public function professoresListar(Request $request)
     {
+        PermissionController::temPermissao('aniversarios.index');
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([
             ['idUnidade', '=', $unidade],
@@ -54,6 +56,7 @@ class AniversarioController extends AppBaseController
 
     public function vendedoresListar(Request $request)
     {
+        PermissionController::temPermissao('aniversarios.index');
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([
             ['idUnidade', '=', $unidade],
@@ -67,6 +70,7 @@ class AniversarioController extends AppBaseController
 
     public function funcionarios(Request $request)
     {
+        PermissionController::temPermissao('aniversarios.index');
         $unidade = UnidadeController::getUnidade();
         $funcionarios = DB::table('funcionario')->where([
             ['idUnidade', '=', $unidade],
@@ -85,6 +89,7 @@ class AniversarioController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('aniversarios.update');
         return view('funcionarios.create');
     }
 
@@ -97,6 +102,7 @@ class AniversarioController extends AppBaseController
      */
     public function store(CreateFuncionarioRequest $request)
     {
+        PermissionController::temPermissao('aniversarios.update');
         $input = $request->all();
 
         $funcionario = $this->funcionarioRepository->create($input);
@@ -117,6 +123,7 @@ class AniversarioController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('aniversarios.index');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
@@ -137,6 +144,7 @@ class AniversarioController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('aniversarios.edit');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
@@ -158,6 +166,7 @@ class AniversarioController extends AppBaseController
      */
     public function update($id, UpdateFuncionarioRequest $request)
     {
+        PermissionController::temPermissao('aniversarios.edit');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {
@@ -184,6 +193,7 @@ class AniversarioController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('aniversarios.delete');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {

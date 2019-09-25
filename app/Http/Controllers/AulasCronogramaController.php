@@ -33,6 +33,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('aulas_cronogramas.index');
         $aulasCronogramas = $this->aulasCronogramaRepository->all();
 
         return view('aulas_cronogramas.index')
@@ -46,6 +47,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('aulas_cronogramas.update');
         $unidade = UnidadeController::getUnidade();
         $cronogramas = DB::table('cronograma')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
         $dias = DB::table('dias_semana')->get();
@@ -61,6 +63,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function store(CreateAulasCronogramaRequest $request)
     {
+        PermissionController::temPermissao('aulas_cronogramas.update');
         $input = $request->all();
 
         $aulasCronograma = $this->aulasCronogramaRepository->create($input);
@@ -81,6 +84,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('aulas_cronogramas.index');
         $aulasCronograma = $this->aulasCronogramaRepository->all()->where('idCronograma', $id);
 
         if (empty($aulasCronograma)) {
@@ -101,6 +105,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('aulas_cronogramas.edit');
         $aulasCronograma = $this->aulasCronogramaRepository->find($id);
         $cronogramas = DB::table('cronograma')->get() ;
 
@@ -123,6 +128,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function update($id, UpdateAulasCronogramaRequest $request)
     {
+        PermissionController::temPermissao('aulas_cronogramas.update');
         $aulasCronograma = $this->aulasCronogramaRepository->find($id);
 
         if (empty($aulasCronograma)) {
@@ -149,6 +155,7 @@ class AulasCronogramaController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('aulas_cronogramas.delete');
         $aulasCronograma = $this->aulasCronogramaRepository->find($id);
 
         if (empty($aulasCronograma)) {

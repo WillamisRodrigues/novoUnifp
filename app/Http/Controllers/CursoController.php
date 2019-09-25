@@ -34,6 +34,7 @@ class CursoController extends AppBaseController
      */
     public function index(Request $request)
     {
+        PermissionController::temPermissao('cursos.index');
 
         $unidade = UnidadeController::getUnidade();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
@@ -43,12 +44,14 @@ class CursoController extends AppBaseController
 
     public function provas($id)
     {
+        PermissionController::temPermissao('cursos.index');
         $curso = DB::table('curso')->get()->where('id', $id)->first();
         return view('cursos.avaliacoes', ['curso' => $curso]);
     }
 
     public function addProva($id)
     {
+        PermissionController::temPermissao('cursos.update');
         return view('cursos.addProva', ['id' => $id]);
     }
 
@@ -59,6 +62,7 @@ class CursoController extends AppBaseController
      */
     public function create()
     {
+        PermissionController::temPermissao('cursos.update');
         return view('cursos.create');
     }
 
@@ -71,6 +75,7 @@ class CursoController extends AppBaseController
      */
     public function store(CreateCursoRequest $request)
     {
+        PermissionController::temPermissao('cursos.update');
         $input = $request->all();
 
         $curso = $this->cursoRepository->create($input);
@@ -92,6 +97,7 @@ class CursoController extends AppBaseController
      */
     public function storeProva(Request $request)
     {
+        PermissionController::temPermissao('cursos.update');
         $input = $request->all();
         $extensao = $request->file('caminhoProva')->extension();
 
@@ -121,6 +127,7 @@ class CursoController extends AppBaseController
      */
     public function show($id)
     {
+        PermissionController::temPermissao('cursos.index');
         $curso = $this->cursoRepository->find($id);
 
         if (empty($curso)) {
@@ -141,6 +148,7 @@ class CursoController extends AppBaseController
      */
     public function edit($id)
     {
+        PermissionController::temPermissao('cursos.edit');
         $curso = $this->cursoRepository->find($id);
 
         if (empty($curso)) {
@@ -162,6 +170,7 @@ class CursoController extends AppBaseController
      */
     public function update($id, UpdateCursoRequest $request)
     {
+        PermissionController::temPermissao('cursos.edit');
         $curso = $this->cursoRepository->find($id);
 
         if (empty($curso)) {
@@ -188,6 +197,7 @@ class CursoController extends AppBaseController
      */
     public function destroy($id)
     {
+        PermissionController::temPermissao('cursos.delete');
         $curso = $this->cursoRepository->find($id);
 
         if (empty($curso)) {
@@ -205,6 +215,7 @@ class CursoController extends AppBaseController
 
     public function avaliacoes()
     {
+        PermissionController::temPermissao('cursos.index');
         // $cursos = DB::table('curso')->get()->where('id', $id);
         // return view('cursos.avaliacoes', ['cursos' => $cursos]);
         return view('cursos.avaliacoes');
