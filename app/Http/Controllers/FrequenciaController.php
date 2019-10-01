@@ -9,6 +9,7 @@ use App\Repositories\AlunoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class FrequenciaController extends AppBaseController
@@ -78,7 +79,7 @@ class FrequenciaController extends AppBaseController
     public function show($id)
     {
         PermissionController::temPermissao('controles.index');
-        $alunos = $this->alunoRepository->all()->where('id',$id);
+        $alunos = $this->alunoRepository->all()->where('id', $id);
         $frequencias = $this->frequenciaRepository->all()->where('idAluno', $id);
         // $frequencias = $this->frequenciaRepository->all();
 
@@ -163,5 +164,15 @@ class FrequenciaController extends AppBaseController
         Flash::success('Frequencia deletada com sucesso.');
 
         return redirect(route('frequencias.index'));
+    }
+
+    public static function frequencia($id)
+    {
+        $bool = DB::table('frequencia')->where([['idAluno', '=', $id]])->get();
+        if($bool){
+            echo "100%";
+        } else {
+            echo "0%";
+        }
     }
 }

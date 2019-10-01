@@ -37,7 +37,7 @@
                 <td>{!! $aluno->CpfAluno !!}</td>
                 <td>{!! $aluno->Status !!}</td>
                 <td class="text-center">
-                    100%
+                    {{ App\Http\Controllers\FrequenciaController::frequencia($aluno->id) }}
                 </td>
                 <td><a href="{!! route('frequencias.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Frequência</i></a></td>
@@ -47,10 +47,15 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    10.0
+                    {{-- {{ App\Http\Controllers\FrequenciaController::media($aluno->id) }} --}}
+                    10
                 </td>
                 <td>
-                    Pagamentos
+                    {{-- Pagamentos --}}
+                    @php
+                        $resultado = App\Http\Controllers\RelatoriosController::pagamentos($aluno->id);
+                        echo $resultado;
+                    @endphp
                 </td>
                 <td>
                     <a href="gerarContrato/{!!$aluno->id!!}" target="_blank" class="btn btn-flat btn-success">

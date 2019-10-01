@@ -31,7 +31,7 @@ class EscolaridadeController extends AppBaseController
     {
         PermissionController::temPermissao('escolaridades.index');
         $unidade = UnidadeController::getUnidade();
-        $escolaridades = $this->escolaridadeRepository->all()->where('idUnidade' ,$unidade);
+        $escolaridades = $this->escolaridadeRepository->all();
 
         return view('escolaridades.index')
             ->with('escolaridades', $escolaridades);

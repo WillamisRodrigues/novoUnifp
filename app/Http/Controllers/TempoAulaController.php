@@ -31,7 +31,7 @@ class TempoAulaController extends AppBaseController
     {
         PermissionController::temPermissao('tempo_aulas.index');
         $unidade = UnidadeController::getUnidade();
-        $tempoAulas = $this->tempoAulaRepository->all()->where('idUnidade', $unidade);
+        $tempoAulas = $this->tempoAulaRepository->all();
 
         return view('tempo_aulas.index')
             ->with('tempoAulas', $tempoAulas);

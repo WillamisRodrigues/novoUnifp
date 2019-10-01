@@ -107,7 +107,7 @@
                                 @endif
                             </td>
                             <td>
-                                @if($pagto->Data == null)
+                                @if($pagto->Status != "Quitado")
                                 <a href="/pagamentos/lancar/{!! $pagto->numeroDocumento !!}/{!! $aluno->id !!}"
                                     class="btn btn-flat btn-primary"><i class="fa fa-bars"></i> Lançar</a>
                                 @endif

@@ -4,8 +4,13 @@
 
 @section('content')
 <section class="content-header">
-    <h1>
-        Frequencia
+    <h1 class="pull-left">Frequência</h1>
+    <h1 class="pull-right">
+        <ol class="breadcrumb breadcrumb-fp">
+            <li><a href="/home"><i class="fa fa-home"></i></a></li>
+            <li><a href="{!! route('alunos.index') !!}">Alunos</a></li>
+            <li class="active">Frequência</li>
+        </ol>
     </h1>
 </section>
 <div class="content">
@@ -15,7 +20,7 @@
                 <div class="panel-heading"><i class="fa fa-graduation-cap"></i> Informações do aluno</div>
                 <div class="panel-body row">
                     @foreach ($alunos as $aluno)
-                    <p class="col-md-6 col-sm-12"><strong>Matrícula</strong>: {!! $aluno->id !!}</p>
+                    <p class="col-md-6 col-sm-12"><strong>Matrícula</strong>: {!! str_pad($aluno->id, 8, '0',STR_PAD_LEFT) !!}</p>
                     <p class="col-md-6 col-sm-12"><strong>Nome</strong>: {!! $aluno->Nome !!}</p>
                     @endforeach
                 </div>

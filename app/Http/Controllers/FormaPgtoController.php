@@ -32,7 +32,7 @@ class FormaPgtoController extends AppBaseController
     {
         PermissionController::temPermissao('forma_pagamento.index');
         $unidade = UnidadeController::getUnidade();
-        $formaPgtos = $this->formaPgtoRepository->all()->where('idUnidade', '=', $unidade);
+        $formaPgtos = $this->formaPgtoRepository->all();
 
         return view('forma_pgtos.index')
             ->with('formaPgtos', $formaPgtos);

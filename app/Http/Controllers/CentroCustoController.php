@@ -29,7 +29,7 @@ class CentroCustoController extends AppBaseController
      */
     public function index(Request $request)
     {
-        PermissionController::temPermissao('centro_custo.index');
+        PermissionController::temPermissao('centro_custos.index');
         $centroCustos = $this->centroCustoRepository->all();
 
         return view('centro_custos.index')
@@ -43,7 +43,7 @@ class CentroCustoController extends AppBaseController
      */
     public function create()
     {
-        PermissionController::temPermissao('centro_custo.update');
+        PermissionController::temPermissao('centro_custos.update');
         return view('centro_custos.create');
     }
 
@@ -56,7 +56,7 @@ class CentroCustoController extends AppBaseController
      */
     public function store(CreateCentroCustoRequest $request)
     {
-        PermissionController::temPermissao('centro_custo.update');
+        PermissionController::temPermissao('centro_custos.update');
         $input = $request->all();
 
         $centroCusto = $this->centroCustoRepository->create($input);
@@ -75,7 +75,7 @@ class CentroCustoController extends AppBaseController
      */
     public function show($id)
     {
-        PermissionController::temPermissao('centro_custo.index');
+        PermissionController::temPermissao('centro_custos.index');
         $centroCusto = $this->centroCustoRepository->find($id);
 
         if (empty($centroCusto)) {
@@ -96,7 +96,7 @@ class CentroCustoController extends AppBaseController
      */
     public function edit($id)
     {
-        PermissionController::temPermissao('centro_custo.edit');
+        PermissionController::temPermissao('centro_custos.edit');
         $centroCusto = $this->centroCustoRepository->find($id);
 
         if (empty($centroCusto)) {
@@ -118,7 +118,7 @@ class CentroCustoController extends AppBaseController
      */
     public function update($id, UpdateCentroCustoRequest $request)
     {
-        PermissionController::temPermissao('centro_custo.edit');
+        PermissionController::temPermissao('centro_custos.edit');
         $centroCusto = $this->centroCustoRepository->find($id);
 
         if (empty($centroCusto)) {
@@ -145,7 +145,7 @@ class CentroCustoController extends AppBaseController
      */
     public function destroy($id)
     {
-        PermissionController::temPermissao('centro_custo.delete');
+        PermissionController::temPermissao('centro_custos.delete');
         $centroCusto = $this->centroCustoRepository->find($id);
 
         if (empty($centroCusto)) {

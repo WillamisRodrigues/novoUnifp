@@ -31,7 +31,7 @@ class DiasVencimentoController extends AppBaseController
     {
         PermissionController::temPermissao('dias_vencimentos.index');
         $unidade = UnidadeController::getUnidade();
-        $diasVencimentos = $this->diasVencimentoRepository->all()->where('idUnidade', $unidade);
+        $diasVencimentos = $this->diasVencimentoRepository->all();
 
         return view('dias_vencimentos.index')
             ->with('diasVencimentos', $diasVencimentos);

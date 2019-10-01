@@ -264,6 +264,7 @@ class RelatoriosController extends Controller
                     $pagamentos = DB::select('select * from pagamentos where Vencimento = ? and Matricula = ?;', [$diaPg, $aluno->id]);
                     $matricula = DB::table('pagamentos')->where([['Referencia', '=', 'Matricula'], ['Matricula', '=', $aluno->id]])->get()->first();
 
+                    if($matricula){
                     if ($matricula->DataPgto) {
                         if ($pagamentos) {
                             if ($pagamentos->DataPgto) {
@@ -274,6 +275,7 @@ class RelatoriosController extends Controller
                             $listaAlunosPagamento[$i] = $aluno->id;
                             $i++;
                         }
+                    }
                     }
                 }
             }
@@ -333,16 +335,21 @@ class RelatoriosController extends Controller
         $pagamentos = DB::select('select * from pagamentos where Vencimento = ? and Matricula = ?;', [$diaPg, $id]);
         $matricula = DB::table('pagamentos')->where([['Referencia', '=', 'Matricula'], ['Matricula', '=', $id]])->get()->first();
 
-        if ($matricula->DataPgto) {
-            if ($pagamentos) {
-                if ($pagamentos->DataPgto) {
-                    $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
+        if ($matricula) {
+            if ($matricula->DataPgto) {
+                if ($pagamentos) {
+                    if ($pagamentos->DataPgto) {
+                        $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
+                    } else {
+                        $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
+                    }
                 } else {
-                    $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
+                    $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
                 }
-            } else {
-                $resultado = "<label class='bg-azul-redondo' style='padding: 2px 8px' for='Em dia'>Em dia</label>";
             }
+                    else {
+                        $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
+                    }
         } else {
             $resultado = "<label class='bg-vermelho-redondo' style='padding: 2px 8px' for='Atrasado'>Atrasado</label>";
         }

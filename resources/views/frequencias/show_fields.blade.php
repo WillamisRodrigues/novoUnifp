@@ -3,16 +3,14 @@
         <thead>
             <tr>
                 <th>Matrícula</th>
-                <th>ID da Turma</th>
-                <th>ID da Aula</th>
-                <th>Frequência</th>
+                <th>Nº da Aula</th>
+                <th>Presença</th>
             </tr>
         </thead>
         <tbody>
             @foreach($frequencias as $frequencia)
             <tr>
                 <td>{!! $frequencia->idAluno !!}</td>
-                <td>{!! $frequencia->idTurma !!}</td>
                 <td>{!! $frequencia->idAula !!}</td>
                 <td>{!! $frequencia->Frequencia !!}</td>
             </tr>

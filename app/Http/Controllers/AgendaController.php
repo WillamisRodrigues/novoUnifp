@@ -33,7 +33,7 @@ class AgendaController extends AppBaseController
      */
     public function index(Request $request)
     {
-        PermissionController::temPermissao('agendas.index');
+        PermissionController::temPermissao('agenda.index');
         $unidade = UnidadeController::getUnidade();
         $agendas = DB::table('agenda')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null], ['Arquivado', '=','Não']])->get();
 
@@ -47,7 +47,7 @@ class AgendaController extends AppBaseController
      */
     public function create()
     {
-        PermissionController::temPermissao('agendas.update');
+        PermissionController::temPermissao('agenda.update');
         return view('agendas.create');
     }
 
@@ -60,7 +60,7 @@ class AgendaController extends AppBaseController
      */
     public function store(CreateAgendaRequest $request)
     {
-        PermissionController::temPermissao('agendas.update');
+        PermissionController::temPermissao('agenda.update');
         $input = $request->all();
 
         $agenda = $this->agendaRepository->create($input);
@@ -102,7 +102,7 @@ class AgendaController extends AppBaseController
      */
     public function edit($id)
     {
-        PermissionController::temPermissao('agendas.edit');
+        PermissionController::temPermissao('agenda.edit');
         $agenda = $this->agendaRepository->find($id);
 
         if (empty($agenda)) {
@@ -124,7 +124,7 @@ class AgendaController extends AppBaseController
      */
     public function update($id, UpdateAgendaRequest $request)
     {
-        PermissionController::temPermissao('agendas.edit');
+        PermissionController::temPermissao('agenda.edit');
         $agenda = $this->agendaRepository->find($id);
 
         if (empty($agenda)) {
@@ -151,7 +151,7 @@ class AgendaController extends AppBaseController
      */
     public function destroy($id)
     {
-        PermissionController::temPermissao('agendas.delete');
+        PermissionController::temPermissao('agenda.delete');
         $agenda = $this->agendaRepository->find($id);
 
         if (empty($agenda)) {

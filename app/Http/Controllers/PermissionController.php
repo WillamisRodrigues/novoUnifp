@@ -157,6 +157,7 @@ class PermissionController extends AppBaseController
     }
 
     public static function temPermissao($slug){
+        // dd($slug);
         $userId = Auth::user()->id;
         $role = DB::table('role_user')->where('user_id', $userId)->get()->first();
         $permissionId = DB::table('permissions')->where('slug', $slug)->get()->first();

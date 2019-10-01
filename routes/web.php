@@ -107,13 +107,13 @@ Route::post('filtroRecebimentos', ['as' => 'filtroRecebimentos', 'uses' => 'Rela
 
 Route::post('atualizarPermissoes', ['as' => 'atualizarPermissoes', 'uses' => 'nivelAcessoController@atualizarPermissoes']);
 
-Route::resource('agendas', 'AgendaController')->middleware('canAtLeast:agendas.index');
+Route::resource('agendas', 'AgendaController')->middleware('canAtLeast:agenda.index');
 
-Route::resource('agendasArquivada', 'AgendasArquivadaController')->middleware('canAtLeast:agendas.index');
+Route::resource('agendasArquivada', 'AgendasArquivadaController')->middleware('canAtLeast:agenda.index');
 
 Route::resource('unidades', 'UnidadeController')->middleware('canAtLeast:unidades.index');
 
-Route::resource('escolaridades', 'EscolaridadeController')->middleware('canAtLeast:escpçarodades.index');
+Route::resource('escolaridades', 'EscolaridadeController')->middleware('canAtLeast:escolaridades.index');
 
 Route::resource('tempoAulas', 'TempoAulaController')->middleware('canAtLeast:tempo_aulas.index');
 
@@ -137,7 +137,7 @@ Route::resource('alunos', 'AlunoController')->middleware('canAtLeast:alunos.inde
 
 Route::resource('cursos', 'CursoController')->middleware('canAtLeast:cursos.index');
 
-Route::resource('formasPagamentos', 'FormasPagamentoController')->middleware('canAtLeast:formas_parcelamento.index');
+Route::resource('formasPagamentos', 'FormasPagamentoController')->middleware('canAtLeast:forma_pagamento.index');
 
 Route::resource('turmas', 'TurmaController')->middleware('canAtLeast:turmas.index');
 
@@ -163,7 +163,7 @@ Route::resource('frequencias', 'FrequenciaController')->middleware('canAtLeast:c
 
 Route::resource('comoConheceus', 'ComoConheceuController')->middleware('canAtLeast:como_conheceu.index');
 
-Route::resource('formaPgtos', 'FormaPgtoController')->middleware('canAtLeast:forma_pagamentos.index');
+Route::resource('formaPgtos', 'FormaPgtoController')->middleware('canAtLeast:forma_pagamento.index');
 
 Route::resource('pagtos', 'PagtoController')->middleware('canAtLeast:pagamentos.index');
 
