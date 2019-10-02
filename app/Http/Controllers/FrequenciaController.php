@@ -169,10 +169,14 @@ class FrequenciaController extends AppBaseController
     public static function frequencia($id)
     {
         $bool = DB::table('frequencia')->where([['idAluno', '=', $id]])->get();
-        if($bool){
-            echo "100%";
+        $presencas = DB::table('frequencia')->where([['idAluno', '=', $id], ['Frequencia', '=', 1]])->get()->count() ;
+        $faltas = DB::table('frequencia')->where([['idAluno', '=', $id], ['Frequencia', '=', 0]])->get()->count() ;
+        $total = $presencas + $faltas;
+        if($total > 0){
+            $porcentagem = $presencas/$total*100;
+            echo number_format($porcentagem, 2, ',', "")."%";
         } else {
-            echo "0%";
+            echo "N/A";
         }
     }
 }

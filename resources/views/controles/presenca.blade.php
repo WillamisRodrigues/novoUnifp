@@ -19,9 +19,7 @@
 
     <div class="clearfix"></div>
     <div class="row">
-        {{-- falta a rota --}}
-        {{-- {!! Form::open(['route' => 'alunos.store']) !!} --}}
-        {!! Form::open(['id' => 'filtroPresença']) !!}
+        {!! Form::open(['id' => 'filtroPresença', 'route' => 'filtro.presenca']) !!}
         <p class="select-padrao col-md-3"> Selecione o curso:
             <select name="cursos" id="cursos" class="cursos">
                 <option value="">Cursos</option>
@@ -33,78 +31,55 @@
         <p class="select-padrao col-md-3"> Selecione a turma:
             <select name="turmas" id="turmas">
                 <option value="">Turmas</option>
-                {{-- @foreach($turmas as $turma )
-                <option value="{{ $turma->id }}">{{ $turma->NomeTurma }}</option>
-                @endforeach --}}
             </select>
         </p>
-        <p class="select-padrao col-md-3"> Selecione o módulo:
+        {{-- <p class="select-padrao col-md-3"> Selecione o módulo:
             <select name="modulo" id="modulo">
                 <option value="">Módulos</option>
-                {{-- @foreach($turmas as $turma )
-                <option value="{{ $turma->id }}">{{ $turma->NomeTurma }}</option>
-                @endforeach --}}
             </select>
-        </p>
+        </p> --}}
         <input type="hidden" id="idUnidade" name="unidade" value="{!! $unidade !!}">
-        {!! Form::close() !!}
         <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-search"></i> Filtrar</button>
+        {!! Form::close() !!}
     </div>
+
     <div class="box box-primary">
         <div class="box-body">
             <div class="table-responsive">
-                <table class="table display datatable-list" id="alunos-table">
+                <table class="table display" id="alunos-table">
                     <thead>
                         <tr>
                             <th>Aluno</th>
-                            <th class="text-center">Aula 01</th>
-                            <th class="text-center">Aula 02</th>
-                            <th class="text-center">Aula 03</th>
-                            <th class="text-center">Aula 04</th>
-                            <th class="text-center">Aula 05</th>
-                            <th class="text-center">Aula 06</th>
-                            <th class="text-center">Aula 07</th>
-                            <th class="text-center">Aula 08</th>
-                            <th class="text-center">Aula 09</th>
-                            <th class="text-center">Aula 10</th>
-                            <th class="text-center">Aula 11</th>
-                            <th class="text-center">Aula 12</th>
-                            <th class="text-center">Aula 13</th>
-                            <th class="text-center">Aula 14</th>
-                            <th class="text-center">Aula 15</th>
-                            <th class="text-center">Aula 16</th>
+                            <th class="text-center">Aula</th>
+                            <th class="text-center">Presença</th>
+                            <th class="text-center">Data</th>
+                            <th class="text-center">Editar</th>
                         </tr>
                     </thead>
                     <tbody id="listaAlunos">
-                        {{-- @foreach($alunos as $aluno)
+                        @foreach($frequencias as $frequencia)
                         <tr>
-                            <td>{!! $aluno->Nome !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
-                            <td class="text-center">{!! Form::checkbox('Presenca', 'Sim') !!}</td>
+                            @foreach ($alunos as $aluno)
+                            @if ($frequencia->idAluno == $aluno->id)
                             <td>
-                                {!! Form::open(['route' => ['alunos.destroy', $aluno->id], 'method' => 'delete']) !!}
-                                <div class='btn-group'>
-                                    <a href="{!! route('alunos.edit', [$aluno->id]) !!}"
-                                        class='btn btn-default btn-sm'><i class="glyphicon glyphicon-edit"></i></a>
-                                </div>
-                                {!! Form::close() !!}
+                                {{ str_pad($aluno->id, 8, '0', STR_PAD_LEFT) }} - {{ $aluno->Nome }}
                             </td>
+                            <td class="text-center">{{ $frequencia->idAula }}</td>
+                            <td class="text-center">
+                                @if ($frequencia->Frequencia == 1)
+                                    Presente
+                                    @else
+                                    Ausente
+                                @endif
+                            </td>
+                            <td class="text-center">{{ date('d/m/Y', strtotime($frequencia->created_at)) }}</td>
+                            <td class="text-center">
+                                <a href="{{ route('frequencia.edit', $frequencia->idFrequencia) }}" class="btn btn-primary"><i class="fa fa-bars"></i></a>
+                            </td>
+                            @endif
+                            @endforeach
                         </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -162,22 +137,22 @@
 
         });
 
-        $('#filtroPresença').submit(function(e) {
-            e.preventDefault();
-            var formulario = $(this);
+        // $('#filtroPresença').submit(function(e) {
+        //     e.preventDefault();
+        //     var formulario = $(this);
 
-            $.ajax({
-                type: "POST",
-                data: formulario.serialize(),
-                url: "api/filtroPresença/" + curso_id + "/" + turma_id + "/" + modulo_id,
-                async: false
-            }).done(function(data) {
-                console.log("Sucesso!");
-                console.log(formulario.serialize());
-            }).fail(function() {
-                console.log("Ops! Algo errado aconteceu.");
-            })
-        });
+        //     $.ajax({
+        //         type: "POST",
+        //         data: formulario.serialize(),
+        //         url: "api/filtroPresença/" + curso_id + "/" + turma_id + "/" + modulo_id,
+        //         async: false
+        //     }).done(function(data) {
+        //         console.log("Sucesso!");
+        //         console.log(formulario.serialize());
+        //     }).fail(function() {
+        //         console.log("Ops! Algo errado aconteceu.");
+        //     })
+        // });
     });
 
 </script>

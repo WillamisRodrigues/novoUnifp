@@ -55,30 +55,30 @@ class HomeController extends Controller
 
         //captação de dados para preenchimento dos gráficos
         //matriculas Mes
-        $matriculasJan = DB::table('aluno')->where([['created_at', '>', date('Y-01-01 00:00:00')], ['created_at', '<', date('Y-01-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasFev = DB::table('aluno')->where([['created_at', '>', date('Y-02-01 00:00:00')], ['created_at', '<', date('Y-02-29 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasMar = DB::table('aluno')->where([['created_at', '>', date('Y-03-01 00:00:00')], ['created_at', '<', date('Y-03-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasAbr = DB::table('aluno')->where([['created_at', '>', date('Y-04-01 00:00:00')], ['created_at', '<', date('Y-04-30 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasMai = DB::table('aluno')->where([['created_at', '>', date('Y-05-01 00:00:00')], ['created_at', '<', date('Y-05-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasJun = DB::table('aluno')->where([['created_at', '>', date('Y-06-01 00:00:00')], ['created_at', '<', date('Y-06-30 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasJul = DB::table('aluno')->where([['created_at', '>', date('Y-07-01 00:00:00')], ['created_at', '<', date('Y-07-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasAgo = DB::table('aluno')->where([['created_at', '>', date('Y-08-01 00:00:00')], ['created_at', '<', date('Y-08-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasSet = DB::table('aluno')->where([['created_at', '>', date('Y-09-01 00:00:00')], ['created_at', '<', date('Y-09-30 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasOut = DB::table('aluno')->where([['created_at', '>', date('Y-10-01 00:00:00')], ['created_at', '<', date('Y-10-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasNov = DB::table('aluno')->where([['created_at', '>', date('Y-11-01 00:00:00')], ['created_at', '<', date('Y-11-30 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matriculasDez = DB::table('aluno')->where([['created_at', '>', date('Y-12-01 00:00:00')], ['created_at', '<', date('Y-12-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasJan = DB::table('aluno')->where([['DataCadastro', '>', date('Y-01-01 00:00:00')], ['DataCadastro', '<', date('Y-01-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasFev = DB::table('aluno')->where([['DataCadastro', '>', date('Y-02-01 00:00:00')], ['DataCadastro', '<', date('Y-02-29 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasMar = DB::table('aluno')->where([['DataCadastro', '>', date('Y-03-01 00:00:00')], ['DataCadastro', '<', date('Y-03-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasAbr = DB::table('aluno')->where([['DataCadastro', '>', date('Y-04-01 00:00:00')], ['DataCadastro', '<', date('Y-04-30 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasMai = DB::table('aluno')->where([['DataCadastro', '>', date('Y-05-01 00:00:00')], ['DataCadastro', '<', date('Y-05-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasJun = DB::table('aluno')->where([['DataCadastro', '>', date('Y-06-01 00:00:00')], ['DataCadastro', '<', date('Y-06-30 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasJul = DB::table('aluno')->where([['DataCadastro', '>', date('Y-07-01 00:00:00')], ['DataCadastro', '<', date('Y-07-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasAgo = DB::table('aluno')->where([['DataCadastro', '>', date('Y-08-01 00:00:00')], ['DataCadastro', '<', date('Y-08-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasSet = DB::table('aluno')->where([['DataCadastro', '>', date('Y-09-01 00:00:00')], ['DataCadastro', '<', date('Y-09-30 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasOut = DB::table('aluno')->where([['DataCadastro', '>', date('Y-10-01 00:00:00')], ['DataCadastro', '<', date('Y-10-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasNov = DB::table('aluno')->where([['DataCadastro', '>', date('Y-11-01 00:00:00')], ['DataCadastro', '<', date('Y-11-30 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matriculasDez = DB::table('aluno')->where([['DataCadastro', '>', date('Y-12-01 00:00:00')], ['DataCadastro', '<', date('Y-12-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
 
         //matriculas por dia no mes atual
-        $matricula0 = DB::table('aluno')->where([['created_at', '>', date('Y-m-01 00:00:00')], ['created_at', '<', date('Y-m-03 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula1 = DB::table('aluno')->where([['created_at', '>', date('Y-m-04 00:00:00')], ['created_at', '<', date('Y-m-06 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula2 = DB::table('aluno')->where([['created_at', '>', date('Y-m-07 00:00:00')], ['created_at', '<', date('Y-m-09 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula3 = DB::table('aluno')->where([['created_at', '>', date('Y-m-10 00:00:00')], ['created_at', '<', date('Y-m-12 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula4 = DB::table('aluno')->where([['created_at', '>', date('Y-m-13 00:00:00')], ['created_at', '<', date('Y-m-15 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula5 = DB::table('aluno')->where([['created_at', '>', date('Y-m-16 00:00:00')], ['created_at', '<', date('Y-m-18 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula6 = DB::table('aluno')->where([['created_at', '>', date('Y-m-19 00:00:00')], ['created_at', '<', date('Y-m-21 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula7 = DB::table('aluno')->where([['created_at', '>', date('Y-m-22 00:00:00')], ['created_at', '<', date('Y-m-24 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula8 = DB::table('aluno')->where([['created_at', '>', date('Y-m-25 00:00:00')], ['created_at', '<', date('Y-m-27 23:59:59')], ['idUnidade', '=', $unidade]])->get();
-        $matricula9 = DB::table('aluno')->where([['created_at', '>', date('Y-m-28 00:00:00')], ['created_at', '<', date('Y-m-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula0 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-01 00:00:00')], ['DataCadastro', '<', date('Y-m-03 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula1 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-04 00:00:00')], ['DataCadastro', '<', date('Y-m-06 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula2 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-07 00:00:00')], ['DataCadastro', '<', date('Y-m-09 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula3 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-10 00:00:00')], ['DataCadastro', '<', date('Y-m-12 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula4 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-13 00:00:00')], ['DataCadastro', '<', date('Y-m-15 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula5 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-16 00:00:00')], ['DataCadastro', '<', date('Y-m-18 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula6 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-19 00:00:00')], ['DataCadastro', '<', date('Y-m-21 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula7 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-22 00:00:00')], ['DataCadastro', '<', date('Y-m-24 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula8 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-25 00:00:00')], ['DataCadastro', '<', date('Y-m-27 23:59:59')], ['idUnidade', '=', $unidade]])->get();
+        $matricula9 = DB::table('aluno')->where([['DataCadastro', '>', date('Y-m-28 00:00:00')], ['DataCadastro', '<', date('Y-m-31 23:59:59')], ['idUnidade', '=', $unidade]])->get();
 
         //sexo dos alunos
         $alunosH = DB::table('aluno')->where([['Sexo', '=', 'Masculino'], ['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get();
@@ -251,7 +251,7 @@ class HomeController extends Controller
         # configurações dos gráficos
         # matrículas por mes
         \Lava::AreaChart('MatriculasMes', $MatriculasMes, [
-            'title' => 'Matrículas por Mẽs',
+            'title' => 'Matrículas por Mês',
             'legend' => [
                 'position' => 'top'
             ],

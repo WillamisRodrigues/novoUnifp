@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Fornecedores - Detalhes')
+@section('title', 'Frequência')
 
 @section('content')
 <section class="content-header">

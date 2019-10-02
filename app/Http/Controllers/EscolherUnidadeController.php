@@ -14,8 +14,6 @@ class EscolherUnidadeController extends Controller
         $nomeUnidade = DB::table('unidade')->where('id', Session::get('unidade'))->get()->first();
         Session::put('nomeUnidade', $nomeUnidade->NomeUnidade);
 
-        // dd(Session::all());
-
-        return redirect(route('unidades.index'));
+        return redirect(route('alunos.index'));
     }
 }

@@ -10,6 +10,7 @@ use App\Repositories\TurmaRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class PresencaController extends AppBaseController
@@ -35,11 +36,25 @@ class PresencaController extends AppBaseController
     {
         PermissionController::temPermissao('controles.index');
         $unidade = UnidadeController::getUnidade();
-        $alunos = $this->alunoRepository->all()->where('idUnidade', $unidade);
+        $frequencia = DB::table('frequencia')->where('idUnidade', $unidade)->get();
+        // dd($frequencia);
+        $alunos = DB::table('aluno')->where('idUnidade', $unidade)->get();
         $cursos = $this->cursoRepository->all()->where('idUnidade', $unidade);
-        $turmas = $this->turmaRepository->all()->where('Status','Ativa');
+        $turmas = $this->turmaRepository->all()->where('Status', 'Ativa');
 
-        return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas, 'unidade' => $unidade]);
+        return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas, 'unidade' => $unidade, 'frequencias' => $frequencia]);
+    }
+
+    public function filtrar(Request $request)
+    {
+        PermissionController::temPermissao('controles.index');
+        $unidade = UnidadeController::getUnidade();
+        $frequencia = DB::table('frequencia')->where([['idUnidade', '=', $unidade], ['idTurma', '=', $request->turmas]])->get();
+        $alunos = DB::table('aluno')->where('idUnidade', $unidade)->get();
+        $cursos = $this->cursoRepository->all()->where('idUnidade', $unidade);
+        $turmas = $this->turmaRepository->all()->where('Status', 'Ativa');
+
+        return view('controles.presenca', ['cursos' => $cursos, 'alunos' => $alunos, 'turmas' => $turmas, 'unidade' => $unidade, 'frequencias' => $frequencia]);
     }
 
     /**
@@ -99,15 +114,17 @@ class PresencaController extends AppBaseController
      */
     public function edit($id)
     {
-        $aluno = $this->alunoRepository->find($id);
+        $unidade = UnidadeController::getUnidade();
+        $frequencia = DB::table('frequencia')->where([['idFrequencia', '=', $id], ['deleted_at', '=', null]])->get()->first();
+        $aluno = DB::table('aluno')->where([['id', '=', $frequencia->idAluno], ['deleted_at', '=', null], ['idUnidade', '=', $unidade]])->get()->first();
 
-        if (empty($aluno)) {
-            Flash::error('Aluno não encontrado.');
+        if (empty($frequencia)) {
+            Flash::error('frequencia não encontrado.');
 
-            return redirect(route('alunos.index'));
+            return redirect(route('frequencias.index'));
         }
 
-        return view('alunos.edit')->with('aluno', $aluno);
+        return view('controles.edit', ['frequencia' => $frequencia, 'aluno'  => $aluno]);
     }
 
     /**
@@ -118,21 +135,11 @@ class PresencaController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateAlunoRequest $request)
+    public function update($id, Request $request)
     {
-        $aluno = $this->alunoRepository->find($id);
+        DB::update('update frequencia set Frequencia = ? where idFrequencia = ?', [$request->Frequencia, $request->idFrequencia]);
 
-        if (empty($aluno)) {
-            Flash::error('Aluno não encontrado.');
-
-            return redirect(route('alunos.index'));
-        }
-
-        $aluno = $this->alunoRepository->update($request->all(), $id);
-
-        Flash::success('Aluno atualizado com sucesso.');
-
-        return redirect(route('alunos.index'));
+        return redirect(route('presenca.index'));
     }
 
     /**

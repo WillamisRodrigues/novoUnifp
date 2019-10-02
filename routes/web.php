@@ -87,7 +87,11 @@ Route::get('/modulos/adicionarModulo/{idCurso}', ['uses' => 'ModuloController@ad
 
 Route::get('termoCancelamento/{idAluno}', ['uses' => 'PdfController@cancelamento']);
 
+Route::get('frequencia/edit/{id}', ['uses' => 'PresencaController@edit', 'as' => 'frequencia.edit']);
+
 Route::post('/formularioPagamento', ['uses' => 'PagamentoController@store']);
+
+Route::post('filtropresenca', ['uses' => 'PresencaController@filtrar', 'as' => 'filtro.presenca']);
 
 Route::post('storeProva', ['uses' => 'CursoController@storeProva']);
 

@@ -53,7 +53,7 @@ class AlunoController extends AppBaseController
     {
         PermissionController::temPermissao('alunos.index');
         $unidade = UnidadeController::getUnidade();
-        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
+        $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade],['deleted_at', '=', null]])->paginate(10);
 
         return view('alunos.index')->with('alunos', $alunos);
     }

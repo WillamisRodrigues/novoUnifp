@@ -10,13 +10,13 @@
                 <th>Frequência %</th>
                 <th>Frequência AVA</th>
                 <th class="text-center">Termo<br>Cancelamento</th>
-                <th>Média</th>
+                {{-- <th>Média</th> --}}
                 <th>Pagamentos</th>
                 <th>Contrato</th>
                 <th>Carnê</th>
                 <th>Ações</th>
                 <th>Pagamentos</th>
-                <th>Notas</th>
+                {{-- <th>Notas</th> --}}
                 <th>Comunicados</th>
             </tr>
         </thead>
@@ -46,10 +46,9 @@
                         <a href="/termoCancelamento/{!! $aluno->id !!}" target="_blank" class="btn btn-flat botao-cancelamento" style="border: 1px solid #D73925; color: #D73925; background-color:white"> <i class="fa fa-print"></i> Cancelamento </a>
                     @endif
                 </td>
-                <td class="text-center">
-                    {{-- {{ App\Http\Controllers\FrequenciaController::media($aluno->id) }} --}}
+                {{-- <td class="text-center">
                     10
-                </td>
+                </td> --}}
                 <td>
                     {{-- Pagamentos --}}
                     @php
@@ -84,12 +83,31 @@
                 <td><a href="{!! route('pagamentos.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos</i></a>
                 </td>
-                <td><a href="notas/{!! $aluno->id !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas</i></a></td>
+                {{-- <td><a href="notas/{!! $aluno->id !!}" class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Notas</i></a></td> --}}
                 <td><a href="{!! route('comunicados.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Comunicados</i></a>
                 </td>
             </tr>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="4">
+                    {{ $alunos->links() }}
+                </td>
+            </tr>
+        </tfoot>
     </table>
 </div>
