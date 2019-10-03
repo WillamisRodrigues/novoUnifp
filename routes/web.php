@@ -89,6 +89,8 @@ Route::get('termoCancelamento/{idAluno}', ['uses' => 'PdfController@cancelamento
 
 Route::get('frequencia/edit/{id}', ['uses' => 'PresencaController@edit', 'as' => 'frequencia.edit']);
 
+Route::get('administradores', ['uses' => 'usuarioController@admin', 'as' => 'administradores']);
+
 Route::post('/formularioPagamento', ['uses' => 'PagamentoController@store']);
 
 Route::post('filtropresenca', ['uses' => 'PresencaController@filtrar', 'as' => 'filtro.presenca']);

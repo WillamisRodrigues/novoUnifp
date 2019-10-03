@@ -40,6 +40,22 @@ class usuarioController extends AppBaseController
         return view('usuarios.index', ['usuarios' => $usuarios, 'unidades' => $unidades, 'niveis' => $niveis]);
     }
 
+    public function admin(Request $request)
+    {
+        PermissionController::temPermissao('nivel_acesso.index');
+        $unidade = UnidadeController::getUnidade();
+        $admins = DB::table('role_user')->where('role_id', 2)->get();
+        $lista_admins = DB::table('users');
+        foreach ($admins as $admin) {
+            $lista_admins = $lista_admins->where('id', $admin->id);
+        }
+        $lista_admins->get();
+        $usuarios = $this->usuarioRepository->all()->where('idUnidade', $unidade);
+        $unidades = DB::table('unidade')->get();
+        $niveis = DB::table('roles')->where('deleted_at', null)->get();
+        return view('usuarios.adm', ['usuarios' => $lista_admins->get(), 'unidades' => $unidades, 'niveis' => $niveis]);
+    }
+
     /**
      * Show the form for creating a new usuario.
      *

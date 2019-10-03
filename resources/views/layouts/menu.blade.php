@@ -255,6 +255,12 @@
         </li>
         @endCanAtLeast
 
+        @canAtLeast(['nivel_acesso.index'])
+        <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
+            <a href="{!! route('administradores') !!}"><i class="fa fa-bank"></i><span>Administradores</span></a>
+        </li>
+        @endCanAtLeast
+
         @canAtLeast(['escolaridades.index'])
         <li class="{{ Request::is('escolaridades*') ? 'active' : '' }}">
             <a href="{!! route('escolaridades.index') !!}"><i class="fa fa-square"></i><span>Escolaridades</span></a>

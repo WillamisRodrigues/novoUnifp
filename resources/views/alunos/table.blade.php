@@ -14,7 +14,9 @@
                 <th>Pagamentos</th>
                 <th>Contrato</th>
                 <th>Carnê</th>
+                @canAtLeast(['alunos.edit'])
                 <th>Ações</th>
+                @endCanAtLeast
                 <th>Pagamentos</th>
                 {{-- <th>Notas</th> --}}
                 <th>Comunicados</th>
@@ -67,6 +69,7 @@
                         <i class="fa fa-print"></i>CN
                     </a>
                 </td>
+                @canAtLeast(['alunos.edit'])
                 <td>
                     {!! Form::open(['route' => ['alunos.destroy', $aluno->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
@@ -74,12 +77,15 @@
                                 class="glyphicon glyphicon-zoom-in"></i></a>
                         <a href="{!! route('alunos.edit', [$aluno->id]) !!}" class='btn btn-default btn-xs'><i
                                 class="glyphicon glyphicon-edit"></i></a>
+                            @canAtLeast(['alunos.delete'])
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
                         'btn btn-danger btn-xs', 'onclick' => "return confirm('Tem certeza que você deseja deletar o
                         aluno selecionado?')"]) !!}
+                            @endCanAtLeast
                     </div>
                     {!! Form::close() !!}
                 </td>
+                @endCanAtLeast
                 <td><a href="{!! route('pagamentos.show', [$aluno->id]) !!}"
                         class="btn btn-primary btn-flat text-uppercase"><i class="fa fa-bars"> Pagamentos</i></a>
                 </td>
@@ -92,7 +98,6 @@
         </tbody>
         <tfoot>
             <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
