@@ -131,18 +131,18 @@ class HomeController extends Controller
         $pgDez = DB::select('select SUM(Valor) as sumDez from pagamentos where idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $dezembroInicio, $dezembroFim]);
 
         // despesas
-        $caixaJan = DB::select('select SUM(Valor) as sumJan from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $janeiroInicio, $janeiroFim]);
-        $caixaFev = DB::select('select SUM(Valor) as sumFev from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $fevereiroInicio, $fevereiroFim]);
-        $caixaMar = DB::select('select SUM(Valor) as sumMar from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $marcoInicio, $marcoFim]);
-        $caixaAbr = DB::select('select SUM(Valor) as sumAbr from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $abrilInicio, $abrilFim]);
-        $caixaMai = DB::select('select SUM(Valor) as sumMai from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $maioInicio, $maioFim]);
-        $caixaJun = DB::select('select SUM(Valor) as sumJun from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $junhoInicio, $junhoFim]);
-        $caixaJul = DB::select('select SUM(Valor) as sumJul from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $julhoInicio, $julhoFim]);
-        $caixaAgo = DB::select('select SUM(Valor) as sumAgo from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $agostoInicio, $agostoFim]);
-        $caixaSet = DB::select('select SUM(Valor) as sumSet from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $setembroInicio, $setembroFim]);
-        $caixaOut = DB::select('select SUM(Valor) as sumOut from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $outubroInicio, $outubroFim]);
-        $caixaNov = DB::select('select SUM(Valor) as sumNov from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $novembroInicio, $novembroFim]);
-        $caixaDez = DB::select('select SUM(Valor) as sumDez from caixa where Tipo = "Sangria" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $dezembroInicio, $dezembroFim]);
+        $caixaJan = DB::select('select SUM(Valor) as sumJan from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $janeiroInicio, $janeiroFim]);
+        $caixaFev = DB::select('select SUM(Valor) as sumFev from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $fevereiroInicio, $fevereiroFim]);
+        $caixaMar = DB::select('select SUM(Valor) as sumMar from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $marcoInicio, $marcoFim]);
+        $caixaAbr = DB::select('select SUM(Valor) as sumAbr from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $abrilInicio, $abrilFim]);
+        $caixaMai = DB::select('select SUM(Valor) as sumMai from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $maioInicio, $maioFim]);
+        $caixaJun = DB::select('select SUM(Valor) as sumJun from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $junhoInicio, $junhoFim]);
+        $caixaJul = DB::select('select SUM(Valor) as sumJul from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $julhoInicio, $julhoFim]);
+        $caixaAgo = DB::select('select SUM(Valor) as sumAgo from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $agostoInicio, $agostoFim]);
+        $caixaSet = DB::select('select SUM(Valor) as sumSet from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $setembroInicio, $setembroFim]);
+        $caixaOut = DB::select('select SUM(Valor) as sumOut from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $outubroInicio, $outubroFim]);
+        $caixaNov = DB::select('select SUM(Valor) as sumNov from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $novembroInicio, $novembroFim]);
+        $caixaDez = DB::select('select SUM(Valor) as sumDez from caixa where Tipo = "Despesa" and idUnidade=? and Vencimento > ? and Vencimento < ?;', [$unidade, $dezembroInicio, $dezembroFim]);
 
         //idades
         $qtdeIdades1 = 0;

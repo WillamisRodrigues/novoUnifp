@@ -38,8 +38,11 @@ class LancamentoController extends AppBaseController
         $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $centroCusto = DB::table('centro_custo')->get();
 
-        $caixaMesReceitas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
-        $caixaMesDespesas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Sangria']])->get();
+        $dia01 = date('Y-m-01 00:00:00');
+        $dia30 = date('Y-m-31 23:59:59');
+
+        $caixaMesReceitas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita'], ['Lancamento', '>=', $dia01], ['Lancamento', '<=', $dia30]])->get();
+        $caixaMesDespesas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Despesa'], ['Lancamento', '>=', $dia01], ['Lancamento', '<=', $dia30]])->get();
 
         $receitasMes = 0;
         $despesasMes = 0;
@@ -86,9 +89,54 @@ class LancamentoController extends AppBaseController
     {
         PermissionController::temPermissao('lancamentos.index');
         $unidade = UnidadeController::getUnidade();
+
+        if($request->Mes){
+            $dia01 = "-".$request->Mes."-01 ".date('00:00:00');
+            $dia30 = "-".$request->Mes."-31 ".date('23:59:59');
+        } else {
+            $dia01 = date('m-01 00:00:00');
+            $dia30 = date('m-31 23:59:59');
+        }
+
+        if($request->Ano){
+            $dia01 = $request->Ano.$dia01;
+            $dia30 = $request->Ano.$dia30;
+            $lancamento_inicio = ['Lancamento', '>=', $dia01];
+            $lancamento_fim = ['Lancamento', '<=', $dia30];
+        } else {
+            $dia01 = date('Y').$dia01;
+            $dia30 = date('Y').$dia30;
+            $lancamento_inicio = ['Lancamento', '>=', $dia01];
+            $lancamento_fim = ['Lancamento', '<=', $dia30];
+        }
+
+        if(!$request->Mes && !$request->Ano){
+            $hoje = date('Y-m-d 23:59:59');
+            $lancamento_inicio = ['Lancamento', '>=', "2015-01-01"];
+            $lancamento_fim = ['Lancamento', '<=', $hoje];
+        }
+
+        if($request->Tipo){
+            $tipo = ['Tipo', '=', $request->Tipo];
+        } else {
+            $tipo = ['Tipo', '<>', null];
+        }
+
+        if($request->Usuario){
+            $usuario = ['Usuario', '=', $request->Usuario];
+        } else {
+            $usuario = ['Usuario', '<>', null];
+        }
+
+        if($request->CentroCusto){
+            $centro_de_custo = ['CentroCusto', '=', $request->CentroCusto];
+        } else {
+            $centro_de_custo = ['CentroCusto', '<>', null];
+        }
+
         // $dados = DB::select('select * from caixa where deleted_at = null & Tipo = :tipo & Via = :via & FormaPgto = :forma & Status = :status & Aluno = :aluno & Lancamento >= :lancamentoinicio & Lancamento <= :lancamentofim & Vencimento >= :vencimentoinicio & Vencimento <= :vencimentofim & Valor = :valor & idUnidade = :unidade', [1]);
-        $caixaMesReceitas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
-        $caixaMesDespesas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Sangria']])->get();
+        $caixaMesReceitas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '<>', 'Despesa'], $lancamento_inicio, $lancamento_fim, $centro_de_custo, $usuario])->get();
+        $caixaMesDespesas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Despesa'], $lancamento_inicio, $lancamento_fim, $centro_de_custo, $usuario])->get();
 
         $receitasMes = 0;
         $despesasMes = 0;
@@ -105,7 +153,7 @@ class LancamentoController extends AppBaseController
         $saldoMes = $receitasMes - $despesasMes;
         $centroCusto = DB::table('centro_custo')->get();
         $contaCaixa = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
-        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], $tipo, $lancamento_inicio, $lancamento_fim, $centro_de_custo, $usuario])->orderBy('Lancamento', 'desc')->get();
 
 
         return view('lancamentos.index', ['caixas' => $caixas, 'contaCaixa' => $contaCaixa, 'centroCusto' => $centroCusto, 'receitasMes' => $receitasMes, 'depesasMes' => $despesasMes, 'saldoAtual' => $saldoAtual, 'saldoMes' => $saldoMes]);
