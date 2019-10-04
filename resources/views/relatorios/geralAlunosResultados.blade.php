@@ -55,7 +55,7 @@
     @include('flash::message')
 
     <div class="clearfix"></div>
-    {{-- <div class="box box-primary">
+    <div class="box box-primary">
         <div class="box-body">
             <div class="table-responsive">
                 <table class="table display datatable-list" id="alunos-table">
@@ -69,8 +69,8 @@
                             <th>Curso</th>
                             <th>Turma</th>
                             <th>Período</th>
-                            <th>Frequência %</th>
-                            <th>Nota Média</th>
+                            {{-- <th>Frequência %</th>
+                            <th>Nota Média</th> --}}
                             <th>Pagamentos</th>
                         </tr>
                     </thead>
@@ -86,59 +86,40 @@
                             <td>{!! $aluno->Status !!}</td>
                             <td>
                                 @foreach ($cursos as $curso)
-                                @if ($aluno->idCurso == $curso->id)
-                                {!! $curso->nomeCurso !!}
-                                @endif
+                                    @if ($aluno->idCurso == $curso->id)
+                                        {!! $curso->nomeCurso !!}
+                                    @endif
                                 @endforeach
                             </td>
                             <td>
                                 @foreach ($turmas as $turma)
-                                @if ($aluno->idTurma == $turma->id)
-                                {!! $turma->NomeTurma !!}
-                                @endif
+                                    @if ($aluno->idTurma == $turma->id)
+                                        {!! $turma->NomeTurma !!}
+                                    @endif
                                 @endforeach
                             </td>
                             <td>
                                 @foreach ($turmas as $turma)
-                                @if ($aluno->idTurma == $turma->id)
-                                {!! $turma->Periodo !!}
-                                @endif
+                                    @if ($aluno->idTurma == $turma->id)
+                                        {!! $turma->Periodo !!}
+                                    @endif
                                 @endforeach
                             </td>
-                            <td>{!! '$aluno->Frequencia' !!}</td>
-                            <td>{!! '$aluno->Media' !!}</td>
+                            {{-- <td>{!! '$aluno->Frequencia' !!}</td>
+                            <td>{!! '$aluno->Media' !!}</td> --}}
                             <td>
                                 @php
-                                $resultado = App\Http\Controllers\RelatoriosController::pagamentos($aluno->id);
-                                echo $resultado;
+                                    $resultado = App\Http\Controllers\RelatoriosController::pagamentos($aluno->id);
+                                    echo $resultado;
                                 @endphp
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
-
-                    <tfoot>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td colspan="4">
-                                {{ $->links() }}
-                            </td>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="text-center">
 
     </div>

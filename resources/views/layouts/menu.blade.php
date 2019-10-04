@@ -257,7 +257,7 @@
 
         @canAtLeast(['nivel_acesso.index'])
         <li class="{{ Request::is('unidades*') ? 'active' : '' }}">
-            <a href="{!! route('administradores') !!}"><i class="fa fa-bank"></i><span>Administradores</span></a>
+            <a href="{!! route('administradores') !!}"><i class="fa fa-user-circle-o"></i><span>Administradores</span></a>
         </li>
         @endCanAtLeast
 

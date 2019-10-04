@@ -56,7 +56,7 @@
             <div style="font-weight: bolder">{{ $Visitas }}</div>
         </div>
     </div>
-    <div class="box-home" style="margin-top: 2rem; margin-bottom: 2rem">
+    {{-- <div class="box-home" style="margin-top: 2rem; margin-bottom: 2rem">
         <div class="col-xs-6 col-sm-3 receitas" style="border-right: 1px solid #44444444">
             <p><i class="fa fa-money"></i> Contas a Pagar</p>
             <div style="font-weight: bolder">oi</div>
@@ -73,7 +73,7 @@
             <p><i class="fa fa-user"></i> Atrasados</p>
             <div style="font-weight: bolder">oi</div>
         </div>
-    </div>
+    </div> --}}
     <div class="clearfix"></div>
     @piechart('AlunosIdade', 'chart-div1')
     @piechart('AlunosSexo', 'chart-div2')

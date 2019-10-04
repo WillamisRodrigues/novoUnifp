@@ -77,7 +77,7 @@ class ModuloController extends AppBaseController
     public function show($id)
     {
         $unidade = UnidadeController::getUnidade();
-        $modulos = DB::table('modulos')->where([['idUnidade', '=', $unidade], ['idCurso', '=', $id], ['deleted_at', '=', null]])->get();
+        $modulos = DB::table('modulos')->where([['idCurso', '=', $id], ['deleted_at', '=', null]])->get();
         $curso = DB::table('curso')->where('id', $id)->get()->first();
 
         return view('modulos.index', ['modulos' => $modulos, 'idCurso' => $id, 'curso' => $curso]);

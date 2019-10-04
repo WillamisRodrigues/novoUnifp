@@ -35,7 +35,7 @@ class TurmaInativaController extends AppBaseController
         // $turmas = $this->turmaRepository->all()->where('Status', 'Inativa');
 
         $unidade = UnidadeController::getUnidade();
-        $turmas = DB::table('turma')->where([['Status', '=', 'Inativa'], ['deleted_at', '=', null],['idUnidade', '=', $unidade]])->get();
+        $turmas = DB::table('turma')->where([['Status', '<>', 'Ativa'], ['deleted_at', '=', null],['idUnidade', '=', $unidade]])->get();
         $cursos = DB::table('curso')->get();
         $professores = DB::table('funcionario')->where([['Cargo', '=', 'Professor'],['idUnidade', '=', $unidade],['deleted_at', '=', null]])->get();
 

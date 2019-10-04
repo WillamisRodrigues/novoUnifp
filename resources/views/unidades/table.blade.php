@@ -12,7 +12,7 @@
                 <th>Telefone 1</th>
                 <th>Telefone 2</th>
                 <th>Tipo</th>
-                {{-- <th>Logotipo</th> --}}
+                <th>Qtde. Alunos</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -34,7 +34,7 @@
                 <td>{!! $unidade->Telefone1 !!}</td>
                 <td>{!! $unidade->Telefone2 !!}</td>
                 <td>{!! $unidade->Tipo !!}</td>
-                {{-- <td><img src="storage/{{$unidade->Logotipo}}" alt=""></td> --}}
+                <td>{!! App\Http\Controllers\UnidadeController::qtde_alunos($unidade->id) !!}</td>
                 <td>
                     {!! Form::open(['route' => ['unidades.destroy', $unidade->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

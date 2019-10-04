@@ -121,10 +121,10 @@
             <div class="text-danger" style="font-weight: bolder;">(R$ {!! number_format($depesasMes, 2, ',', '.') !!})
             </div>
         </div>
-        <div class="receitas" style="border-right: 1px solid #44444444">
+        {{-- <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Saldo Anterior</div>
             <div style="font-weight: bolder;">Valor</div>
-        </div>
+        </div> --}}
         <div class="receitas" style="border-right: 1px solid #44444444">
             <div><i class="fa fa-money"></i> Saldo desse Mês</div>
             <div class="text-primary" style="font-weight: bolder;">R$ {!! number_format($saldoMes, 2, ',', '.') !!}

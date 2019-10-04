@@ -45,6 +45,11 @@ class UnidadeController extends AppBaseController
             ->with('unidades', $unidades);
     }
 
+    public static function qtde_alunos($id){
+        $qtde_alunos = DB::table('aluno')->where([['idUnidade', '=', $id], ['deleted_at', '=', null]])->get()->count();
+        echo $qtde_alunos;
+    }
+
     public static function getUnidade()
     {
         $usuario = DB::table('users')->where('id', Auth::user()->id)->get('idUnidade')->first();

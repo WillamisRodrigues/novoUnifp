@@ -34,6 +34,8 @@ class RelatoriosController extends Controller
     public function index(Request $request)
     {
         PermissionController::temPermissao('relatorios.index');
+        $hoje = date('Y-m-d');
+        DB::update('update pagamentos set Status = "Vencido" where Vencimento < ? and DataPgto is null', [$hoje]);
         $unidade = UnidadeController::getUnidade();
         $caixas = DB::table('caixa')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Tipo', '=', 'Receita']])->get();
         $sum = 0;
@@ -89,6 +91,8 @@ class RelatoriosController extends Controller
     public function alunosAtrasados()
     {
         PermissionController::temPermissao('relatorios.index');
+        $hoje = date('Y-m-d');
+        DB::update('update pagamentos set Status = "Vencido" where Vencimento < ? and DataPgto is null', [$hoje]);
         $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
         $alunosAtrasados = DB::table('pagamentos')->where([['DataPgto', '=', null], ['idUnidade', '=', $unidade], ['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
@@ -165,8 +169,10 @@ class RelatoriosController extends Controller
     {
         PermissionController::temPermissao('relatorios.index');
         $hoje = date('Y-m-d');
+        DB::update('update pagamentos set Status = "Vencido" where Vencimento < ? and DataPgto is null', [$hoje]);
+        $hoje = date('Y-m-d');
         $unidade = UnidadeController::getUnidade();
-        $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->get();
+        $alunosAtrasados = DB::table('pagamentos')->where([['Vencimento', '<', $hoje], ['deleted_at', '=', null]])->paginate(10);
         $turmas = DB::table('turma')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Ativa']])->get();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $alunos = DB::table('aluno')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
@@ -287,12 +293,14 @@ class RelatoriosController extends Controller
         $turmas = $turmas->get();
         $alunos = $alunos->get();
 
-        return view('relatorios.geralAlunos', ['pagamentos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos, 'hoje' => $hoje]);
+        return view('relatorios.geralAlunosResultados', ['pagamentos' => $alunosAtrasados, 'cursos' => $cursos, 'turmas' => $turmas, 'alunoGeral' => $alunos, 'hoje' => $hoje]);
     }
 
     public function atrasados()
     {
         PermissionController::temPermissao('relatorios.index');
+        $hoje = date('Y-m-d');
+        DB::update('update pagamentos set Status = "Vencido" where Vencimento < ? and DataPgto is null', [$hoje]);
         $unidade = UnidadeController::getUnidade();
         $pagamentos = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Status', '<>', 'Quitado']])->get()->last();
         return $pagamentos;
@@ -301,6 +309,8 @@ class RelatoriosController extends Controller
     public function emDia()
     {
         PermissionController::temPermissao('relatorios.index');
+        $hoje = date('Y-m-d');
+        DB::update('update pagamentos set Status = "Vencido" where Vencimento < ? and DataPgto is null', [$hoje]);
         $unidade = UnidadeController::getUnidade();
         $pagamentos = DB::table('pagamentos')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null], ['Status', '=', 'Quitado']])->get()->last();
         return $pagamentos;
@@ -309,6 +319,8 @@ class RelatoriosController extends Controller
     public static function pagamentos($id)
     {
         PermissionController::temPermissao('relatorios.index');
+        $hoje = date('Y-m-d');
+        DB::update('update pagamentos set Status = "Vencido" where Vencimento < ? and DataPgto is null', [$hoje]);
         $dia = date('d');
         $mes = date('m');
         $ano = date('Y');
