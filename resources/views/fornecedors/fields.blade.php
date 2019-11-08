@@ -153,7 +153,7 @@
         <div class="col-sm-12 col-md-9">
             <button class="btn btn-success btn-flat" style="margin-bottom:1rem" type="submit"><i class="fa fa-save"></i>
                 Salvar Fornecedor</button>
-            <a href="{!! route('fornecedors.index') !!}" style="margin-bottom:1rem" class="btn btn-danger btn-flat"> <i
+            <a href="{!! route('fornecedores.index') !!}" style="margin-bottom:1rem" class="btn btn-danger btn-flat"> <i
                     class="fa fa-close"></i> Cancelar</a>
         </div>
     </div>

@@ -15,7 +15,7 @@
 </section>
 <div class="clearfix"></div>
 <a class="btn btn-success" style="margin-left: 1rem" href="{!! route('visitantes.create') !!}"><i
-        class="fa fa-plus"></i> Adicionar</a>
+        class="fa fa-plus"></i> Cadastrar</a>
 <div class="content">
     <div class="clearfix"></div>
 

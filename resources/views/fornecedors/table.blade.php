@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($fornecedors as $fornecedor)
+            @foreach($fornecedores as $fornecedor)
             <tr>
                 <td>{!! $fornecedor->Fornecedor !!}</td>
                 <td>{!! $fornecedor->NomeFantasia !!}</td>
@@ -38,11 +38,11 @@
                     {!! date('d/m/Y', strtotime($fornecedor->DataCadastro)); !!}
                 </td>
                 <td>
-                    {!! Form::open(['route' => ['fornecedors.destroy', $fornecedor->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['fornecedores.destroy', $fornecedor->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                        <a href="{!! route('fornecedors.show', [$fornecedor->id]) !!}" class='btn btn-default btn-sm'><i
+                        <a href="{!! route('fornecedores.show', [$fornecedor->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-zoom-in"></i></a>
-                        <a href="{!! route('fornecedors.edit', [$fornecedor->id]) !!}" class='btn btn-default btn-sm'><i
+                        <a href="{!! route('fornecedores.edit', [$fornecedor->id]) !!}" class='btn btn-default btn-sm'><i
                                 class="glyphicon glyphicon-edit"></i></a>
                         {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' =>
                         'btn btn-danger btn-sm', 'onclick' => "return confirm('Você tem certeza que deseja excluir o

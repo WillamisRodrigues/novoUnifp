@@ -7,7 +7,7 @@
     <h1 class="pull-right">
         <ol class="breadcrumb breadcrumb-fp">
             <li><a href="/home"><i class="fa fa-home"></i></a></li>
-            <li><a href="{!! route('fornecedors.index') !!}">Fornecedores</a></li>
+            <li><a href="{!! route('fornecedores.index') !!}">Fornecedores</a></li>
             <li class="active">Editar</li>
         </ol>
     </h1>
@@ -20,10 +20,10 @@
     <div class="box box-primary criar-unidade">
         <div class="box-body">
             <div class="row">
-                {!! Form::model($fornecedor, ['route' => ['fornecedors.update', $fornecedor->id], 'method' => 'patch'])
+                {!! Form::model($fornecedor, ['route' => ['fornecedores.update', $fornecedor->id], 'method' => 'patch'])
                 !!}
 
-                @include('fornecedors.fields')
+                @include('fornecedores.fields')
 
                 {!! Form::close() !!}
             </div>

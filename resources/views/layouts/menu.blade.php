@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <li class="dropdown menu-top-navbar">
     <a href="/home"><i class="fa fa-area-chart"></i>
         Dashboard</a>
@@ -213,10 +215,10 @@
         </li>
         @endCanAtLeast
 
-        @canAtLeast(['fornecedores.index'])
-        <li class="{{ Request::is('fornecedors*') ? 'active' : '' }}">
-            <a href="{!! route('fornecedors.index') !!}"><i
-                    class="fa fa-address-card-o"></i><span>Fornecedores</span></a>
+        @canAtLeast(['funcionarios.index'])
+        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
+            <a href="{!! route('funcionarios.index') !!}"><i
+                    class="fa fa-user-circle-o"></i><span>Fornecedores</span></a>
         </li>
         @endCanAtLeast
 
@@ -301,3 +303,16 @@
     </ul>
 </li>
 @endCanAtLeast
+
+<script type="text/javascript">
+
+$('.menu-top-navbar').on('mouseover', function() {
+  $('.menu-top-navbar').removeClass('open')
+  $(this).addClass('open')
+});
+
+$('.menu-top-navba').on('mouseout', function() {
+  $('.menu-top-navbar').removeClass('open')
+});
+
+</script>

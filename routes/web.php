@@ -131,7 +131,7 @@ Route::resource('visitantes', 'visitanteController')->middleware('canAtLeast:vis
 
 Route::resource('funcionarios', 'FuncionarioController')->middleware('canAtLeast:funcionarios.index');
 
-Route::resource('fornecedors', 'FornecedorController')->middleware('canAtLeast:fornecedores.index');
+Route::resource('fornecedores', 'FornecedorController')->middleware('canAtLeast:fornecedores.index');
 
 Route::resource('horarios', 'HorarioController')->middleware('canAtLeast:horarios.index');
 
@@ -188,3 +188,11 @@ Route::resource('modulos', 'ModuloController')->middleware('canAtLeast:nivel_ace
 Route::resource('permissions', 'PermissionController')->middleware('canAtLeast:nivel_acesso.index');
 
 Route::resource('roles', 'RolesController')->middleware('canAtLeast:nivel_acesso.index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

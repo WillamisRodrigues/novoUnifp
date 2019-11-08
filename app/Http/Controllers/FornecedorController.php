@@ -8,6 +8,7 @@ use App\Repositories\FornecedorRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\DB;
 use Response;
 
 class FornecedorController extends AppBaseController
@@ -31,10 +32,10 @@ class FornecedorController extends AppBaseController
     public function index(Request $request)
     {
         PermissionController::temPermissao('fornecedores.index');
-        $fornecedors = $this->fornecedorRepository->all()->where('idUnidade', $this->unidade);
+        $fornecedores = $this->fornecedorRepository->all()->where('idUnidade', $this->unidade);
 
-        return view('fornecedors.index')
-            ->with('fornecedors', $fornecedors);
+        return view('fornecedores.index')
+            ->with('fornecedores', $fornecedores);
     }
 
     /**
@@ -45,7 +46,7 @@ class FornecedorController extends AppBaseController
     public function create()
     {
         PermissionController::temPermissao('fornecedores.update');
-        return view('fornecedors.create');
+        return view('fornecedores.create');
     }
 
     /**
@@ -66,7 +67,7 @@ class FornecedorController extends AppBaseController
 
         Flash::success('Fornecedor salvo com sucesso.');
 
-        return redirect(route('fornecedors.index'));
+        return redirect(route('fornecedores.index'));
     }
 
     /**
@@ -84,10 +85,10 @@ class FornecedorController extends AppBaseController
         if (empty($fornecedor)) {
             Flash::error('Fornecedor não encontrado.');
 
-            return redirect(route('fornecedors.index'));
+            return redirect(route('fornecedores.index'));
         }
 
-        return view('fornecedors.show')->with('fornecedor', $fornecedor);
+        return view('fornecedores.show')->with('fornecedor', $fornecedor);
     }
 
     /**
@@ -105,10 +106,10 @@ class FornecedorController extends AppBaseController
         if (empty($fornecedor)) {
             Flash::error('Fornecedor não encontrado.');
 
-            return redirect(route('fornecedors.index'));
+            return redirect(route('fornecedores.index'));
         }
 
-        return view('fornecedors.edit')->with('fornecedor', $fornecedor);
+        return view('fornecedores.edit')->with('fornecedor', $fornecedor);
     }
 
     /**
@@ -127,14 +128,14 @@ class FornecedorController extends AppBaseController
         if (empty($fornecedor)) {
             Flash::error('Fornecedor não encontrado.');
 
-            return redirect(route('fornecedors.index'));
+            return redirect(route('fornecedores.index'));
         }
 
         $fornecedor = $this->fornecedorRepository->update($request->all(), $id);
 
         Flash::success('Fornecedor atualizado com sucesso.');
 
-        return redirect(route('fornecedors.index'));
+        return redirect(route('fornecedores.index'));
     }
 
     /**
@@ -154,13 +155,13 @@ class FornecedorController extends AppBaseController
         if (empty($fornecedor)) {
             Flash::error('Fornecedor não encontrado.');
 
-            return redirect(route('fornecedors.index'));
+            return redirect(route('fornecedores.index'));
         }
 
         $this->fornecedorRepository->delete($id);
 
         Flash::success('Fornecedor deletado com sucesso.');
 
-        return redirect(route('fornecedors.index'));
+        return redirect(route('fornecedores.index'));
     }
 }

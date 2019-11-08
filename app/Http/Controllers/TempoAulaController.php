@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class TempoAulaController extends AppBaseController
 {
@@ -63,6 +64,7 @@ class TempoAulaController extends AppBaseController
         $tempoAula = $this->tempoAulaRepository->create($input);
 
         $unidade = UnidadeController::getUnidade();
+
         DB::table('tempo_aula')->where('id', $tempoAula->id)->update(['idUnidade' => $unidade]);
 
         Flash::success('Tempo de Aula salvo com sucesso.');

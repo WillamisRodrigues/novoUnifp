@@ -26,6 +26,14 @@
                 <td>
                     {!! date('H:m d/m/Y', strtotime($agenda->updated_at)); !!}
                 </td>
+                <td>
+                    <div class='btn-group'>
+                        <a href="{!! route('agendas.show', [$agenda->id]) !!}" class='btn btn-default btn-sm'><i
+                                class="glyphicon glyphicon-zoom-in"></i></a>
+                        <a href="{!! route('agendas.edit', [$agenda->id]) !!}" class='btn btn-default btn-sm'><i
+                                class="glyphicon glyphicon-edit"></i></a>
+                    </div>
+                </td>
             </tr>
             @endforeach
         </tbody>
