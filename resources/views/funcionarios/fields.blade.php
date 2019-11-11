@@ -86,7 +86,8 @@
     <div class="row">
         <p class="col-md-4 col-sm-12" style="margin: 10px 0px">{!! Form::label('Cargo', 'Cargo:') !!}<span
                 style="color: red">*</span></p>
-        <p class="col-md-8 col-sm-12">@if(isset($_SERVER['HTTP_REFERER']) and strpos( $_SERVER['HTTP_REFERER'], 'vendedores-lista' ))
+        <p class="col-md-8 col-sm-12">
+            @if(isset($_SERVER['HTTP_REFERER']) and (strpos( $_SERVER['HTTP_REFERER'], 'vendedores-lista' ) or strpos( $_SERVER['HTTP_REFERER'], 'alunos/create' )) )
             {!! Form::text('Cargo', 'Vendedor', ['class' => 'form-control', 'readonly']) !!}
             @else
             {!! Form::text('Cargo', null, ['class' => 'form-control']) !!}

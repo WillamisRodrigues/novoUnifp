@@ -157,7 +157,7 @@ class Aluno extends Model
         'idCurso' => 'required',
         'idTurma' => 'required',
         // 'idParcelamento' => 'required',
-        'Vencimento' => 'required',
+//        'Vencimento' => 'required',
         'Mae' => 'required',
         'Pai' => 'required',
         'Conheceu' => 'required',
