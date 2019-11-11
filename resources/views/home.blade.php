@@ -33,27 +33,27 @@
     <div class="box-home" style="margin-top: 1rem">
         <div class="col-xs-6 col-sm-2 receitas" style="border-right: 1px solid #44444444">
             <p><i class="fa fa-user"></i> Qtde. Alunos Ativos</p>
-            <div style="font-weight: bolder"> {{ $AlunosAtivos }} </div>
+            <div style="font-weight: bolder">  </div>
         </div>
         <div class="col-xs-6 col-sm-2 receitas" style="border-right: 1px solid #44444444">
             <p><i class="fa fa-list"></i> Qtde. Turmas</p>
-            <div style="font-weight: bolder">{{ $Turmas }}</div>
+            <div style="font-weight: bolder"></div>
         </div>
         <div class="col-xs-6 col-sm-2 receitas" style="border-right: 1px solid #44444444">
             <p><i class="fa fa-user"></i> Qtde. Evasão</p>
-            <div style="font-weight: bolder">{{ $AlunosInativos }}</div>
+            <div style="font-weight: bolder"></div>
         </div>
         <div class="col-xs-6 col-sm-2 receitas" style="border-right: 1px solid #44444444">
             <p><i class="fa fa-list"></i> Qtde. Cursos</p>
-            <div style="font-weight: bolder">{{ $Cursos }}</div>
+            <div style="font-weight: bolder"></div>
         </div>
         <div class="col-xs-6 col-sm-2 receitas" style="border-right: 1px solid #44444444">
             <p><i class="fa fa-user"></i> Qtde. Professores Ativos</p>
-            <div style="font-weight: bolder">{{ $Professores }}</div>
+            <div style="font-weight: bolder"></div>
         </div>
         <div class="col-xs-6 col-sm-2 receitas">
             <p><i class="fa fa-user"></i> Qtde. Interessados (visitas)</p>
-            <div style="font-weight: bolder">{{ $Visitas }}</div>
+            <div style="font-weight: bolder"></div>
         </div>
     </div>
     {{-- <div class="box-home" style="margin-top: 2rem; margin-bottom: 2rem">
