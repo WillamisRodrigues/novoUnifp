@@ -33,7 +33,7 @@ class FuncionarioController extends AppBaseController
         PermissionController::temPermissao('funcionarios.index');
         // $funcionarios = $this->funcionarioRepository->all();
         $unidade = UnidadeController::getUnidade();
-        $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $funcionarios = DB::table('funcionario')->where([['idUnidade', '=', $unidade], ['Cargo', '!=', 'Vendedor'], ['deleted_at', '=', null]])->get();
 
         return view('funcionarios.index')->with('funcionarios', $funcionarios);
     }
