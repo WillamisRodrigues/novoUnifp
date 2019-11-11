@@ -76,7 +76,12 @@ class FuncionarioController extends AppBaseController
 
         Flash::success('Funcionário salvo com sucesso.');
 
-        return redirect(route('funcionarios.index'));
+        if ($funcionario->Cargo == 'Vendedor') {
+            return redirect('/vendedores-listar');
+        } else {
+            return redirect(route('funcionarios.index'));
+        }
+
     }
 
     /**
