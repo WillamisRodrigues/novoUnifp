@@ -89,6 +89,8 @@
         <p class="col-md-8 col-sm-12">
             @if(isset($_SERVER['HTTP_REFERER']) and (strpos( $_SERVER['HTTP_REFERER'], 'vendedores-lista' ) or strpos( $_SERVER['HTTP_REFERER'], 'alunos/create' )) )
             {!! Form::text('Cargo', 'Vendedor', ['class' => 'form-control', 'readonly']) !!}
+            @elseif(isset($_SERVER['HTTP_REFERER']) and strpos( $_SERVER['HTTP_REFERER'], 'professores-lista' ) )
+            {!! Form::text('Cargo', 'Professor', ['class' => 'form-control', 'readonly']) !!}
             @else
             {!! Form::text('Cargo', null, ['class' => 'form-control']) !!}
             @endif
