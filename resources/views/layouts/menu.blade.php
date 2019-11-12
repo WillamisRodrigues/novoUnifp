@@ -172,7 +172,7 @@
         </li>
         @endCanAtLeast
 
-        @canAtLeast(['aniversarios.index'])
+        <!-- @canAtLeast(['aniversarios.index'])
         <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
             <a href="/funcionarios-aniversario"><i class="fa fa-birthday-cake"></i><span>Aniversário de
                     Funcionários</span></a>
@@ -184,7 +184,7 @@
             <a href="/professores-aniversario"><i class="fa fa-birthday-cake"></i><span>Aniversário de
                     Professores</span></a>
         </li>
-        @endCanAtLeast
+        @endCanAtLeast -->
     </ul>
 </li>
 @endCanAtLeast
