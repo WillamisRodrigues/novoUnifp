@@ -75,10 +75,10 @@ class AlunoController extends AppBaseController
         $escolaridades = $this->escolaridadeRepository->all();
         $pagamentos = $this->pagRepository->all();
         $comoConheceu = $this->comoConheceuRepository->all();
-        $vencimento = DB::table('dias_vencimento')->where('idUnidade', $unidade)->get();
+        $vencimentos = DB::table('dias_vencimento')->where('idUnidade', $unidade)->get();
 
 
-        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimento, 'unidade' => $unidade]);
+        return view('alunos.create', ['funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimentos, 'unidade' => $unidade]);
     }
 
     /**
