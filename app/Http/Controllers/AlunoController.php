@@ -101,7 +101,7 @@ class AlunoController extends AppBaseController
         $idParcelamento = Arr::get($inputAluno, 'idCurso');
         $parcelamentos = DB::table('formas_pagamento')->get()->where('idCurso', $idParcelamento);
 
-        $contrato = DB::table('contratos')->get()->where('id', $aluno->idCurso)->first();
+        $contrato = DB::table('contratos')->get()->where('idCurso', $aluno->idCurso)->first();
 
         foreach ($parcelamentos as $parcelamento) {
             $valor = $parcelamento->ParcelaBruta;
