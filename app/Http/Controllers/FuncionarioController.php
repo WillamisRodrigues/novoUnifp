@@ -78,10 +78,13 @@ class FuncionarioController extends AppBaseController
 
         if ($funcionario->Cargo == 'Vendedor') {
             return redirect('/vendedores-listar');
-        } else {
-            return redirect(route('funcionarios.index'));
-        }
+        } 
 
+        if ($funcionario->Cargo == 'Professor') {
+            return redirect('/professores-listar');
+        } 
+
+        return redirect(route('funcionarios.index'));
     }
 
     /**
@@ -151,9 +154,13 @@ class FuncionarioController extends AppBaseController
 
         if ($funcionario->Cargo == 'Vendedor') {
             return redirect('/vendedores-listar');
-        } else {
-            return redirect(route('funcionarios.index'));
-        }
+        } 
+
+        if ($funcionario->Cargo == 'Professor') {
+            return redirect('/professores-listar');
+        } 
+
+        return redirect(route('funcionarios.index'));
     }
 
     /**
@@ -182,8 +189,12 @@ class FuncionarioController extends AppBaseController
 
         if ($funcionario->Cargo == 'Vendedor') {
             return redirect('/vendedores-listar');
-        } else {
-            return redirect(route('funcionarios.index'));
-        }
+        } 
+
+        if ($funcionario->Cargo == 'Professor') {
+            return redirect('/professores-listar');
+        } 
+
+        return redirect(route('funcionarios.index'));
     }
 }
