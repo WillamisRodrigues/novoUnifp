@@ -41,6 +41,8 @@ class UnidadeController extends AppBaseController
 
         $unidades = $this->unidadeRepository->all();
 
+        Flash::warning('Atenção: É necessário estar logado em uma unidade para habilitar a visualização da Dashboard.');
+
         return view('unidades.index')
             ->with('unidades', $unidades);
     }

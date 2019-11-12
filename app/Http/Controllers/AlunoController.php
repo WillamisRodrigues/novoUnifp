@@ -224,7 +224,7 @@ class AlunoController extends AppBaseController
         $funcionarios = DB::table('funcionario')->where([['Cargo', '=', 'Vendedor'], ['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $cursos = DB::table('curso')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $turmas = DB::table('turma')->where([['idUnidade', '=', $unidade], ['Status', '=', 'Ativa'], ['idCurso', '=', $aluno->idTurma], ['deleted_at', '=', null]])->get();
-        $vencimento = DB::table('dias_vencimento')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
+        $vencimentos = DB::table('dias_vencimento')->where([['idUnidade', '=', $unidade], ['deleted_at', '=', null]])->get();
         $pagamentos = $this->pagRepository->all();
         $comoConheceu = $this->comoConheceuRepository->all();
 
@@ -234,7 +234,7 @@ class AlunoController extends AppBaseController
             return redirect(route('alunos.index'));
         }
 
-        return view('alunos.edit', ['aluno' => $aluno, 'funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimento]);
+        return view('alunos.edit', ['aluno' => $aluno, 'funcionarios' => $funcionarios, 'escolaridades' => $escolaridades, 'cursos' => $cursos, 'turmas' => $turmas, 'pagamentos' => $pagamentos, 'conheceu' => $comoConheceu, 'vencimentos' => $vencimentos]);
     }
 
     /**
