@@ -24,6 +24,11 @@ class HomeController extends Controller
     {
         // pega o id da unidade com a função getunidade
         $unidade = UnidadeController::getUnidade();
+
+        if (is_null($unidade)) {
+            return redirect('/unidades');
+        }
+
         //captação de dados para alimentação da home
         $alunosAtivos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '=', 'Estudando']])->get();
         $alunosInativos = DB::table('aluno')->where([['deleted_at', '=', null], ['idUnidade', '=', $unidade], ['Status', '<>', 'Estudando']])->get();
