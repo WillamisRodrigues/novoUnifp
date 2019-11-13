@@ -19,7 +19,7 @@ class FornecedorController extends AppBaseController
     public function __construct(FornecedorRepository $fornecedorRepo)
     {
         $this->fornecedorRepository = $fornecedorRepo;
-        $unidade = UnidadeController::getUnidade();
+        
     }
 
     /**
@@ -32,7 +32,8 @@ class FornecedorController extends AppBaseController
     public function index(Request $request)
     {
         PermissionController::temPermissao('fornecedores.index');
-        $fornecedores = $this->fornecedorRepository->all()->where('idUnidade', $this->unidade);
+        $unidade = UnidadeController::getUnidade();
+        $fornecedores = $this->fornecedorRepository->all()->where('idUnidade', $unidade);
 
         return view('fornecedores.index')
             ->with('fornecedores', $fornecedores);

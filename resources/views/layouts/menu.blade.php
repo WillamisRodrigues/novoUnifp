@@ -215,9 +215,9 @@
         </li>
         @endCanAtLeast
 
-        @canAtLeast(['funcionarios.index'])
-        <li class="{{ Request::is('funcionarios*') ? 'active' : '' }}">
-            <a href="{!! route('funcionarios.index') !!}"><i
+        @canAtLeast(['fornecedores.index'])
+        <li class="{{ Request::is('fornecedores*') ? 'active' : '' }}">
+            <a href="{!! route('fornecedores.index') !!}"><i
                     class="fa fa-user-circle-o"></i><span>Fornecedores</span></a>
         </li>
         @endCanAtLeast
