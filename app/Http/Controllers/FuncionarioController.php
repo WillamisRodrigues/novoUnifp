@@ -139,7 +139,7 @@ class FuncionarioController extends AppBaseController
      */
     public function update($id, UpdateFuncionarioRequest $request)
     {
-        PermissionController::temPermissao('funcionarios.indeedit');
+        PermissionController::temPermissao('funcionarios.edit');
         $funcionario = $this->funcionarioRepository->find($id);
 
         if (empty($funcionario)) {

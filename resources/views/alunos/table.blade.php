@@ -110,7 +110,7 @@
                 <td></td>
                 <td></td>
                 <td colspan="4">
-                    {{ $alunos->links() }}
+                    
                 </td>
             </tr>
         </tfoot>
