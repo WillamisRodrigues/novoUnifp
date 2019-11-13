@@ -60,7 +60,7 @@ class ModuloController extends AppBaseController
         $modulo = $this->moduloRepository->create($input);
 
         $unidade = UnidadeController::getUnidade();
-        DB::update('update modulos set idUnidade = ? where id = ?', [$unidade, $modulo->id]);
+        //DB::update('update modulos set idUnidade = ? where id = ?', [$unidade, $modulo->id]);
 
         Flash::success('Módulo adicionado com sucesso.');
 
